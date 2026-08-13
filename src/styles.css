@@ -1,0 +1,282 @@
+@import "tailwindcss";
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Tin Shade Noida — premium industrial design system.
+ * Deep navy structure, sky-blue engineering accent, white space, red used sparingly.
+ * All colours are oklch tokens. Never hardcode colours in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 10px);
+
+  --font-display: "Oswald", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-steel: var(--steel);
+  --color-steel-deep: var(--steel-deep);
+  --color-steel-foreground: var(--steel-foreground);
+  --color-steel-muted: var(--steel-muted);
+  --color-steel-line: var(--steel-line);
+  --color-signal: var(--signal);
+  --color-signal-foreground: var(--signal-foreground);
+  --color-whatsapp: var(--whatsapp);
+  --color-surface: var(--surface);
+
+  /* Semantic aliases so Tailwind generates bg-signal / text-signal utilities */
+  --color-signal: var(--signal);
+  --color-signal-foreground: var(--signal-foreground);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.2 0.03 258);
+  --surface: oklch(0.968 0.006 250);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.03 258);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.03 258);
+
+  /* Sky blue — the brand accent */
+  --primary: oklch(0.6 0.145 243);
+  --primary-foreground: oklch(0.99 0.005 240);
+  --primary-soft: oklch(0.95 0.03 240);
+
+  --secondary: oklch(0.95 0.008 250);
+  --secondary-foreground: oklch(0.28 0.03 255);
+
+  --muted: oklch(0.96 0.006 250);
+  --muted-foreground: oklch(0.52 0.02 255);
+
+  --accent: oklch(0.94 0.025 240);
+  --accent-foreground: oklch(0.3 0.05 248);
+
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.99 0.005 60);
+
+  --border: oklch(0.9 0.01 250);
+  --input: oklch(0.9 0.01 250);
+  --ring: oklch(0.6 0.145 243);
+
+  /* Deep navy surfaces */
+  --steel: oklch(0.22 0.04 258);
+  --steel-deep: oklch(0.16 0.035 260);
+  --steel-foreground: oklch(0.98 0.004 250);
+  --steel-muted: oklch(0.72 0.02 250);
+  --steel-line: oklch(1 0 0 / 12%);
+
+  /* Signal red — emphasis only */
+  --signal: oklch(0.55 0.2 27);
+  --signal-foreground: oklch(0.99 0.005 60);
+
+  --whatsapp: oklch(0.63 0.16 152);
+
+  --shadow-elevated: 0 28px 70px -32px oklch(0.2 0.04 258 / 55%);
+  --shadow-card: 0 1px 2px oklch(0.2 0.04 258 / 6%), 0 14px 32px -22px oklch(0.2 0.04 258 / 38%);
+  --gradient-steel: linear-gradient(160deg, oklch(0.24 0.045 256) 0%, oklch(0.15 0.035 262) 100%);
+  --gradient-rule: linear-gradient(90deg, var(--primary), transparent);
+}
+
+.dark {
+  --background: oklch(0.16 0.035 260);
+  --foreground: oklch(0.97 0.004 250);
+  --surface: oklch(0.22 0.04 258);
+  --card: oklch(0.23 0.038 258);
+  --card-foreground: oklch(0.97 0.004 250);
+  --popover: oklch(0.23 0.038 258);
+  --popover-foreground: oklch(0.97 0.004 250);
+  --primary: oklch(0.7 0.14 238);
+  --primary-foreground: oklch(0.16 0.035 260);
+  --primary-soft: oklch(0.3 0.05 250);
+  --secondary: oklch(0.27 0.035 255);
+  --secondary-foreground: oklch(0.97 0.004 250);
+  --muted: oklch(0.27 0.035 255);
+  --muted-foreground: oklch(0.74 0.015 250);
+  --accent: oklch(0.3 0.045 248);
+  --accent-foreground: oklch(0.97 0.004 250);
+  --border: oklch(1 0 0 / 14%);
+  --input: oklch(1 0 0 / 18%);
+  --ring: oklch(0.7 0.14 238);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0.005em;
+    font-weight: 600;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+@utility rule-accent {
+  background-image: var(--gradient-rule);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+@utility shadow-elevated {
+  box-shadow: var(--shadow-elevated);
+}
+
+@utility bg-steel-gradient {
+  background-image: var(--gradient-steel);
+}
+
+@utility grid-blueprint {
+  background-image:
+    linear-gradient(to right, var(--steel-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--steel-line) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+/* Slow cinematic zoom for hero imagery */
+@keyframes tsn-kenburns {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+@utility ken-burns {
+  animation: tsn-kenburns 14s ease-out forwards;
+}
+
+@keyframes tsn-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@utility marquee-track {
+  animation: tsn-marquee 32s linear infinite;
+}
+
+@layer base {
+  [data-reveal] {
+    opacity: 0;
+    transition:
+      opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  [data-reveal="up"] {
+    transform: translate3d(0, 28px, 0);
+  }
+
+  [data-reveal="left"] {
+    transform: translate3d(-28px, 0, 0);
+  }
+
+  [data-reveal="right"] {
+    transform: translate3d(28px, 0, 0);
+  }
+
+  [data-reveal="scale"] {
+    transform: scale(0.96);
+  }
+
+  /* fade variant — opacity only, no transform */
+  [data-reveal="fade"] {
+    transform: none;
+  }
+
+  [data-reveal][data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .ken-burns,
+    .marquee-track {
+      animation: none;
+    }
+  }
+}
