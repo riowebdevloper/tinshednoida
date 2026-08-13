@@ -18,8 +18,14 @@ function ServiceDetailModal({ service, onClose, onSelectVideo }: ServiceDetailMo
   if (!service) return null;
 
   const Icon = needIcons[service.icon] ?? needIcons["factory"]!;
-  const relatedProjects = projects.filter((p) => p.category.toLowerCase().includes(service.id) || p.title.toLowerCase().includes(service.label.toLowerCase()));
-  const relatedVideos = reels.filter((r) => r.serviceId === service.id || r.label.toLowerCase().includes(service.id));
+  const relatedProjects = projects.filter(
+    (p) =>
+      p.category.toLowerCase().includes(service.id) ||
+      p.title.toLowerCase().includes(service.label.toLowerCase()),
+  );
+  const relatedVideos = reels.filter(
+    (r) => r.serviceId === service.id || r.label.toLowerCase().includes(service.id),
+  );
 
   function handleGetQuote() {
     onClose();
@@ -65,11 +71,7 @@ function ServiceDetailModal({ service, onClose, onSelectVideo }: ServiceDetailMo
           {/* Main Showcase Image & Description */}
           <div className="grid gap-6 md:grid-cols-2 items-center">
             <div className="relative aspect-16/10 overflow-hidden rounded-sm border border-steel-line bg-card shadow-card">
-              <img
-                src={service.image}
-                alt={service.alt}
-                className="size-full object-cover"
-              />
+              <img src={service.image} alt={service.alt} className="size-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-steel-deep/80 via-transparent to-transparent" />
               <span className="eyebrow absolute bottom-3 left-3 rounded-sm bg-black/60 px-2.5 py-1 text-xs text-white backdrop-blur-xs">
                 {service.short}
@@ -77,10 +79,8 @@ function ServiceDetailModal({ service, onClose, onSelectVideo }: ServiceDetailMo
             </div>
 
             <div className="space-y-4">
-              <p className="text-base leading-relaxed text-steel-muted">
-                "{service.body}"
-              </p>
-              
+              <p className="text-base leading-relaxed text-steel-muted">"{service.body}"</p>
+
               <div className="rounded-sm border border-steel-line bg-steel/60 p-4">
                 <p className="eyebrow text-xs text-primary font-semibold flex items-center gap-1.5">
                   <Shield className="size-3.5" /> Technical Specifications
@@ -99,7 +99,10 @@ function ServiceDetailModal({ service, onClose, onSelectVideo }: ServiceDetailMo
             </h4>
             <div className="mt-4 grid gap-3 sm:grid-cols-3">
               {service.benefits.map((benefit, idx) => (
-                <div key={idx} className="rounded-sm border border-steel-line bg-steel/40 p-3.5 text-xs text-steel-foreground">
+                <div
+                  key={idx}
+                  className="rounded-sm border border-steel-line bg-steel/40 p-3.5 text-xs text-steel-foreground"
+                >
                   <span className="block font-bold text-primary mb-1">0{idx + 1}. Feature</span>
                   {benefit}
                 </div>
@@ -129,7 +132,8 @@ function ServiceDetailModal({ service, onClose, onSelectVideo }: ServiceDetailMo
             <div className="border-t border-steel-line/60 pt-6">
               <div className="flex items-center justify-between">
                 <h4 className="font-display text-lg font-bold uppercase tracking-wider text-white flex items-center gap-2">
-                  <Play className="size-5 text-primary" /> Linked Project Action Videos ({relatedVideos.length})
+                  <Play className="size-5 text-primary" /> Linked Project Action Videos (
+                  {relatedVideos.length})
                 </h4>
               </div>
               <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -142,7 +146,11 @@ function ServiceDetailModal({ service, onClose, onSelectVideo }: ServiceDetailMo
                     }}
                     className="group relative aspect-16/10 cursor-pointer overflow-hidden rounded-sm border border-steel-line bg-steel-deep shadow-card transition-all hover:border-primary"
                   >
-                    <img src={video.image} alt={video.label} className="size-full object-cover group-hover:scale-105 transition-transform" />
+                    <img
+                      src={video.image}
+                      alt={video.label}
+                      className="size-full object-cover group-hover:scale-105 transition-transform"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <span className="flex size-9 items-center justify-center rounded-full bg-primary/80 text-white backdrop-blur-xs transition-transform group-hover:scale-110">
@@ -166,10 +174,19 @@ function ServiceDetailModal({ service, onClose, onSelectVideo }: ServiceDetailMo
               </h4>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 {relatedProjects.slice(0, 2).map((proj) => (
-                  <div key={proj.id} className="flex items-center gap-3 rounded-sm border border-steel-line bg-steel/50 p-3">
-                    <img src={proj.image} alt={proj.title} className="size-14 rounded-sm object-cover shrink-0" />
+                  <div
+                    key={proj.id}
+                    className="flex items-center gap-3 rounded-sm border border-steel-line bg-steel/50 p-3"
+                  >
+                    <img
+                      src={proj.image}
+                      alt={proj.title}
+                      className="size-14 rounded-sm object-cover shrink-0"
+                    />
                     <div className="min-w-0">
-                      <p className="font-display text-sm font-bold uppercase text-white truncate">{proj.title}</p>
+                      <p className="font-display text-sm font-bold uppercase text-white truncate">
+                        {proj.title}
+                      </p>
                       <p className="text-xs text-steel-muted">{proj.location}</p>
                     </div>
                   </div>
@@ -211,7 +228,9 @@ export function Services() {
   const filteredServices =
     activeFilter === "ALL"
       ? services
-      : services.filter((s) => s.id === activeFilter || s.label.toUpperCase().includes(activeFilter));
+      : services.filter(
+          (s) => s.id === activeFilter || s.label.toUpperCase().includes(activeFilter),
+        );
 
   return (
     <section id="services" className="content-auto bg-surface py-16 lg:py-24">
@@ -226,7 +245,8 @@ export function Services() {
               Capabilities & Services
             </h2>
             <p className="mt-3 max-w-lg text-base text-muted-foreground">
-              Six core structure types — click any service to view full specifications, related project videos, and request a direct estimate.
+              Six core structure types — click any service to view full specifications, related
+              project videos, and request a direct estimate.
             </p>
           </div>
 
@@ -240,7 +260,11 @@ export function Services() {
         </Reveal>
 
         {/* INTERACTIVE SERVICE FILTER TABS */}
-        <Reveal variant="up" delay={100} className="mt-8 flex flex-wrap gap-2 border-b border-border pb-4">
+        <Reveal
+          variant="up"
+          delay={100}
+          className="mt-8 flex flex-wrap gap-2 border-b border-border pb-4"
+        >
           <button
             type="button"
             onClick={() => setActiveFilter("ALL")}
@@ -298,7 +322,7 @@ export function Services() {
                     {service.code}
                   </span>
                   <Icon className="absolute bottom-4 left-4 size-7 text-primary transition-transform group-hover:scale-110" />
-                  
+
                   <span className="eyebrow absolute right-4 bottom-4 rounded-sm bg-primary/20 border border-primary/40 px-2.5 py-1 text-[0.65rem] text-primary backdrop-blur-sm opacity-0 transition-opacity group-hover:opacity-100">
                     CLICK FOR DETAILS
                   </span>

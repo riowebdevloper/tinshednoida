@@ -1,5 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Bot, Check, MessageCircle, Phone, RefreshCw, Send, Sparkles, Trash2, User, X } from "lucide-react";
+import {
+  ArrowRight,
+  Bot,
+  Check,
+  MessageCircle,
+  Phone,
+  RefreshCw,
+  Send,
+  Sparkles,
+  Trash2,
+  User,
+  X,
+} from "lucide-react";
 import { company, needs, projects, services } from "@/lib/site-data";
 import { triggerQuoteForNeed } from "./QuoteWizard";
 
@@ -47,20 +59,46 @@ function generateAIResponse(
   // 1. Extract Service Type
   if (text.includes("warehouse") || text.includes("godown") || text.includes("storage")) {
     nextContext.serviceType = "Warehouse Shed";
-  } else if (text.includes("industrial") || text.includes("factory") || text.includes("workshop") || text.includes("plant")) {
+  } else if (
+    text.includes("industrial") ||
+    text.includes("factory") ||
+    text.includes("workshop") ||
+    text.includes("plant")
+  ) {
     nextContext.serviceType = "Industrial Shed";
-  } else if (text.includes("ms structure") || text.includes("steel frame") || text.includes("mezzanine") || text.includes("truss")) {
+  } else if (
+    text.includes("ms structure") ||
+    text.includes("steel frame") ||
+    text.includes("mezzanine") ||
+    text.includes("truss")
+  ) {
     nextContext.serviceType = "MS Structure";
-  } else if (text.includes("roofing") || text.includes("tin roof") || text.includes("sheet") || text.includes("terrace")) {
+  } else if (
+    text.includes("roofing") ||
+    text.includes("tin roof") ||
+    text.includes("sheet") ||
+    text.includes("terrace")
+  ) {
     nextContext.serviceType = "Tin Roofing";
-  } else if (text.includes("peb") || text.includes("pre-engineered") || text.includes("pre engineered")) {
+  } else if (
+    text.includes("peb") ||
+    text.includes("pre-engineered") ||
+    text.includes("pre engineered")
+  ) {
     nextContext.serviceType = "PEB Structure";
-  } else if (text.includes("repair") || text.includes("fix") || text.includes("leak") || text.includes("renovate")) {
+  } else if (
+    text.includes("repair") ||
+    text.includes("fix") ||
+    text.includes("leak") ||
+    text.includes("renovate")
+  ) {
     nextContext.serviceType = "Repair / Renovation";
   }
 
   // 2. Extract Area Size
-  const sizeMatch = text.match(/(\d{3,6})\s*(sqft|sq\s*ft|square\s*feet|feet|ft)/i) || text.match(/(\d{3,6})\s*k[a\s]/i);
+  const sizeMatch =
+    text.match(/(\d{3,6})\s*(sqft|sq\s*ft|square\s*feet|feet|ft)/i) ||
+    text.match(/(\d{3,6})\s*k[a\s]/i);
   if (sizeMatch && sizeMatch[1]) {
     nextContext.size = `${sizeMatch[1]} sq ft`;
   }
@@ -68,15 +106,36 @@ function generateAIResponse(
   // 3. Extract Location
   if (text.includes("noida") || text.includes("greater noida")) {
     nextContext.location = "Noida / Greater Noida";
-  } else if (text.includes("delhi") || text.includes("ncr") || text.includes("ghaziabad") || text.includes("gurugram") || text.includes("faridabad")) {
+  } else if (
+    text.includes("delhi") ||
+    text.includes("ncr") ||
+    text.includes("ghaziabad") ||
+    text.includes("gurugram") ||
+    text.includes("faridabad")
+  ) {
     nextContext.location = "Delhi NCR";
-  } else if (text.includes("mumbai") || text.includes("maharashtra") || text.includes("pune") || text.includes("gujarat") || text.includes("bangalore") || text.includes("south")) {
+  } else if (
+    text.includes("mumbai") ||
+    text.includes("maharashtra") ||
+    text.includes("pune") ||
+    text.includes("gujarat") ||
+    text.includes("bangalore") ||
+    text.includes("south")
+  ) {
     nextContext.location = "Pan India";
   }
 
   // PRICING / COST QUERY
-  if (text.includes("cost") || text.includes("price") || text.includes("rate") || text.includes("kitne") || text.includes("budget") || text.includes("kitna lag")) {
-    let reply = `Pricing depends on structure type, clear-span width, eaves height, sheet gauge, steel specifications, site conditions and installation location.\n\n` +
+  if (
+    text.includes("cost") ||
+    text.includes("price") ||
+    text.includes("rate") ||
+    text.includes("kitne") ||
+    text.includes("budget") ||
+    text.includes("kitna lag")
+  ) {
+    let reply =
+      `Pricing depends on structure type, clear-span width, eaves height, sheet gauge, steel specifications, site conditions and installation location.\n\n` +
       `Rather than guessing an inaccurate figure, our engineering team provides exact written quotations with transparent itemized pricing.`;
 
     if (nextContext.serviceType || nextContext.size) {
@@ -97,7 +156,12 @@ function generateAIResponse(
   }
 
   // WHAT DO YOU BUILD / SERVICES QUERY
-  if (text.includes("what do you build") || text.includes("services") || text.includes("build") || text.includes("kya banate")) {
+  if (
+    text.includes("what do you build") ||
+    text.includes("services") ||
+    text.includes("build") ||
+    text.includes("kya banate")
+  ) {
     const list = needs.map((n) => `• ${n.label} (${n.short})`).join("\n");
     return {
       text: `Tin Shade Noida fabricates and installs 6 core industrial structure categories Pan India:\n\n${list}\n\nAll structures are site-fabricated by our in-house crew. Tell me what type of project you have in mind!`,
@@ -110,7 +174,12 @@ function generateAIResponse(
   }
 
   // SITE VISIT / MEASUREMENT QUERY
-  if (text.includes("site visit") || text.includes("visit") || text.includes("measurement") || text.includes("survey")) {
+  if (
+    text.includes("site visit") ||
+    text.includes("visit") ||
+    text.includes("measurement") ||
+    text.includes("survey")
+  ) {
     return {
       text: `Yes! We provide 100% free site visits and technical measurements across Noida, Greater Noida, Delhi NCR, and major industrial centers across India.\n\nOur site engineers will visit your site, inspect structural feasibility, and provide a clear plan and estimate.`,
       newContext: nextContext,
@@ -122,7 +191,13 @@ function generateAIResponse(
   }
 
   // SERVICE AREA / LOCATION QUERY
-  if (text.includes("area") || text.includes("location") || text.includes("where") || text.includes("kahan") || text.includes("city")) {
+  if (
+    text.includes("area") ||
+    text.includes("location") ||
+    text.includes("where") ||
+    text.includes("kahan") ||
+    text.includes("city")
+  ) {
     return {
       text: `Tin Shade Noida serves clients PAN INDIA!\n\nOur main fabrication hub is located in Sector 10, Noida, UP, and our installation teams execute factory shed, warehouse roofing and MS structure projects nationwide.`,
       newContext: nextContext,
@@ -134,7 +209,13 @@ function generateAIResponse(
   }
 
   // PROJECTS PORTFOLIO QUERY
-  if (text.includes("project") || text.includes("portfolio") || text.includes("work") || text.includes("photo") || text.includes("example")) {
+  if (
+    text.includes("project") ||
+    text.includes("portfolio") ||
+    text.includes("work") ||
+    text.includes("photo") ||
+    text.includes("example")
+  ) {
     return {
       text: `We have completed over 500+ industrial sheds, warehouses, and steel structures over 15+ years of operations.\n\nYou can explore our recent project portfolio and action videos directly on this website.`,
       newContext: nextContext,
@@ -151,7 +232,13 @@ function generateAIResponse(
       return {
         text: `Got it — you are interested in a ${nextContext.serviceType}.\n\nCould you share the approximate area or dimensions required (e.g. 2,500 sq ft or 50x50 ft)?`,
         newContext: nextContext,
-        actions: [{ label: `QUOTE FOR ${nextContext.serviceType.toUpperCase()}`, action: "quote", need: nextContext.serviceType }],
+        actions: [
+          {
+            label: `QUOTE FOR ${nextContext.serviceType.toUpperCase()}`,
+            action: "quote",
+            need: nextContext.serviceType,
+          },
+        ],
       };
     }
 

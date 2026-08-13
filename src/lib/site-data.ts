@@ -103,13 +103,7 @@ export const trustPoints = [
   "Timely project execution",
 ];
 
-export type NeedId =
-  | "industrial"
-  | "warehouse"
-  | "ms"
-  | "roofing"
-  | "peb"
-  | "repair";
+export type NeedId = "industrial" | "warehouse" | "ms" | "roofing" | "peb" | "repair";
 
 export const needs: {
   id: NeedId;
@@ -138,7 +132,8 @@ export const needs: {
       "Custom ridge ventilators & translucent daylighting panels",
       "Weatherproof GI & colour-coated trapezoidal sheeting",
     ],
-    specifications: "Span up to 100ft clear span • IS 2062 Grade Steel • Primer & Anti-rust coating",
+    specifications:
+      "Span up to 100ft clear span • IS 2062 Grade Steel • Primer & Anti-rust coating",
     quoteOptionNeed: "Industrial Shed",
   },
   {
@@ -155,7 +150,8 @@ export const needs: {
       "High eaves clearance for multi-tier heavy storage racking",
       "Integrated rainwater gutters & downspout drainage systems",
     ],
-    specifications: "Eaves height 15-30ft • High-tensile purlins • Polycarbonate lighting roof sheets",
+    specifications:
+      "Eaves height 15-30ft • High-tensile purlins • Polycarbonate lighting roof sheets",
     quoteOptionNeed: "Warehouse",
   },
   {
@@ -172,7 +168,8 @@ export const needs: {
       "Precision on-site welding and bolting alignment",
       "Double primer & epoxy protective rust-proof coating",
     ],
-    specifications: "IS 2062 Grade Mild Steel • Certified welders • Customized structural engineering",
+    specifications:
+      "IS 2062 Grade Mild Steel • Certified welders • Customized structural engineering",
     quoteOptionNeed: "MS Structure",
   },
   {
@@ -264,7 +261,12 @@ export const projects: {
     location: "Noida, Sector 63",
     summary:
       "Complete factory shed with side cladding, ventilation openings and a shutter bay for a manufacturing unit.",
-    scope: ["Foundation coordination", "MS column & truss erection", "Roof sheeting", "Side cladding"],
+    scope: [
+      "Foundation coordination",
+      "MS column & truss erection",
+      "Roof sheeting",
+      "Side cladding",
+    ],
     material: "MS columns, tubular trusses, colour-coated trapezoidal sheets",
     image: proj1,
     alt: "Completed industrial factory shed with grey cladding and blue roof in Noida",
@@ -277,7 +279,12 @@ export const projects: {
     location: "Greater Noida",
     summary:
       "Wide clear-span storage warehouse designed for racking layout and forklift movement with roof lighting sheets.",
-    scope: ["Structural layout", "Clear-span trusses", "Translucent roof lighting", "Gutter & drainage"],
+    scope: [
+      "Structural layout",
+      "Clear-span trusses",
+      "Translucent roof lighting",
+      "Gutter & drainage",
+    ],
     material: "Heavy MS sections, galvanised purlins, poly-carbonate light sheets",
     image: proj2,
     alt: "Interior of a completed warehouse shed with racking and steel roof trusses",
@@ -361,12 +368,24 @@ export const processSteps = [
 ];
 
 export const journey = [
-  { label: "Empty site", image: stepSite, alt: "Empty levelled industrial plot ready for shed construction" },
+  {
+    label: "Empty site",
+    image: stepSite,
+    alt: "Empty levelled industrial plot ready for shed construction",
+  },
   { label: "Measurement", image: stepMeasure, alt: "Site engineer measuring an industrial plot" },
-  { label: "Structural planning", image: stepDesign, alt: "Steel shed structural drawings on a workshop table" },
+  {
+    label: "Structural planning",
+    image: stepDesign,
+    alt: "Steel shed structural drawings on a workshop table",
+  },
   { label: "Fabrication", image: hero3, alt: "Fabricator welding a steel beam on site" },
   { label: "Installation", image: stepInstall, alt: "Crane lifting a steel roof truss into place" },
-  { label: "Completed shed", image: proj1, alt: "Completed industrial shed handed over to the client" },
+  {
+    label: "Completed shed",
+    image: proj1,
+    alt: "Completed industrial shed handed over to the client",
+  },
 ];
 
 export const areas = [
@@ -521,7 +540,8 @@ export const localReels: ReelItem[] = [
   {
     id: "local-ms",
     title: "MS Structural Steel Fabrication",
-    description: "On-site heavy MS column erection, truss alignment, and structural welding execution.",
+    description:
+      "On-site heavy MS column erection, truss alignment, and structural welding execution.",
     service: "MS Structure",
     sourceType: "local",
     videoUrl: "/videos/ms-fabrication.mp4",
@@ -534,7 +554,8 @@ export const localReels: ReelItem[] = [
   {
     id: "local-industrial",
     title: "Industrial Factory Shed Construction",
-    description: "High clear-span factory shed erection with gantry beam integration and roof ventilation.",
+    description:
+      "High clear-span factory shed erection with gantry beam integration and roof ventilation.",
     service: "Industrial Shed",
     sourceType: "local",
     videoUrl: "/videos/industrial-shed.mp4",
@@ -573,7 +594,8 @@ export const localReels: ReelItem[] = [
   {
     id: "local-warehouse",
     title: "Logistics Warehouse Shed Structure",
-    description: "Clear-span 20,000+ sq ft warehouse structure built for high volume industrial storage.",
+    description:
+      "Clear-span 20,000+ sq ft warehouse structure built for high volume industrial storage.",
     service: "Warehouse Shed",
     sourceType: "local",
     videoUrl: "/videos/warehouse-shed.mp4",
@@ -589,7 +611,8 @@ export const instagramReelsList: ReelItem[] = [
   {
     id: "insta-1",
     title: "Terrace MS Framework & Sheeting",
-    description: "Terrace level MS framework setup and color-coated tin sheet installation work in progress.",
+    description:
+      "Terrace level MS framework setup and color-coated tin sheet installation work in progress.",
     service: "Tin Roofing",
     sourceType: "instagram",
     instagramUrl: "https://www.instagram.com/reel/DEkN6VxyAtc/",
@@ -670,7 +693,8 @@ export const youtubeReelsList: ReelItem[] = [
   {
     id: "yt-1",
     title: "Deep Enterprises Industrial Construction",
-    description: "Official site execution video showing heavy steel structure erection and roof framing.",
+    description:
+      "Official site execution video showing heavy steel structure erection and roof framing.",
     service: "Industrial Shed",
     sourceType: "youtube",
     youtubeId: "951bSvdn9Qc",
@@ -682,7 +706,8 @@ export const youtubeReelsList: ReelItem[] = [
   {
     id: "yt-2",
     title: "PEB Warehouse Erection Site Footage",
-    description: "Pre-engineered building primary frame assembly and structural alignment walkthrough.",
+    description:
+      "Pre-engineered building primary frame assembly and structural alignment walkthrough.",
     service: "PEB Structure",
     sourceType: "youtube",
     youtubeId: "dQw4w9WgXcQ",
@@ -735,7 +760,8 @@ export const reels: VideoItem[] = [
     serviceId: "industrial",
     image: svcIndustrial,
     duration: "0:38",
-    description: "Complete manufacturing factory shed with side wall cladding and roof ventilation.",
+    description:
+      "Complete manufacturing factory shed with side wall cladding and roof ventilation.",
   },
   {
     id: "v5",
@@ -792,8 +818,21 @@ export const gallery = [
 
 export const quoteOptions = {
   need: ["Industrial Shed", "Warehouse", "Tin Roofing", "MS Structure", "PEB Structure", "Other"],
-  size: ["Under 1,000 sq ft", "1,000 – 5,000 sq ft", "5,000 – 10,000 sq ft", "10,000+ sq ft", "Not sure"],
-  place: ["Noida / NCR", "North India", "West / Central India", "South India", "East / NE India", "Pan India / Other"],
+  size: [
+    "Under 1,000 sq ft",
+    "1,000 – 5,000 sq ft",
+    "5,000 – 10,000 sq ft",
+    "10,000+ sq ft",
+    "Not sure",
+  ],
+  place: [
+    "Noida / NCR",
+    "North India",
+    "West / Central India",
+    "South India",
+    "East / NE India",
+    "Pan India / Other",
+  ],
   timeline: ["Immediately", "Within 1 month", "1 – 3 months", "Just exploring"],
 };
 
@@ -830,4 +869,3 @@ export const leadership = {
     talkToUsLabel: "TALK TO US",
   },
 };
-

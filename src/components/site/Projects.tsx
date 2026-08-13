@@ -68,9 +68,7 @@ export function Projects() {
         ) : null}
       </div>
 
-      {openProject ? (
-        <ProjectModal project={openProject} onClose={() => setOpenId(null)} />
-      ) : null}
+      {openProject ? <ProjectModal project={openProject} onClose={() => setOpenId(null)} /> : null}
     </section>
   );
 }
@@ -125,7 +123,9 @@ function ProjectCard({
           {project.location}
         </p>
         {large ? (
-          <p className="mt-3 max-w-md text-sm leading-relaxed text-steel-muted">{project.summary}</p>
+          <p className="mt-3 max-w-md text-sm leading-relaxed text-steel-muted">
+            {project.summary}
+          </p>
         ) : null}
         <span className="mt-4 inline-flex items-center gap-2 font-display text-xs font-semibold uppercase tracking-wide text-primary">
           View project

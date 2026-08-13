@@ -1,4 +1,12 @@
-import { ArrowRight, Award, HardHat, MessageCircle, ShieldCheck, Sparkles, User } from "lucide-react";
+import {
+  ArrowRight,
+  Award,
+  HardHat,
+  MessageCircle,
+  ShieldCheck,
+  Sparkles,
+  User,
+} from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { company, leadership } from "@/lib/site-data";
 import { Reveal } from "./Reveal";
@@ -14,18 +22,22 @@ interface PhotoPlaceholderProps {
 function PhotoPlaceholder({ photo, name, initials, role, isFounder }: PhotoPlaceholderProps) {
   if (photo) {
     return (
-      <div className={`relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden rounded-sm border ${
-        isFounder ? "border-primary/50" : "border-amber-500/40"
-      } bg-steel-deep shadow-elevated transition-colors duration-300`}>
+      <div
+        className={`relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden rounded-sm border ${
+          isFounder ? "border-primary/50" : "border-amber-500/40"
+        } bg-steel-deep shadow-elevated transition-colors duration-300`}
+      >
         <img
           src={photo}
           alt={`${name} - ${role}`}
           className="size-full object-cover object-[center_12%] transition-transform duration-700 group-hover:scale-105"
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-steel-deep/95 via-steel-deep/30 to-transparent" />
-        <div className={`pointer-events-none absolute inset-0 rounded-sm ring-1 ring-inset ${
-          isFounder ? "ring-primary/20" : "ring-amber-500/20"
-        }`} />
+        <div
+          className={`pointer-events-none absolute inset-0 rounded-sm ring-1 ring-inset ${
+            isFounder ? "ring-primary/20" : "ring-amber-500/20"
+          }`}
+        />
       </div>
     );
   }
@@ -83,8 +95,17 @@ function PhotoPlaceholder({ photo, name, initials, role, isFounder }: PhotoPlace
 }
 
 export function Leadership() {
-  const { eyebrow, titleLine1, titleLine2, subheading, founder, nextGen, connectionBadge, story, cta } =
-    leadership;
+  const {
+    eyebrow,
+    titleLine1,
+    titleLine2,
+    subheading,
+    founder,
+    nextGen,
+    connectionBadge,
+    story,
+    cta,
+  } = leadership;
 
   return (
     <section

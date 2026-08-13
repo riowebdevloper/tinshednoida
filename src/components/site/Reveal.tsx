@@ -38,7 +38,6 @@ type RevealProps = {
   [key: string]: unknown;
 };
 
-
 export function Reveal({
   children,
   as: Tag = "div",
@@ -62,4 +61,3 @@ export function Reveal({
     </Tag>
   );
 }
-

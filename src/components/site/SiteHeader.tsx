@@ -55,7 +55,11 @@ export function SiteHeader() {
             scrolled ? "py-2" : "py-3"
           }`}
         >
-          <Link to="/" className="flex items-center gap-3 shrink-0" aria-label={`${company.name} home`}>
+          <Link
+            to="/"
+            className="flex items-center gap-3 shrink-0"
+            aria-label={`${company.name} home`}
+          >
             <div className="flex items-center justify-center transition-transform hover:scale-102">
               <img
                 src={company.logo}

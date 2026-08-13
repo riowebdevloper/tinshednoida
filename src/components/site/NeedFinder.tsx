@@ -9,7 +9,10 @@ export function NeedFinder() {
   const active = needs.find((need) => need.id === activeId) ?? needs[0]!;
 
   return (
-    <section id="needs" className="content-auto border-b border-border bg-background py-16 lg:py-24">
+    <section
+      id="needs"
+      className="content-auto border-b border-border bg-background py-16 lg:py-24"
+    >
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
@@ -26,7 +29,10 @@ export function NeedFinder() {
           </div>
           <p className="hidden text-sm text-muted-foreground lg:block">
             Not sure yet?{" "}
-            <a className="font-semibold text-primary underline-offset-4 hover:underline" href="/quote">
+            <a
+              className="font-semibold text-primary underline-offset-4 hover:underline"
+              href="/quote"
+            >
               Let us help you choose →
             </a>
           </p>

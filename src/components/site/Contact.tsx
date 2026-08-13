@@ -1,5 +1,14 @@
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, Instagram, Loader2, Mail, MapPin, MessageCircle, Phone, RefreshCw } from "lucide-react";
+import {
+  CheckCircle2,
+  Instagram,
+  Loader2,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Phone,
+  RefreshCw,
+} from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
@@ -86,7 +95,8 @@ export function Contact() {
               Planning a shed or roofing project?
             </h2>
             <p className="mt-3 text-sm text-steel-muted">
-              Share your location, shed size and purpose — get a free site visit and cost estimate today.
+              Share your location, shed size and purpose — get a free site visit and cost estimate
+              today.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -156,7 +166,8 @@ export function Contact() {
               Request a quotation
             </h3>
             <p className="mt-1 text-xs text-muted-foreground">
-              Fill in your project details below to receive a written estimate and free site visit schedule.
+              Fill in your project details below to receive a written estimate and free site visit
+              schedule.
             </p>
 
             <input
@@ -238,11 +249,27 @@ export function Contact() {
             ) : (
               <>
                 <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                  <Field label="Full name" name="name" placeholder="Rahul Sharma" autoComplete="name" required />
-                  <Field label="Phone number" name="phone" type="tel" placeholder="98xxxxxxxx" autoComplete="tel" required />
+                  <Field
+                    label="Full name"
+                    name="name"
+                    placeholder="Rahul Sharma"
+                    autoComplete="name"
+                    required
+                  />
+                  <Field
+                    label="Phone number"
+                    name="phone"
+                    type="tel"
+                    placeholder="98xxxxxxxx"
+                    autoComplete="tel"
+                    required
+                  />
 
                   <div className="sm:col-span-2">
-                    <label className="eyebrow block text-muted-foreground" htmlFor="requirementType">
+                    <label
+                      className="eyebrow block text-muted-foreground"
+                      htmlFor="requirementType"
+                    >
                       Requirement type
                     </label>
                     <select
@@ -259,7 +286,13 @@ export function Contact() {
                   </div>
 
                   <div className="sm:col-span-2">
-                    <Field label="Location / site address" name="location" placeholder="e.g. Sector 63 Noida / Greater Noida" autoComplete="street-address" required />
+                    <Field
+                      label="Location / site address"
+                      name="location"
+                      placeholder="e.g. Sector 63 Noida / Greater Noida"
+                      autoComplete="street-address"
+                      required
+                    />
                   </div>
 
                   <div className="sm:col-span-2">

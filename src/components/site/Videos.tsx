@@ -97,9 +97,7 @@ function ProjectVideoPlayer({
       } else if (isActive) {
         const playPromise = video.play();
         if (playPromise !== undefined) {
-          playPromise
-            .then(() => setIsPlaying(true))
-            .catch(() => setAutoplayBlocked(true));
+          playPromise.then(() => setIsPlaying(true)).catch(() => setAutoplayBlocked(true));
         }
       }
     };
@@ -159,9 +157,15 @@ function ProjectVideoPlayer({
     if (!container) return;
 
     if (!document.fullscreenElement) {
-      container.requestFullscreen().then(() => setIsFullscreen(true)).catch(() => {});
+      container
+        .requestFullscreen()
+        .then(() => setIsFullscreen(true))
+        .catch(() => {});
     } else {
-      document.exitFullscreen().then(() => setIsFullscreen(false)).catch(() => {});
+      document
+        .exitFullscreen()
+        .then(() => setIsFullscreen(false))
+        .catch(() => {});
     }
   }
 
@@ -211,7 +215,11 @@ function ProjectVideoPlayer({
       ) : (
         /* 3. MINIMALIST INSTAGRAM PREVIEW PLAYER */
         <div className="relative flex size-full flex-col items-center justify-center overflow-hidden bg-slate-950 p-6 text-center">
-          <img src={reel.posterUrl} alt={reel.title} className="absolute inset-0 size-full object-cover opacity-25 blur-xs" />
+          <img
+            src={reel.posterUrl}
+            alt={reel.title}
+            className="absolute inset-0 size-full object-cover opacity-25 blur-xs"
+          />
           <div className="relative z-10 flex flex-col items-center gap-4 rounded-sm border border-pink-500/30 bg-black/85 p-6 backdrop-blur-md max-w-xs shadow-card">
             <div className="flex size-14 items-center justify-center rounded-full bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 p-0.5 shadow-md">
               <div className="flex size-full items-center justify-center rounded-full bg-black">
@@ -219,8 +227,12 @@ function ProjectVideoPlayer({
               </div>
             </div>
             <div>
-              <span className="eyebrow text-[0.65rem] text-pink-400">INSTAGRAM REEL · @tin_shade_wearhouse</span>
-              <h4 className="mt-1 font-display text-base font-bold uppercase text-white">{reel.title}</h4>
+              <span className="eyebrow text-[0.65rem] text-pink-400">
+                INSTAGRAM REEL · @tin_shade_wearhouse
+              </span>
+              <h4 className="mt-1 font-display text-base font-bold uppercase text-white">
+                {reel.title}
+              </h4>
               <p className="mt-1 text-xs text-steel-muted">{reel.description}</p>
             </div>
             <a
@@ -238,7 +250,11 @@ function ProjectVideoPlayer({
       {/* 2. LOADING SPINNER OVERLAY */}
       {!isLoaded && !hasError && reel.sourceType === "local" && (
         <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center bg-black/60 backdrop-blur-xs">
-          <img src={reel.posterUrl} alt={reel.title} className="absolute inset-0 size-full object-cover opacity-50" />
+          <img
+            src={reel.posterUrl}
+            alt={reel.title}
+            className="absolute inset-0 size-full object-cover opacity-50"
+          />
           <div className="relative z-10 flex flex-col items-center gap-3">
             <Loader2 className="size-10 animate-spin text-primary" />
             <span className="eyebrow rounded-sm bg-black/70 px-3 py-1 text-xs text-white">
@@ -333,7 +349,11 @@ function ProjectVideoPlayer({
               aria-label="Toggle Fullscreen"
               className="flex size-8 items-center justify-center rounded-full border border-white/20 bg-black/60 text-white transition-colors hover:bg-primary"
             >
-              {isFullscreen ? <Minimize2 className="size-3.5" /> : <Maximize2 className="size-3.5" />}
+              {isFullscreen ? (
+                <Minimize2 className="size-3.5" />
+              ) : (
+                <Maximize2 className="size-3.5" />
+              )}
             </button>
           </div>
         )}
@@ -349,7 +369,9 @@ function ProjectVideoPlayer({
           }}
           aria-label={isPlaying ? "Pause video" : "Play video"}
           className={`absolute z-10 flex size-14 items-center justify-center rounded-full border border-white/30 bg-black/60 text-white backdrop-blur-xs transition-all duration-300 hover:scale-110 ${
-            showControls || !isPlaying ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+            showControls || !isPlaying
+              ? "opacity-100 scale-100"
+              : "opacity-0 scale-95 pointer-events-none"
           }`}
         >
           {isPlaying ? <Pause className="size-6" /> : <Play className="size-6 ml-1 text-primary" />}
@@ -366,8 +388,8 @@ export function Videos() {
     activeTab === "local"
       ? localReels
       : activeTab === "instagram"
-      ? instagramReelsList
-      : youtubeReelsList;
+        ? instagramReelsList
+        : youtubeReelsList;
 
   const [activeReelId, setActiveReelId] = useState<string>(currentReelList[0]!.id);
   const [isGlobalMuted, setIsGlobalMuted] = useState(true);
@@ -416,7 +438,8 @@ export function Videos() {
             REAL ONSITE FABRICATION & ERECTION
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-steel-muted sm:text-lg">
-            Explore live videos of our actual crew fabricating MS structures, erecting factory sheds, and installing tin roofing across India.
+            Explore live videos of our actual crew fabricating MS structures, erecting factory
+            sheds, and installing tin roofing across India.
           </p>
         </Reveal>
 
@@ -466,7 +489,10 @@ export function Videos() {
         <div className="mt-10 grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-12">
           {/* LEFT: PROJECT INFORMATION PANEL (Cols 1-5, Desktop 42% width) */}
           <div className="order-2 space-y-6 lg:order-1 lg:col-span-5">
-            <Reveal variant="left" className="space-y-6 rounded-sm border border-steel-line bg-steel/90 p-6 sm:p-8 shadow-card backdrop-blur-xs">
+            <Reveal
+              variant="left"
+              className="space-y-6 rounded-sm border border-steel-line bg-steel/90 p-6 sm:p-8 shadow-card backdrop-blur-xs"
+            >
               <div className="flex items-center justify-between border-b border-steel-line pb-4">
                 <span className="eyebrow flex items-center gap-2 text-primary font-semibold">
                   <span className="size-2 rounded-full bg-primary animate-pulse" />
@@ -495,7 +521,9 @@ export function Videos() {
                 </div>
                 <div>
                   <span className="block text-steel-muted text-[0.65rem] uppercase">Platform</span>
-                  <strong className="text-primary font-semibold uppercase">▶ {activeReel.sourceType}</strong>
+                  <strong className="text-primary font-semibold uppercase">
+                    ▶ {activeReel.sourceType}
+                  </strong>
                 </div>
               </div>
 
@@ -569,7 +597,10 @@ export function Videos() {
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="content-auto bg-steel-deep/90 border-t border-steel-line py-16 lg:py-24 text-steel-foreground">
+    <section
+      id="testimonials"
+      className="content-auto bg-steel-deep/90 border-t border-steel-line py-16 lg:py-24 text-steel-foreground"
+    >
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
         <Reveal variant="up" className="mx-auto max-w-3xl text-center">
           <p className="eyebrow flex items-center justify-center gap-3 text-primary">
@@ -581,7 +612,8 @@ export function Testimonials() {
             WHAT OUR CLIENTS SAY
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base text-steel-muted">
-            Trusted by 500+ factory owners, logistics managers, and commercial business owners across India.
+            Trusted by 500+ factory owners, logistics managers, and commercial business owners
+            across India.
           </p>
         </Reveal>
 
@@ -596,7 +628,9 @@ export function Testimonials() {
               <div className="space-y-4">
                 <div className="flex items-center gap-1 text-amber-400">
                   {Array.from({ length: t.rating }).map((_, i) => (
-                    <span key={i} className="text-base">★</span>
+                    <span key={i} className="text-base">
+                      ★
+                    </span>
                   ))}
                 </div>
                 <p className="text-sm italic leading-relaxed text-steel-muted">"{t.quote}"</p>
@@ -606,7 +640,9 @@ export function Testimonials() {
                 <p className="font-display text-base font-bold uppercase tracking-wide text-white">
                   {t.name}
                 </p>
-                <p className="eyebrow text-xs text-primary">{t.role} · {t.location}</p>
+                <p className="eyebrow text-xs text-primary">
+                  {t.role} · {t.location}
+                </p>
               </div>
             </Reveal>
           ))}

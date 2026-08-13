@@ -8,7 +8,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
-      <main id="main-content" className="pb-16 sm:pb-0">{children}</main>
+      <main id="main-content" className="pb-16 sm:pb-0">
+        {children}
+      </main>
       <SiteFooter />
       <Assistant />
       <MobileCta />

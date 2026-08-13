@@ -23,7 +23,6 @@ export function Faq() {
         </Reveal>
 
         <div className="divide-y divide-border border-y border-border">
-
           {faqs.map((faq, i) => {
             const isOpen = open === i;
             return (

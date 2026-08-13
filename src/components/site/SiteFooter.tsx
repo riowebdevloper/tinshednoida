@@ -48,8 +48,12 @@ export function SiteFooter() {
 
       <div className="border-t border-steel-line">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-6 py-6 text-xs text-steel-muted lg:px-10">
-          <p>© {new Date().getFullYear()} {company.name}. All rights reserved.</p>
-          <p>{company.address} · {company.phone}</p>
+          <p>
+            © {new Date().getFullYear()} {company.name}. All rights reserved.
+          </p>
+          <p>
+            {company.address} · {company.phone}
+          </p>
         </div>
       </div>
     </footer>

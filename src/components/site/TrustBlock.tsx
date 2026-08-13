@@ -24,7 +24,8 @@ export function TrustBlock() {
             </h2>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-steel-muted">
               Since {company.since}, Tin Shade Noida has fabricated and installed sheds, roofing and
-              MS structures across Noida and industrial belts Pan India — with our own crew, on your site.
+              MS structures across Noida and industrial belts Pan India — with our own crew, on your
+              site.
             </p>
 
             <ul className="mt-8 grid gap-3 sm:grid-cols-2">
