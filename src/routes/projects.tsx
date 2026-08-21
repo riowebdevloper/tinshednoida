@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { Projects } from "@/components/site/Projects";
-import { Gallery } from "@/components/site/Gallery";
 import { CatalogViewer } from "@/components/site/CatalogViewer";
 import { Videos } from "@/components/site/Videos";
+import { FinalCta } from "@/components/site/FinalCta";
 
 const title = "Projects | Industrial Shed & Steel Structure Portfolio — Tin Shade Noida";
 const description =
@@ -28,14 +28,14 @@ function ProjectsPage() {
   return (
     <SiteLayout>
       <PageHero
-        eyebrow="Recent work"
-        title="Projects built across India"
-        description="Filter by structure type, open any project to see the scope, materials and span we delivered on site."
+        eyebrow="On-Site Execution"
+        title="OUR WORK SPEAKS FOR ITSELF."
+        description="Real fabrication and erection work from our projects across industrial corridors nationwide."
       />
       <Projects />
       <CatalogViewer />
-      <Gallery />
       <Videos />
+      <FinalCta />
     </SiteLayout>
   );
 }

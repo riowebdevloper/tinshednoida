@@ -2,8 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { CatalogViewer } from "@/components/site/CatalogViewer";
 import { Projects } from "@/components/site/Projects";
+import { FinalCta } from "@/components/site/FinalCta";
 
-const title = "Official Work Catalog (51 Pages PDF) — Tin Shade Noida";
+const title = "Official Work Catalog (51 Pages) — Tin Shade Noida";
 const description =
   "Download or view our official 51-page PDF work catalog featuring verified structural designs, completed warehouse sheds, industrial structures, and technical specifications across India.";
 
@@ -26,12 +27,13 @@ function CatalogPage() {
   return (
     <SiteLayout>
       <PageHero
-        eyebrow="Official Catalog"
-        title="51-Page Project & Structure Catalog"
-        description="Browse all 51 verified pages of our tin shed models, warehouse designs, MS structures and real project photos across India."
+        eyebrow="Official 51-Page Edition"
+        title="TIN SHADE NOIDA CATALOG"
+        description="Verified structural designs, completed site photographs and project work across India."
       />
-      <CatalogViewer standalone />
+      <CatalogViewer />
       <Projects />
+      <FinalCta />
     </SiteLayout>
   );
 }

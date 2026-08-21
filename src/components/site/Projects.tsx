@@ -54,24 +54,36 @@ export function Projects() {
   const openProject = openIndex !== null && visible[openIndex] ? visible[openIndex] : null;
 
   return (
-    <section id="projects" className="content-auto bg-background py-16 lg:py-24">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
-        <Reveal className="max-w-2xl">
-          <p className="eyebrow flex items-center gap-3 text-primary">
-            <span className="h-px w-10 bg-primary" />
-            Real work, real sites
-          </p>
-          <h2 className="mt-4 font-display text-3xl font-bold uppercase leading-tight sm:text-5xl">
-            PROJECT PORTFOLIO
-          </h2>
-          <p className="mt-3 text-base text-muted-foreground">
-            Filter by structure type across Pan India sites. Open any project to inspect structural
-            details and request a quotation.
-          </p>
+    <section id="projects" className="content-auto bg-background py-16 lg:py-24 border-b border-border">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        {/* Header */}
+        <Reveal className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-8">
+          <div className="max-w-3xl">
+            <p className="eyebrow flex items-center gap-3 text-primary">
+              <span className="h-px w-10 bg-primary" />
+              On-Site Execution
+            </p>
+            <h2 className="mt-4 font-display text-3xl font-extrabold uppercase leading-tight sm:text-5xl lg:text-6xl text-foreground tracking-tight">
+              OUR WORK SPEAKS
+              <span className="block text-primary">FOR ITSELF.</span>
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
+              Real fabrication and erection work from our projects.
+            </p>
+          </div>
+
+          <Link
+            to="/projects"
+            className="group hidden items-center gap-2 rounded-sm bg-primary px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-md transition-all hover:scale-102 sm:inline-flex"
+          >
+            VIEW ALL PROJECTS
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+          </Link>
         </Reveal>
 
         {/* Filter categories */}
-        <div className="no-scrollbar mt-8 -mx-5 flex gap-2 overflow-x-auto px-5 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
+        <div className="no-scrollbar mt-8 -mx-4 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0">
           {projectCategories.map((category) => (
             <button
               key={category}
@@ -92,36 +104,55 @@ export function Projects() {
           ))}
         </div>
 
+        {/* ──────── ASYMMETRICAL GALLERY ──────── */}
         {featured ? (
-          <div className="mt-8 grid gap-4 lg:grid-cols-[1.25fr_1fr]">
-            <ProjectCard project={featured} onOpen={() => handleOpenProject(featured)} large />
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
+          <div className="mt-8 grid gap-6 lg:grid-cols-12">
+            {/* LARGE FEATURED PROJECT CARD (Spans 7 columns) */}
+            <div className="lg:col-span-7">
+              <ProjectCard project={featured} onOpen={() => handleOpenProject(featured)} large />
+            </div>
+
+            {/* 4 SUPPORTING CARDS (Spans 5 columns) */}
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 lg:col-span-5">
               {rest.slice(0, 4).map((project, i) => (
                 <ProjectCard
                   key={project.id}
                   project={project}
                   onOpen={() => handleOpenProject(project)}
-                  delay={i * 70}
+                  delay={i * 60}
                 />
               ))}
             </div>
           </div>
         ) : null}
 
+        {/* Additional 3 Cards row if available */}
         {rest.length > 4 ? (
-          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {rest.slice(4).map((project, i) => (
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {rest.slice(4, 7).map((project, i) => (
               <ProjectCard
                 key={project.id}
                 project={project}
                 onOpen={() => handleOpenProject(project)}
-                delay={i * 70}
+                delay={i * 60}
               />
             ))}
           </div>
         ) : null}
+
+        {/* Mobile View All CTA */}
+        <div className="mt-10 text-center sm:hidden">
+          <Link
+            to="/projects"
+            className="group inline-flex w-full items-center justify-center gap-2 rounded-sm bg-primary px-6 py-4 font-display text-sm font-bold uppercase tracking-wide text-primary-foreground shadow-md"
+          >
+            VIEW ALL PROJECTS
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </div>
       </div>
 
+      {/* PROJECT DETAILS MODAL */}
       {openProject ? (
         <ProjectModal
           project={openProject}
@@ -152,7 +183,9 @@ function ProjectCard({
       as="article"
       delay={delay}
       variant="scale"
-      className={`group relative overflow-hidden rounded-sm bg-steel-deep ${large ? "min-h-[20rem] lg:min-h-[32rem]" : "min-h-[14rem]"}`}
+      className={`group relative overflow-hidden rounded-sm border border-border bg-steel-deep text-steel-foreground shadow-card transition-all duration-300 hover:border-primary hover:shadow-elevated ${
+        large ? "min-h-[22rem] sm:min-h-[30rem] lg:min-h-[36rem]" : "min-h-[16rem] sm:min-h-[17rem]"
+      }`}
     >
       <img
         src={project.image}
@@ -161,38 +194,59 @@ function ProjectCard({
         decoding="async"
         width={1280}
         height={960}
-        className="absolute inset-0 size-full object-cover opacity-90 transition-transform duration-[900ms] group-hover:scale-105"
+        className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-105"
       />
       <div
-        className="absolute inset-0 bg-[linear-gradient(to_top,oklch(0.16_0.035_260/0.94),oklch(0.16_0.035_260/0.15)_65%)]"
+        className="absolute inset-0 bg-gradient-to-t from-steel-deep via-steel-deep/40 to-transparent"
         aria-hidden
       />
       <button
         type="button"
         onClick={onOpen}
-        className="absolute inset-0 flex flex-col justify-end p-5 text-left sm:p-6"
-        aria-label={`View project ${project.title}`}
+        className="absolute inset-0 flex flex-col justify-end p-5 text-left sm:p-7"
+        aria-label={`View project details for ${project.title}`}
       >
-        <span className="eyebrow w-fit rounded-sm bg-primary px-2 py-1 text-[0.6rem] text-primary-foreground">
-          {project.category}
-        </span>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="eyebrow rounded-xs bg-primary px-2.5 py-1 text-[0.65rem] font-bold text-primary-foreground uppercase">
+            {project.category}
+          </span>
+          <span className="flex items-center gap-1 font-mono text-xs text-white/80 bg-black/60 px-2 py-0.5 rounded-xs backdrop-blur-xs">
+            <MapPin className="size-3 text-primary" />
+            {project.location}
+          </span>
+        </div>
+
         <h3
-          className={`mt-3 font-display font-bold uppercase leading-tight text-steel-foreground ${large ? "text-2xl sm:text-4xl" : "text-lg"}`}
+          className={`mt-2.5 font-display font-bold uppercase leading-tight text-white group-hover:text-primary transition-colors ${
+            large ? "text-2xl sm:text-4xl" : "text-lg sm:text-xl"
+          }`}
         >
           {project.title}
         </h3>
-        <p className="mt-1 flex items-center gap-1.5 text-xs text-steel-muted">
-          <MapPin className="size-3.5" />
-          {project.location}
-        </p>
-        {large ? (
-          <p className="mt-3 max-w-md text-sm leading-relaxed text-steel-muted">
+
+        {large && (
+          <p className="mt-2.5 max-w-lg text-xs sm:text-sm text-steel-muted line-clamp-2 leading-relaxed">
             {project.summary}
           </p>
-        ) : null}
-        <span className="mt-4 inline-flex items-center gap-2 font-display text-xs font-semibold uppercase tracking-wide text-primary">
-          View project
-          <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+        )}
+
+        {/* Work Completed pill list */}
+        {project.scope && project.scope.length > 0 && (
+          <div className="mt-3 hidden sm:flex flex-wrap gap-1.5">
+            {project.scope.slice(0, large ? 4 : 2).map((item) => (
+              <span
+                key={item}
+                className="rounded-xs border border-steel-line bg-steel/80 px-2 py-0.5 text-[0.68rem] text-steel-foreground"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <span className="mt-4 inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-wider text-primary group-hover:underline">
+          VIEW PROJECT SPECS
+          <ArrowRight className="size-4 transition-transform group-hover:translate-x-1.5" />
         </span>
       </button>
     </Reveal>
@@ -233,11 +287,11 @@ function ProjectModal({
       role="dialog"
       aria-modal="true"
       aria-label={project.title}
-      className="fixed inset-0 z-[60] flex items-end justify-center bg-steel-deep/85 p-0 backdrop-blur-sm sm:items-center sm:p-6"
+      className="fixed inset-0 z-[60] flex items-end justify-center bg-black/85 p-0 backdrop-blur-md sm:items-center sm:p-6"
       onClick={onClose}
     >
       <div
-        className="max-h-[92svh] w-full max-w-4xl overflow-y-auto rounded-t-lg bg-card shadow-elevated sm:rounded-sm border border-border"
+        className="max-h-[92svh] w-full max-w-4xl overflow-y-auto rounded-t-lg bg-card shadow-2xl sm:rounded-sm border border-border"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="relative">
@@ -249,28 +303,28 @@ function ProjectModal({
             className="aspect-16/10 w-full object-cover max-h-[50vh]"
           />
 
-          {/* Top Bar on Image */}
+          {/* Top Bar */}
           <div className="absolute inset-x-3 top-3 flex items-center justify-between pointer-events-none">
-            <span className="pointer-events-auto rounded-sm bg-black/70 px-3 py-1 font-mono text-xs text-white backdrop-blur-md">
+            <span className="pointer-events-auto rounded-xs bg-black/80 px-3 py-1 font-mono text-xs font-bold text-white backdrop-blur-md border border-white/20">
               {currentIndex + 1} / {totalCount}
             </span>
             <button
               type="button"
               onClick={onClose}
-              aria-label="Close project"
-              className="pointer-events-auto inline-flex size-10 items-center justify-center rounded-sm bg-background/90 text-foreground backdrop-blur hover:bg-primary hover:text-primary-foreground transition-colors"
+              aria-label="Close project modal"
+              className="pointer-events-auto inline-flex size-10 items-center justify-center rounded-xs bg-black/80 text-white backdrop-blur hover:bg-primary hover:text-primary-foreground transition-colors border border-white/20"
             >
               <X className="size-5" />
             </button>
           </div>
 
           {/* Left/Right controls */}
-          <div className="absolute inset-y-0 inset-x-2 flex items-center justify-between pointer-events-none">
+          <div className="absolute inset-y-0 inset-x-3 flex items-center justify-between pointer-events-none">
             <button
               type="button"
               onClick={onPrev}
               aria-label="Previous project"
-              className="pointer-events-auto flex size-10 items-center justify-center rounded-full bg-black/70 text-white backdrop-blur hover:bg-primary transition-colors"
+              className="pointer-events-auto flex size-10 items-center justify-center rounded-full bg-black/70 text-white backdrop-blur hover:bg-primary transition-colors border border-white/20"
             >
               <ChevronLeft className="size-5" />
             </button>
@@ -278,7 +332,7 @@ function ProjectModal({
               type="button"
               onClick={onNext}
               aria-label="Next project"
-              className="pointer-events-auto flex size-10 items-center justify-center rounded-full bg-black/70 text-white backdrop-blur hover:bg-primary transition-colors"
+              className="pointer-events-auto flex size-10 items-center justify-center rounded-full bg-black/70 text-white backdrop-blur hover:bg-primary transition-colors border border-white/20"
             >
               <ChevronRight className="size-5" />
             </button>
@@ -287,57 +341,61 @@ function ProjectModal({
 
         <div className="grid gap-6 p-6 sm:grid-cols-[1.2fr_1fr] sm:p-8">
           <div>
-            <span className="eyebrow rounded-sm bg-primary-soft px-2.5 py-1 text-primary font-semibold">
+            <span className="eyebrow rounded-xs bg-primary-soft px-2.5 py-1 text-primary font-bold">
               {project.category}
             </span>
-            <h3 className="mt-3 font-display text-2xl font-bold uppercase text-foreground sm:text-3xl">
+            <h3 className="mt-3 font-display text-2xl sm:text-3xl font-bold uppercase text-foreground">
               {project.title}
             </h3>
             <p className="mt-1 flex items-center gap-1.5 text-sm text-muted-foreground">
-              <MapPin className="size-4" />
+              <MapPin className="size-4 text-primary" />
               {project.location}
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
 
-            <h4 className="eyebrow mt-6 text-foreground">Work completed</h4>
-            <ul className="mt-2 grid gap-1.5">
+            <h4 className="eyebrow mt-6 text-foreground font-bold">Work completed</h4>
+            <ul className="mt-2.5 grid gap-2">
               {project.scope.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-sm text-foreground">
-                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" />
+                <li key={item} className="flex items-start gap-2.5 text-xs sm:text-sm text-foreground">
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
                   {item}
                 </li>
               ))}
             </ul>
 
-            <h4 className="eyebrow mt-6 text-foreground">Material & structure</h4>
-            <p className="mt-2 text-sm text-muted-foreground">{project.material}</p>
+            <h4 className="eyebrow mt-6 text-foreground font-bold">Material & structure</h4>
+            <p className="mt-2 text-xs sm:text-sm text-muted-foreground font-mono">{project.material}</p>
           </div>
 
-          <div className="flex flex-col justify-end gap-3 rounded-sm bg-surface p-5 border border-border/60">
-            <p className="font-display text-lg font-semibold uppercase leading-tight text-foreground">
-              Want something like this?
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Send your site details — our team will provide a free measurement and itemized written
-              quote.
-            </p>
-            <Link
-              to="/quote"
-              onClick={onClose}
-              className="group inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-5 py-3.5 font-display text-sm font-semibold uppercase tracking-wide text-primary-foreground shadow-sm transition-all hover:opacity-95"
-            >
-              Get quote for this structure
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <a
-              href={`${company.whatsapp}?text=${encodeURIComponent(`Hi Tin Shade Noida, I am inquiring about the "${project.title}" project in ${project.location}. Please share pricing details.`)}`}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-sm border border-border px-5 py-3.5 font-display text-sm font-semibold uppercase tracking-wide text-foreground transition-colors hover:border-whatsapp hover:text-whatsapp"
-            >
-              <MessageCircle className="size-4 text-whatsapp" />
-              Discuss on WhatsApp
-            </a>
+          <div className="flex flex-col justify-between gap-4 rounded-sm bg-surface p-6 border border-border">
+            <div>
+              <p className="font-display text-xl font-bold uppercase text-foreground">
+                Inquire About This Structure
+              </p>
+              <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                Send your site dimensions — our engineering team will provide a free site survey and transparent written quotation.
+              </p>
+            </div>
+            
+            <div className="grid gap-2.5">
+              <Link
+                to="/quote"
+                onClick={onClose}
+                className="group inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-5 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-primary-foreground shadow-md transition-all hover:opacity-95"
+              >
+                Get Quote for this Project
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <a
+                href={`${company.whatsapp}?text=${encodeURIComponent(`Hi Tin Shade Noida, I am inquiring about the "${project.title}" (${project.location}) structure. Please share a quotation.`)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-sm border border-border bg-background px-5 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-foreground transition-colors hover:border-whatsapp hover:text-whatsapp"
+              >
+                <MessageCircle className="size-4 text-whatsapp" />
+                Discuss on WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       </div>

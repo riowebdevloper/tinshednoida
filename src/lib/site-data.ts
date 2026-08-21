@@ -63,13 +63,13 @@ export const company = {
 };
 
 export const nav = [
-  { label: "Services", to: "/services" },
-  { label: "Projects", to: "/projects" },
-  { label: "Catalog (51 Pages)", to: "/catalog" },
-  { label: "About", to: "/about" },
-  { label: "Get Quote", to: "/quote" },
-  { label: "Contact", to: "/contact" },
-] as const;
+  { label: "Services", to: "/services" as const },
+  { label: "Projects", to: "/projects" as const },
+  { label: "About", to: "/about" as const },
+  { label: "Catalog", to: "/catalog" as const },
+  { label: "Videos", to: "/" as const, hash: "videos" },
+  { label: "Contact", to: "/contact" as const },
+];
 
 export const heroSlides = [
   {
@@ -124,29 +124,54 @@ export const heroSlides = [
   },
 ];
 
-export const heroStats = [
-  { value: 500, suffix: "+", label: "Projects completed" },
-  { value: 15, suffix: "+", label: "Years of experience" },
-  { text: "PAN INDIA", label: "6 States · All Major Cities" },
+export const trustStrip = [
+  { id: "pan-india", label: "PAN INDIA SERVICE", sub: "Active Onsite Setups Nationwide" },
+  { id: "quality-materials", label: "QUALITY MATERIALS", sub: "IS 2062 Grade Steel & Prime Sheets" },
+  { id: "experienced-team", label: "EXPERIENCED TEAM", sub: "In-House Welders & Erectors" },
+  { id: "site-fabrication", label: "SITE FABRICATION", sub: "Custom On-Site Fit & Arc Welding" },
+  { id: "ontime-execution", label: "ON-TIME EXECUTION", sub: "Committed Fixed Timelines" },
 ];
 
-export const trustStats = [
-  { value: 500, suffix: "+", label: "Projects completed" },
-  { value: 15, suffix: "+", label: "Years of experience" },
-  { value: 6, suffix: "+", label: "Shed categories" },
-  { text: "PAN INDIA", label: "Pan India Coverage" },
+export const whyBuildWithUs = [
+  {
+    number: "01",
+    title: "In-House Fabrication",
+    description:
+      "No middlemen or subcontractors. Our own certified fabricators, welders, and equipment handle structural steel directly on your site.",
+  },
+  {
+    number: "02",
+    title: "Quality Materials",
+    description:
+      "Engineered with IS 2062 certified mild steel sections, heavy tubular trusses, and prime color-coated Galvalume / GI roofing sheets.",
+  },
+  {
+    number: "03",
+    title: "Experienced Site Team",
+    description:
+      "Hands-on supervision on every project ensuring correct slope calculation, structural balance, and leak-proof fitting for heavy monsoons.",
+  },
+  {
+    number: "04",
+    title: "Transparent Quotations",
+    description:
+      "Itemized bill of quantities with steel weight estimates and material specifications before work begins — zero surprise charges.",
+  },
+  {
+    number: "05",
+    title: "Pan India Execution",
+    description:
+      "From Noida and Delhi NCR to industrial manufacturing hubs across India, our crew mobilizes quickly to deliver turnkey structures.",
+  },
 ];
 
-export const trustPoints = [
-  "Experienced in-house fabrication team",
-  "Quality steel and sheet material selection",
-  "Professional on-site installation",
-  "Free on-site measurement",
-  "Transparent written quotation",
-  "Timely project execution",
-];
-
-export type NeedId = "industrial" | "warehouse" | "ms" | "roofing" | "peb" | "repair";
+export type NeedId =
+  | "industrial"
+  | "warehouse"
+  | "godown"
+  | "ms"
+  | "roofing"
+  | "mezzanine";
 
 export const needs: {
   id: NeedId;
@@ -165,106 +190,103 @@ export const needs: {
     id: "industrial",
     icon: "factory",
     label: "Industrial Shed",
-    short: "Factories & workshops",
-    body: "Heavy-duty shed structures for factories, workshops and production units — engineered for machine loads, ventilation and daily industrial use.",
-    useCases: ["Manufacturing units", "Workshops", "Machine sheds", "Loading bays"],
+    short: "Factories & Workshops",
+    body: "Heavy-duty clear-span shed structures for manufacturing units, machine shops, processing factories, and industrial plants.",
+    useCases: ["Manufacturing Plants", "Machine Workshops", "Fabrication Units", "Heavy Industrial Bays"],
     image: svcIndustrial,
-    alt: "Industrial factory shed with grey cladding and blue roof",
+    alt: "Industrial manufacturing factory shed built with structural steel",
     benefits: [
-      "Heavy-duty MS structural frames rated for industrial machinery",
-      "Custom ridge ventilators & translucent daylighting panels",
+      "Heavy-duty MS structural frames rated for overhead cranes and machine vibration",
+      "Custom ridge ventilators & translucent polycarbonate daylighting panels",
       "Weatherproof GI & colour-coated trapezoidal sheeting",
     ],
-    specifications:
-      "Span up to 100ft clear span • IS 2062 Grade Steel • Primer & Anti-rust coating",
+    specifications: "Span up to 100ft clear span • IS 2062 Grade Steel • Anti-rust primer & epoxy coating",
     quoteOptionNeed: "Industrial Shed",
   },
   {
     id: "warehouse",
     icon: "warehouse",
     label: "Warehouse Shed",
-    short: "Storage & logistics",
-    body: "Large clear-span warehouse roofing and enclosures that maximise usable floor area for storage, racking and vehicle movement.",
-    useCases: ["Godowns", "Logistics hubs", "Cold-chain storage", "Distribution yards"],
+    short: "Logistics & Storage Hubs",
+    body: "Large clear-span warehouse roofing and enclosures engineered to maximize usable floor area for high-density racking and forklift movement.",
+    useCases: ["Logistics Parks", "E-Commerce Fulfillment Hubs", "Cold Storage Yards", "Bulk Storage Facilities"],
     image: svcWarehouse,
-    alt: "Long-span warehouse shed with loading docks and trucks",
+    alt: "Long-span commercial warehouse shed facility",
     benefits: [
-      "Maximised column-free clear span floor area for forklift movement",
-      "High eaves clearance for multi-tier heavy storage racking",
-      "Integrated rainwater gutters & downspout drainage systems",
+      "Column-free clear span floor area for smooth material and vehicle handling",
+      "High eaves clearance (15–32 ft) for multi-tier heavy storage racking",
+      "Integrated heavy-gauge rainwater gutters & downspout drainage systems",
     ],
-    specifications:
-      "Eaves height 15-30ft • High-tensile purlins • Polycarbonate lighting roof sheets",
-    quoteOptionNeed: "Warehouse",
+    specifications: "Eaves height 15–32 ft • High-tensile purlins • Polycarbonate lighting roof sheets",
+    quoteOptionNeed: "Warehouse Shed",
+  },
+  {
+    id: "godown",
+    icon: "building",
+    label: "Godown Shed",
+    short: "Commercial & Agricultural Storage",
+    body: "Cost-effective, secure, and durable storage sheds designed for commercial inventory, agricultural produce, and raw materials.",
+    useCases: ["Agricultural Mandi Godowns", "Raw Material Storage", "Finished Goods Depots", "Commercial Stockyards"],
+    image: svcPeb,
+    alt: "Commercial storage godown shed structure",
+    benefits: [
+      "Weather-sealed wall cladding and roofing protecting inventory from rain and humidity",
+      "Wide rolling shutter access bays for truck loading and unloading",
+      "Economical structural design offering fast setup and high durability",
+    ],
+    specifications: "Modular structural spans • Anti-rodent & pest-resistant boundary seals • Fast turnaround",
+    quoteOptionNeed: "Godown Shed",
   },
   {
     id: "ms",
     icon: "frame",
-    label: "MS Structure",
-    short: "Steel framework",
-    body: "Mild steel columns, trusses, mezzanine floors and platforms fabricated and erected on site with accurate fit and rust-proof treatment.",
-    useCases: ["Mezzanine floors", "Platforms", "Staircases", "Support frames"],
+    label: "MS Steel Structure",
+    short: "Steel Framing & Trusses",
+    body: "Precision-welded mild steel columns, heavy tubular trusses, rafters, purlins, and custom structural frameworks fabricated directly on site.",
+    useCases: ["Heavy Trusses & Columns", "Crane Gantry Beams", "Industrial Canopies", "Commercial Frameworks"],
     image: svcMs,
-    alt: "Mild steel structural framework of an industrial building",
+    alt: "Mild steel structural framework under construction",
     benefits: [
       "Heavy ISI-marked steel channel, angle and pipe truss fabrication",
-      "Precision on-site welding and bolting alignment",
-      "Double primer & epoxy protective rust-proof coating",
+      "Precision on-site arc welding and high-strength bolted connections",
+      "Double primer & epoxy protective rust-proof treatment",
     ],
-    specifications:
-      "IS 2062 Grade Mild Steel • Certified welders • Customized structural engineering",
-    quoteOptionNeed: "MS Structure",
+    specifications: "IS 2062 Grade Mild Steel • Certified welders • Customized structural engineering",
+    quoteOptionNeed: "MS Steel Structure",
   },
   {
     id: "roofing",
     icon: "roof",
-    label: "Tin Roofing",
-    short: "Sheets & covers",
-    body: "Corrugated and trapezoidal roofing sheet installation with correct slope, overlap and drainage so the structure stays leak-free in heavy rain.",
-    useCases: ["Rooftop sheds", "Terrace covers", "Parking sheds", "Shop fronts"],
+    label: "Roofing & PUF Panel",
+    short: "Sheets & Thermal Insulation",
+    body: "Corrugated and trapezoidal color-coated Galvalume / GI sheets, thermal PUF insulated sandwich panels, and waterproof roof replacements.",
+    useCases: ["Insulated Cold Storage", "Factory Roof Overhauls", "Commercial Terrace Sheds", "Thermal Proofing"],
     image: svcRoofing,
-    alt: "Workers installing galvanised tin roofing sheets on a rooftop",
+    alt: "Workers installing roofing and insulated PUF panels",
     benefits: [
-      "High-tensile colour-coated GI & Galvalume roofing sheets",
-      "100% leak-proof self-drilling screw fastening with EPDM washers",
-      "Custom slope calculations for heavy Indian monsoon drainage",
+      "High-tensile colour-coated GI & Galvalume roofing sheets (0.45mm – 0.60mm)",
+      "Thermal PUF sandwich panels maintaining controlled indoor temperatures",
+      "100% leak-proof screw fastening with UV-resistant EPDM washers",
     ],
-    specifications: "Sheet thickness 0.45mm - 0.60mm • UV resistant • Leak-proof guaranteed fit",
-    quoteOptionNeed: "Tin Roofing",
+    specifications: "Sheet thickness 0.45mm – 0.60mm • PUF density 40±2 kg/m³ • 100% leak-proof fit",
+    quoteOptionNeed: "Roofing & PUF Panel",
   },
   {
-    id: "peb",
-    icon: "building",
-    label: "PEB Structure",
-    short: "Pre-engineered buildings",
-    body: "Pre-engineered building frames for wide-span industrial and commercial projects — faster erection with a lighter, stronger structure.",
-    useCases: ["Wide-span sheds", "Plants", "Commercial units", "Godown expansion"],
-    image: svcPeb,
-    alt: "Pre-engineered steel building frame being erected with a crane",
-    benefits: [
-      "Factory-made tapered I-beams for optimal strength-to-weight ratio",
-      "50% faster on-site crane erection timeline",
-      "Flexible future expansion & modular structural design",
-    ],
-    specifications: "High-yield steel (345 MPa) • Bolted connections • Z/C Purlins",
-    quoteOptionNeed: "PEB Structure",
-  },
-  {
-    id: "repair",
+    id: "mezzanine",
     icon: "wrench",
-    label: "Repair / Renovation",
-    short: "Fix & upgrade",
-    body: "Replacement of rusted or leaking sheets, structural strengthening and complete renovation of existing sheds without full rebuilding.",
-    useCases: ["Leakage repair", "Sheet replacement", "Rust treatment", "Shed extension"],
-    image: svcRepair,
-    alt: "Worker replacing rusted tin roof sheets with new galvanised panels",
+    label: "Mezzanine Floor",
+    short: "Multi-Tier Usable Space",
+    body: "Heavy load-bearing mild steel mezzanine floor platforms and intermediate storage levels that double your facility's usable square footage.",
+    useCases: ["Industrial Office Platforms", "Multi-Tier Storage Mezzanines", "Machine Operating Decks", "Showroom Floors"],
+    image: "/images/selected/selected-43.jpg",
+    alt: "Heavy steel mezzanine floor structure inside industrial building",
     benefits: [
-      "Fast replacement of damaged or corroded roof sheets",
-      "Structural reinforcement for older sagging trusses",
-      "Waterproofing & anti-rust treatment application",
+      "Custom engineered load capacity (300 kg/sqm to 1500+ kg/sqm)",
+      "Chequered steel plate or heavy deck sheet flooring with safety handrails",
+      "Integrated staircase, pallet loading gates, and modular expansion design",
     ],
-    specifications: "On-site survey & repair execution • Minimal operational downtime",
-    quoteOptionNeed: "Other",
+    specifications: "Load capacity 300–1500 kg/m² • Heavy I-beam main girders • Safety handrails & stairs",
+    quoteOptionNeed: "Mezzanine Floor",
   },
 ];
 
@@ -1080,7 +1102,14 @@ export const gallery = [
 ];
 
 export const quoteOptions = {
-  need: ["Industrial Shed", "Warehouse", "Tin Roofing", "MS Structure", "PEB Structure", "Other"],
+  need: [
+    "Industrial Shed",
+    "Warehouse Shed",
+    "Godown Shed",
+    "MS Steel Structure",
+    "Roofing & PUF Panel",
+    "Mezzanine Floor",
+  ],
   size: [
     "Under 1,000 sq ft",
     "1,000 – 5,000 sq ft",

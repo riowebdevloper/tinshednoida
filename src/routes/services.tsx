@@ -2,11 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { Services } from "@/components/site/Services";
 import { Process } from "@/components/site/Process";
-import { Journey } from "@/components/site/Journey";
+import { WhyChooseUs } from "@/components/site/WhyChooseUs";
+import { FinalCta } from "@/components/site/FinalCta";
 
-const title = "Services | Tin Sheds, Warehouse Roofing & MS Structures — Tin Shade Noida";
+const title = "Services | Industrial Shed, Warehouse & MS Steel Fabrication — Tin Shade Noida";
 const description =
-  "Factory sheds, warehouse roofing, pre-engineered buildings, MS fabrication and shed repair, engineered and installed across Noida and Pan India.";
+  "Complete industrial shed and steel fabrication solutions from requirement to fabrication and erection across Noida, Greater Noida, and Pan India.";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -27,13 +28,14 @@ function ServicesPage() {
   return (
     <SiteLayout>
       <PageHero
-        eyebrow="What we build"
-        title="Engineered shed & steel services"
-        description="From a single parking shed to a 40,000 sq ft warehouse roof — one team handles design, fabrication, erection and finishing."
+        eyebrow="Structural Capabilities"
+        title="ENGINEERED FOR INDUSTRY. BUILT TO LAST."
+        description="Complete industrial shed and steel fabrication solutions from requirement to fabrication and erection."
       />
       <Services />
+      <WhyChooseUs />
       <Process />
-      <Journey />
+      <FinalCta />
     </SiteLayout>
   );
 }

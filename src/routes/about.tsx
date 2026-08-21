@@ -1,12 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
-import { TrustBlock } from "@/components/site/TrustBlock";
+import { WhyChooseUs } from "@/components/site/WhyChooseUs";
 import { Leadership } from "@/components/site/Leadership";
+import { PanIndiaSection } from "@/components/site/PanIndiaSection";
 import { Journey } from "@/components/site/Journey";
-import { Testimonials } from "@/components/site/Videos";
+import { Testimonials } from "@/components/site/Testimonials";
+import { FinalCta } from "@/components/site/FinalCta";
 import { company } from "@/lib/site-data";
 
-const title = `About ${company.name} | Shed Builders in Noida Since ${company.since}`;
+const title = `About ${company.name} | Industrial Steel & Fabrication Company`;
 const description =
   "Meet the team behind Tin Shade Noida — in-house fabricators and erectors delivering industrial sheds and MS structures across India with fixed timelines.";
 
@@ -29,14 +31,16 @@ function AboutPage() {
   return (
     <SiteLayout>
       <PageHero
-        eyebrow={`Building since ${company.since}`}
-        title="A shed crew, not a middleman"
-        description="Our own fabricators, welders and erectors handle every project end to end — so quality, timelines and pricing stay in one pair of hands."
+        eyebrow={`Direct Fabricators · Est. ${company.since}`}
+        title="BUILT ON EXPERIENCE. CARRIED FORWARD BY FAMILY."
+        description="Our own fabricators, welders and erectors handle every project end to end — ensuring structural precision, fixed timelines and honest pricing."
       />
-      <TrustBlock />
       <Leadership />
+      <WhyChooseUs />
+      <PanIndiaSection />
       <Journey />
       <Testimonials />
+      <FinalCta />
     </SiteLayout>
   );
 }

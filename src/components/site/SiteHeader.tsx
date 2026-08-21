@@ -89,16 +89,28 @@ export function SiteHeader() {
           </Link>
 
           <nav className="hidden items-center gap-0.5 xl:flex">
-            {nav.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                activeProps={{ className: "text-foreground" }}
-                className="relative rounded-sm px-3 py-2 font-display text-sm font-medium uppercase tracking-wide text-muted-foreground transition-colors after:absolute after:inset-x-3 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform hover:text-foreground hover:after:scale-x-100"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {nav.map((item) =>
+              item.hash ? (
+                <Link
+                  key={`${item.to}-${item.label}`}
+                  to={item.to}
+                  hash={item.hash}
+                  activeProps={{ className: "text-foreground" }}
+                  className="relative rounded-sm px-3 py-2 font-display text-sm font-medium uppercase tracking-wide text-muted-foreground transition-colors after:absolute after:inset-x-3 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform hover:text-foreground hover:after:scale-x-100"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <Link
+                  key={`${item.to}-${item.label}`}
+                  to={item.to}
+                  activeProps={{ className: "text-foreground" }}
+                  className="relative rounded-sm px-3 py-2 font-display text-sm font-medium uppercase tracking-wide text-muted-foreground transition-colors after:absolute after:inset-x-3 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform hover:text-foreground hover:after:scale-x-100"
+                >
+                  {item.label}
+                </Link>
+              ),
+            )}
           </nav>
 
           <div className="flex items-center gap-2">
@@ -131,17 +143,30 @@ export function SiteHeader() {
       {open ? (
         <div className="fixed inset-x-0 bottom-0 top-14 z-40 overflow-y-auto bg-background px-5 pb-10 pt-4 xl:hidden">
           <nav className="divide-y divide-border">
-            {nav.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                onClick={() => setOpen(false)}
-                className="flex items-center justify-between py-4 font-display text-xl font-medium uppercase tracking-wide text-foreground"
-              >
-                {item.label}
-                <span className="text-primary">→</span>
-              </Link>
-            ))}
+            {nav.map((item) =>
+              item.hash ? (
+                <Link
+                  key={`${item.to}-${item.label}`}
+                  to={item.to}
+                  hash={item.hash}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-between py-4 font-display text-xl font-medium uppercase tracking-wide text-foreground"
+                >
+                  {item.label}
+                  <span className="text-primary">→</span>
+                </Link>
+              ) : (
+                <Link
+                  key={`${item.to}-${item.label}`}
+                  to={item.to}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-between py-4 font-display text-xl font-medium uppercase tracking-wide text-foreground"
+                >
+                  {item.label}
+                  <span className="text-primary">→</span>
+                </Link>
+              ),
+            )}
           </nav>
           <div className="mt-6 grid gap-3">
             <Link
