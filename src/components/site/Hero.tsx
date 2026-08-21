@@ -113,8 +113,27 @@ export function Hero() {
           <ChevronRight className="size-5" />
         </button>
 
+        {/* Top-Right Technical Slide Counter */}
+        <div className="absolute top-4 right-4 z-20 hidden sm:flex items-center gap-2 rounded-xs bg-black/75 px-3 py-1 font-mono text-xs font-bold text-white border border-white/20 backdrop-blur-md">
+          <span className="text-primary">{heroSlides[index]?.reachLabel}</span>
+          <span className="text-white/40">·</span>
+          <span>0{index + 1} / 0{heroSlides.length}</span>
+        </div>
+
+        {/* Bottom-Left Live Architectural Project Badge */}
+        <div className="absolute bottom-4 left-4 sm:left-6 z-20 hidden sm:block pointer-events-none">
+          <div className="rounded-xs bg-black/80 px-3.5 py-2 border border-white/15 backdrop-blur-md max-w-md">
+            <span className="font-mono text-[0.65rem] text-primary uppercase font-bold tracking-wider block">
+              REAL SITE EXECUTION / {heroSlides[index]?.language}
+            </span>
+            <p className="font-display text-sm font-bold uppercase text-white tracking-wide mt-0.5">
+              {heroSlides[index]?.title}
+            </p>
+          </div>
+        </div>
+
         {/* Slide Counter & Dots Overlay */}
-        <div className="absolute bottom-4 inset-x-0 z-20 flex items-center justify-center gap-2">
+        <div className="absolute bottom-4 right-4 sm:right-6 z-20 flex items-center gap-2">
           {heroSlides.map((slide, i) => (
             <button
               key={slide.language}
@@ -123,7 +142,7 @@ export function Hero() {
               aria-label={`Slide ${i + 1}`}
               className={`transition-all duration-300 rounded-full ${
                 i === index
-                  ? "h-2 w-8 bg-primary shadow-xs"
+                  ? "h-2 w-7 bg-primary shadow-xs"
                   : "size-2 bg-white/40 hover:bg-white/75"
               }`}
             />

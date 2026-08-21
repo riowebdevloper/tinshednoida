@@ -73,54 +73,40 @@ export const nav = [
 
 export const heroSlides = [
   {
-    // SLIDE 1 — HINDI
     image: "/images/hero/hero-slide-01.webp",
     fallback: "/images/hero/hero-slide-01.jpg",
-    language: "Hindi (हिन्दी)",
-    langCode: "hi",
-    alt: "टिन शेड नोएडा वाले — वेयरहाउस शेड, गोदाम शेड, इंडस्ट्रियल शेड, सोलर पैनल शेड, पफ पैनल शेड, मेज़ानाइन फ्लोर निर्माण",
-    title: "टिन शेड नोएडा वाले",
-    reachLabel: "पैन इंडिया सर्विस",
+    language: "Industrial Factory Shed",
+    langCode: "factory",
+    alt: "Heavy-duty industrial factory shed and steel framework under construction",
+    title: "HEAVY-DUTY INDUSTRIAL SHED FABRICATION",
+    reachLabel: "NOIDA & PAN INDIA",
   },
   {
-    // SLIDE 2 — ENGLISH
     image: "/images/hero/hero-slide-02.webp",
     fallback: "/images/hero/hero-slide-02.jpg",
-    language: "English",
-    langCode: "en",
-    alt: "TIN SHADE NOIDA WALE — Warehouse Shade, Godown Shade, Industrial Shade, Solar Panel Shade, PUF Panel Shade, Mezzanine Floor",
-    title: "TIN SHADE NOIDA WALE",
-    reachLabel: "PAN INDIA SERVICE",
+    language: "Clear-Span Warehouse",
+    langCode: "warehouse",
+    alt: "Column-free clear span commercial warehouse and logistics shed facility",
+    title: "LARGE CLEAR-SPAN WAREHOUSE STRUCTURES",
+    reachLabel: "HIGH-CUBE RACKING COMPATIBLE",
   },
   {
-    // SLIDE 3 — HINGLISH / NORTH INDIA
     image: "/images/hero/hero-slide-03.webp",
     fallback: "/images/hero/hero-slide-03.jpg",
-    language: "Hindi / Hinglish",
-    langCode: "hi-en",
-    alt: "टिन शेड बनवाना है? Warehouse, Godown aur Factory Shed ke liye complete fabrication solution — पूरे भारत में सेवा",
-    title: "टिन शेड बनवाना है?",
-    reachLabel: "पूरे भारत में सेवा",
+    language: "On-Site Crane Erection",
+    langCode: "erection",
+    alt: "Active on-site heavy crane erection of industrial structural steel trusses",
+    title: "CRANE ERECTION & STRUCTURAL ASSEMBLY",
+    reachLabel: "IN-HOUSE EXPERIENCED CREW",
   },
   {
-    // SLIDE 4 — SOUTH INDIA / MULTILINGUAL
     image: "/images/hero/hero-slide-04.webp",
     fallback: "/images/hero/hero-slide-04.jpg",
-    language: "South India Multilingual (Tamil, Telugu, Kannada, Malayalam)",
-    langCode: "multi",
-    alt: "TIN SHADE NOIDA WALE — Industrial Sheds & PEB, Warehouse & Godown, Solar Shades (Tamil, Telugu, Kannada, Malayalam)",
-    title: "TIN SHADE NOIDA WALE — INDUSTRIAL FABRICATION",
-    reachLabel: "PAN INDIA SERVICE",
-  },
-  {
-    // SLIDE 5 — PAN INDIA
-    image: "/images/hero/hero-slide-05.webp",
-    fallback: "/images/hero/hero-slide-05.jpg",
-    language: "Pan India Solutions",
-    langCode: "pan-india",
-    alt: "PAN INDIA INDUSTRIAL SHED SOLUTIONS — Warehouse, Godown, Factory, Industrial, Roofing, Mezzanine, Solar Shade",
-    title: "PAN INDIA INDUSTRIAL SHED SOLUTIONS",
-    reachLabel: "PAN INDIA SERVICE",
+    language: "Turnkey Industrial Plant",
+    langCode: "plant",
+    alt: "Modern industrial manufacturing plant and steel warehouse facility exterior",
+    title: "TURNKEY INDUSTRIAL FACILITIES",
+    reachLabel: "COMPLETE DESIGN TO HANDOVER",
   },
 ];
 
