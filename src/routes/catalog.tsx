@@ -1,12 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { CatalogViewer } from "@/components/site/CatalogViewer";
-import { Projects } from "@/components/site/Projects";
 import { FinalCta } from "@/components/site/FinalCta";
 
 const title = "Official Work Catalog (51 Pages) — Tin Shade Noida";
 const description =
-  "Download or view our official 51-page PDF work catalog featuring verified structural designs, completed warehouse sheds, industrial structures, and technical specifications across India.";
+  "Download or view our 51-page work catalog with structural designs, completed projects and material specifications.";
 
 export const Route = createFileRoute("/catalog")({
   head: () => ({
@@ -27,12 +26,11 @@ function CatalogPage() {
   return (
     <SiteLayout>
       <PageHero
-        eyebrow="Official 51-Page Edition"
-        title="TIN SHADE NOIDA CATALOG"
-        description="Verified structural designs, completed site photographs and project work across India."
+        eyebrow="Official catalog"
+        title="51-page project and structure catalog"
+        description="Structural designs, site photographs and completed project documentation."
       />
       <CatalogViewer />
-      <Projects />
       <FinalCta />
     </SiteLayout>
   );

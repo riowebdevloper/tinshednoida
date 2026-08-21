@@ -1,13 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { Services } from "@/components/site/Services";
-import { Process } from "@/components/site/Process";
-import { WhyChooseUs } from "@/components/site/WhyChooseUs";
 import { FinalCta } from "@/components/site/FinalCta";
 
-const title = "Services | Industrial Shed, Warehouse & MS Steel Fabrication — Tin Shade Noida";
+const title = "Services | Industrial Shed, Warehouse & Steel Fabrication — Tin Shade Noida";
 const description =
-  "Complete industrial shed and steel fabrication solutions from requirement to fabrication and erection across Noida, Greater Noida, and Pan India.";
+  "Industrial shed and steel fabrication solutions from requirement to erection across Noida, Greater Noida, and Pan India.";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -28,13 +26,11 @@ function ServicesPage() {
   return (
     <SiteLayout>
       <PageHero
-        eyebrow="Structural Capabilities"
-        title="ENGINEERED FOR INDUSTRY. BUILT TO LAST."
-        description="Complete industrial shed and steel fabrication solutions from requirement to fabrication and erection."
+        eyebrow="What we build"
+        title="Industrial shed and steel fabrication services"
+        description="From a parking shed to a 40,000 sq ft warehouse — one team handles design, fabrication and erection."
       />
       <Services />
-      <WhyChooseUs />
-      <Process />
       <FinalCta />
     </SiteLayout>
   );

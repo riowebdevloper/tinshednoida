@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { QuoteWizard } from "@/components/site/QuoteWizard";
-import { Process } from "@/components/site/Process";
+import { CatalogViewer } from "@/components/site/CatalogViewer";
 
 const title = "Get a Quotation | Tin Shed & Steel Structure Pricing — Tin Shade Noida";
 const description =
@@ -28,10 +28,11 @@ function QuotePage() {
       <PageHero
         eyebrow="Free quotation"
         title="Tell us what you need built"
-        description="Four short steps — structure type, size, location and timeline. No obligation, no spam calls."
+        description="Four short steps — structure type, size, location and timeline."
       />
       <QuoteWizard />
-      <Process />
+      <CatalogViewer />
     </SiteLayout>
   );
 }
+

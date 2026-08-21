@@ -169,11 +169,8 @@ export function SiteFooter() {
       <div className="border-t border-steel-line bg-black/40">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-5 text-xs text-steel-muted sm:px-6 lg:px-8">
           <p>© Tin Shade Noida Wale. All Rights Reserved.</p>
-          <p className="flex items-center gap-2">
-            <span className="eyebrow rounded-xs border border-primary/30 bg-primary/10 px-2 py-0.5 text-[0.6rem] font-bold text-primary">
-              PAN INDIA
-            </span>
-            Industrial Steel · Fabrication · Erection · Warehouse · Roofing
+          <p>
+            Industrial Shed · Steel Fabrication · Warehouse · Roofing — Pan India
           </p>
         </div>
       </div>

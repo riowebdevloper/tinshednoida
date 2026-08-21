@@ -1,37 +1,23 @@
-import { Globe2, ShieldCheck, Users2, Hammer, Clock } from "lucide-react";
-import { trustStrip } from "@/lib/site-data";
-
-const icons = [Globe2, ShieldCheck, Users2, Hammer, Clock];
-
 export function TrustStrip() {
   return (
-    <section
-      aria-label="Verified Trust Pillars"
-      className="border-y border-steel-line bg-steel-deep text-steel-foreground shadow-inner"
-    >
-      <div className="mx-auto max-w-7xl px-4 py-4 sm:py-5 lg:px-8">
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
-          {trustStrip.map((item, index) => {
-            const Icon = icons[index % icons.length] || ShieldCheck;
-            return (
-              <div
-                key={item.id}
-                className="flex items-center gap-3 rounded-sm border border-steel-line/60 bg-steel/60 px-3.5 py-3 transition-colors hover:border-primary/50 hover:bg-steel"
-              >
-                <div className="flex size-9 shrink-0 items-center justify-center rounded-sm bg-primary/10 text-primary">
-                  <Icon className="size-4.5" />
-                </div>
-                <div className="min-w-0">
-                  <strong className="block font-display text-xs sm:text-sm font-bold uppercase tracking-wider text-white truncate">
-                    {item.label}
-                  </strong>
-                  <span className="block text-[0.65rem] text-steel-muted truncate">
-                    {item.sub}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
+    <section className="border-b border-border bg-steel-deep text-white">
+      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 text-center">
+        <h2 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight leading-snug">
+          Real fabrication. Real projects. Real site execution.
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-sm sm:text-base text-steel-muted leading-relaxed">
+          From structural steel fabrication and roofing to complete industrial shed erection — we handle projects from requirement to handover across India.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs sm:text-sm uppercase tracking-wider text-steel-muted/80">
+          <span>Pan India Service</span>
+          <span className="hidden sm:inline text-steel-line">·</span>
+          <span>Structural Fabrication</span>
+          <span className="hidden sm:inline text-steel-line">·</span>
+          <span>Site Erection</span>
+          <span className="hidden sm:inline text-steel-line">·</span>
+          <span>Quality Materials</span>
+          <span className="hidden sm:inline text-steel-line">·</span>
+          <span>Custom Requirements</span>
         </div>
       </div>
     </section>
