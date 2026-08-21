@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { Projects } from "@/components/site/Projects";
 import { Gallery } from "@/components/site/Gallery";
+import { CatalogViewer } from "@/components/site/CatalogViewer";
 import { Videos } from "@/components/site/Videos";
 
 const title = "Projects | Industrial Shed & Steel Structure Portfolio — Tin Shade Noida";
@@ -32,6 +33,7 @@ function ProjectsPage() {
         description="Filter by structure type, open any project to see the scope, materials and span we delivered on site."
       />
       <Projects />
+      <CatalogViewer />
       <Gallery />
       <Videos />
     </SiteLayout>

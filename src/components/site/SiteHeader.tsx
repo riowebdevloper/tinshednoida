@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Menu, Phone, X, MessageCircle } from "lucide-react";
+import { Download, Menu, Phone, X, MessageCircle } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { company, nav } from "@/lib/site-data";
 
@@ -41,6 +41,15 @@ export function SiteHeader() {
             <span className="eyebrow text-primary">Free site visit across India</span>
             <span className="h-3 w-px bg-steel-line" />
             <span>{company.hours}</span>
+            <span className="h-3 w-px bg-steel-line" />
+            <a
+              href="/catalog/tin-shade-noida-catalog.pdf"
+              download="TIN_SHADE_NOIDA_CATALOG.pdf"
+              className="inline-flex items-center gap-1.5 text-steel-muted transition-colors hover:text-primary"
+            >
+              <Download className="size-3" />
+              Download Brochure
+            </a>
           </div>
         </div>
       </div>
@@ -64,7 +73,7 @@ export function SiteHeader() {
               <img
                 src={company.logo}
                 alt="Tin Shade Noida — Shelter Solutions"
-                className={`w-auto object-contain mix-blend-multiply transition-all duration-300 ${
+                className={`w-auto object-contain transition-all duration-300 ${
                   scrolled ? "h-9 sm:h-10" : "h-11 sm:h-13"
                 }`}
               />
@@ -100,12 +109,12 @@ export function SiteHeader() {
               <Phone className="size-4" />
               Call now
             </a>
-            <a
-              href="/quote"
+            <Link
+              to="/quote"
               className="hidden items-center gap-2 rounded-sm bg-primary px-5 py-2.5 font-display text-sm font-semibold uppercase tracking-wide text-primary-foreground transition-transform hover:-translate-y-0.5 sm:inline-flex"
             >
               Get quote
-            </a>
+            </Link>
             <button
               type="button"
               aria-label={open ? "Close menu" : "Open menu"}
@@ -135,13 +144,13 @@ export function SiteHeader() {
             ))}
           </nav>
           <div className="mt-6 grid gap-3">
-            <a
-              href="/quote"
+            <Link
+              to="/quote"
               onClick={() => setOpen(false)}
               className="flex items-center justify-center rounded-sm bg-primary px-5 py-4 font-display text-base font-semibold uppercase tracking-wide text-primary-foreground"
             >
               Get free quote
-            </a>
+            </Link>
             <div className="grid grid-cols-2 gap-3">
               <a
                 href={company.phoneHref}

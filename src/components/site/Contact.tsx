@@ -82,7 +82,7 @@ export function Contact() {
     { icon: Phone, label: "Call us", value: company.phone, href: company.phoneHref },
     { icon: MessageCircle, label: "WhatsApp", value: company.phone, href: company.whatsapp },
     { icon: Mail, label: "Email", value: company.email, href: `mailto:${company.email}` },
-    { icon: Instagram, label: "Instagram", value: "@tin_shade_warehouse", href: company.instagram },
+    { icon: Instagram, label: "Instagram", value: company.instagramHandle, href: company.instagram },
     { icon: MapPin, label: "Workshop & HQ", value: company.address },
   ];
 
@@ -176,6 +176,7 @@ export function Contact() {
               tabIndex={-1}
               autoComplete="off"
               aria-hidden="true"
+              style={{ display: "none" }}
               className="sr-only"
             />
 

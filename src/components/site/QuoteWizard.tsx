@@ -188,7 +188,8 @@ export function QuoteWizard() {
                   name="company"
                   tabIndex={-1}
                   autoComplete="off"
-                  aria-hidden
+                  aria-hidden="true"
+                  style={{ display: "none" }}
                   className="hidden"
                 />
 

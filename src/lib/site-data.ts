@@ -48,8 +48,12 @@ export const company = {
   whatsapp: "https://wa.me/918527977714",
   whatsappText:
     "https://wa.me/918527977714?text=Hi%20Tin%20Shade%20Noida%2C%20I%20want%20a%20quotation%20for%20a%20shed%20project.",
-  email: "tinshade.noida@gmail.com",
-  instagram: "https://www.instagram.com/tin_shade_wearhouse",
+  email: "tinshadenoidawale1@gmail.com",
+  brochurePdf: "/catalog/tin-shade-noida-catalog.pdf",
+  instagram: "https://www.instagram.com/tinshadenoidawale/",
+  instagramHandle: "@tinshadenoidawale",
+  youtube: "https://www.youtube.com/@DeepEnterprises-yu2vo",
+  youtubeHandle: "@DeepEnterprises-yu2vo",
   address: "D179 Sector 10, Noida, Uttar Pradesh",
   hours: "Mon – Sun · 8:00 AM – 8:00 PM",
   since: "2010",
@@ -61,6 +65,7 @@ export const company = {
 export const nav = [
   { label: "Services", to: "/services" },
   { label: "Projects", to: "/projects" },
+  { label: "Catalog (51 Pages)", to: "/catalog" },
   { label: "About", to: "/about" },
   { label: "Get Quote", to: "/quote" },
   { label: "Contact", to: "/contact" },
@@ -68,23 +73,61 @@ export const nav = [
 
 export const heroSlides = [
   {
-    image: hero1,
-    alt: "Large industrial tin shed warehouse with blue metal roofing built in Noida",
+    // SLIDE 1 — HINDI
+    image: "/images/hero/hero-slide-01.webp",
+    fallback: "/images/hero/hero-slide-01.jpg",
+    language: "Hindi (हिन्दी)",
+    langCode: "hi",
+    alt: "टिन शेड नोएडा वाले — वेयरहाउस शेड, गोदाम शेड, इंडस्ट्रियल शेड, सोलर पैनल शेड, पफ पैनल शेड, मेज़ानाइन फ्लोर निर्माण",
+    title: "टिन शेड नोएडा वाले",
+    reachLabel: "पैन इंडिया सर्विस",
   },
   {
-    image: hero2,
-    alt: "Interior of a long-span pre-engineered steel warehouse shed under construction",
+    // SLIDE 2 — ENGLISH
+    image: "/images/hero/hero-slide-02.webp",
+    fallback: "/images/hero/hero-slide-02.jpg",
+    language: "English",
+    langCode: "en",
+    alt: "TIN SHADE NOIDA WALE — Warehouse Shade, Godown Shade, Industrial Shade, Solar Panel Shade, PUF Panel Shade, Mezzanine Floor",
+    title: "TIN SHADE NOIDA WALE",
+    reachLabel: "PAN INDIA SERVICE",
   },
   {
-    image: hero3,
-    alt: "Fabricator welding a mild steel structural beam on a Noida project site",
+    // SLIDE 3 — HINGLISH / NORTH INDIA
+    image: "/images/hero/hero-slide-03.webp",
+    fallback: "/images/hero/hero-slide-03.jpg",
+    language: "Hindi / Hinglish",
+    langCode: "hi-en",
+    alt: "टिन शेड बनवाना है? Warehouse, Godown aur Factory Shed ke liye complete fabrication solution — पूरे भारत में सेवा",
+    title: "टिन शेड बनवाना है?",
+    reachLabel: "पूरे भारत में सेवा",
+  },
+  {
+    // SLIDE 4 — SOUTH INDIA / MULTILINGUAL
+    image: "/images/hero/hero-slide-04.webp",
+    fallback: "/images/hero/hero-slide-04.jpg",
+    language: "South India Multilingual (Tamil, Telugu, Kannada, Malayalam)",
+    langCode: "multi",
+    alt: "TIN SHADE NOIDA WALE — Industrial Sheds & PEB, Warehouse & Godown, Solar Shades (Tamil, Telugu, Kannada, Malayalam)",
+    title: "TIN SHADE NOIDA WALE — INDUSTRIAL FABRICATION",
+    reachLabel: "PAN INDIA SERVICE",
+  },
+  {
+    // SLIDE 5 — PAN INDIA
+    image: "/images/hero/hero-slide-05.webp",
+    fallback: "/images/hero/hero-slide-05.jpg",
+    language: "Pan India Solutions",
+    langCode: "pan-india",
+    alt: "PAN INDIA INDUSTRIAL SHED SOLUTIONS — Warehouse, Godown, Factory, Industrial, Roofing, Mezzanine, Solar Shade",
+    title: "PAN INDIA INDUSTRIAL SHED SOLUTIONS",
+    reachLabel: "PAN INDIA SERVICE",
   },
 ];
 
 export const heroStats = [
   { value: 500, suffix: "+", label: "Projects completed" },
   { value: 15, suffix: "+", label: "Years of experience" },
-  { text: "PAN INDIA", label: "India • All Major Cities" },
+  { text: "PAN INDIA", label: "6 States · All Major Cities" },
 ];
 
 export const trustStats = [
@@ -232,20 +275,33 @@ export const services = needs.map((need, index) => ({
 
 export const projectCategories = [
   "All",
-  "Industrial",
+  "Industrial Shed",
   "Warehouse",
-  "Tin Shed",
   "MS Structure",
-  "PEB",
-  "Roofing",
+  "Tin Roofing",
+  "PEB Structure",
+  "Completed Projects",
+  "Under Construction",
 ] as const;
 
 export type ProjectCategory = (typeof projectCategories)[number];
 
+export const catalogPages = Array.from({ length: 51 }, (_, i) => {
+  const pageNum = i + 1;
+  const padNum = String(pageNum).padStart(2, "0");
+  const selectedPages = [1, 2, 3, 7, 14, 19, 22, 28, 32, 36, 43, 47, 50];
+  return {
+    page: pageNum,
+    title: `Tin Shade Noida Catalog — Page ${padNum}`,
+    image: `/images/catalog/catalog-page-${padNum}.jpg`,
+    isSelected: selectedPages.includes(pageNum),
+  };
+});
+
 export const projects: {
   id: string;
   title: string;
-  category: Exclude<ProjectCategory, "All">;
+  category: Exclude<ProjectCategory, "All" | "Completed Projects">;
   location: string;
   summary: string;
   scope: string[];
@@ -253,11 +309,189 @@ export const projects: {
   image: string;
   alt: string;
   featured?: boolean;
+  pageNumber?: number;
+  completedProject?: boolean;
 }[] = [
+  {
+    id: "selected-page-01",
+    title: "Industrial Storage & Fabrication Shed",
+    category: "Industrial Shed",
+    location: "Noida Industrial Hub",
+    summary:
+      "Heavy-duty industrial tin shed built with structural steel trusses and weather-resistant roofing sheets.",
+    scope: ["Structural Steel Framing", "GI Sheet Installation", "Gutter & Rain Drain System", "On-site Erection"],
+    material: "MS Pipe Trusses, Colour Coated GI Roofing Sheets",
+    image: "/images/selected/selected-01.jpg",
+    alt: "Industrial storage shed structure built by Tin Shade Noida",
+    featured: true,
+    pageNumber: 1,
+    completedProject: true,
+  },
+  {
+    id: "selected-page-02",
+    title: "Clear-Span Warehouse Shed Facility",
+    category: "Warehouse",
+    location: "Greater Noida Industrial Area",
+    summary:
+      "Spacious clear-span warehouse enclosure designed for high-density inventory storage and vehicle access.",
+    scope: ["Layout & Anchor Setting", "Heavy Beam Erection", "Trapezoidal Roofing", "Skylight Panels"],
+    material: "High Tensile Purlins, Translucent Daylighting Sheets",
+    image: "/images/selected/selected-02.jpg",
+    alt: "Clear-span warehouse shed facility constructed in Greater Noida",
+    pageNumber: 2,
+    completedProject: true,
+  },
+  {
+    id: "selected-page-03",
+    title: "Heavy MS Structural Framing",
+    category: "MS Structure",
+    location: "Sector 10, Noida",
+    summary:
+      "Precision-welded mild steel structural framework engineered for long service life and high stability.",
+    scope: ["Custom Cutting & Welding", "Column Anchor Setting", "Truss Alignment", "Anti-Rust Primer"],
+    material: "IS 2062 Structural Steel Channels & Angles",
+    image: "/images/selected/selected-03.jpg",
+    alt: "Heavy MS structural framing for commercial unit",
+    pageNumber: 3,
+    completedProject: true,
+  },
+  {
+    id: "selected-page-07",
+    title: "Commercial Rooftop Tin Shelter",
+    category: "Tin Roofing",
+    location: "Delhi NCR",
+    summary:
+      "Durable rooftop shed providing 100% rain and heat protection for commercial building terraces.",
+    scope: ["Terrace Anchoring", "Truss Assembly", "Leakproof Screw Fastening", "Side Ridge Flashing"],
+    material: "Color-Coated Galvanized Sheets, Heavy MS Beams",
+    image: "/images/selected/selected-07.jpg",
+    alt: "Commercial rooftop tin shelter structure",
+    pageNumber: 7,
+    completedProject: true,
+  },
+  {
+    id: "selected-page-14",
+    title: "Wide-Span Factory Building Shed",
+    category: "Industrial Shed",
+    location: "Ghaziabad Industrial Zone",
+    summary:
+      "Custom industrial workshop shed with side cladding and high eaves clearance for heavy machinery.",
+    scope: ["Foundation Plates", "Gantry Beam Support", "Wall Cladding", "Roof Ridge Vent"],
+    material: "Heavy Gauge GI Sheets, Tubular MS Steel Trusses",
+    image: "/images/selected/selected-14.jpg",
+    alt: "Wide-span factory building shed with side wall cladding",
+    pageNumber: 14,
+    completedProject: true,
+  },
+  {
+    id: "selected-page-19",
+    title: "Pre-Engineered Building (PEB) Warehouse",
+    category: "PEB Structure",
+    location: "Ecotech III, Greater Noida",
+    summary:
+      "Factory-fabricated PEB steel building assembled rapidly on site with high structural integrity.",
+    scope: ["PEB Primary Frame Erection", "Secondary Z-Purlins", "Double Wall Cladding", "Eaves Gutters"],
+    material: "Tapered Web I-Beams, High Yield Bolted Frames",
+    image: "/images/selected/selected-19.jpg",
+    alt: "PEB pre-engineered building warehouse structure",
+    pageNumber: 19,
+  },
+  {
+    id: "selected-page-22",
+    title: "Curved Parking Shed Canopy",
+    category: "Tin Roofing",
+    location: "Noida Sector 62",
+    summary:
+      "Aesthetically designed curved metal parking canopy protecting multi-car parking bays.",
+    scope: ["Curved Pipe Bending", "Ground Anchoring", "Sheet Curve Fixing", "Rust-proof Paint"],
+    material: "MS Round Pipe Trusses, Profiled Sheet Cover",
+    image: "/images/selected/selected-22.jpg",
+    alt: "Curved parking shed canopy in Noida",
+    pageNumber: 22,
+  },
+  {
+    id: "selected-page-28",
+    title: "High-Bay Logistics Godown Shed",
+    category: "Warehouse",
+    location: "Surajpur Industrial Area",
+    summary:
+      "Column-free interior space designed for logistics, container loading, and pallet racking.",
+    scope: ["High Column Erection", "Truss Alignment", "Rainwater Downspout Installation"],
+    material: "GI Trapezoidal Sheeting, ISI Grade Steel",
+    image: "/images/selected/selected-28.jpg",
+    alt: "High-bay logistics godown shed facility",
+    pageNumber: 28,
+  },
+  {
+    id: "selected-page-32",
+    title: "Heavy Machine Shop Shed Enclosure",
+    category: "Industrial Shed",
+    location: "Faridabad Industrial Sector",
+    summary:
+      "Industrial shelter engineered with vibration resistance and daylight ventilation panels.",
+    scope: ["Heavy Column Base Fabrication", "Truss System", "Daylight Sheet Placement"],
+    material: "Polycarbonate Skylight Sheets, Structural MS",
+    image: "/images/selected/selected-32.jpg",
+    alt: "Heavy machine shop shed enclosure",
+    pageNumber: 32,
+  },
+  {
+    id: "selected-page-36",
+    title: "Agricultural & Raw Material Godown",
+    category: "Warehouse",
+    location: "Noida Extension",
+    summary:
+      "Weatherproof large-capacity storage shed for bulk goods and materials.",
+    scope: ["Site Leveling Support", "Structural Erection", "Leakproof Roofing"],
+    material: "Heavy Duty Corrugated GI Sheets",
+    image: "/images/selected/selected-36.jpg",
+    alt: "Agricultural & raw material godown shed",
+    pageNumber: 36,
+  },
+  {
+    id: "selected-page-43",
+    title: "Terrace Utility & Mezzanine Shed",
+    category: "MS Structure",
+    location: "Noida Sector 18",
+    summary:
+      "Custom terrace extension creating covered operational space on an existing structure.",
+    scope: ["Mezzanine Support Beam", "Terrace Frame Erection", "Protective Sheeting"],
+    material: "MS Channels, Heavy Angles, Zinc Primed Steel",
+    image: "/images/selected/selected-43.jpg",
+    alt: "Terrace utility & mezzanine shed structure",
+    pageNumber: 43,
+  },
+  {
+    id: "selected-page-47",
+    title: "Custom Factory Extension Shed",
+    category: "Industrial Shed",
+    location: "Pan India Site",
+    summary:
+      "Seamless extension connected to existing manufacturing building to double storage capacity.",
+    scope: ["Existing Roof Joinery", "New Column Erection", "Flashing & Waterproofing"],
+    material: "Trapezoidal GI Sheets, Heavy MS Beams",
+    image: "/images/selected/selected-47.jpg",
+    alt: "Custom factory extension shed",
+    pageNumber: 47,
+  },
+  {
+    id: "selected-page-50",
+    title: "Full Project Catalog Handover Shed",
+    category: "Tin Roofing",
+    location: "Noida Sector 10",
+    summary:
+      "Complete turnkey shed project delivered with structural guarantees and clean finish.",
+    scope: ["Full Fabrication", "Roofing Sheeting", "Final Inspection & Leak Test"],
+    material: "ISI Grade MS Steel & Premium GI Roofing",
+    image: "/images/selected/selected-50.jpg",
+    alt: "Completed turnkey shed project by Tin Shade Noida",
+    pageNumber: 50,
+    completedProject: true,
+  },
   {
     id: "factory-shed-sector-63",
     title: "Factory Shed & Cladding",
-    category: "Industrial",
+    category: "Industrial Shed",
     location: "Noida, Sector 63",
     summary:
       "Complete factory shed with side cladding, ventilation openings and a shutter bay for a manufacturing unit.",
@@ -270,7 +504,6 @@ export const projects: {
     material: "MS columns, tubular trusses, colour-coated trapezoidal sheets",
     image: proj1,
     alt: "Completed industrial factory shed with grey cladding and blue roof in Noida",
-    featured: true,
   },
   {
     id: "warehouse-greater-noida",
@@ -292,7 +525,7 @@ export const projects: {
   {
     id: "rooftop-tin-shade",
     title: "Rooftop Tin Shade",
-    category: "Tin Shed",
+    category: "Tin Roofing",
     location: "Noida",
     summary:
       "Terrace-level tin shade on MS channel framework, built to cover an existing rooftop working area.",
@@ -304,7 +537,7 @@ export const projects: {
   {
     id: "society-parking-shed",
     title: "Society Parking Shed",
-    category: "Roofing",
+    category: "Tin Roofing",
     location: "Greater Noida",
     summary:
       "Curved parking canopy for a residential society, sized around existing parking bays and drive lanes.",
@@ -316,7 +549,7 @@ export const projects: {
   {
     id: "peb-frame-project",
     title: "PEB Frame Erection",
-    category: "PEB",
+    category: "PEB Structure",
     location: "Ghaziabad",
     summary:
       "Pre-engineered portal frame structure erected with crane support for a wide-span commercial facility.",
@@ -520,205 +753,222 @@ export interface VideoItem {
   featured?: boolean;
 }
 
-export interface ReelItem {
+export interface ProjectVideo {
   id: string;
+  platform: "youtube" | "instagram";
   title: string;
   description: string;
+  embedUrl: string;
+  originalUrl: string;
+  thumbnail: string;
+  channel?: string;
   service: string;
-  sourceType: "local" | "youtube" | "instagram";
-  videoUrl?: string;
-  posterUrl: string;
-  youtubeId?: string;
-  instagramUrl?: string;
-  instagramId?: string;
-  duration: string;
   location: string;
+  duration?: string;
   quoteOptionNeed: string;
 }
 
-export const localReels: ReelItem[] = [
+export function getYouTubeEmbedUrl(url: string | undefined | null): string | null {
+  if (!url) return null;
+  try {
+    const parsed = new URL(url);
+    let videoId: string | null = null;
+    if (parsed.hostname.includes("youtube.com")) {
+      if (parsed.pathname === "/watch") {
+        videoId = parsed.searchParams.get("v");
+      } else if (parsed.pathname.startsWith("/embed/")) {
+        videoId = parsed.pathname.split("/embed/")[1]?.split("/")[0] || null;
+      } else if (parsed.pathname.startsWith("/shorts/")) {
+        videoId = parsed.pathname.split("/shorts/")[1]?.split("/")[0] || null;
+      }
+    }
+    if (parsed.hostname === "youtu.be") {
+      videoId = parsed.pathname.substring(1).split("/")[0] || null;
+    }
+    if (!videoId) return null;
+    return `https://www.youtube.com/embed/${videoId}`;
+  } catch {
+    if (typeof url === "string" && /^[a-zA-Z0-9_-]{11}$/.test(url)) {
+      return `https://www.youtube.com/embed/${url}`;
+    }
+    return null;
+  }
+}
+
+export function getInstagramEmbedUrl(url: string | undefined | null): string | null {
+  if (!url) return null;
+  const cleanUrl = url.split("?")[0]!.replace(/\/+$/, "");
+  if (cleanUrl.endsWith("/embed")) return `${cleanUrl}/`;
+  return `${cleanUrl}/embed/`;
+}
+
+export const youtubeVideos: ProjectVideo[] = [
   {
-    id: "local-ms",
-    title: "MS Structural Steel Fabrication",
+    id: "mkRndWdXPdI",
+    platform: "youtube",
+    title: "टीन शेड बनवाने के लिए संपर्क करें — 8527977714, 9899793714 (Industrial Tin Shed Construction)",
     description:
-      "On-site heavy MS column erection, truss alignment, and structural welding execution.",
-    service: "MS Structure",
-    sourceType: "local",
-    videoUrl: "/videos/ms-fabrication.mp4",
-    posterUrl: svcMs,
-    duration: "0:30",
-    location: "Sector 10, Noida",
-    quoteOptionNeed: "MS Structure",
-    instagramUrl: "https://www.instagram.com/reel/DVTCe6HCQiU/",
-  },
-  {
-    id: "local-industrial",
-    title: "Industrial Factory Shed Construction",
-    description:
-      "High clear-span factory shed erection with gantry beam integration and roof ventilation.",
+      "Onsite video of industrial tin shed construction, heavy MS column framework, and durable color-coated roof sheet installation by Deep Enterprises.",
+    embedUrl: "https://www.youtube-nocookie.com/embed/mkRndWdXPdI",
+    originalUrl: "https://www.youtube.com/watch?v=mkRndWdXPdI",
+    thumbnail: "https://i.ytimg.com/vi/mkRndWdXPdI/hqdefault.jpg",
+    channel: "@DeepEnterprises-yu2vo",
     service: "Industrial Shed",
-    sourceType: "local",
-    videoUrl: "/videos/industrial-shed.mp4",
-    posterUrl: svcIndustrial,
-    duration: "0:45",
-    location: "Ecotech III, Greater Noida",
+    location: "Noida & Delhi NCR",
+    duration: "Onsite Reel",
     quoteOptionNeed: "Industrial Shed",
-    instagramUrl: "https://www.instagram.com/reel/DVDjwv_CTmo/",
   },
   {
-    id: "local-peb",
-    title: "Pre-Engineered Building (PEB) Erection",
-    description: "Precision PEB primary steel frame assembly and Z-purlin structural alignment.",
-    service: "PEB Structure",
-    sourceType: "local",
-    videoUrl: "/videos/peb-structure.mp4",
-    posterUrl: svcPeb,
-    duration: "0:35",
-    location: "Ghaziabad Industrial Area",
-    quoteOptionNeed: "PEB Structure",
-    instagramUrl: "https://www.instagram.com/reel/DVDUjJPCWAw/",
-  },
-  {
-    id: "local-tin-roofing",
-    title: "Tin & Polycarbonate Roofing Installation",
-    description: "Color-coated trapezoidal GI tin sheet installation with ridge cap sealing.",
-    service: "Tin Roofing",
-    sourceType: "local",
-    videoUrl: "/videos/tin-roofing.mp4",
-    posterUrl: svcRoofing,
-    duration: "0:25",
-    location: "Surajpur, Greater Noida",
-    quoteOptionNeed: "Tin Roofing",
-    instagramUrl: "https://www.instagram.com/reel/DEkN6VxyAtc/",
-  },
-  {
-    id: "local-warehouse",
-    title: "Logistics Warehouse Shed Structure",
+    id: "f2xmWKtkxME",
+    platform: "youtube",
+    title: "टीन शेड बनवाने के लिए संपर्क करें — 9899793714, 8527977714 (Heavy Industrial Structure)",
     description:
-      "Clear-span 20,000+ sq ft warehouse structure built for high volume industrial storage.",
+      "Wide-span industrial warehouse structure, heavy mild steel beam alignment, and fast-track shed erection on site.",
+    embedUrl: "https://www.youtube-nocookie.com/embed/f2xmWKtkxME",
+    originalUrl: "https://www.youtube.com/watch?v=f2xmWKtkxME",
+    thumbnail: "https://i.ytimg.com/vi/f2xmWKtkxME/hqdefault.jpg",
+    channel: "@DeepEnterprises-yu2vo",
     service: "Warehouse Shed",
-    sourceType: "local",
-    videoUrl: "/videos/warehouse-shed.mp4",
-    posterUrl: svcWarehouse,
-    duration: "0:40",
-    location: "Kasna, Greater Noida",
+    location: "Greater Noida Industrial Area",
+    duration: "Onsite Reel",
     quoteOptionNeed: "Warehouse Shed",
-    instagramUrl: "https://www.instagram.com/reel/DTC7SdniW8W/",
+  },
+  {
+    id: "J_Y8IzAllCk",
+    platform: "youtube",
+    title: "टीन शेड बनवाने के लिए संपर्क करें — 9899793714 (Industrial Framing & Roofing)",
+    description:
+      "Structural steel framing and roof truss alignment for industrial factory shed with precision arc welding.",
+    embedUrl: "https://www.youtube-nocookie.com/embed/J_Y8IzAllCk",
+    originalUrl: "https://www.youtube.com/watch?v=J_Y8IzAllCk",
+    thumbnail: "https://i.ytimg.com/vi/J_Y8IzAllCk/hqdefault.jpg",
+    channel: "@DeepEnterprises-yu2vo",
+    service: "MS Structure",
+    location: "Surajpur Industrial Area",
+    duration: "Onsite Reel",
+    quoteOptionNeed: "MS Structure",
+  },
+  {
+    id: "BbsedKkhB8U",
+    platform: "youtube",
+    title: "Deep Enterprises — Rooftop Tin Shed & Metro Shade Contact: 9899793714",
+    description:
+      "Commercial rooftop tin shed structure, curved cantilever shade, and waterproof roof sheeting by Deep Enterprises.",
+    embedUrl: "https://www.youtube-nocookie.com/embed/BbsedKkhB8U",
+    originalUrl: "https://www.youtube.com/watch?v=BbsedKkhB8U",
+    thumbnail: "https://i.ytimg.com/vi/BbsedKkhB8U/hqdefault.jpg",
+    channel: "@DeepEnterprises-yu2vo",
+    service: "Tin Roofing",
+    location: "Sector 63, Noida",
+    duration: "Onsite Reel",
+    quoteOptionNeed: "Tin Roofing",
+  },
+  {
+    id: "07Gt4hpEwtk",
+    platform: "youtube",
+    title: "टीन शेड बनवाएं — Deep Enterprises (Turbo Ventilator & Industrial Shade) 9899793714",
+    description:
+      "Complete industrial tin shade project handover with roof air ventilation turbo fans and heavy rain water gutters.",
+    embedUrl: "https://www.youtube-nocookie.com/embed/07Gt4hpEwtk",
+    originalUrl: "https://www.youtube.com/watch?v=07Gt4hpEwtk",
+    thumbnail: "https://i.ytimg.com/vi/07Gt4hpEwtk/hqdefault.jpg",
+    channel: "@DeepEnterprises-yu2vo",
+    service: "Industrial Shed",
+    location: "Ecotech Zone, Noida",
+    duration: "Onsite Reel",
+    quoteOptionNeed: "Industrial Shed",
   },
 ];
 
-export const instagramReelsList: ReelItem[] = [
+export const instagramVideos: ProjectVideo[] = [
   {
     id: "insta-1",
-    title: "Terrace MS Framework & Sheeting",
+    platform: "instagram",
+    title: "Terrace MS Framework & Tin Sheeting",
     description:
       "Terrace level MS framework setup and color-coated tin sheet installation work in progress.",
+    embedUrl: "https://www.instagram.com/reel/DEkN6VxyAtc/embed/",
+    originalUrl: "https://www.instagram.com/reel/DEkN6VxyAtc/",
+    thumbnail: proj3,
     service: "Tin Roofing",
-    sourceType: "instagram",
-    instagramUrl: "https://www.instagram.com/reel/DEkN6VxyAtc/",
-    instagramId: "DEkN6VxyAtc",
-    posterUrl: proj3,
-    duration: "0:45",
     location: "Sector 63, Noida",
+    duration: "0:45",
     quoteOptionNeed: "Tin Roofing",
   },
   {
     id: "insta-2",
+    platform: "instagram",
     title: "Mild Steel Heavy Roof Framework",
     description: "Mild steel column and truss alignment for heavy industrial roof framework.",
+    embedUrl: "https://www.instagram.com/reel/DQ_bAPZiY3s/embed/",
+    originalUrl: "https://www.instagram.com/reel/DQ_bAPZiY3s/",
+    thumbnail: svcMs,
     service: "MS Structure",
-    sourceType: "instagram",
-    instagramUrl: "https://www.instagram.com/reel/DQ_bAPZiY3s/",
-    instagramId: "DQ_bAPZiY3s",
-    posterUrl: svcMs,
-    duration: "0:52",
     location: "Greater Noida Industrial Area",
+    duration: "0:52",
     quoteOptionNeed: "MS Structure",
   },
   {
     id: "insta-3",
-    title: "Industrial Workshop Handover",
+    platform: "instagram",
+    title: "Industrial Workshop Shed Handover",
     description: "Industrial workshop shed handover walkthrough with shutter bay and rain gutters.",
+    embedUrl: "https://www.instagram.com/reel/DVDUjJPCWAw/embed/",
+    originalUrl: "https://www.instagram.com/reel/DVDUjJPCWAw/",
+    thumbnail: proj1,
     service: "Industrial Shed",
-    sourceType: "instagram",
-    instagramUrl: "https://www.instagram.com/reel/DVDUjJPCWAw/",
-    instagramId: "DVDUjJPCWAw",
-    posterUrl: proj1,
-    duration: "0:48",
     location: "Noida Industrial Area",
+    duration: "0:48",
     quoteOptionNeed: "Industrial Shed",
   },
   {
     id: "insta-4",
-    title: "Factory Shed Roof Fabrication",
+    platform: "instagram",
+    title: "Factory Shed Roof Sheet Fixing",
     description: "Fabrication crew fixing trapezoidal GI roof sheets with self-drilling screws.",
+    embedUrl: "https://www.instagram.com/reel/DVDjwv_CTmo/embed/",
+    originalUrl: "https://www.instagram.com/reel/DVDjwv_CTmo/",
+    thumbnail: svcRoofing,
     service: "Industrial Shed",
-    sourceType: "instagram",
-    instagramUrl: "https://www.instagram.com/reel/DVDjwv_CTmo/",
-    instagramId: "DVDjwv_CTmo",
-    posterUrl: svcRoofing,
-    duration: "0:55",
     location: "Ecotech, Greater Noida",
+    duration: "0:55",
     quoteOptionNeed: "Industrial Shed",
   },
   {
     id: "insta-5",
+    platform: "instagram",
     title: "Warehouse Roof Sheeting & Daylighting",
     description: "Long-span warehouse roof sheeting and polycarbonate daylighting sheet fixing.",
+    embedUrl: "https://www.instagram.com/reel/DTC7SdniW8W/embed/",
+    originalUrl: "https://www.instagram.com/reel/DTC7SdniW8W/",
+    thumbnail: svcWarehouse,
     service: "Warehouse Shed",
-    sourceType: "instagram",
-    instagramUrl: "https://www.instagram.com/reel/DTC7SdniW8W/",
-    instagramId: "DTC7SdniW8W",
-    posterUrl: svcWarehouse,
-    duration: "1:02",
     location: "Surajpur Industrial Area",
+    duration: "1:02",
     quoteOptionNeed: "Warehouse Shed",
   },
   {
     id: "insta-6",
-    title: "On-site Arc Welding & Erection",
+    platform: "instagram",
+    title: "On-site Arc Welding & Structural Erection",
     description: "On-site arc welding and structural steel fabrication by our experienced welders.",
+    embedUrl: "https://www.instagram.com/reel/DVTCe6HCQiU/embed/",
+    originalUrl: "https://www.instagram.com/reel/DVTCe6HCQiU/",
+    thumbnail: hero3,
     service: "MS Structure",
-    sourceType: "instagram",
-    instagramUrl: "https://www.instagram.com/reel/DVTCe6HCQiU/",
-    instagramId: "DVTCe6HCQiU",
-    posterUrl: hero3,
-    duration: "1:10",
     location: "Ghaziabad Industrial Area",
+    duration: "1:10",
     quoteOptionNeed: "MS Structure",
   },
 ];
 
-export const youtubeReelsList: ReelItem[] = [
-  {
-    id: "yt-1",
-    title: "Deep Enterprises Industrial Construction",
-    description:
-      "Official site execution video showing heavy steel structure erection and roof framing.",
-    service: "Industrial Shed",
-    sourceType: "youtube",
-    youtubeId: "951bSvdn9Qc",
-    posterUrl: proj1,
-    duration: "1:15",
-    location: "Pan India Projects",
-    quoteOptionNeed: "Industrial Shed",
-  },
-  {
-    id: "yt-2",
-    title: "PEB Warehouse Erection Site Footage",
-    description:
-      "Pre-engineered building primary frame assembly and structural alignment walkthrough.",
-    service: "PEB Structure",
-    sourceType: "youtube",
-    youtubeId: "dQw4w9WgXcQ",
-    posterUrl: svcPeb,
-    duration: "2:10",
-    location: "Greater Noida",
-    quoteOptionNeed: "PEB Structure",
-  },
-];
+export const projectVideos: ProjectVideo[] = [...youtubeVideos, ...instagramVideos];
 
-export const realReels: ReelItem[] = [...localReels, ...instagramReelsList, ...youtubeReelsList];
+// Backward-compatible alias
+export type ReelItem = ProjectVideo;
+export const instagramReelsList = instagramVideos;
+export const youtubeReelsList = youtubeVideos;
+export const realReels = projectVideos;
 
 export const reels: VideoItem[] = [
   {
@@ -806,6 +1056,19 @@ export const reels: VideoItem[] = [
 ];
 
 export const gallery = [
+  { image: "/images/selected/selected-01.jpg", alt: "Industrial Storage & Fabrication Shed" },
+  { image: "/images/selected/selected-02.jpg", alt: "Clear-Span Warehouse Shed Facility" },
+  { image: "/images/selected/selected-03.jpg", alt: "Heavy MS Structural Framing" },
+  { image: "/images/selected/selected-07.jpg", alt: "Commercial Rooftop Tin Shelter" },
+  { image: "/images/selected/selected-14.jpg", alt: "Wide-Span Factory Building Shed" },
+  { image: "/images/selected/selected-19.jpg", alt: "Pre-Engineered Building PEB Warehouse" },
+  { image: "/images/selected/selected-22.jpg", alt: "Curved Parking Shed Canopy" },
+  { image: "/images/selected/selected-28.jpg", alt: "High-Bay Logistics Godown Shed" },
+  { image: "/images/selected/selected-32.jpg", alt: "Heavy Machine Shop Shed Enclosure" },
+  { image: "/images/selected/selected-36.jpg", alt: "Agricultural & Raw Material Godown" },
+  { image: "/images/selected/selected-43.jpg", alt: "Terrace Utility & Mezzanine Shed" },
+  { image: "/images/selected/selected-47.jpg", alt: "Custom Factory Extension Shed" },
+  { image: "/images/selected/selected-50.jpg", alt: "Full Project Catalog Handover Shed" },
   { image: proj1, alt: "Completed industrial factory shed in Noida" },
   { image: proj2, alt: "Warehouse shed interior with steel trusses" },
   { image: svcMs, alt: "MS structural framework under construction" },
@@ -846,15 +1109,15 @@ export const leadership = {
     name: "MD KHURSHID",
     designation: "FOUNDER",
     paragraphs: [
-      "With years of hands-on experience in tin shed construction, MS structures and industrial roofing, MD Khurshid laid the foundation of Tin Shade with a focus on strong structures, quality workmanship and dependable service.",
+      "Founded with a practical understanding of industrial construction and a commitment to dependable workmanship, MD Khurshid has built Tin Shade around trust, quality and long-term relationships with clients.",
     ],
     photo: khurshidPhoto,
   },
   nextGen: {
     name: "ABDUL",
-    designation: "NEXT GENERATION / SON",
+    designation: "SON / NEXT GENERATION",
     paragraphs: [
-      "Working alongside the foundation laid by his father, Abdul represents the next generation of Tin Shade, bringing a modern approach while carrying forward the values of quality, trust and customer-focused service.",
+      "Abdul represents the next generation of Tin Shade, bringing a modern approach to project coordination, technology, customer experience and the continued growth of the business.",
     ],
     photo: abdulPhoto,
   },

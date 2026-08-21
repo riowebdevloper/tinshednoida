@@ -3,6 +3,8 @@ import {
   ArrowRight,
   Bot,
   Check,
+  Download,
+  FileText,
   MessageCircle,
   Phone,
   RefreshCw,
@@ -17,7 +19,7 @@ import { triggerQuoteForNeed } from "./QuoteWizard";
 
 export interface MessageAction {
   label: string;
-  action: "quote" | "whatsapp" | "call" | "projects";
+  action: "quote" | "whatsapp" | "call" | "projects" | "brochure";
   need?: string | undefined;
 }
 
@@ -42,10 +44,10 @@ interface ConversationContext {
 const defaultSuggestions = [
   "What do you build?",
   "How much does a shed cost?",
-  "I need a quotation",
-  "Do you provide site visits?",
-  "Which areas do you serve?",
-  "Show me your projects",
+  "Do you provide Pan India service?",
+  "How can I get a quote?",
+  "Can I request a site visit?",
+  "How do I download the brochure?",
 ];
 
 // Conversational AI logic with grounded knowledge base & zero hallucinations
@@ -125,6 +127,83 @@ function generateAIResponse(
     nextContext.location = "Pan India";
   }
 
+  // BROCHURE / CATALOG DOWNLOAD QUERY
+  if (
+    text.includes("brochure") ||
+    text.includes("catalog") ||
+    text.includes("pdf") ||
+    text.includes("download")
+  ) {
+    return {
+      text: `You can view and download our complete 51-page official company catalog directly.\n\nIt features structural drawings, completed warehouse & industrial shed photos, material specifications, and project portfolios.`,
+      newContext: nextContext,
+      actions: [
+        { label: "DOWNLOAD BROCHURE (PDF)", action: "brochure" },
+        { label: "GET A QUOTE", action: "quote" },
+      ],
+    };
+  }
+
+  // WHAT IS AN INDUSTRIAL SHED?
+  if (text.includes("what is an industrial shed") || text.includes("what is industrial shed")) {
+    return {
+      text: `An Industrial Shed is a heavy-duty structural steel enclosure engineered for manufacturing units, machine shops, processing factories, and industrial workshops.\n\nTin Shade Noida builds custom clear-span industrial sheds with heavy tubular MS trusses, crane gantry beams, ridge ventilators, and weather-resistant GI/Galvalume roofing sheets.`,
+      newContext: nextContext,
+      actions: [
+        { label: "QUOTE FOR INDUSTRIAL SHED", action: "quote", need: "Industrial Shed" },
+        { label: "VIEW PROJECTS", action: "projects" },
+      ],
+    };
+  }
+
+  // WHAT IS MS STRUCTURE?
+  if (text.includes("what is ms structure") || text.includes("what is ms")) {
+    return {
+      text: `An MS (Mild Steel) Structure consists of structural columns, heavy trusses, rafters, purlins, mezzanine floors, and steel frameworks fabricated using IS 2062 certified mild steel.\n\nOur certified welding crew fabricates and erects structures on site with anti-rust primer and epoxy protective coatings.`,
+      newContext: nextContext,
+      actions: [
+        { label: "QUOTE FOR MS STRUCTURE", action: "quote", need: "MS Structure" },
+        { label: "VIEW PROJECTS", action: "projects" },
+      ],
+    };
+  }
+
+  // WHAT IS PEB STRUCTURE?
+  if (text.includes("what is peb") || text.includes("pre-engineered")) {
+    return {
+      text: `A PEB (Pre-Engineered Building) is an engineered steel building system using factory-built tapered I-beams, high-yield steel frames, and cold-formed Z/C purlins.\n\nPEB structures offer up to 50% faster on-site crane erection, wider column-free spans, and modular expandability for logistics parks and factories.`,
+      newContext: nextContext,
+      actions: [
+        { label: "QUOTE FOR PEB STRUCTURE", action: "quote", need: "PEB Structure" },
+        { label: "VIEW PROJECTS", action: "projects" },
+      ],
+    };
+  }
+
+  // WHAT IS TIN ROOFING?
+  if (text.includes("what is tin roofing") || text.includes("tin roof")) {
+    return {
+      text: `Tin Roofing involves installing corrugated or trapezoidal color-coated Galvanized Iron (GI) or Galvalume sheets on MS frameworks.\n\nWe provide 100% leak-proof screw fastening with EPDM washers, proper slope design for Indian monsoons, and translucent polycarbonate daylighting panels.`,
+      newContext: nextContext,
+      actions: [
+        { label: "QUOTE FOR TIN ROOFING", action: "quote", need: "Tin Roofing" },
+        { label: "TALK ON WHATSAPP", action: "whatsapp" },
+      ],
+    };
+  }
+
+  // DO YOU PROVIDE REPAIR WORK?
+  if (text.includes("repair") || text.includes("leakage") || text.includes("renovation")) {
+    return {
+      text: `Yes! We provide complete shed repair and renovation services Pan India — including rusted sheet replacement, gutter waterproofing, roof leak fixing, structural truss strengthening, and shed extensions.`,
+      newContext: nextContext,
+      actions: [
+        { label: "BOOK REPAIR SURVEY", action: "quote", need: "Other" },
+        { label: "CALL US DIRECTLY", action: "call" },
+      ],
+    };
+  }
+
   // PRICING / COST QUERY
   if (
     text.includes("cost") ||
@@ -132,14 +211,14 @@ function generateAIResponse(
     text.includes("rate") ||
     text.includes("kitne") ||
     text.includes("budget") ||
-    text.includes("kitna lag")
+    text.includes("how much")
   ) {
     let reply =
       `Pricing depends on structure type, clear-span width, eaves height, sheet gauge, steel specifications, site conditions and installation location.\n\n` +
-      `Rather than guessing an inaccurate figure, our engineering team provides exact written quotations with transparent itemized pricing.`;
+      `Rather than guessing an inaccurate figure, our engineering team provides itemized written quotations with transparent pricing and free site visits.`;
 
     if (nextContext.serviceType || nextContext.size) {
-      reply += `\n\nI have noted your interest in ${nextContext.serviceType || "a structure"}${nextContext.size ? ` (approx ${nextContext.size})` : ""}. Would you like me to open the quotation form for you?`;
+      reply += `\n\nI have noted your interest in ${nextContext.serviceType || "a structure"}${nextContext.size ? ` (approx ${nextContext.size})` : ""}. Would you like to get a formal quotation?`;
     } else {
       reply += `\n\nWould you like to get a free written quote or schedule a site visit?`;
     }
@@ -190,20 +269,33 @@ function generateAIResponse(
     };
   }
 
-  // SERVICE AREA / LOCATION QUERY
+  // SERVICE AREA / LOCATION / PAN INDIA QUERY
   if (
     text.includes("area") ||
     text.includes("location") ||
     text.includes("where") ||
-    text.includes("kahan") ||
+    text.includes("pan india") ||
     text.includes("city")
   ) {
     return {
-      text: `Tin Shade Noida serves clients PAN INDIA!\n\nOur main fabrication hub is located in Sector 10, Noida, UP, and our installation teams execute factory shed, warehouse roofing and MS structure projects nationwide.`,
+      text: `Tin Shade Noida serves clients PAN INDIA!\n\nOur main fabrication hub is located in Sector 10, Noida, UP, and our installation crews execute factory shed, warehouse roofing and MS structure projects nationwide.`,
       newContext: nextContext,
       actions: [
         { label: "GET A QUOTE", action: "quote" },
         { label: "CALL US", action: "call" },
+      ],
+    };
+  }
+
+  // CONTACT INFORMATION QUERY
+  if (text.includes("contact") || text.includes("phone") || text.includes("email") || text.includes("address")) {
+    return {
+      text: `You can reach Tin Shade Noida directly:\n\n📞 Phone: ${company.phone}\n💬 WhatsApp: +91-8527977714\n✉️ Email: ${company.email}\n📍 Workshop & HQ: ${company.address}\n⏰ Hours: ${company.hours}`,
+      newContext: nextContext,
+      actions: [
+        { label: "CALL NOW", action: "call" },
+        { label: "WHATSAPP US", action: "whatsapp" },
+        { label: "GET A QUOTE", action: "quote" },
       ],
     };
   }
@@ -217,10 +309,11 @@ function generateAIResponse(
     text.includes("example")
   ) {
     return {
-      text: `We have completed over 500+ industrial sheds, warehouses, and steel structures over 15+ years of operations.\n\nYou can explore our recent project portfolio and action videos directly on this website.`,
+      text: `We have completed over 500+ industrial sheds, warehouses, and steel structures over 15+ years of operations.\n\nYou can explore our recent project portfolio, catalog viewer and action videos directly on this website.`,
       newContext: nextContext,
       actions: [
         { label: "VIEW PROJECTS", action: "projects" },
+        { label: "DOWNLOAD BROCHURE", action: "brochure" },
         { label: "GET A QUOTE", action: "quote" },
       ],
     };
@@ -260,7 +353,7 @@ function generateAIResponse(
     };
   }
 
-  // DEFAULT HELPFUL FALLBACK
+  // DEFAULT HELPFUL FALLBACK (Strict zero hallucinations)
   return {
     text: `I'm Tin Shade's AI Assistant. I can help answer questions about shed types, site visits, execution timelines, materials, or collect your project requirements for an official quotation.\n\nWhat type of project are you planning to build?`,
     newContext: nextContext,
@@ -282,7 +375,7 @@ export function Assistant() {
     {
       id: "m-welcome",
       role: "assistant",
-      text: "Hello! I am the Tin Shade AI Assistant. How can I help with your shed, roofing or MS structure project today?",
+      text: "Hello! I am the Tin Shade AI Assistant. How can I help with your industrial shed, warehouse, roofing or MS structure project today?",
       timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
     },
   ]);
@@ -347,6 +440,12 @@ export function Assistant() {
       window.open(company.whatsappText, "_blank");
     } else if (act.action === "call") {
       window.location.href = company.phoneHref;
+    } else if (act.action === "brochure") {
+      const link = document.createElement("a");
+      link.href = company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf";
+      link.download = "TIN_SHADE_NOIDA_CATALOG.pdf";
+      link.target = "_blank";
+      link.click();
     } else if (act.action === "projects") {
       const projElem = document.getElementById("projects") || document.getElementById("gallery");
       if (projElem) {
@@ -359,7 +458,7 @@ export function Assistant() {
 
   return (
     <>
-      {/* Floating Toggle Button */}
+      {/* Floating Assistant Button */}
       <button
         type="button"
         onClick={() => {
@@ -367,7 +466,7 @@ export function Assistant() {
           setMinimized(false);
         }}
         aria-label="Open Tin Shade AI Assistant"
-        className={`fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full border border-primary/50 bg-steel-deep px-4 py-3.5 text-white shadow-elevated transition-all hover:scale-105 hover:border-primary ${
+        className={`fixed bottom-5 right-5 z-40 inline-flex items-center gap-3 rounded-full border border-primary/50 bg-steel-deep px-4 py-3.5 text-white shadow-elevated transition-all hover:scale-105 hover:border-primary ${
           open && !minimized ? "hidden" : "flex"
         }`}
       >
@@ -377,9 +476,9 @@ export function Assistant() {
         </div>
         <div className="text-left hidden sm:block">
           <p className="font-display text-xs font-bold uppercase tracking-wider text-white">
-            AI Sales Assistant
+            TIN SHADE ASSISTANT
           </p>
-          <p className="eyebrow text-[0.6rem] text-primary">Online · Ask Anything</p>
+          <p className="eyebrow text-[0.6rem] text-primary">Usually replies instantly</p>
         </div>
       </button>
 
@@ -394,10 +493,10 @@ export function Assistant() {
               </div>
               <div>
                 <h3 className="font-display text-sm font-bold uppercase text-white tracking-wide">
-                  TIN SHADE AI ASSISTANT
+                  TIN SHADE ASSISTANT
                 </h3>
                 <p className="eyebrow text-[0.6rem] text-steel-muted">
-                  Pan India Service · Grounded Knowledge
+                  Pan India Service · Usually replies instantly
                 </p>
               </div>
             </div>
@@ -481,7 +580,7 @@ export function Assistant() {
                 <span className="flex size-6 items-center justify-center rounded-full bg-primary/20 text-primary">
                   <Sparkles className="size-3 animate-spin" />
                 </span>
-                Tin Shade Assistant is thinking…
+                Tin Shade Assistant is typing…
               </div>
             )}
             <div ref={chatEndRef} />

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { ArrowRight, Check, MessageCircle } from "lucide-react";
 import { company, needs } from "@/lib/site-data";
 import { needIcons } from "./needIcons";
@@ -29,12 +30,12 @@ export function NeedFinder() {
           </div>
           <p className="hidden text-sm text-muted-foreground lg:block">
             Not sure yet?{" "}
-            <a
+            <Link
               className="font-semibold text-primary underline-offset-4 hover:underline"
-              href="/quote"
+              to="/quote"
             >
               Let us help you choose →
-            </a>
+            </Link>
           </p>
         </Reveal>
 
@@ -110,13 +111,13 @@ export function NeedFinder() {
             </ul>
 
             <div className="flex flex-wrap gap-3 pt-1">
-              <a
-                href="/quote"
+              <Link
+                to="/quote"
                 className="group inline-flex items-center gap-2 rounded-sm bg-primary px-5 py-3.5 font-display text-sm font-semibold uppercase tracking-wide text-primary-foreground transition-transform hover:-translate-y-0.5"
               >
                 Get a quote for this
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-              </a>
+              </Link>
               <a
                 href={`${company.whatsapp}?text=${encodeURIComponent(`Hi Tin Shade Noida, I need a ${active.label} for my site.`)}`}
                 target="_blank"

@@ -250,13 +250,13 @@ export function Services() {
             </p>
           </div>
 
-          <a
-            href="#quote"
+          <Link
+            to="/quote"
             className="group hidden items-center gap-2 font-display text-sm font-semibold uppercase tracking-wide text-primary sm:inline-flex"
           >
             Request a quotation
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-          </a>
+          </Link>
         </Reveal>
 
         {/* INTERACTIVE SERVICE FILTER TABS */}

@@ -31,3 +31,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Temporary extraction & local scratch files
+/extracted_images/
+/extracted_pdf_images/
+/extracted_pdf_pages/
+/tinshade_selected_images.zip
+/tin-shade-production/
+/TIN SHADE NOIDA WALE.pdf
+

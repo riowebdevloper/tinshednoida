@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { MessageCircle, Phone, Ruler } from "lucide-react";
 import { company } from "@/lib/site-data";
 
@@ -20,13 +21,13 @@ export function MobileCta() {
         <MessageCircle className="size-5 text-whatsapp" />
         WhatsApp
       </a>
-      <a
-        href="/quote"
+      <Link
+        to="/quote"
         className="flex flex-col items-center gap-1 bg-primary py-2.5 text-[0.7rem] font-semibold uppercase tracking-wide text-primary-foreground"
       >
         <Ruler className="size-5" />
         Get Quote
-      </a>
+      </Link>
     </div>
   );
 }

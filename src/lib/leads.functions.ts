@@ -29,7 +29,7 @@ export function buildWhatsAppUrl(payload: LeadPayload): string {
 }
 
 export const submitLead = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => leadSchema.parse(data))
+  .validator((data: unknown) => leadSchema.parse(data))
   .handler(async ({ data }) => {
     if (data.company) return { ok: true as const, source: "honeypot", whatsappUrl: "" };
 

@@ -6,6 +6,7 @@ import { TrustBlock } from "@/components/site/TrustBlock";
 import { Leadership } from "@/components/site/Leadership";
 import { Services } from "@/components/site/Services";
 import { Testimonials, Videos } from "@/components/site/Videos";
+import { CatalogViewer } from "@/components/site/CatalogViewer";
 import { company, testimonials } from "@/lib/site-data";
 
 const title = "Tin Shade Noida | Tin Shed & MS Structure Manufacturer";
@@ -61,6 +62,7 @@ function Index() {
       <TrustBlock />
       <Leadership />
       <Services />
+      <CatalogViewer />
       <Videos />
       <Testimonials />
     </SiteLayout>
