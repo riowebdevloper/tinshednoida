@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { heroSlides } from "@/lib/site-data";
+import { ChevronLeft, ChevronRight, Download, Calculator, Phone, ArrowRight, ShieldCheck, HardHat } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { company, heroSlides } from "@/lib/site-data";
 
 function useTouchSwipe(onSwipeLeft: () => void, onSwipeRight: () => void) {
   const touchStartX = useRef<number | null>(null);
@@ -37,7 +38,7 @@ export function Hero() {
 
   useEffect(() => {
     if (isHovered) return;
-    intervalRef.current = setInterval(goNext, 5500);
+    intervalRef.current = setInterval(goNext, 6000);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
@@ -58,12 +59,13 @@ export function Hero() {
     <section
       id="top"
       aria-label="Tin Shade Noida — Industrial Construction & Fabrication"
-      className="relative w-full overflow-hidden bg-black select-none"
+      className="relative w-full overflow-hidden bg-steel-deep text-steel-foreground select-none"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       {...swipe}
     >
-      <div className="relative w-full aspect-[16/9] sm:aspect-[16/7.5] lg:aspect-[1920/780] max-h-[82vh] overflow-hidden">
+      {/* ──────── CINEMATIC IMAGE SLIDER BANNER ──────── */}
+      <div className="relative w-full aspect-[16/10] sm:aspect-[16/8] lg:aspect-[1920/720] max-h-[76vh] overflow-hidden bg-black">
         {heroSlides.map((slide, i) => {
           const isActive = i === index;
           return (
@@ -84,7 +86,7 @@ export function Hero() {
                   fetchPriority={i === 0 ? "high" : "low"}
                   decoding={i === 0 ? "sync" : "async"}
                   width={1920}
-                  height={780}
+                  height={720}
                   className="size-full object-cover select-none"
                 />
               </picture>
@@ -92,12 +94,12 @@ export function Hero() {
           );
         })}
 
-        {/* Subtle arrows — appear on hover */}
+        {/* Minimal Navigation Arrows */}
         <button
           type="button"
           onClick={goPrev}
           aria-label="Previous slide"
-          className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 flex size-10 items-center justify-center rounded-full bg-black/40 text-white/70 transition-all hover:bg-black/60 hover:text-white"
+          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 flex size-9 sm:size-11 items-center justify-center rounded-full bg-black/60 text-white/90 backdrop-blur-md transition-all duration-200 hover:bg-primary hover:text-primary-foreground shadow-lg"
         >
           <ChevronLeft className="size-5" />
         </button>
@@ -106,28 +108,101 @@ export function Hero() {
           type="button"
           onClick={goNext}
           aria-label="Next slide"
-          className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 flex size-10 items-center justify-center rounded-full bg-black/40 text-white/70 transition-all hover:bg-black/60 hover:text-white"
+          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 flex size-9 sm:size-11 items-center justify-center rounded-full bg-black/60 text-white/90 backdrop-blur-md transition-all duration-200 hover:bg-primary hover:text-primary-foreground shadow-lg"
         >
           <ChevronRight className="size-5" />
         </button>
 
-        {/* Simple dot indicators */}
-        <div className="absolute bottom-5 inset-x-0 z-20 flex items-center justify-center gap-2" role="tablist" aria-label="Hero slides">
+        {/* Slide Counter & Dots Overlay */}
+        <div className="absolute bottom-4 inset-x-0 z-20 flex items-center justify-center gap-2">
           {heroSlides.map((slide, i) => (
             <button
               key={slide.language}
               type="button"
               onClick={() => setIndex(i)}
-              role="tab"
-              aria-selected={i === index}
               aria-label={`Slide ${i + 1}`}
               className={`transition-all duration-300 rounded-full ${
                 i === index
-                  ? "h-2 w-7 bg-white"
-                  : "size-2 bg-white/40 hover:bg-white/70"
+                  ? "h-2 w-8 bg-primary shadow-xs"
+                  : "size-2 bg-white/40 hover:bg-white/75"
               }`}
             />
           ))}
+        </div>
+      </div>
+
+      {/* ──────── ARCHITECTURAL HERO ACTION & VALUE SUMMARY ──────── */}
+      <div className="border-b border-steel-line bg-steel px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-6 lg:grid-cols-12 items-center">
+            
+            {/* Value Statement (7 cols) */}
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 rounded-xs border border-primary/40 bg-primary/10 px-2.5 py-1 text-[0.68rem] font-mono font-bold uppercase tracking-wider text-primary">
+                <HardHat className="size-3.5" />
+                DIRECT INDUSTRIAL FABRICATORS & ERECTORS
+              </div>
+              <h1 className="mt-3 font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase leading-tight tracking-tight text-white">
+                HEAVY-DUTY INDUSTRIAL SHEDS &
+                <span className="block text-primary">STRUCTURAL STEEL FABRICATION.</span>
+              </h1>
+              <p className="mt-2.5 text-sm sm:text-base text-steel-muted leading-relaxed max-w-2xl">
+                From 2,000 to 100,000+ sq. ft. factories, logistics warehouses, and heavy MS frameworks. In-house fabrication yard in Noida Sector 10 with turnkey crane erection nationwide.
+              </p>
+            </div>
+
+            {/* Direct Action Cluster (5 cols) */}
+            <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center">
+              <Link
+                to="/quote"
+                className="inline-flex items-center justify-center gap-2 rounded-xs bg-primary px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-elevated transition-transform hover:-translate-y-0.5"
+              >
+                <span>Request Free Site Quotation</span>
+                <ArrowRight className="size-4" />
+              </Link>
+
+              <div className="grid grid-cols-2 gap-2">
+                <a
+                  href="#estimator"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xs border border-steel-line bg-steel-deep px-3 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-primary hover:text-primary text-center"
+                >
+                  <Calculator className="size-3.5 text-primary" />
+                  <span>Cost Estimator</span>
+                </a>
+
+                <a
+                  href={company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf"}
+                  download="TIN_SHADE_NOIDA_CATALOG.pdf"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xs border border-steel-line bg-steel-deep px-3 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-primary hover:text-primary text-center"
+                >
+                  <Download className="size-3.5 text-primary" />
+                  <span>51-Pg Catalog</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          {/* ──────── TECHNICAL SPECIFICATION TICKER ──────── */}
+          <div className="mt-8 pt-6 border-t border-steel-line grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <div>
+              <span className="block font-display text-xl sm:text-2xl font-extrabold text-white">15+ YEARS</span>
+              <span className="block text-[0.7rem] font-mono text-steel-muted uppercase tracking-wider">In-House Fabrication</span>
+            </div>
+            <div>
+              <span className="block font-display text-xl sm:text-2xl font-extrabold text-white">500+ SHEDS</span>
+              <span className="block text-[0.7rem] font-mono text-steel-muted uppercase tracking-wider">Completed Across India</span>
+            </div>
+            <div>
+              <span className="block font-display text-xl sm:text-2xl font-extrabold text-white">120 FT</span>
+              <span className="block text-[0.7rem] font-mono text-steel-muted uppercase tracking-wider">Max Clear Span</span>
+            </div>
+            <div>
+              <span className="block font-display text-xl sm:text-2xl font-extrabold text-white">IS 2062</span>
+              <span className="block text-[0.7rem] font-mono text-steel-muted uppercase tracking-wider">Certified Mild Steel</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

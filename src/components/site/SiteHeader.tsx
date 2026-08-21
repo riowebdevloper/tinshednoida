@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { Download, Menu, Phone, X, MessageCircle } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { Download, Menu, Phone, X, MessageCircle, Calculator, FileText, ArrowRight } from "lucide-react";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { company, nav } from "@/lib/site-data";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const routerState = useRouterState();
+  const currentPath = routerState.location.pathname;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -23,180 +25,236 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50">
-      {/* utility bar — collapses away on scroll */}
+      {/* ──────── HIGH-UTILITY ENGINEERING TOP BAR ──────── */}
       <div
-        className={`hidden overflow-hidden bg-steel-deep text-steel-foreground transition-all duration-300 lg:block ${
+        className={`hidden overflow-hidden bg-black text-white/90 border-b border-white/10 transition-all duration-300 lg:block ${
           scrolled ? "max-h-0 opacity-0" : "max-h-12 opacity-100"
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-xs text-steel-muted lg:px-10">
-          <div className="flex items-center gap-5">
-            <span>{company.address}</span>
-            <span className="h-3 w-px bg-steel-line" />
-            <a className="transition-colors hover:text-primary" href={`mailto:${company.email}`}>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-xs font-mono">
+          {/* Active sites status indicator */}
+          <div className="flex items-center gap-3">
+            <span className="inline-flex items-center gap-1.5 text-emerald-400 font-bold">
+              <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
+              ACTIVE FABRICATION YARD:
+            </span>
+            <span className="text-white/80">D179 Sector 10, Noida · Pan India Erection</span>
+          </div>
+
+          {/* Quick contact and catalog download */}
+          <div className="flex items-center gap-6">
+            <a
+              href="tel:+918527977714"
+              className="inline-flex items-center gap-1.5 text-white/90 transition-colors hover:text-primary"
+            >
+              <Phone className="size-3.5 text-primary" />
+              <span>+91 85279 77714</span>
+            </a>
+
+            <span className="h-3 w-px bg-white/20" />
+
+            <a
+              href={`mailto:${company.email}`}
+              className="text-white/80 transition-colors hover:text-primary"
+            >
               {company.email}
             </a>
-          </div>
-          <div className="flex items-center gap-5">
-            <span className="eyebrow text-primary">Free site visit across India</span>
-            <span className="h-3 w-px bg-steel-line" />
-            <span>{company.hours}</span>
-            <span className="h-3 w-px bg-steel-line" />
+
+            <span className="h-3 w-px bg-white/20" />
+
             <a
-              href="/catalog/tin-shade-noida-catalog.pdf"
+              href={company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf"}
               download="TIN_SHADE_NOIDA_CATALOG.pdf"
-              className="inline-flex items-center gap-1.5 text-steel-muted transition-colors hover:text-primary"
+              className="inline-flex items-center gap-1.5 font-bold text-primary transition-colors hover:text-white"
             >
-              <Download className="size-3" />
-              Download Brochure
+              <Download className="size-3.5" />
+              51-Page Catalog PDF
             </a>
           </div>
         </div>
       </div>
 
+      {/* ──────── MAIN ARCHITECTURAL NAVIGATION BAR ──────── */}
       <div
-        className={`border-b border-border bg-background/90 backdrop-blur-md transition-shadow ${
-          scrolled ? "shadow-card" : ""
+        className={`border-b border-border/80 bg-background/95 backdrop-blur-md transition-all duration-300 ${
+          scrolled ? "shadow-card py-2.5" : "py-3.5"
         }`}
       >
-        <div
-          className={`mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 transition-all duration-300 sm:px-6 lg:px-10 ${
-            scrolled ? "py-2" : "py-3"
-          }`}
-        >
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+          
+          {/* Brand Logo & Tagline */}
           <Link
             to="/"
-            className="flex items-center gap-3 shrink-0"
+            className="flex items-center gap-3 shrink-0 group"
             aria-label={`${company.name} home`}
           >
-            <div className="flex items-center justify-center transition-transform hover:scale-102">
-              <img
-                src={company.logo}
-                alt="Tin Shade Noida — Shelter Solutions"
-                className={`w-auto object-contain transition-all duration-300 ${
-                  scrolled ? "h-9 sm:h-10" : "h-11 sm:h-13"
-                }`}
-              />
-            </div>
-            <span className="leading-tight hidden sm:block">
-              <span className="block font-display text-lg font-bold uppercase tracking-wide text-foreground">
+            <img
+              src={company.logo}
+              alt="Tin Shade Noida"
+              className={`w-auto object-contain transition-all duration-300 ${
+                scrolled ? "h-9 sm:h-10" : "h-10 sm:h-12"
+              }`}
+            />
+            <div className="leading-tight hidden sm:block">
+              <span className="block font-display text-lg font-extrabold uppercase tracking-wide text-foreground group-hover:text-primary transition-colors">
                 {company.name}
               </span>
-              <span className="eyebrow block text-[0.6rem] text-muted-foreground">
-                {company.tagline}
+              <span className="block font-mono text-[0.65rem] text-muted-foreground uppercase tracking-widest">
+                Structural Steel & Industrial Sheds
               </span>
-            </span>
+            </div>
           </Link>
 
-          <nav className="hidden items-center gap-0.5 xl:flex">
-            {nav.map((item) =>
-              item.hash ? (
+          {/* Desktop Nav Links */}
+          <nav className="hidden lg:flex items-center gap-1 font-display text-sm font-bold uppercase tracking-wider text-foreground">
+            {nav.map((item) => {
+              const isActive = item.to ? currentPath === item.to : false;
+              
+              if (item.hash) {
+                return (
+                  <Link
+                    key={item.label}
+                    to="/"
+                    hash={item.hash}
+                    className="px-3.5 py-2 transition-colors hover:text-primary text-muted-foreground"
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
+
+              return (
                 <Link
-                  key={`${item.to}-${item.label}`}
-                  to={item.to}
-                  hash={item.hash}
-                  activeProps={{ className: "text-foreground" }}
-                  className="relative rounded-sm px-3 py-2 font-display text-sm font-medium uppercase tracking-wide text-muted-foreground transition-colors after:absolute after:inset-x-3 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform hover:text-foreground hover:after:scale-x-100"
+                  key={item.label}
+                  to={item.to ?? "/"}
+                  className={`px-3.5 py-2 transition-colors hover:text-primary ${
+                    isActive ? "text-primary border-b-2 border-primary" : "text-muted-foreground"
+                  }`}
                 >
                   {item.label}
                 </Link>
-              ) : (
-                <Link
-                  key={`${item.to}-${item.label}`}
-                  to={item.to}
-                  activeProps={{ className: "text-foreground" }}
-                  className="relative rounded-sm px-3 py-2 font-display text-sm font-medium uppercase tracking-wide text-muted-foreground transition-colors after:absolute after:inset-x-3 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform hover:text-foreground hover:after:scale-x-100"
-                >
-                  {item.label}
-                </Link>
-              ),
-            )}
+              );
+            })}
           </nav>
 
-          <div className="flex items-center gap-2">
+          {/* Desktop Right Action Buttons */}
+          <div className="hidden sm:flex items-center gap-2.5">
+            {/* WhatsApp */}
             <a
-              href={company.phoneHref}
-              className="hidden items-center gap-2 rounded-sm border border-border px-4 py-2.5 font-display text-sm font-medium uppercase tracking-wide text-foreground transition-colors hover:border-primary hover:text-primary md:inline-flex"
+              href={company.whatsappText}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Direct WhatsApp Consultation"
+              className="inline-flex items-center gap-1.5 rounded-xs border border-whatsapp/40 bg-whatsapp/10 px-3.5 py-2 font-display text-xs font-bold uppercase tracking-wide text-whatsapp transition-all hover:bg-whatsapp hover:text-white"
             >
-              <Phone className="size-4" />
-              Call now
+              <MessageCircle className="size-4" />
+              <span>WhatsApp</span>
             </a>
+
+            {/* Request Quotation */}
             <Link
               to="/quote"
-              className="hidden items-center gap-2 rounded-sm bg-primary px-5 py-2.5 font-display text-sm font-semibold uppercase tracking-wide text-primary-foreground transition-transform hover:-translate-y-0.5 sm:inline-flex"
+              className="inline-flex items-center gap-2 rounded-xs bg-primary px-4 py-2 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground shadow-xs transition-transform hover:-translate-y-px hover:shadow-md"
             >
-              Get quote
+              <span>Get Free Quotation</span>
+              <ArrowRight className="size-3.5" />
             </Link>
+          </div>
+
+          {/* Mobile Menu Trigger Button */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <a
+              href="tel:+918527977714"
+              className="flex size-9 items-center justify-center rounded-xs bg-primary text-primary-foreground"
+              aria-label="Call Now"
+            >
+              <Phone className="size-4" />
+            </a>
+
             <button
               type="button"
-              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setOpen(!open)}
               aria-expanded={open}
-              onClick={() => setOpen((v) => !v)}
-              className="inline-flex size-11 items-center justify-center rounded-sm border border-border text-foreground xl:hidden"
+              aria-label="Toggle navigation menu"
+              className="flex size-9 items-center justify-center rounded-xs border border-border bg-card text-foreground"
             >
               {open ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
           </div>
+
         </div>
       </div>
 
-      {open ? (
-        <div className="fixed inset-x-0 bottom-0 top-14 z-40 overflow-y-auto bg-background px-5 pb-10 pt-4 xl:hidden">
-          <nav className="divide-y divide-border">
-            {nav.map((item) =>
-              item.hash ? (
+      {/* ──────── MOBILE NAVIGATION DRAWER ──────── */}
+      {open && (
+        <div className="fixed inset-0 top-[60px] z-50 flex flex-col bg-background/98 p-6 backdrop-blur-xl lg:hidden animate-in fade-in duration-200">
+          <nav className="flex flex-col gap-2 font-display text-lg font-bold uppercase tracking-wider text-foreground">
+            {nav.map((item) => {
+              if (item.hash) {
+                return (
+                  <Link
+                    key={item.label}
+                    to="/"
+                    hash={item.hash}
+                    onClick={() => setOpen(false)}
+                    className="flex items-center justify-between border-b border-border/70 py-3.5 hover:text-primary"
+                  >
+                    <span>{item.label}</span>
+                    <ArrowRight className="size-4 text-primary" />
+                  </Link>
+                );
+              }
+
+              return (
                 <Link
-                  key={`${item.to}-${item.label}`}
-                  to={item.to}
-                  hash={item.hash}
+                  key={item.label}
+                  to={item.to ?? "/"}
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-between py-4 font-display text-xl font-medium uppercase tracking-wide text-foreground"
+                  className="flex items-center justify-between border-b border-border/70 py-3.5 hover:text-primary"
                 >
-                  {item.label}
-                  <span className="text-primary">→</span>
+                  <span>{item.label}</span>
+                  <ArrowRight className="size-4 text-primary" />
                 </Link>
-              ) : (
-                <Link
-                  key={`${item.to}-${item.label}`}
-                  to={item.to}
-                  onClick={() => setOpen(false)}
-                  className="flex items-center justify-between py-4 font-display text-xl font-medium uppercase tracking-wide text-foreground"
-                >
-                  {item.label}
-                  <span className="text-primary">→</span>
-                </Link>
-              ),
-            )}
+              );
+            })}
           </nav>
-          <div className="mt-6 grid gap-3">
+
+          <div className="mt-8 space-y-3">
             <Link
               to="/quote"
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center rounded-sm bg-primary px-5 py-4 font-display text-base font-semibold uppercase tracking-wide text-primary-foreground"
+              className="flex w-full items-center justify-center gap-2 rounded-xs bg-primary py-3.5 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-md"
             >
-              Get free quote
+              Request Free Site Quotation
+              <ArrowRight className="size-4" />
             </Link>
-            <div className="grid grid-cols-2 gap-3">
-              <a
-                href={company.phoneHref}
-                className="flex items-center justify-center gap-2 rounded-sm border border-border px-4 py-3.5 font-display text-sm font-semibold uppercase text-foreground"
-              >
-                <Phone className="size-4" /> Call
-              </a>
-              <a
-                href={company.whatsappText}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center gap-2 rounded-sm bg-whatsapp px-4 py-3.5 font-display text-sm font-semibold uppercase text-primary-foreground"
-              >
-                <MessageCircle className="size-4" /> WhatsApp
-              </a>
-            </div>
+
+            <a
+              href={company.whatsappText}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full items-center justify-center gap-2 rounded-xs bg-whatsapp py-3.5 font-display text-sm font-bold uppercase tracking-wider text-white shadow-md"
+            >
+              <MessageCircle className="size-4" />
+              Chat on WhatsApp
+            </a>
+
+            <a
+              href={company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf"}
+              download="TIN_SHADE_NOIDA_CATALOG.pdf"
+              className="flex w-full items-center justify-center gap-2 rounded-xs border border-border py-3 font-display text-xs font-bold uppercase tracking-wider text-foreground"
+            >
+              <Download className="size-4 text-primary" />
+              Download 51-Page Work Catalog (PDF)
+            </a>
           </div>
-          <p className="mt-8 text-sm text-muted-foreground">{company.address}</p>
-          <p className="mt-1 text-sm text-muted-foreground">{company.hours}</p>
+
+          <div className="mt-auto border-t border-border/80 pt-4 text-center font-mono text-xs text-muted-foreground">
+            <p>D179 Sector 10, Noida, UP · Mon–Sun 8AM–8PM</p>
+            <p className="mt-1 font-bold text-foreground">+91 85279 77714</p>
+          </div>
         </div>
-      ) : null}
+      )}
     </header>
   );
 }
