@@ -69,7 +69,7 @@ function Index() {
       <Services />
 
       {/* 4. INTERACTIVE STEEL TONNAGE & ESTIMATOR CALCULATOR */}
-      <section id="estimator" className="bg-background py-16 lg:py-24 border-b border-border">
+      <section id="estimator" className="bg-[#F8FAFC] py-16 lg:py-24 border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <EstimatorWidget />
         </div>

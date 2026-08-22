@@ -21,27 +21,26 @@ export function Projects() {
   };
 
   return (
-    <section id="projects" className="bg-navy-obsidian py-16 sm:py-24 border-b border-white/10 relative">
+    <section id="projects" className="bg-[#F8FAFC] py-16 sm:py-24 border-b border-slate-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* ──────── SECTION HEADER ──────── */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-sky-400 mb-2">
-              <span className="size-1.5 rounded-full bg-sky-400" />
-              <span>AUTHENTIC EXECUTION ARCHIVE</span>
-            </div>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+            <span className="font-mono text-xs font-semibold text-amber-700 uppercase tracking-tight block mb-1">
+              AUTHENTIC EXECUTION ARCHIVE
+            </span>
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
               Executed Projects &amp; On-Site Installations
             </h2>
-            <p className="mt-2 text-sm sm:text-base text-slate-300 leading-relaxed font-sans">
+            <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
               Photographic records of 500+ completed factory sheds, logistics warehouses, and steel structures across Noida, Greater Noida, and Pan India.
             </p>
           </div>
 
           <Link
             to="/projects"
-            className="btn-navy-outline self-start md:self-auto shrink-0"
+            className="btn-corp-secondary self-start md:self-auto shrink-0"
           >
             <span>View Full Archive</span>
             <ArrowRight className="size-4" aria-hidden="true" />
@@ -49,7 +48,7 @@ export function Projects() {
         </div>
 
         {/* ──────── CATEGORY FILTERS ──────── */}
-        <div className="mt-6 flex flex-wrap items-center gap-2 border-b border-white/10 pb-5">
+        <div className="mt-6 flex flex-wrap items-center gap-2 border-b border-slate-200 pb-5">
           {projectCategories.map((cat) => (
             <button
               key={cat}
@@ -57,8 +56,8 @@ export function Projects() {
               onClick={() => setSelectedCat(cat)}
               className={`rounded-xs px-3.5 py-1.5 font-mono text-xs transition-all ${
                 selectedCat === cat
-                  ? "border border-sky-400 bg-sky-500/20 text-white font-semibold shadow-xs"
-                  : "border border-white/10 bg-white/5 text-slate-300 hover:border-white/20 hover:text-white"
+                  ? "border border-[#0E2A47] bg-[#0E2A47] text-white font-semibold shadow-xs"
+                  : "border border-slate-300 bg-white text-slate-700 hover:border-slate-400"
               }`}
             >
               {cat}
@@ -72,11 +71,11 @@ export function Projects() {
             return (
               <article
                 key={project.id}
-                className="navy-card group overflow-hidden flex flex-col justify-between"
+                className="corp-card group overflow-hidden flex flex-col justify-between bg-white"
               >
                 {/* Image Container */}
                 <div
-                  className="relative aspect-[4/3] w-full overflow-hidden bg-navy-deep cursor-pointer"
+                  className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 cursor-pointer"
                   onClick={() => setActiveProject(project)}
                 >
                   <img
@@ -84,26 +83,26 @@ export function Projects() {
                     alt={project.title}
                     loading="lazy"
                     decoding="async"
-                    className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="size-full object-cover transition-transform duration-300 group-hover:scale-103"
                   />
 
-                  {/* Dark gradient base */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0E1726] via-transparent to-black/40" />
+                  {/* Gradient base */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
                   {/* Top Technical Metadata in JetBrains Mono */}
                   <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between gap-2">
-                    <span className="font-mono text-xs font-semibold text-white bg-slate-950/80 backdrop-blur-xs px-2.5 py-0.5 rounded-xs border border-white/20 tabular-nums">
+                    <span className="font-mono text-xs font-semibold text-slate-900 bg-white/95 px-2.5 py-0.5 rounded-xs border border-slate-200 tabular-nums shadow-xs">
                       {project.coveredArea}
                     </span>
-                    <span className="font-mono text-xs text-amber-400 bg-slate-950/80 backdrop-blur-xs px-2.5 py-0.5 rounded-xs border border-white/20 flex items-center gap-1">
-                      <MapPin className="size-3" aria-hidden="true" />
+                    <span className="font-mono text-xs text-white bg-slate-900/80 px-2.5 py-0.5 rounded-xs flex items-center gap-1">
+                      <MapPin className="size-3 text-amber-400" aria-hidden="true" />
                       {project.location}
                     </span>
                   </div>
 
                   {/* Hover Inspect Prompt */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-slate-950/50 backdrop-blur-xs">
-                    <span className="inline-flex items-center gap-1.5 rounded-xs bg-amber-400 px-3.5 py-1.5 font-display text-xs font-bold text-slate-950 shadow-lg">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/40">
+                    <span className="inline-flex items-center gap-1.5 rounded-xs bg-[#0E2A47] px-3.5 py-1.5 font-display text-xs font-bold text-white shadow-md">
                       <Eye className="size-3.5" />
                       Inspect Spec
                     </span>
@@ -113,32 +112,32 @@ export function Projects() {
                 {/* Bottom Caption Ledger */}
                 <div className="p-5 flex flex-col justify-between flex-1">
                   <div>
-                    <div className="flex items-center justify-between font-mono text-xs text-slate-400 mb-1.5">
+                    <div className="flex items-center justify-between font-mono text-xs text-slate-500 mb-1.5">
                       <span>{project.category}</span>
-                      <span className="text-amber-400 font-semibold tabular-nums">{project.completionYear}</span>
+                      <span className="text-amber-700 font-semibold tabular-nums">{project.completionYear}</span>
                     </div>
 
                     <h3
-                      className="font-display font-bold text-lg text-white group-hover:text-amber-400 transition-colors cursor-pointer"
+                      className="font-display font-bold text-lg text-slate-900 group-hover:text-amber-700 transition-colors cursor-pointer"
                       onClick={() => setActiveProject(project)}
                     >
                       {project.title}
                     </h3>
 
-                    <p className="mt-2 text-xs leading-relaxed text-slate-300 line-clamp-2 font-sans">
+                    <p className="mt-2 text-xs leading-relaxed text-slate-600 line-clamp-2 font-sans">
                       {project.summary}
                     </p>
                   </div>
 
                   {/* Material Spec Line */}
-                  <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between gap-2 font-mono text-xs">
-                    <span className="text-slate-300 truncate" title={project.material}>
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-2 font-mono text-xs">
+                    <span className="text-slate-600 truncate" title={project.material}>
                       {project.material}
                     </span>
                     <button
                       type="button"
                       onClick={() => setActiveProject(project)}
-                      className="text-sky-400 font-semibold hover:underline shrink-0 flex items-center gap-1"
+                      className="text-[#0E2A47] font-semibold hover:underline shrink-0 flex items-center gap-1"
                     >
                       <span>Spec</span>
                       <ArrowRight className="size-3" />
@@ -156,25 +155,25 @@ export function Projects() {
       {activeProject && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-150">
           <div
-            className="fixed inset-0 bg-[#060A14]/80 backdrop-blur-md"
+            className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs"
             onClick={() => setActiveProject(null)}
           />
 
-          <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-xs border border-sky-400/30 bg-[#0E1726] p-6 sm:p-8 text-white shadow-2xl">
+          <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-xs border border-slate-300 bg-white p-6 sm:p-8 text-slate-900 shadow-2xl">
             {/* Modal Header */}
-            <div className="flex items-start justify-between border-b border-white/10 pb-4">
+            <div className="flex items-start justify-between border-b border-slate-200 pb-4">
               <div>
-                <span className="font-mono text-xs font-bold text-amber-400 uppercase">
+                <span className="font-mono text-xs font-bold text-amber-700 uppercase">
                   PROJECT SPECIFICATION · {activeProject.location}
                 </span>
-                <h3 className="font-display text-2xl font-bold text-white mt-1">
+                <h3 className="font-display text-2xl font-bold text-slate-900 mt-1">
                   {activeProject.title}
                 </h3>
               </div>
               <button
                 type="button"
                 onClick={() => setActiveProject(null)}
-                className="rounded-xs border border-white/15 bg-white/5 p-1.5 text-slate-300 hover:bg-white/10 hover:text-white"
+                className="rounded-xs border border-slate-200 p-1.5 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
               >
                 <X className="size-5" />
               </button>
@@ -182,7 +181,7 @@ export function Projects() {
 
             {/* Content Body */}
             <div className="mt-5 space-y-4">
-              <div className="aspect-[16/9] overflow-hidden rounded-xs bg-navy-deep border border-white/10">
+              <div className="aspect-[16/9] overflow-hidden rounded-xs bg-slate-100 border border-slate-200">
                 <img
                   src={activeProject.image}
                   alt={activeProject.title}
@@ -192,49 +191,49 @@ export function Projects() {
 
               {/* Technical Specifications Matrix in JetBrains Mono */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
-                <div className="rounded-xs border border-white/10 bg-[#080D1A] p-3">
-                  <span className="text-slate-400 block text-[0.6875rem]">Covered Area</span>
-                  <span className="font-bold text-white text-sm mt-0.5 block tabular-nums">{activeProject.coveredArea}</span>
+                <div className="rounded-xs border border-slate-200 bg-slate-50 p-3">
+                  <span className="text-slate-500 block text-[0.6875rem]">Covered Area</span>
+                  <span className="font-bold text-slate-900 text-sm mt-0.5 block tabular-nums">{activeProject.coveredArea}</span>
                 </div>
-                <div className="rounded-xs border border-white/10 bg-[#080D1A] p-3">
-                  <span className="text-slate-400 block text-[0.6875rem]">Clear Span</span>
-                  <span className="font-bold text-white text-sm mt-0.5 block tabular-nums">{activeProject.clearSpan}</span>
+                <div className="rounded-xs border border-slate-200 bg-slate-50 p-3">
+                  <span className="text-slate-500 block text-[0.6875rem]">Clear Span</span>
+                  <span className="font-bold text-slate-900 text-sm mt-0.5 block tabular-nums">{activeProject.clearSpan}</span>
                 </div>
-                <div className="rounded-xs border border-white/10 bg-[#080D1A] p-3">
-                  <span className="text-slate-400 block text-[0.6875rem]">Eaves Height</span>
-                  <span className="font-bold text-white text-sm mt-0.5 block tabular-nums">{activeProject.eavesHeight}</span>
+                <div className="rounded-xs border border-slate-200 bg-slate-50 p-3">
+                  <span className="text-slate-500 block text-[0.6875rem]">Eaves Height</span>
+                  <span className="font-bold text-slate-900 text-sm mt-0.5 block tabular-nums">{activeProject.eavesHeight}</span>
                 </div>
-                <div className="rounded-xs border border-white/10 bg-[#080D1A] p-3">
-                  <span className="text-slate-400 block text-[0.6875rem]">Timeline</span>
-                  <span className="font-bold text-white text-sm mt-0.5 block tabular-nums">{activeProject.duration}</span>
+                <div className="rounded-xs border border-slate-200 bg-slate-50 p-3">
+                  <span className="text-slate-500 block text-[0.6875rem]">Timeline</span>
+                  <span className="font-bold text-slate-900 text-sm mt-0.5 block tabular-nums">{activeProject.duration}</span>
                 </div>
               </div>
 
               <div>
-                <h4 className="font-display text-sm font-bold uppercase text-white">
+                <h4 className="font-display text-sm font-bold uppercase text-slate-900">
                   Scope &amp; Engineering Details
                 </h4>
-                <p className="mt-1 text-xs sm:text-sm leading-relaxed text-slate-300 font-sans">
+                <p className="mt-1 text-xs sm:text-sm leading-relaxed text-slate-600 font-sans">
                   {activeProject.summary}
                 </p>
               </div>
 
-              <div className="rounded-xs border border-white/10 bg-[#080D1A] p-4 font-mono text-xs">
-                <p className="font-bold text-amber-400 uppercase mb-1">
+              <div className="rounded-xs border border-slate-200 bg-slate-50 p-4 font-mono text-xs">
+                <p className="font-bold text-amber-800 uppercase mb-1">
                   Material &amp; Fabrication Standards
                 </p>
-                <p className="text-slate-200">
+                <p className="text-slate-800">
                   {activeProject.material} · Grade IS 2062 Prime Mild Steel · Dual-Coat Red Oxide Zinc Phosphate Primer (IS 2074)
                 </p>
               </div>
             </div>
 
             {/* Modal Action */}
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-end gap-3">
+            <div className="mt-6 pt-4 border-t border-slate-200 flex items-center justify-end gap-3">
               <button
                 type="button"
                 onClick={() => setActiveProject(null)}
-                className="btn-navy-outline text-xs"
+                className="btn-corp-secondary text-xs"
               >
                 Close
               </button>
@@ -245,7 +244,7 @@ export function Projects() {
                   setActiveProject(null);
                   triggerQuoteForProject(proj);
                 }}
-                className="btn-elite text-xs"
+                className="btn-corp-primary text-xs"
               >
                 <span>Request Similar Project Quote &rarr;</span>
               </button>
@@ -254,7 +253,7 @@ export function Projects() {
         </div>
       )}
 
-      <TrussDivider dark type="warren" className="mt-14" />
+      <TrussDivider type="warren" className="mt-14" />
     </section>
   );
 }

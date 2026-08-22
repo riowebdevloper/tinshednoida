@@ -86,27 +86,26 @@ function ServicesPage() {
       <Services />
 
       {/* 2. Engineering Comparison Matrix */}
-      <section className="bg-navy-obsidian py-16 sm:py-20 border-b border-white/10 relative">
+      <section className="bg-white py-16 sm:py-20 border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
-          <div className="max-w-2xl border-b border-white/10 pb-5 mb-8">
-            <div className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-sky-400 mb-2">
-              <ShieldCheck className="size-4" />
-              <span>TECHNICAL SPECIFICATION MATRIX</span>
-            </div>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+          <div className="max-w-2xl border-b border-slate-200 pb-5 mb-8">
+            <span className="font-mono text-xs font-semibold text-amber-700 uppercase tracking-tight block mb-1">
+              TECHNICAL SPECIFICATION MATRIX
+            </span>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
               Structural Capacity &amp; Code Standards
             </h2>
-            <p className="mt-2 text-xs sm:text-sm text-slate-300 font-sans">
+            <p className="mt-2 text-xs sm:text-sm text-slate-600 font-sans">
               Compare structural clear-span capabilities, steel grades, eaves heights, and IS code compliance across all shed types.
             </p>
           </div>
 
           {/* Matrix Table in JetBrains Mono */}
-          <div className="spec-plate-navy overflow-hidden p-1 sm:p-2">
+          <div className="corp-card overflow-hidden p-1 sm:p-2 bg-white border border-slate-300 shadow-sm">
             <div className="overflow-x-auto">
-              <table className="w-full text-left font-mono text-xs text-slate-300">
-                <thead className="border-b border-white/10 bg-[#0E1726] text-amber-400 font-bold uppercase text-[0.6875rem]">
+              <table className="w-full text-left font-mono text-xs text-slate-700">
+                <thead className="border-b border-slate-200 bg-[#0E2A47] text-white font-bold uppercase text-[0.6875rem]">
                   <tr>
                     <th className="p-3.5 sm:p-4">Structure Category</th>
                     <th className="p-3.5 sm:p-4">Clear Span Reach</th>
@@ -116,17 +115,17 @@ function ServicesPage() {
                     <th className="p-3.5 sm:p-4">Standard Code</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 bg-[#0B1320]">
+                <tbody className="divide-y divide-slate-100 bg-white">
                   {comparisonMatrix.map((row) => (
-                    <tr key={row.category} className="hover:bg-white/5 transition-colors">
-                      <td className="p-3.5 sm:p-4 font-display text-sm font-bold text-white">
+                    <tr key={row.category} className="hover:bg-slate-50 transition-colors">
+                      <td className="p-3.5 sm:p-4 font-display text-sm font-bold text-slate-900">
                         {row.category}
                       </td>
-                      <td className="p-3.5 sm:p-4 text-sky-300 tabular-nums">{row.span}</td>
-                      <td className="p-3.5 sm:p-4 text-slate-200">{row.steelGrade}</td>
+                      <td className="p-3.5 sm:p-4 text-[#0E2A47] font-semibold tabular-nums">{row.span}</td>
+                      <td className="p-3.5 sm:p-4 text-slate-700">{row.steelGrade}</td>
                       <td className="p-3.5 sm:p-4 tabular-nums">{row.eavesHeight}</td>
-                      <td className="p-3.5 sm:p-4 text-amber-400 font-semibold tabular-nums">{row.turnaround}</td>
-                      <td className="p-3.5 sm:p-4 text-slate-400">{row.isStandard}</td>
+                      <td className="p-3.5 sm:p-4 text-amber-700 font-semibold tabular-nums">{row.turnaround}</td>
+                      <td className="p-3.5 sm:p-4 text-slate-500">{row.isStandard}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -138,7 +137,7 @@ function ServicesPage() {
       </section>
 
       {/* 3. Interactive Steel Estimator on Services Page */}
-      <section className="bg-navy-obsidian py-16 sm:py-20 border-b border-white/10">
+      <section className="bg-[#F8FAFC] py-16 sm:py-20 border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <EstimatorWidget />
         </div>

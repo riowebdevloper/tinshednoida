@@ -9,6 +9,7 @@ import {
   Phone,
   ArrowRight,
   ShieldCheck,
+  HardHat,
 } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 import { company, quoteOptions } from "@/lib/site-data";
@@ -63,12 +64,14 @@ export function Contact() {
           location,
           requirementType,
           message,
+          source: "contact-page",
           company: String(formData.get("company") ?? ""),
-          source: "website-contact",
         },
       });
-      form.reset();
+
       setStatus("sent");
+      form.reset();
+
       if (res?.whatsappUrl) {
         window.open(res.whatsappUrl, "_blank");
       }
@@ -77,188 +80,233 @@ export function Contact() {
     }
   }
 
-  const channels = [
-    { icon: Phone, label: "Direct Yard Hotline", value: company.phone, href: company.phoneHref },
-    { icon: MessageCircle, label: "WhatsApp Instant", value: "+91 85279 77714", href: company.whatsappText },
-    { icon: Mail, label: "Official Email", value: company.email, href: `mailto:${company.email}` },
-    { icon: Instagram, label: "Instagram On-Site Media", value: company.instagramHandle, href: company.instagram },
-    { icon: MapPin, label: "Fabrication Yard & Workshop", value: company.address, href: undefined },
-  ];
-
   return (
-    <section className="bg-navy-obsidian py-16 sm:py-24 border-b border-white/10 relative">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+    <section id="contact" className="bg-[#F8FAFC] py-16 sm:py-24 border-b border-slate-200">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* Left Column: Direct Yard Communication (5 cols) */}
-        <div className="lg:col-span-5 space-y-6">
-          <div>
-            <div className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-amber-400 mb-2">
-              <span className="size-1.5 rounded-full bg-amber-400" />
-              <span>DIRECT FABRICATOR CONSULTATION</span>
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              Talk Directly with Our Site Engineers
-            </h2>
-            <p className="mt-3 text-sm text-slate-300 leading-relaxed font-sans">
-              No junior call center agents. MD Khurshid and Abdul respond personally to structural queries, schedule laser site surveys, and prepare itemized BOQ estimates.
-            </p>
-          </div>
-
-          <div className="spec-plate-navy p-5 space-y-4">
-            {channels.map(({ icon: Icon, label, value, href }) => (
-              <div key={label} className="flex items-start gap-3.5 border-b border-white/5 pb-3.5 last:border-b-0 last:pb-0 font-mono text-xs">
-                <div className="size-8 rounded-xs bg-white/5 border border-white/10 flex items-center justify-center text-amber-400 shrink-0 mt-0.5">
-                  <Icon className="size-4" />
-                </div>
-                <div>
-                  <span className="text-[0.6875rem] text-slate-400 block uppercase font-semibold">
-                    {label}
-                  </span>
-                  {href ? (
-                    <a
-                      href={href}
-                      target={href.startsWith("http") ? "_blank" : undefined}
-                      rel="noreferrer"
-                      className="text-white font-medium hover:text-amber-400 transition-colors mt-0.5 block"
-                    >
-                      {value}
-                    </a>
-                  ) : (
-                    <span className="text-white font-medium mt-0.5 block">{value}</span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Working Hours Stamp */}
-          <div className="p-4 rounded-xs border border-white/10 bg-[#0E1726] font-mono text-xs text-slate-300">
-            <p className="text-white font-semibold">Operating Schedule:</p>
-            <p className="text-slate-400 mt-1">Yard Open: Monday – Saturday (8:00 AM – 8:00 PM)</p>
-            <p className="text-amber-400 mt-0.5">Crane Erection: 24/7 Night Shifts on Special Projects</p>
-          </div>
+        {/* ──────── SECTION HEADER ──────── */}
+        <div className="border-b border-slate-200 pb-5 mb-10">
+          <span className="font-mono text-xs font-semibold text-amber-700 uppercase tracking-tight block mb-1">
+            YARD &amp; HEADQUARTERS
+          </span>
+          <h2 className="font-display text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+            Consult With Our Master Fabricators
+          </h2>
+          <p className="mt-2 text-sm sm:text-base text-slate-600 font-sans max-w-2xl">
+            Schedule a physical yard inspection in Sector 10 Noida, or request a senior project engineer site visit across India.
+          </p>
         </div>
 
-        {/* Right Column: Contact & Site Survey Form (7 cols) */}
-        <div className="lg:col-span-7">
-          <div className="spec-plate-navy p-6 sm:p-8">
-            <div className="border-b border-white/10 pb-4 mb-6">
-              <span className="font-mono text-xs font-semibold text-sky-400 uppercase block mb-1">
-                ONLINE CONSULTATION REQUEST
-              </span>
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
-                Request Free Site Visit &amp; Cost Estimation
-              </h3>
+        <div className="grid gap-10 lg:grid-cols-12 items-start">
+          
+          {/* Left Column: Direct Yard Contact Info (5 cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            <div className="corp-card p-6 bg-white space-y-4">
+              <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase text-amber-700">
+                <HardHat className="size-4" />
+                <span>FABRICATION YARD &amp; WORKSHOP</span>
+              </div>
+
+              <div className="space-y-3 font-mono text-xs text-slate-800">
+                <div className="flex items-start gap-3">
+                  <MapPin className="size-4 text-amber-600 mt-0.5 shrink-0" />
+                  <div>
+                    <strong className="block text-slate-900 font-display text-sm">D179 Sector 10, Noida</strong>
+                    <span className="text-slate-600">Uttar Pradesh — 201301, India</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 pt-2 border-t border-slate-100">
+                  <Phone className="size-4 text-amber-600 shrink-0" />
+                  <div>
+                    <span className="text-slate-500 block text-[0.6875rem]">Direct Hotline:</span>
+                    <a href="tel:+918527977714" className="font-bold text-slate-900 text-sm hover:underline tabular-nums">
+                      +91 85279 77714
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 pt-2 border-t border-slate-100">
+                  <MessageCircle className="size-4 text-emerald-600 shrink-0" />
+                  <div>
+                    <span className="text-slate-500 block text-[0.6875rem]">Instant WhatsApp:</span>
+                    <a href={company.whatsappText} target="_blank" rel="noreferrer" className="font-bold text-emerald-700 hover:underline">
+                      Chat with Project Engineer
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 pt-2 border-t border-slate-100">
+                  <Mail className="size-4 text-slate-500 shrink-0" />
+                  <div>
+                    <span className="text-slate-500 block text-[0.6875rem]">Official Email:</span>
+                    <a href="mailto:contact@tinshednoida.com" className="text-slate-700 hover:underline">
+                      contact@tinshednoida.com
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {status === "sent" ? (
-              <div className="p-6 rounded-xs bg-[#0B1320] border border-emerald-500 text-center space-y-3">
-                <CheckCircle2 className="size-10 text-emerald-400 mx-auto" />
-                <h4 className="font-display text-xl font-bold text-white">Inquiry Dispatched</h4>
-                <p className="text-xs font-mono text-slate-300">
-                  Your inquiry has been sent to our Noida Sector 10 engineers. We will call you shortly.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setStatus("idle")}
-                  className="text-xs font-mono text-amber-400 underline"
-                >
-                  Submit another inquiry
-                </button>
+            {/* Operating Hours */}
+            <div className="corp-card p-6 bg-white space-y-2">
+              <span className="font-mono text-xs font-bold text-slate-900 uppercase block">
+                Yard Operational Hours
+              </span>
+              <div className="space-y-1 text-xs font-mono text-slate-600">
+                <div className="flex justify-between">
+                  <span>Monday – Saturday:</span>
+                  <span className="font-semibold text-slate-900">8:00 AM – 8:00 PM</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Sunday:</span>
+                  <span className="text-amber-700 font-semibold">By Prior Appointment</span>
+                </div>
               </div>
-            ) : (
-              <form onSubmit={onSubmit} className="space-y-4 font-mono text-xs">
-                
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="block text-slate-300 uppercase mb-1 font-semibold">
-                      Your Full Name <span className="text-amber-400">*</span>
-                    </label>
-                    <input
-                      name="name"
-                      required
-                      minLength={2}
-                      placeholder="e.g. Rahul Sharma"
-                      className="w-full rounded-xs border border-white/15 bg-[#080D1A] px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-sky-400 focus:outline-none font-sans"
-                    />
-                  </div>
+            </div>
 
-                  <div>
-                    <label className="block text-slate-300 uppercase mb-1 font-semibold">
-                      Mobile / WhatsApp Number <span className="text-amber-400">*</span>
-                    </label>
-                    <input
-                      name="phone"
-                      required
-                      inputMode="tel"
-                      placeholder="+91 10-Digit Mobile"
-                      className="w-full rounded-xs border border-white/15 bg-[#080D1A] px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-sky-400 focus:outline-none font-sans"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="block text-slate-300 uppercase mb-1 font-semibold">
-                      Site Location / City <span className="text-amber-400">*</span>
-                    </label>
-                    <input
-                      name="location"
-                      required
-                      placeholder="e.g. Noida Phase 2, Greater Noida"
-                      className="w-full rounded-xs border border-white/15 bg-[#080D1A] px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-sky-400 focus:outline-none"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-slate-300 uppercase mb-1 font-semibold">
-                      Structure Requirement
-                    </label>
-                    <select
-                      name="requirementType"
-                      className="w-full rounded-xs border border-white/15 bg-[#080D1A] px-3.5 py-2.5 text-xs text-white focus:border-sky-400 focus:outline-none"
-                    >
-                      {quoteOptions.need.map((n) => (
-                        <option key={n} value={n}>
-                          {n}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-slate-300 uppercase mb-1 font-semibold">
-                    Project Details / Area Dimensions <span className="text-amber-400">*</span>
-                  </label>
-                  <textarea
-                    name="message"
-                    required
-                    rows={3}
-                    placeholder="Describe clear span needs, land area (sq ft), eaves height, or overhead crane requirements..."
-                    className="w-full rounded-xs border border-white/15 bg-[#080D1A] px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-sky-400 focus:outline-none font-sans"
-                  />
-                </div>
-
-                {validationError && (
-                  <p className="text-red-400 font-mono text-xs">{validationError}</p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={status === "sending"}
-                  className="btn-elite w-full py-3.5 mt-2"
-                >
-                  {status === "sending" ? (
-                    <Loader2 className="size-4 animate-spin" />
-                  ) : (
-                    <ArrowRight className="size-4" />
-                  )}
-                  <span>Dispatch Consultation Request</span>
-                </button>
-              </form>
-            )}
           </div>
+
+          {/* Right Column: High-Converting Consultation Form (7 cols) */}
+          <div className="lg:col-span-7">
+            <div className="corp-card p-6 sm:p-8 bg-white">
+              
+              <div className="border-b border-slate-200 pb-4 mb-6">
+                <span className="font-mono text-xs font-semibold uppercase text-amber-700 block mb-0.5">
+                  OFFICIAL ENGINEERING INQUIRY
+                </span>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-slate-900">
+                  Request Free Site Survey &amp; BOQ
+                </h3>
+              </div>
+
+              {status === "sent" ? (
+                <div className="p-6 rounded-xs bg-emerald-50 border border-emerald-300 text-center space-y-3">
+                  <CheckCircle2 className="size-10 text-emerald-600 mx-auto" />
+                  <h4 className="font-display text-xl font-bold text-slate-900">Inquiry Dispatched Successfully</h4>
+                  <p className="text-xs font-mono text-slate-700">
+                    Master fabricator MD Khurshid or Abdul will review your project parameters and contact you shortly.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setStatus("idle")}
+                    className="mt-2 text-xs font-mono text-amber-700 underline"
+                  >
+                    Submit another inquiry
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={onSubmit} className="space-y-4 font-mono text-xs">
+                  {validationError && (
+                    <div className="rounded-xs border border-red-200 bg-red-50 p-3 text-red-700 font-sans text-xs">
+                      {validationError}
+                    </div>
+                  )}
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label className="block text-slate-700 uppercase mb-1 font-semibold">
+                        Your Name <span className="text-amber-600">*</span>
+                      </label>
+                      <input
+                        name="name"
+                        required
+                        placeholder="e.g. Rajesh Singhal"
+                        className="w-full rounded-xs border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-xs text-slate-900 outline-none focus:border-[#0E2A47] font-sans"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-slate-700 uppercase mb-1 font-semibold">
+                        Phone Number <span className="text-amber-600">*</span>
+                      </label>
+                      <input
+                        name="phone"
+                        type="tel"
+                        required
+                        placeholder="+91 Mobile Number"
+                        className="w-full rounded-xs border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-xs text-slate-900 outline-none focus:border-[#0E2A47] font-sans"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label className="block text-slate-700 uppercase mb-1 font-semibold">
+                        Site Location / City <span className="text-amber-600">*</span>
+                      </label>
+                      <input
+                        name="location"
+                        required
+                        placeholder="e.g. Greater Noida Ecotech"
+                        className="w-full rounded-xs border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-xs text-slate-900 outline-none focus:border-[#0E2A47] font-sans"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-slate-700 uppercase mb-1 font-semibold">
+                        Structure Requirement
+                      </label>
+                      <select
+                        name="requirementType"
+                        className="w-full rounded-xs border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-xs text-slate-900 outline-none focus:border-[#0E2A47] font-sans"
+                      >
+                        {quoteOptions.need.map((opt) => (
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-700 uppercase mb-1 font-semibold">
+                      Project Details / Dimensions <span className="text-amber-600">*</span>
+                    </label>
+                    <textarea
+                      name="message"
+                      rows={3}
+                      required
+                      placeholder="Covered area (sq ft), clear span width, eaves height, or overhead crane requirements..."
+                      className="w-full rounded-xs border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-xs text-slate-900 outline-none focus:border-[#0E2A47] font-sans"
+                    />
+                  </div>
+
+                  {/* Anti-spam honeypot */}
+                  <input
+                    type="text"
+                    name="company"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    style={{ display: "none" }}
+                    className="hidden"
+                  />
+
+                  <button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="btn-corp-primary w-full py-3.5 mt-2"
+                  >
+                    {status === "sending" ? (
+                      <Loader2 className="size-4 animate-spin" />
+                    ) : (
+                      <ArrowRight className="size-4" />
+                    )}
+                    <span>Submit Inquiry &amp; Request Survey</span>
+                  </button>
+
+                  <p className="text-[0.6875rem] text-slate-500 text-center font-sans">
+                    Direct line to master fabricators · No spam · Instant WhatsApp copy
+                  </p>
+                </form>
+              )}
+
+            </div>
+          </div>
+
         </div>
 
       </div>

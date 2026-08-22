@@ -49,20 +49,15 @@ export function CatalogViewer() {
   ];
 
   return (
-    <section id="process" className="bg-navy-obsidian text-white py-16 sm:py-24 border-b border-white/10 relative overflow-hidden">
-      
-      {/* Background blueprint grid */}
-      <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none" />
-
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="process" className="bg-[#0B192C] text-white py-16 sm:py-24 border-b border-white/10 relative">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* ──────── SECTION HEADER ──────── */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-sky-400 mb-2">
-              <span className="size-1.5 rounded-full bg-sky-400" />
-              <span>IS 800:2007 ERECTION PROTOCOL</span>
-            </div>
+            <span className="font-mono text-xs font-semibold text-amber-400 uppercase tracking-tight block mb-1">
+              IS 800:2007 ERECTION PROTOCOL
+            </span>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
               Five-Stage Fabrication &amp; Erection Sequence
             </h2>
@@ -71,67 +66,30 @@ export function CatalogViewer() {
             </p>
           </div>
 
-          <div className="shrink-0 font-mono text-xs text-slate-400 flex items-center gap-2">
+          <div className="shrink-0 font-mono text-xs text-slate-300 flex items-center gap-2">
             <span className="size-1.5 rounded-full bg-amber-400" />
             <span>Turnkey Handover Across India</span>
           </div>
         </div>
 
-        {/* ──────── SIGNATURE SVG TRUSS CAD ELEVATION ──────── */}
-        <div className="my-8 overflow-hidden rounded-xs border border-white/10 bg-[#0E1726]/80 p-2 sm:p-3" aria-hidden="true">
-          <svg
-            viewBox="0 0 1000 60"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-full h-10 sm:h-14"
-            preserveAspectRatio="none"
-          >
-            {/* Top & Bottom Chord */}
-            <line x1="0" y1="10" x2="1000" y2="10" stroke="#38BDF8" strokeWidth="2" className="truss-line-animated" />
-            <line x1="0" y1="50" x2="1000" y2="50" stroke="#38BDF8" strokeWidth="2" className="truss-line-animated" />
-            <line x1="0" y1="30" x2="1000" y2="30" stroke="rgba(255,255,255,0.2)" strokeWidth="1" strokeDasharray="6 6" />
-
-            {/* Warren Web Members */}
-            {Array.from({ length: 20 }).map((_, i) => {
-              const x1 = i * 50;
-              const x2 = x1 + 50;
-              const isEven = i % 2 === 0;
-              return (
-                <g key={i}>
-                  <line
-                    x1={x1}
-                    y1={isEven ? 10 : 50}
-                    x2={x2}
-                    y2={isEven ? 50 : 10}
-                    stroke="rgba(255,255,255,0.3)"
-                    strokeWidth="1.5"
-                    className="truss-line-animated"
-                  />
-                  <circle cx={x1} cy={isEven ? 10 : 50} r="2.5" fill={i % 4 === 0 ? "#F59E0B" : "#38BDF8"} />
-                </g>
-              );
-            })}
-          </svg>
-        </div>
-
-        {/* ──────── 5-STAGE ANNOTATED CAD SEQUENCE ──────── */}
-        <div className="space-y-4">
+        {/* ──────── 5-STAGE SEQUENTIAL PROCESS CARDS ──────── */}
+        <div className="mt-10 space-y-4">
           {processStages.map((st) => {
             const Icon = st.icon;
             return (
               <div
                 key={st.num}
-                className="navy-card p-5 sm:p-6 transition-all hover:bg-[#16253F]"
+                className="rounded-xs border border-white/10 bg-[#0E2A47] p-5 sm:p-6 transition-all hover:border-amber-400/40"
               >
                 <div className="grid gap-5 md:grid-cols-12 items-center">
                   
                   {/* Sequence Number Stamp */}
                   <div className="md:col-span-2 flex items-center gap-3">
-                    <span className="font-mono text-3xl sm:text-4xl font-extrabold text-amber-400 tracking-tight tabular-nums">
+                    <span className="font-mono text-3xl sm:text-4xl font-bold text-amber-400 tracking-tight tabular-nums">
                       {st.num}
                     </span>
                     <div className="block md:hidden">
-                      <span className="font-mono text-[0.6875rem] text-slate-400 uppercase block">
+                      <span className="font-mono text-[0.6875rem] text-slate-300 uppercase block">
                         {st.stage}
                       </span>
                     </div>
@@ -139,7 +97,7 @@ export function CatalogViewer() {
 
                   {/* Description & Scope */}
                   <div className="md:col-span-7">
-                    <span className="font-mono text-xs font-semibold text-sky-400 tracking-tight uppercase block mb-1">
+                    <span className="font-mono text-xs font-semibold text-slate-300 tracking-tight uppercase block mb-1">
                       {st.stage}
                     </span>
                     <h3 className="font-display text-lg sm:text-xl font-bold text-white">
@@ -151,7 +109,7 @@ export function CatalogViewer() {
                   </div>
 
                   {/* Technical Drawing Annotations Tag */}
-                  <div className="md:col-span-3 rounded-xs border border-white/10 bg-[#0B1320] p-3 font-mono text-xs text-slate-300">
+                  <div className="md:col-span-3 rounded-xs border border-white/10 bg-[#0B192C] p-3 font-mono text-xs text-slate-300">
                     <span className="text-amber-400 font-semibold block uppercase text-[0.6875rem] mb-0.5">
                       Quality Checks
                     </span>
@@ -165,7 +123,7 @@ export function CatalogViewer() {
         </div>
 
         {/* ──────── 51-PAGE WORK CATALOG SUBMITTAL BINDER ──────── */}
-        <div className="mt-12 rounded-xs border border-sky-400/30 bg-[#0E1726] p-6 sm:p-8 shadow-2xl">
+        <div className="mt-12 rounded-xs border border-white/15 bg-[#0E2A47] p-6 sm:p-8 shadow-xl">
           <div className="grid gap-6 lg:grid-cols-12 items-center">
             
             <div className="lg:col-span-8 space-y-2.5">
@@ -195,7 +153,7 @@ export function CatalogViewer() {
               <a
                 href={pdfUrl}
                 download="TIN_SHADE_NOIDA_CATALOG.pdf"
-                className="btn-elite w-full text-center"
+                className="btn-corp-primary w-full text-center"
               >
                 <Download className="size-4" />
                 <span>Download Work Catalog</span>
@@ -205,7 +163,7 @@ export function CatalogViewer() {
                 href={pdfUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="btn-navy-outline w-full text-center text-xs"
+                className="btn-corp-navy-outline w-full text-center text-xs"
               >
                 <ExternalLink className="size-3.5" />
                 <span>Open PDF in Browser</span>

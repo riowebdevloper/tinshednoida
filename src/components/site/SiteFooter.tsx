@@ -5,11 +5,11 @@ import { TrussDivider } from "./TrussDivider";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[#050811] text-white border-t border-white/10" role="contentinfo">
+    <footer className="bg-[#07101C] text-white border-t border-white/10" role="contentinfo">
       
       <TrussDivider dark type="warren" />
 
-      {/* 4-Column Industrial Engineering Ledger */}
+      {/* 4-Column Corporate Engineering Ledger */}
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         
         {/* Column 1: YARD PROVENANCE */}
@@ -20,7 +20,7 @@ export function SiteFooter() {
             </span>
           </div>
 
-          <p className="text-xs leading-relaxed text-slate-400 font-sans">
+          <p className="text-xs leading-relaxed text-slate-300 font-sans">
             In-house structural steel fabrication yard in Noida Sector 10. Direct master fabricators delivering industrial factories, clear-span warehouses, and heavy MS frameworks across India.
           </p>
 
@@ -28,7 +28,7 @@ export function SiteFooter() {
             <a
               href={company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf"}
               download="TIN_SHADE_NOIDA_CATALOG.pdf"
-              className="inline-flex items-center gap-2 rounded-xs border border-amber-400/30 bg-[#0E1726] px-3.5 py-2 font-display text-xs font-bold uppercase tracking-wider text-amber-400 hover:bg-amber-400 hover:text-slate-950 transition-colors"
+              className="inline-flex items-center gap-2 rounded-xs border border-amber-500/40 bg-[#0E2A47] px-3.5 py-2 font-display text-xs font-bold uppercase tracking-wider text-amber-400 hover:bg-amber-500 hover:text-slate-950 transition-colors"
             >
               <Download className="size-3.5" />
               <span>51-Page Work Catalog (PDF)</span>
@@ -41,7 +41,7 @@ export function SiteFooter() {
           <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-amber-400">
             STRUCTURAL CAPABILITIES
           </h3>
-          <ul className="mt-4 space-y-2 font-mono text-xs text-slate-400">
+          <ul className="mt-4 space-y-2 font-mono text-xs text-slate-300">
             <li>
               <Link to="/services" className="hover:text-white transition-colors">
                 Industrial Factory Sheds
@@ -80,7 +80,7 @@ export function SiteFooter() {
           <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-amber-400">
             YARD &amp; CONTACT
           </h3>
-          <ul className="mt-4 space-y-3 font-mono text-xs text-slate-400">
+          <ul className="mt-4 space-y-3 font-mono text-xs text-slate-300">
             <li className="flex items-start gap-2.5">
               <MapPin className="size-4 mt-0.5 shrink-0 text-amber-400" />
               <span>D179 Sector 10, Noida, Uttar Pradesh 201301</span>
@@ -91,7 +91,7 @@ export function SiteFooter() {
                 className="flex items-center gap-2.5 hover:text-white transition-colors text-white"
               >
                 <Phone className="size-4 shrink-0 text-amber-400" />
-                <span className="tabular-nums">+91 85279 77714</span>
+                <span className="tabular-nums font-semibold">+91 85279 77714</span>
               </a>
             </li>
             <li>
@@ -99,9 +99,9 @@ export function SiteFooter() {
                 href={company.whatsappText}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2.5 hover:text-white transition-colors text-emerald-400"
+                className="flex items-center gap-2.5 hover:text-white transition-colors text-emerald-400 font-semibold"
               >
-                <MessageCircle className="size-4 shrink-0 text-emerald-400" />
+                <MessageCircle className="size-4 shrink-0" />
                 <span>WhatsApp Instant Inquiry</span>
               </a>
             </li>
@@ -110,7 +110,7 @@ export function SiteFooter() {
                 href="mailto:contact@tinshednoida.com"
                 className="flex items-center gap-2.5 hover:text-white transition-colors text-slate-300"
               >
-                <Mail className="size-4 shrink-0 text-sky-400" />
+                <Mail className="size-4 shrink-0 text-slate-400" />
                 <span>contact@tinshednoida.com</span>
               </a>
             </li>
@@ -122,7 +122,7 @@ export function SiteFooter() {
           <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-amber-400">
             ENGINEERING CODES
           </h3>
-          <div className="mt-4 space-y-2 font-mono text-xs text-slate-400">
+          <div className="mt-4 space-y-2 font-mono text-xs text-slate-300">
             <p><strong className="text-white">IS 2062:</strong> Prime Structural Mild Steel</p>
             <p><strong className="text-white">IS 800:2007:</strong> General Construction in Steel</p>
             <p><strong className="text-white">IS 875:</strong> Design Loads (Wind &amp; Dead)</p>
@@ -155,7 +155,7 @@ export function SiteFooter() {
       </div>
 
       {/* Bottom Sub-Footer Bar */}
-      <div className="border-t border-white/10 bg-[#04060C] py-5 text-center text-xs font-mono text-slate-400">
+      <div className="border-t border-white/10 bg-[#040912] py-5 text-center text-xs font-mono text-slate-400">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
           <p>© {new Date().getFullYear()} {company.name}. Direct In-House Steel Fabrication Yard · Sector 10 Noida, UP.</p>
           <div className="flex items-center gap-4 text-xs">

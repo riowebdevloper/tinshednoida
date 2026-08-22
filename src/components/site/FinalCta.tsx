@@ -27,11 +27,7 @@ export function FinalCta() {
   };
 
   return (
-    <section id="quote" className="bg-navy-obsidian text-white py-16 sm:py-24 border-b border-white/10 relative overflow-hidden">
-      
-      {/* Background blueprint grid */}
-      <div className="absolute inset-0 blueprint-grid opacity-25 pointer-events-none" />
-
+    <section id="quote" className="bg-[#0B192C] text-white py-16 sm:py-24 border-b border-white/10 relative">
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         <div className="grid gap-10 lg:grid-cols-12 items-center">
@@ -68,17 +64,17 @@ export function FinalCta() {
             </div>
 
             {/* Yard Contact Stamp */}
-            <div className="pt-4 border-t border-white/10 flex flex-wrap items-center gap-3 text-xs font-mono text-slate-400">
+            <div className="pt-4 border-t border-white/10 flex flex-wrap items-center gap-3 text-xs font-mono text-slate-300">
               <span className="text-white font-semibold">Yard Office:</span>
               <span>D179 Sector 10, Noida, UP</span>
               <span>·</span>
-              <span className="text-amber-400 tabular-nums">+91 85279 77714</span>
+              <span className="text-amber-400 tabular-nums font-semibold">+91 85279 77714</span>
             </div>
           </div>
 
           {/* Right Column: Single Clear Quotation Form (6 cols) */}
           <div className="lg:col-span-6">
-            <div className="spec-plate-navy p-6 sm:p-8">
+            <div className="rounded-xs border border-white/15 bg-[#0E2A47] p-6 sm:p-8 shadow-xl">
               
               <div className="border-b border-white/10 pb-3 mb-5">
                 <span className="font-mono text-xs font-semibold text-amber-400 uppercase block mb-0.5">
@@ -90,7 +86,7 @@ export function FinalCta() {
               </div>
 
               {submitted ? (
-                <div className="p-6 rounded-xs bg-[#0B1320] border border-emerald-500 text-center space-y-3">
+                <div className="p-6 rounded-xs bg-[#0B192C] border border-emerald-500 text-center space-y-3">
                   <CheckCircle2 className="size-10 text-emerald-400 mx-auto" />
                   <h4 className="font-display text-xl font-bold text-white">Inquiry Dispatched</h4>
                   <p className="text-xs font-mono text-slate-300">
@@ -114,7 +110,7 @@ export function FinalCta() {
                     <select
                       value={projectType}
                       onChange={(e) => setProjectType(e.target.value)}
-                      className="w-full rounded-xs border border-white/15 bg-[#080D1A] px-3 py-2.5 text-xs text-white focus:border-sky-400 focus:outline-none"
+                      className="w-full rounded-xs border border-white/20 bg-[#0B192C] px-3 py-2.5 text-xs text-white focus:border-amber-400 focus:outline-none"
                     >
                       {needs.map((n) => (
                         <option key={n.id} value={n.label}>
@@ -134,7 +130,7 @@ export function FinalCta() {
                         value={area}
                         onChange={(e) => setArea(e.target.value)}
                         placeholder="e.g. 5,000"
-                        className="w-full rounded-xs border border-white/15 bg-[#080D1A] px-3 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-sky-400 focus:outline-none tabular-nums"
+                        className="w-full rounded-xs border border-white/20 bg-[#0B192C] px-3 py-2.5 text-xs text-white placeholder:text-slate-400 focus:border-amber-400 focus:outline-none tabular-nums"
                       />
                     </div>
 
@@ -147,7 +143,7 @@ export function FinalCta() {
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                         placeholder="e.g. Noida Sec 63"
-                        className="w-full rounded-xs border border-white/15 bg-[#080D1A] px-3 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-sky-400 focus:outline-none"
+                        className="w-full rounded-xs border border-white/20 bg-[#0B192C] px-3 py-2.5 text-xs text-white placeholder:text-slate-400 focus:border-amber-400 focus:outline-none"
                       />
                     </div>
                   </div>
@@ -162,13 +158,13 @@ export function FinalCta() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="+91 Mobile Number"
-                      className="w-full rounded-xs border border-white/15 bg-[#080D1A] px-3 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-sky-400 focus:outline-none font-sans"
+                      className="w-full rounded-xs border border-white/20 bg-[#0B192C] px-3 py-2.5 text-xs text-white placeholder:text-slate-400 focus:border-amber-400 focus:outline-none font-sans"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="btn-elite w-full py-3.5 mt-2"
+                    className="btn-corp-primary w-full py-3.5 mt-2"
                   >
                     <span>Dispatch Quotation Request</span>
                     <ArrowRight className="size-4" />

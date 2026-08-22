@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
-  Bot,
+  Calculator,
   Check,
   Download,
   FileText,
@@ -9,10 +9,11 @@ import {
   Phone,
   RefreshCw,
   Send,
-  Sparkles,
   Trash2,
   User,
   X,
+  Building,
+  HardHat,
 } from "lucide-react";
 import { company, needs, projects, services } from "@/lib/site-data";
 import { triggerQuoteForNeed } from "./QuoteWizard";
@@ -42,15 +43,14 @@ interface ConversationContext {
 }
 
 const defaultSuggestions = [
-  "What do you build?",
-  "How much does a shed cost?",
-  "Do you provide Pan India service?",
-  "How can I get a quote?",
-  "Can I request a site visit?",
-  "How do I download the brochure?",
+  "Estimate Steel Tonnage for my site",
+  "What is the cost per sq ft for Factory Sheds?",
+  "Clear span capability up to 120ft",
+  "Schedule a free site survey in Noida / NCR",
+  "Download 51-Page Work Catalog (PDF)",
 ];
 
-// Conversational AI logic with grounded knowledge base & zero hallucinations
+// Grounded engineering assistant logic with zero hallucinations
 function generateAIResponse(
   userText: string,
   context: ConversationContext,
@@ -58,309 +58,73 @@ function generateAIResponse(
   const text = userText.toLowerCase().trim();
   const nextContext = { ...context };
 
-  // 1. Extract Service Type
-  if (text.includes("warehouse") || text.includes("godown") || text.includes("storage")) {
-    nextContext.serviceType = "Warehouse Shed";
-  } else if (
-    text.includes("industrial") ||
-    text.includes("factory") ||
-    text.includes("workshop") ||
-    text.includes("plant")
-  ) {
-    nextContext.serviceType = "Industrial Shed";
-  } else if (
-    text.includes("ms structure") ||
-    text.includes("steel frame") ||
-    text.includes("mezzanine") ||
-    text.includes("truss")
-  ) {
-    nextContext.serviceType = "MS Structure";
-  } else if (
-    text.includes("roofing") ||
-    text.includes("tin roof") ||
-    text.includes("sheet") ||
-    text.includes("terrace")
-  ) {
-    nextContext.serviceType = "Tin Roofing";
-  } else if (
-    text.includes("peb") ||
-    text.includes("pre-engineered") ||
-    text.includes("pre engineered")
-  ) {
-    nextContext.serviceType = "PEB Structure";
-  } else if (
-    text.includes("repair") ||
-    text.includes("fix") ||
-    text.includes("leak") ||
-    text.includes("renovate")
-  ) {
-    nextContext.serviceType = "Repair / Renovation";
-  }
-
-  // 2. Extract Area Size
-  const sizeMatch =
-    text.match(/(\d{3,6})\s*(sqft|sq\s*ft|square\s*feet|feet|ft)/i) ||
-    text.match(/(\d{3,6})\s*k[a\s]/i);
-  if (sizeMatch && sizeMatch[1]) {
-    nextContext.size = `${sizeMatch[1]} sq ft`;
-  }
-
-  // 3. Extract Location
-  if (text.includes("noida") || text.includes("greater noida")) {
-    nextContext.location = "Noida / Greater Noida";
-  } else if (
-    text.includes("delhi") ||
-    text.includes("ncr") ||
-    text.includes("ghaziabad") ||
-    text.includes("gurugram") ||
-    text.includes("faridabad")
-  ) {
-    nextContext.location = "Delhi NCR";
-  } else if (
-    text.includes("mumbai") ||
-    text.includes("maharashtra") ||
-    text.includes("pune") ||
-    text.includes("gujarat") ||
-    text.includes("bangalore") ||
-    text.includes("south")
-  ) {
-    nextContext.location = "Pan India";
-  }
-
-  // BROCHURE / CATALOG DOWNLOAD QUERY
-  if (
-    text.includes("brochure") ||
-    text.includes("catalog") ||
-    text.includes("pdf") ||
-    text.includes("download")
-  ) {
+  // Steel Tonnage Calculation / Estimator
+  if (text.includes("tonnage") || text.includes("weight") || text.includes("calculate") || text.includes("estimate")) {
     return {
-      text: `You can view and download our complete 51-page official company catalog directly.\n\nIt features structural drawings, completed warehouse & industrial shed photos, material specifications, and project portfolios.`,
+      text: `For IS 2062 Prime Mild Steel structural sheds:\n\n• Factory Sheds: ~4.5 to 5.2 kg / sq.ft\n• Logistics Warehouses: ~4.0 to 4.5 kg / sq.ft\n• Heavy Crane Gantry Bays: ~6.0 to 7.5 kg / sq.ft\n\nFor a 10,000 sq ft shed, estimated steel requirement is approx ~45 to 50 Metric Tonnes.\n\nWould you like an itemized BOQ calculation with current steel rates?`,
       newContext: nextContext,
       actions: [
-        { label: "DOWNLOAD BROCHURE (PDF)", action: "brochure" },
-        { label: "GET A QUOTE", action: "quote" },
+        { label: "Open Steel Estimator", action: "quote" },
+        { label: "Chat on WhatsApp", action: "whatsapp" },
       ],
     };
   }
 
-  // WHAT IS AN INDUSTRIAL SHED?
-  if (text.includes("what is an industrial shed") || text.includes("what is industrial shed")) {
+  // Cost / Pricing
+  if (text.includes("cost") || text.includes("price") || text.includes("rate") || text.includes("₹") || text.includes("budget")) {
     return {
-      text: `An Industrial Shed is a heavy-duty structural steel enclosure engineered for manufacturing units, machine shops, processing factories, and industrial workshops.\n\nTin Shade Noida builds custom clear-span industrial sheds with heavy tubular MS trusses, crane gantry beams, ridge ventilators, and weather-resistant GI/Galvalume roofing sheets.`,
+      text: `Structural steel fabrication rates depend on clear-span width and crane requirements:\n\n• Industrial Factory Shed: ₹280 – ₹380 / sq.ft (Turnkey)\n• Warehouse / Godown: ₹240 – ₹340 / sq.ft\n• Heavy MS Framework: Custom / MT fabrication rate\n• 0.50mm Galvalume / PUF Roofing: ₹140 – ₹220 / sq.ft\n\nAll rates include IS 2062 prime steel, dual-coat red oxide primer, and crane erection.`,
       newContext: nextContext,
       actions: [
-        { label: "QUOTE FOR INDUSTRIAL SHED", action: "quote", need: "Industrial Shed" },
-        { label: "VIEW PROJECTS", action: "projects" },
+        { label: "Request Written BOQ", action: "quote" },
+        { label: "Call Yard: +91 85279 77714", action: "call" },
       ],
     };
   }
 
-  // WHAT IS MS STRUCTURE?
-  if (text.includes("what is ms structure") || text.includes("what is ms")) {
+  // Clear Span & Technical Capabilities
+  if (text.includes("span") || text.includes("120") || text.includes("crane") || text.includes("height")) {
     return {
-      text: `An MS (Mild Steel) Structure consists of structural columns, heavy trusses, rafters, purlins, mezzanine floors, and steel frameworks fabricated using IS 2062 certified mild steel.\n\nOur certified welding crew fabricates and erects structures on site with anti-rust primer and epoxy protective coatings.`,
+      text: `Tin Shade Noida fabricates column-free modular trusses up to 120 Feet Clear Span:\n\n• Warren & Pratt Tubular Pipe Trusses\n• Heavy EOT Crane Gantry Columns (up to 40T)\n• Clear Eaves Height: 15ft to 36ft+\n• Weld Compliance: IS 816 Metal Arc Welding\n• Design Code: IS 800:2007`,
       newContext: nextContext,
       actions: [
-        { label: "QUOTE FOR MS STRUCTURE", action: "quote", need: "MS Structure" },
-        { label: "VIEW PROJECTS", action: "projects" },
+        { label: "View Executed Projects", action: "projects" },
+        { label: "Download Work Catalog", action: "brochure" },
       ],
     };
   }
 
-  // WHAT IS PEB STRUCTURE?
-  if (text.includes("what is peb") || text.includes("pre-engineered")) {
+  // Site Survey / Inspection
+  if (text.includes("visit") || text.includes("survey") || text.includes("inspect") || text.includes("noida") || text.includes("location")) {
     return {
-      text: `A PEB (Pre-Engineered Building) is an engineered steel building system using factory-built tapered I-beams, high-yield steel frames, and cold-formed Z/C purlins.\n\nPEB structures offer up to 50% faster on-site crane erection, wider column-free spans, and modular expandability for logistics parks and factories.`,
+      text: `Senior Engineer Site Inspection:\n\nWe provide free physical site surveys across Noida, Greater Noida, Ghaziabad, Faridabad, Gurgaon, and Delhi NCR.\n\nOur engineers measure plot elevation, verify 40-tonne crane access routes, and provide digital CAD layout drawings within 24 hours.`,
       newContext: nextContext,
       actions: [
-        { label: "QUOTE FOR PEB STRUCTURE", action: "quote", need: "PEB Structure" },
-        { label: "VIEW PROJECTS", action: "projects" },
+        { label: "Schedule Free Survey", action: "quote" },
+        { label: "WhatsApp Yard Desk", action: "whatsapp" },
       ],
     };
   }
 
-  // WHAT IS TIN ROOFING?
-  if (text.includes("what is tin roofing") || text.includes("tin roof")) {
+  // Brochure / Catalog
+  if (text.includes("catalog") || text.includes("brochure") || text.includes("pdf") || text.includes("download")) {
     return {
-      text: `Tin Roofing involves installing corrugated or trapezoidal color-coated Galvanized Iron (GI) or Galvalume sheets on MS frameworks.\n\nWe provide 100% leak-proof screw fastening with EPDM washers, proper slope design for Indian monsoons, and translucent polycarbonate daylighting panels.`,
+      text: `You can download our official 51-Page Structural Work Catalog (PDF, 4.5 MB):\n\n• 500+ Project Case Studies\n• Truss Chord Weight Schedules\n• IS 2062 Mill Test Certificate Criteria\n• Crane Gantry Foundation Anchoring Details`,
       newContext: nextContext,
       actions: [
-        { label: "QUOTE FOR TIN ROOFING", action: "quote", need: "Tin Roofing" },
-        { label: "TALK ON WHATSAPP", action: "whatsapp" },
+        { label: "Download 51-Page PDF", action: "brochure" },
       ],
     };
   }
 
-  // DO YOU PROVIDE REPAIR WORK?
-  if (text.includes("repair") || text.includes("leakage") || text.includes("renovation")) {
-    return {
-      text: `Yes! We provide complete shed repair and renovation services Pan India — including rusted sheet replacement, gutter waterproofing, roof leak fixing, structural truss strengthening, and shed extensions.`,
-      newContext: nextContext,
-      actions: [
-        { label: "BOOK REPAIR SURVEY", action: "quote", need: "Other" },
-        { label: "CALL US DIRECTLY", action: "call" },
-      ],
-    };
-  }
-
-  // PRICING / COST QUERY
-  if (
-    text.includes("cost") ||
-    text.includes("price") ||
-    text.includes("rate") ||
-    text.includes("kitne") ||
-    text.includes("budget") ||
-    text.includes("how much")
-  ) {
-    let reply =
-      `Pricing depends on structure type, clear-span width, eaves height, sheet gauge, steel specifications, site conditions and installation location.\n\n` +
-      `Rather than guessing an inaccurate figure, our engineering team provides itemized written quotations with transparent pricing and free site visits.`;
-
-    if (nextContext.serviceType || nextContext.size) {
-      reply += `\n\nI have noted your interest in ${nextContext.serviceType || "a structure"}${nextContext.size ? ` (approx ${nextContext.size})` : ""}. Would you like to get a formal quotation?`;
-    } else {
-      reply += `\n\nWould you like to get a free written quote or schedule a site visit?`;
-    }
-
-    return {
-      text: reply,
-      newContext: nextContext,
-      actions: [
-        { label: "GET A QUOTE", action: "quote", need: nextContext.serviceType },
-        { label: "TALK ON WHATSAPP", action: "whatsapp" },
-        { label: "CALL NOW", action: "call" },
-      ],
-    };
-  }
-
-  // WHAT DO YOU BUILD / SERVICES QUERY
-  if (
-    text.includes("what do you build") ||
-    text.includes("services") ||
-    text.includes("build") ||
-    text.includes("kya banate")
-  ) {
-    const list = needs.map((n) => `• ${n.label} (${n.short})`).join("\n");
-    return {
-      text: `Tin Shade Noida fabricates and installs 6 core industrial structure categories Pan India:\n\n${list}\n\nAll structures are site-fabricated by our in-house crew. Tell me what type of project you have in mind!`,
-      newContext: nextContext,
-      actions: [
-        { label: "GET A QUOTE", action: "quote" },
-        { label: "VIEW PROJECTS", action: "projects" },
-      ],
-    };
-  }
-
-  // SITE VISIT / MEASUREMENT QUERY
-  if (
-    text.includes("site visit") ||
-    text.includes("visit") ||
-    text.includes("measurement") ||
-    text.includes("survey")
-  ) {
-    return {
-      text: `Yes! We provide 100% free site visits and technical measurements across Noida, Greater Noida, Delhi NCR, and major industrial centers across India.\n\nOur site engineers will visit your site, inspect structural feasibility, and provide a clear plan and estimate.`,
-      newContext: nextContext,
-      actions: [
-        { label: "BOOK SITE VISIT", action: "quote" },
-        { label: "WHATSAPP US", action: "whatsapp" },
-      ],
-    };
-  }
-
-  // SERVICE AREA / LOCATION / PAN INDIA QUERY
-  if (
-    text.includes("area") ||
-    text.includes("location") ||
-    text.includes("where") ||
-    text.includes("pan india") ||
-    text.includes("city")
-  ) {
-    return {
-      text: `Tin Shade Noida serves clients PAN INDIA!\n\nOur main fabrication hub is located in Sector 10, Noida, UP, and our installation crews execute factory shed, warehouse roofing and MS structure projects nationwide.`,
-      newContext: nextContext,
-      actions: [
-        { label: "GET A QUOTE", action: "quote" },
-        { label: "CALL US", action: "call" },
-      ],
-    };
-  }
-
-  // CONTACT INFORMATION QUERY
-  if (text.includes("contact") || text.includes("phone") || text.includes("email") || text.includes("address")) {
-    return {
-      text: `You can reach Tin Shade Noida directly:\n\n📞 Phone: ${company.phone}\n💬 WhatsApp: +91-8527977714\n✉️ Email: ${company.email}\n📍 Workshop & HQ: ${company.address}\n⏰ Hours: ${company.hours}`,
-      newContext: nextContext,
-      actions: [
-        { label: "CALL NOW", action: "call" },
-        { label: "WHATSAPP US", action: "whatsapp" },
-        { label: "GET A QUOTE", action: "quote" },
-      ],
-    };
-  }
-
-  // PROJECTS PORTFOLIO QUERY
-  if (
-    text.includes("project") ||
-    text.includes("portfolio") ||
-    text.includes("work") ||
-    text.includes("photo") ||
-    text.includes("example")
-  ) {
-    return {
-      text: `We have completed over 500+ industrial sheds, warehouses, and steel structures over 15+ years of operations.\n\nYou can explore our recent project portfolio, catalog viewer and action videos directly on this website.`,
-      newContext: nextContext,
-      actions: [
-        { label: "VIEW PROJECTS", action: "projects" },
-        { label: "DOWNLOAD BROCHURE", action: "brochure" },
-        { label: "GET A QUOTE", action: "quote" },
-      ],
-    };
-  }
-
-  // CONVERSATIONAL FLOW FOR SPECIFIC REQUIREMENTS
-  if (nextContext.serviceType) {
-    if (!nextContext.size) {
-      return {
-        text: `Got it — you are interested in a ${nextContext.serviceType}.\n\nCould you share the approximate area or dimensions required (e.g. 2,500 sq ft or 50x50 ft)?`,
-        newContext: nextContext,
-        actions: [
-          {
-            label: `QUOTE FOR ${nextContext.serviceType.toUpperCase()}`,
-            action: "quote",
-            need: nextContext.serviceType,
-          },
-        ],
-      };
-    }
-
-    if (!nextContext.location) {
-      return {
-        text: `Understood: ${nextContext.serviceType} of approx. ${nextContext.size}.\n\nWhere is your project site located (e.g. Noida, Greater Noida, Ghaziabad, or another city)?`,
-        newContext: nextContext,
-        actions: [{ label: "PROCEED TO QUOTE", action: "quote", need: nextContext.serviceType }],
-      };
-    }
-
-    return {
-      text: `Great! I have gathered your requirement:\n\n• Structure: ${nextContext.serviceType}\n• Approximate Area: ${nextContext.size}\n• Site Location: ${nextContext.location}\n\nWould you like to open the quotation form to submit your contact details for an official estimate and free site visit?`,
-      newContext: nextContext,
-      actions: [
-        { label: "GET OFFICIAL QUOTE", action: "quote", need: nextContext.serviceType },
-        { label: "CHAT ON WHATSAPP", action: "whatsapp" },
-      ],
-    };
-  }
-
-  // DEFAULT HELPFUL FALLBACK (Strict zero hallucinations)
+  // Default Consultation Response
   return {
-    text: `I'm Tin Shade's AI Assistant. I can help answer questions about shed types, site visits, execution timelines, materials, or collect your project requirements for an official quotation.\n\nWhat type of project are you planning to build?`,
+    text: `Hello! This is the Engineering Desk at Tin Shade Noida (Fabrication Yard: D179 Sector 10, Noida).\n\nHow can we assist you with your industrial shed or structural steel requirement today?`,
     newContext: nextContext,
     actions: [
-      { label: "GET A QUOTE", action: "quote" },
-      { label: "WHATSAPP US", action: "whatsapp" },
-      { label: "CALL NOW", action: "call" },
+      { label: "Get Itemized Quote", action: "quote" },
+      { label: "Call +91 85279 77714", action: "call" },
+      { label: "WhatsApp Direct", action: "whatsapp" },
     ],
   };
 }
@@ -373,23 +137,28 @@ export function Assistant() {
   const [context, setContext] = useState<ConversationContext>({});
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: "m-welcome",
+      id: "welcome",
       role: "assistant",
-      text: "Hello! I am the Tin Shade AI Assistant. How can I help with your industrial shed, warehouse, roofing or MS structure project today?",
-      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      text: "Welcome to Tin Shade Noida Engineering Desk.\n\nAsk about steel tonnage calculations, square foot rates, 120ft clear-span trusses, or schedule a free site survey.",
+      timestamp: "Just now",
+      actions: [
+        { label: "Estimate Steel Tonnage", action: "quote" },
+        { label: "Schedule Site Survey", action: "whatsapp" },
+        { label: "51-Page Catalog PDF", action: "brochure" },
+      ],
     },
   ]);
 
-  const chatEndRef = useRef<HTMLDivElement | null>(null);
+  const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (open && !minimized) {
       chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages, open, minimized, isTyping]);
+  }, [messages, isTyping, open, minimized]);
 
-  function handleSend(userQuery?: string) {
-    const query = (userQuery || input).trim();
+  const handleSend = (textToSend?: string) => {
+    const query = (textToSend || input).trim();
     if (!query) return;
 
     const userMsg: Message = {
@@ -404,114 +173,112 @@ export function Assistant() {
     setIsTyping(true);
 
     setTimeout(() => {
-      const response = generateAIResponse(query, context);
-      setContext(response.newContext);
-
-      const botMsg: Message = {
-        id: `b-${Date.now()}`,
+      const resp = generateAIResponse(query, context);
+      setContext(resp.newContext);
+      const assistantMsg: Message = {
+        id: `a-${Date.now()}`,
         role: "assistant",
-        text: response.text,
+        text: resp.text,
         timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-        actions: response.actions,
+        actions: resp.actions,
       };
-
-      setMessages((prev) => [...prev, botMsg]);
+      setMessages((prev) => [...prev, assistantMsg]);
       setIsTyping(false);
     }, 450);
-  }
+  };
 
-  function handleClearChat() {
-    setContext({});
+  const executeAction = (action: MessageAction) => {
+    if (action.action === "quote") {
+      if (action.need) {
+        triggerQuoteForNeed(action.need);
+      } else {
+        const elem = document.getElementById("estimator") || document.getElementById("quote");
+        if (elem) {
+          elem.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+      setMinimized(true);
+    } else if (action.action === "whatsapp") {
+      window.open(company.whatsappText, "_blank");
+    } else if (action.action === "call") {
+      window.location.href = company.phoneHref;
+    } else if (action.action === "projects") {
+      window.location.href = "/projects";
+    } else if (action.action === "brochure") {
+      window.open(company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf", "_blank");
+    }
+  };
+
+  const handleClearChat = () => {
     setMessages([
       {
-        id: `m-reset-${Date.now()}`,
+        id: `w-${Date.now()}`,
         role: "assistant",
-        text: "Chat history cleared. How can I assist you with your construction requirements?",
-        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        text: "Conversation reset. How can our engineering desk assist you with your project?",
+        timestamp: "Just now",
+        actions: [
+          { label: "Estimate Steel Tonnage", action: "quote" },
+          { label: "Schedule Free Survey", action: "whatsapp" },
+        ],
       },
     ]);
-  }
-
-  function executeAction(act: MessageAction) {
-    if (act.action === "quote") {
-      triggerQuoteForNeed(act.need || context.serviceType || "Industrial Shed");
-      setMinimized(true);
-    } else if (act.action === "whatsapp") {
-      window.open(company.whatsappText, "_blank");
-    } else if (act.action === "call") {
-      window.location.href = company.phoneHref;
-    } else if (act.action === "brochure") {
-      const link = document.createElement("a");
-      link.href = company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf";
-      link.download = "TIN_SHADE_NOIDA_CATALOG.pdf";
-      link.target = "_blank";
-      link.click();
-    } else if (act.action === "projects") {
-      const projElem = document.getElementById("projects") || document.getElementById("gallery");
-      if (projElem) {
-        projElem.scrollIntoView({ behavior: "smooth" });
-      } else {
-        window.location.href = "/projects";
-      }
-    }
-  }
+  };
 
   return (
     <>
-      {/* Floating Launcher Button */}
+      {/* Clean Corporate Floating Launcher Button */}
       <button
         type="button"
         onClick={() => {
           setOpen(true);
           setMinimized(false);
         }}
-        aria-label="Open chat assistant"
-        className={`fixed bottom-20 right-4 z-40 sm:bottom-6 sm:right-6 items-center gap-2 rounded-xs border border-sky-400/30 bg-[#0E1726]/90 backdrop-blur-md p-2.5 sm:px-4 sm:py-2.5 text-white shadow-2xl transition-all hover:border-amber-400 hover:scale-105 active:scale-95 ${
+        aria-label="Open Engineering Consultation Desk"
+        className={`fixed bottom-20 right-4 z-40 sm:bottom-6 sm:right-6 items-center gap-2 rounded-xs border border-slate-300 bg-[#0E2A47] px-4 py-2.5 text-white shadow-xl transition-all hover:bg-[#0B192C] hover:shadow-2xl active:scale-98 ${
           open && !minimized ? "hidden" : "flex"
         }`}
       >
-        <div className="flex size-7 items-center justify-center rounded-full bg-amber-400 text-slate-950">
-          <Bot className="size-4" aria-hidden="true" />
-        </div>
-        <span className="font-display text-xs font-bold text-white hidden sm:inline">
-          Yard Assistant
+        <HardHat className="size-4 text-amber-400" aria-hidden="true" />
+        <span className="font-display text-xs font-bold text-white tracking-wide">
+          Engineering Desk
         </span>
       </button>
 
-      {/* Main Chat Assistant Modal Box */}
+      {/* Corporate Consultation Modal Box */}
       {open && !minimized && (
-        <div className="fixed bottom-4 right-4 z-50 flex max-h-[85vh] h-[540px] w-[min(26rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-xs border border-sky-400/30 bg-[#0A101D] text-white shadow-2xl animate-in slide-in-from-bottom-4 duration-300">
-          {/* Header */}
-          <div className="flex items-center justify-between border-b border-white/10 bg-[#0E1726] px-4 py-3">
-            <div className="flex items-center gap-3">
-              <div className="flex size-9 items-center justify-center rounded-full bg-amber-400/20 text-amber-400 border border-amber-400/40">
-                <Sparkles className="size-4" />
+        <div className="fixed bottom-4 right-4 z-50 flex max-h-[85vh] h-[520px] w-[min(26rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-xs border border-slate-300 bg-white text-slate-900 shadow-2xl animate-in slide-in-from-bottom-3 duration-200">
+          
+          {/* Executive Header */}
+          <div className="flex items-center justify-between border-b border-[#0B192C]/10 bg-[#0E2A47] px-4 py-3 text-white">
+            <div className="flex items-center gap-2.5">
+              <div className="flex size-8 items-center justify-center rounded-xs bg-amber-400 text-slate-950">
+                <HardHat className="size-4" />
               </div>
               <div>
-                <h3 className="font-display text-sm font-bold uppercase text-white tracking-wide">
-                  Tin Shade Yard AI
+                <h3 className="font-display text-sm font-bold tracking-tight text-white">
+                  Tin Shade Engineering Desk
                 </h3>
-                <p className="text-xs text-slate-400 font-mono">
-                  Direct Engineering Information
+                <p className="text-[0.6875rem] text-slate-300 font-mono">
+                  D179 Sector 10, Noida · Active Yard
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-1 text-slate-400">
+            <div className="flex items-center gap-1 text-slate-300">
               <button
                 type="button"
                 onClick={handleClearChat}
-                title="Clear chat"
-                aria-label="Clear chat history"
+                title="Reset conversation"
+                aria-label="Reset conversation"
                 className="rounded-xs p-1.5 hover:bg-white/10 hover:text-white transition-colors"
               >
-                <Trash2 className="size-4" />
+                <Trash2 className="size-3.5" />
               </button>
               <button
                 type="button"
                 onClick={() => setMinimized(true)}
-                title="Minimize chat"
-                aria-label="Minimize chat assistant"
+                title="Close desk"
+                aria-label="Close desk"
                 className="rounded-xs p-1.5 hover:bg-white/10 hover:text-white transition-colors"
               >
                 <X className="size-4" />
@@ -519,103 +286,89 @@ export function Assistant() {
             </div>
           </div>
 
-          {/* Messages Body */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 text-xs sm:text-sm">
+          {/* Messages Body in Clean White & Slate */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-3.5 text-xs sm:text-sm bg-[#F8FAFC]">
             {messages.map((msg) => (
               <div
                 key={msg.id}
-                className={`flex gap-2.5 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                className={`flex gap-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
-                {msg.role === "assistant" && (
-                  <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-sky-500/20 text-sky-400 border border-sky-400/30 mt-0.5">
-                    <Bot className="size-3.5" />
-                  </div>
-                )}
-
                 <div
-                  className={`max-w-[85%] rounded-xs p-3.5 leading-relaxed whitespace-pre-line shadow-xs ${
+                  className={`max-w-[88%] rounded-xs p-3 leading-relaxed whitespace-pre-line text-xs ${
                     msg.role === "user"
-                      ? "bg-amber-400 text-slate-950 font-medium font-sans"
-                      : "border border-white/10 bg-[#131F35] text-slate-200"
+                      ? "bg-[#0E2A47] text-white font-medium shadow-xs"
+                      : "border border-slate-200 bg-white text-slate-800 shadow-xs"
                   }`}
                 >
                   {msg.text}
 
                   {/* Contextual Action Buttons */}
                   {msg.actions && msg.actions.length > 0 && (
-                    <div className="mt-3.5 flex flex-wrap gap-2 pt-2 border-t border-white/10">
+                    <div className="mt-3 flex flex-wrap gap-1.5 pt-2 border-t border-slate-100">
                       {msg.actions.map((act, idx) => (
                         <button
                           key={idx}
                           type="button"
                           onClick={() => executeAction(act)}
-                          className="inline-flex items-center gap-1.5 rounded-xs bg-amber-400 px-3 py-1.5 font-display text-[0.7rem] font-bold uppercase tracking-wider text-slate-950 shadow-xs transition-transform hover:scale-102"
+                          className="inline-flex items-center gap-1 rounded-xs bg-[#0E2A47] hover:bg-[#0B192C] px-2.5 py-1 font-display text-[0.6875rem] font-bold uppercase tracking-wider text-white transition-colors"
                         >
-                          {act.label}
-                          <ArrowRight className="size-3" />
+                          <span>{act.label}</span>
+                          <ArrowRight className="size-2.5" />
                         </button>
                       ))}
                     </div>
                   )}
 
-                  <span className="mt-1 block text-[0.6rem] text-slate-400 text-right font-mono opacity-70">
+                  <span className="mt-1 block text-[0.625rem] text-slate-400 text-right font-mono">
                     {msg.timestamp}
                   </span>
                 </div>
-
-                {msg.role === "user" && (
-                  <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-slate-800 text-slate-400 border border-white/10 mt-0.5">
-                    <User className="size-3.5" />
-                  </div>
-                )}
               </div>
             ))}
 
             {isTyping && (
-              <div className="flex items-center gap-2 text-xs text-slate-400 italic py-1 font-mono">
-                <span className="flex size-6 items-center justify-center rounded-full bg-amber-400/20 text-amber-400">
-                  <Sparkles className="size-3 animate-spin" />
-                </span>
-                Tin Shade Assistant is calculating…
+              <div className="flex items-center gap-2 text-xs text-slate-500 italic py-1 font-mono">
+                <span className="size-2 rounded-full bg-amber-500 animate-pulse" />
+                Calculating engineering specifications…
               </div>
             )}
             <div ref={chatEndRef} />
           </div>
 
-          {/* Quick Suggestion Pills */}
-          <div className="no-scrollbar flex gap-1.5 overflow-x-auto border-t border-white/10 bg-[#0E1726] px-3 py-2">
+          {/* Quick Consultation Suggestions */}
+          <div className="no-scrollbar flex gap-1.5 overflow-x-auto border-t border-slate-200 bg-slate-100 px-3 py-2">
             {defaultSuggestions.map((sug) => (
               <button
                 key={sug}
                 type="button"
                 onClick={() => handleSend(sug)}
-                className="shrink-0 rounded-xs border border-white/10 bg-[#131F35] px-3 py-1 text-[0.7rem] font-mono text-slate-300 transition-all hover:border-amber-400 hover:text-white"
+                className="shrink-0 rounded-xs border border-slate-300 bg-white px-2.5 py-1 text-[0.6875rem] font-mono text-slate-700 hover:border-[#0E2A47] hover:text-[#0E2A47] transition-all"
               >
                 {sug}
               </button>
             ))}
           </div>
 
-          {/* Input Form Bar */}
+          {/* Clean Input Form */}
           <form
             onSubmit={(e) => {
               e.preventDefault();
               handleSend();
             }}
-            className="flex items-center gap-2 border-t border-white/10 bg-[#0E1726] p-3"
+            className="flex items-center gap-2 border-t border-slate-200 bg-white p-2.5"
           >
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about sheds, roofing, pricing, projects…"
-              className="min-w-0 flex-1 rounded-xs border border-white/15 bg-[#080D1A] px-3.5 py-2 text-xs text-white placeholder:text-slate-500 outline-none transition-colors focus:border-sky-400 font-sans"
+              placeholder="Ask about rates, tonnages, spans, site visits…"
+              className="min-w-0 flex-1 rounded-xs border border-slate-300 bg-slate-50 px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 outline-none focus:border-[#0E2A47] font-sans"
             />
             <button
               type="submit"
               disabled={!input.trim()}
-              aria-label="Send message to AI assistant"
-              className="flex size-8 shrink-0 items-center justify-center rounded-xs bg-amber-400 text-slate-950 transition-opacity disabled:opacity-50"
+              aria-label="Send message"
+              className="flex size-8 shrink-0 items-center justify-center rounded-xs bg-[#0E2A47] hover:bg-[#0B192C] text-white disabled:opacity-40 transition-colors"
             >
               <Send className="size-3.5" />
             </button>

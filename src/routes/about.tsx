@@ -76,18 +76,17 @@ function AboutPage() {
       <Leadership />
 
       {/* 2. In-House Yard Machinery & Capabilities */}
-      <section className="bg-navy-obsidian py-16 sm:py-20 border-b border-white/10 relative">
+      <section className="bg-white py-16 sm:py-20 border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
-          <div className="max-w-2xl border-b border-white/10 pb-5 mb-8">
-            <div className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-amber-400 mb-2">
-              <Factory className="size-4" />
-              <span>SHOP INFRASTRUCTURE &amp; RIGGING</span>
-            </div>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+          <div className="max-w-2xl border-b border-slate-200 pb-5 mb-8">
+            <span className="font-mono text-xs font-semibold text-amber-700 uppercase tracking-tight block mb-1">
+              SHOP INFRASTRUCTURE &amp; RIGGING
+            </span>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
               Noida Sector 10 Yard Machinery
             </h2>
-            <p className="mt-2 text-xs sm:text-sm text-slate-300 font-sans">
+            <p className="mt-2 text-xs sm:text-sm text-slate-600 font-sans">
               Take a look inside our in-house workshop. All cutting, fitting, and continuous arc welding take place under direct master supervision.
             </p>
           </div>
@@ -96,25 +95,25 @@ function AboutPage() {
             {yardMachinery.map((item) => (
               <div
                 key={item.equipment}
-                className="navy-card p-5 flex flex-col justify-between"
+                className="corp-card p-5 flex flex-col justify-between bg-[#F8FAFC]"
               >
                 <div>
-                  <div className="flex items-center justify-between border-b border-white/10 pb-2 mb-3">
-                    <span className="font-mono text-[0.6875rem] text-sky-400 font-semibold uppercase">
+                  <div className="flex items-center justify-between border-b border-slate-200 pb-2 mb-3">
+                    <span className="font-mono text-[0.6875rem] text-[#0E2A47] font-semibold uppercase">
                       Equipment
                     </span>
-                    <Wrench className="size-3.5 text-amber-400" />
+                    <Wrench className="size-3.5 text-amber-600" />
                   </div>
 
-                  <h3 className="font-display text-base font-bold text-white">
+                  <h3 className="font-display text-base font-bold text-slate-900">
                     {item.equipment}
                   </h3>
                   
-                  <p className="mt-1 font-mono text-xs text-amber-400 font-semibold">
+                  <p className="mt-1 font-mono text-xs text-amber-700 font-semibold">
                     {item.capacity}
                   </p>
 
-                  <p className="mt-2 text-xs leading-relaxed text-slate-300 font-sans">
+                  <p className="mt-2 text-xs leading-relaxed text-slate-600 font-sans">
                     {item.usage}
                   </p>
                 </div>
@@ -129,29 +128,28 @@ function AboutPage() {
       <Journey />
 
       {/* 4. Why Direct Fabrication Beats Middlemen */}
-      <section className="bg-navy-obsidian py-16 sm:py-20 border-b border-white/10">
+      <section className="bg-[#F8FAFC] py-16 sm:py-20 border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
-          <div className="max-w-2xl border-b border-white/10 pb-5 mb-8">
-            <div className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-sky-400 mb-2">
-              <ShieldCheck className="size-4" />
-              <span>ACCOUNTABILITY PLEDGE</span>
-            </div>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+          <div className="max-w-2xl border-b border-slate-200 pb-5 mb-8">
+            <span className="font-mono text-xs font-semibold text-amber-700 uppercase tracking-tight block mb-1">
+              ACCOUNTABILITY PLEDGE
+            </span>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
               Why Direct Fabrication Beats Middlemen
             </h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
             {advantages.map((adv) => (
-              <div key={adv.title} className="navy-card p-6">
-                <div className="size-9 rounded-xs bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 mb-4">
+              <div key={adv.title} className="corp-card p-6 bg-white">
+                <div className="size-9 rounded-xs bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-700 mb-4">
                   <CheckCircle2 className="size-5" />
                 </div>
-                <h3 className="font-display text-lg font-bold text-white">
+                <h3 className="font-display text-lg font-bold text-slate-900">
                   {adv.title}
                 </h3>
-                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-300 font-sans">
+                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600 font-sans">
                   {adv.desc}
                 </p>
               </div>

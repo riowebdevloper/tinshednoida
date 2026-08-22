@@ -64,25 +64,25 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
   }, [selectedType, area, height, craneRequired, location, calculation]);
 
   return (
-    <div className={`spec-plate-navy text-white overflow-hidden ${embedded ? "p-5 sm:p-6" : "p-6 sm:p-8"}`}>
+    <div className={`corp-card bg-white text-slate-900 border border-slate-300 shadow-md ${embedded ? "p-5 sm:p-6" : "p-6 sm:p-8"}`}>
       
       {/* ──────── TECHNICAL HEADER ──────── */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-5">
         <div>
-          <div className="flex items-center gap-2 font-mono text-xs text-sky-400 font-semibold mb-1">
+          <div className="flex items-center gap-2 font-mono text-xs text-amber-700 font-semibold mb-1">
             <Ruler className="size-3.5" aria-hidden="true" />
             <span>STRUCTURAL STEEL TONNAGE &amp; BOQ ESTIMATOR</span>
           </div>
-          <h3 className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+          <h3 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
             Calculate Steel Tonnage &amp; Erection Timeline
           </h3>
-          <p className="mt-1 text-xs sm:text-sm text-slate-300 font-sans">
+          <p className="mt-1 text-xs sm:text-sm text-slate-600 font-sans">
             Engineering calculation based on IS 2062 mild steel ratios, clear span recommendations, and crane load factors.
           </p>
         </div>
 
-        <div className="hidden sm:flex items-center gap-2 rounded-xs bg-white/5 px-3 py-1.5 border border-white/10 font-mono text-xs text-slate-300">
-          <ShieldCheck className="size-3.5 text-amber-400" aria-hidden="true" />
+        <div className="hidden sm:flex items-center gap-2 rounded-xs bg-slate-100 px-3 py-1.5 border border-slate-200 font-mono text-xs text-slate-700">
+          <ShieldCheck className="size-3.5 text-emerald-600" aria-hidden="true" />
           <span>IS 2062 Formulas Active</span>
         </div>
       </div>
@@ -91,11 +91,11 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
       <div className="mt-6 grid gap-6 lg:grid-cols-12 items-stretch">
         
         {/* Left Column: Form Controls (7 cols) */}
-        <div className="rounded-xs border border-white/10 bg-[#0B1320] p-5 sm:p-6 space-y-5 lg:col-span-7">
+        <div className="rounded-xs border border-slate-200 bg-slate-50 p-5 sm:p-6 space-y-5 lg:col-span-7">
           
           {/* Structure Type Selection */}
           <div>
-            <label className="block text-xs font-mono font-semibold uppercase text-slate-300 mb-2">
+            <label className="block text-xs font-mono font-semibold uppercase text-slate-700 mb-2">
               Structure Type
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -108,12 +108,12 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
                     idx === structureTypes.length - 1 ? "sm:col-span-2" : ""
                   } ${
                     selectedType.id === t.id
-                      ? "border-sky-400 bg-sky-500/15 text-white shadow-xs"
-                      : "border-white/10 bg-white/5 text-slate-300 hover:border-white/20"
+                      ? "border-[#0E2A47] bg-[#0E2A47] text-white shadow-xs"
+                      : "border-slate-300 bg-white text-slate-800 hover:border-slate-400"
                   }`}
                 >
                   <span className="font-display text-sm font-bold">{t.name}</span>
-                  <span className={`text-xs font-mono mt-0.5 tabular-nums ${selectedType.id === t.id ? "text-amber-400" : "text-slate-400"}`}>
+                  <span className={`text-xs font-mono mt-0.5 tabular-nums ${selectedType.id === t.id ? "text-amber-400" : "text-slate-500"}`}>
                     {t.rateEst} · {t.isCode}
                   </span>
                 </button>
@@ -121,13 +121,13 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
             </div>
           </div>
 
-          {/* Covered Area with Vernier Caliper Scale */}
+          {/* Covered Area with Slider */}
           <div>
             <div className="flex items-center justify-between gap-3 mb-1.5">
-              <label htmlFor="area-range" className="text-xs font-mono font-semibold uppercase text-slate-300">
+              <label htmlFor="area-range" className="text-xs font-mono font-semibold uppercase text-slate-700">
                 Covered Area:
               </label>
-              <span className="font-mono text-xs font-bold text-slate-950 bg-amber-400 px-2.5 py-0.5 rounded-xs tabular-nums">
+              <span className="font-mono text-xs font-bold text-slate-900 bg-amber-100 border border-amber-300 px-2.5 py-0.5 rounded-xs tabular-nums">
                 {area.toLocaleString()} SQ. FT.
               </span>
             </div>
@@ -141,11 +141,11 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
               step={500}
               value={area}
               onChange={(e) => setArea(Number(e.target.value))}
-              className="w-full h-2 bg-slate-800 rounded-xs appearance-none cursor-pointer accent-amber-400"
+              className="w-full h-2 bg-slate-300 rounded-xs appearance-none cursor-pointer accent-[#0E2A47]"
             />
 
             {/* Vernier Gauge Caliper Ticks in Monospace Tabular Nums */}
-            <div className="flex justify-between text-[0.6875rem] font-mono text-slate-400 pt-1 px-0.5 tabular-nums">
+            <div className="flex justify-between text-[0.6875rem] font-mono text-slate-500 pt-1 px-0.5 tabular-nums">
               <span>1,000 sq.ft</span>
               <span>10,000</span>
               <span>25,000</span>
@@ -162,8 +162,8 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
                   onClick={() => setArea(preset)}
                   className={`rounded-xs px-2.5 py-1 font-mono text-xs border tabular-nums transition-all ${
                     area === preset
-                      ? "border-sky-400 bg-sky-500/20 text-white font-semibold"
-                      : "border-white/10 bg-white/5 text-slate-300 hover:border-white/20"
+                      ? "border-[#0E2A47] bg-[#0E2A47] text-white font-semibold"
+                      : "border-slate-300 bg-white text-slate-700 hover:border-slate-400"
                   }`}
                 >
                   {preset.toLocaleString()} sq ft
@@ -175,13 +175,13 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
           {/* Clear Height & Location */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-mono font-semibold uppercase text-slate-300 mb-1.5">
+              <label className="block text-xs font-mono font-semibold uppercase text-slate-700 mb-1.5">
                 Clear Eaves Height
               </label>
               <select
                 value={height}
                 onChange={(e) => setHeight(Number(e.target.value))}
-                className="w-full rounded-xs border border-white/15 bg-[#0E1726] px-3 py-2 font-mono text-xs text-white focus:border-sky-400 focus:outline-none tabular-nums"
+                className="w-full rounded-xs border border-slate-300 bg-white px-3 py-2 font-mono text-xs text-slate-900 focus:border-[#0E2A47] focus:outline-none tabular-nums"
               >
                 <option value={15}>15 Feet (Standard Height)</option>
                 <option value={18}>18 Feet (Light Industrial)</option>
@@ -193,7 +193,7 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
             </div>
 
             <div>
-              <label className="block text-xs font-mono font-semibold uppercase text-slate-300 mb-1.5">
+              <label className="block text-xs font-mono font-semibold uppercase text-slate-700 mb-1.5">
                 Site Location
               </label>
               <input
@@ -201,29 +201,29 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder="e.g. Noida Sec 63, Greater Noida..."
-                className="w-full rounded-xs border border-white/15 bg-[#0E1726] px-3 py-2 font-mono text-xs text-white placeholder:text-slate-500 focus:border-sky-400 focus:outline-none"
+                className="w-full rounded-xs border border-slate-300 bg-white px-3 py-2 font-mono text-xs text-slate-900 placeholder:text-slate-400 focus:border-[#0E2A47] focus:outline-none"
               />
             </div>
           </div>
 
           {/* Crane Checkbox */}
-          <div className="flex items-center gap-2.5 pt-1 border-t border-white/10">
+          <div className="flex items-center gap-2.5 pt-1 border-t border-slate-200">
             <input
               type="checkbox"
               id="craneCheck"
               checked={craneRequired}
               onChange={(e) => setCraneRequired(e.target.checked)}
-              className="size-3.5 rounded-xs border-white/20 bg-slate-900 text-amber-400 focus:ring-sky-400 accent-amber-400"
+              className="size-4 rounded-xs border-slate-300 text-[#0E2A47] focus:ring-[#0E2A47] accent-[#0E2A47]"
             />
-            <label htmlFor="craneCheck" className="text-xs font-medium text-slate-300 cursor-pointer select-none font-sans">
-              Structure requires <strong className="text-white">Overhead EOT Crane Support</strong> (Gantry Girder Columns)
+            <label htmlFor="craneCheck" className="text-xs font-medium text-slate-800 cursor-pointer select-none font-sans">
+              Structure requires <strong>Overhead EOT Crane Support</strong> (Gantry Girder Columns)
             </label>
           </div>
 
         </div>
 
-        {/* Right Column: BOQ Engineering Spec Sheet in Deep Navy & Monospace (5 cols) */}
-        <div className="lg:col-span-5 flex flex-col justify-between rounded-xs border border-sky-400/20 bg-[#080D1A] p-5 sm:p-6 shadow-xl">
+        {/* Right Column: BOQ Engineering Spec Sheet in Deep Executive Navy (5 cols) */}
+        <div className="lg:col-span-5 flex flex-col justify-between rounded-xs border border-slate-200 bg-[#0B192C] text-white p-5 sm:p-6 shadow-lg">
           
           <div>
             {/* BOQ Header */}
@@ -231,25 +231,25 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
               <span className="font-mono text-xs font-bold uppercase text-amber-400">
                 BILL OF QUANTITIES (BOQ)
               </span>
-              <span className="font-mono text-xs text-slate-400 tabular-nums">
+              <span className="font-mono text-xs text-slate-300 tabular-nums">
                 DOC: TSN-BOQ-2026
               </span>
             </div>
 
             {/* Calculated Steel Tonnage */}
-            <div className="mt-4 p-4 rounded-xs bg-[#0E1726] border border-white/10">
-              <span className="block text-xs font-mono text-slate-400 uppercase">
+            <div className="mt-4 p-4 rounded-xs bg-[#0E2A47] border border-white/10">
+              <span className="block text-xs font-mono text-slate-300 uppercase">
                 Estimated Mild Steel Tonnage
               </span>
               <div className="mt-1 flex items-baseline gap-2">
-                <span className="font-mono text-3xl sm:text-4xl font-extrabold text-amber-400 tabular-nums">
+                <span className="font-mono text-3xl sm:text-4xl font-bold text-amber-400 tabular-nums">
                   ~{calculation.tonnage}
                 </span>
                 <span className="font-mono text-sm font-bold text-white uppercase">
                   Metric Tonnes (MT)
                 </span>
               </div>
-              <span className="block text-[0.6875rem] font-mono text-slate-400 mt-1 tabular-nums">
+              <span className="block text-[0.6875rem] font-mono text-slate-300 mt-1 tabular-nums">
                 Avg ~{calculation.approxWeightSqFt} kg / sq.ft (IS 2062 Prime Mild Steel)
               </span>
             </div>
@@ -263,7 +263,7 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
 
               <div className="flex justify-between py-1 border-b border-white/5">
                 <span className="text-slate-300">01. Clear Span Truss</span>
-                <span className="text-sky-300 font-bold tabular-nums">{calculation.suggestedSpan}</span>
+                <span className="text-amber-400 font-bold tabular-nums">{calculation.suggestedSpan}</span>
               </div>
 
               <div className="flex justify-between py-1 border-b border-white/5">
@@ -283,7 +283,7 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
             </div>
 
             {/* Inclusions */}
-            <div className="mt-4 space-y-1 text-xs text-slate-400 pt-3 border-t border-white/10 font-sans">
+            <div className="mt-4 space-y-1 text-xs text-slate-300 pt-3 border-t border-white/10 font-sans">
               <div className="flex items-center gap-2">
                 <Check className="size-3 text-emerald-400 shrink-0" />
                 <span>Noida Yard In-House Shop Fabrication</span>
@@ -301,7 +301,7 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
               href={`https://wa.me/918527977714?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-full items-center justify-center gap-2 rounded-xs bg-emerald-500 hover:bg-emerald-600 px-4 py-3 font-display text-xs sm:text-sm font-bold text-slate-950 uppercase tracking-wide transition-colors text-center shadow-lg"
+              className="flex w-full items-center justify-center gap-2 rounded-xs bg-[#16A34A] hover:bg-[#15803D] px-4 py-3 font-display text-xs sm:text-sm font-bold text-white uppercase tracking-wide transition-colors text-center shadow-md"
             >
               <MessageCircle className="size-4" aria-hidden="true" />
               <span>Send BOQ to WhatsApp &amp; Request Survey</span>

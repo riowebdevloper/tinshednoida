@@ -4,41 +4,42 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Tin Shade Noida — Elite Architectural Navy Blue Design System
+ * Tin Shade Noida — Human-Crafted Corporate Engineering Design System
  * 
  * Palette:
- * - Obsidian Navy: #080D1A (Deep structural canvas)
- * - Architectural Navy: #0E1726 & #131F35 (Section & card backdrops)
- * - Steel Navy Surface: #1A2A47 (Elevated interactive surfaces)
- * - Hairline Highlights: rgba(255, 255, 255, 0.09)
- * - Engineering Cyan: #38BDF8 (CAD drafting & technical nodes)
- * - Safety Gold: #F59E0B (Primary quote actions & IS standard stamps)
- * - Red Oxide Copper: #C25E3E (Anti-rust primer accent)
+ * - Executive Navy: #0B192C (Header, Hero, Footer, Structural Badges)
+ * - Corporate Navy Surface: #0E2A47 & #16365C
+ * - Crisp Architectural White: #FFFFFF & #F8FAFC (Content surfaces, service cards, estimator)
+ * - Light Steel Border: #E2E8F0
+ * - Slate Text: #0F172A (Headings) & #475569 (Body)
+ * - Industrial Amber / Gold: #D97706 & #F59E0B (Primary action buttons & tags)
+ * - Steel Blue Accent: #2563EB
+ * - WhatsApp Green: #16A34A
  *
  * Typography:
- * - Display: Plus Jakarta Sans (weights 600, 700, 800) / Space Grotesk
- * - Body: Plus Jakarta Sans (weights 400, 500)
+ * - Display: Plus Jakarta Sans / Space Grotesk (weight 600, 700)
+ * - Body: Plus Jakarta Sans / Inter (weight 400, 500)
  * - Technical Data: JetBrains Mono with tabular-nums
  */
 
 @theme inline {
   --radius-xs: 3px;
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
 
-  --font-display: "Plus Jakarta Sans", "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  /* Deliberate Editorial Type Scale */
+  /* Executive Corporate Type Scale */
   --font-size-xs: 0.75rem;    /* 12px */
   --font-size-sm: 0.875rem;   /* 14px */
   --font-size-base: 1rem;     /* 16px */
   --font-size-lg: 1.1875rem;  /* 19px */
-  --font-size-xl: 1.625rem;   /* 26px */
+  --font-size-xl: 1.5rem;     /* 24px */
   --font-size-2xl: 2.25rem;   /* 36px */
-  --font-size-3xl: 3.5rem;    /* 56px */
+  --font-size-3xl: 3.25rem;   /* 52px */
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -58,60 +59,59 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Elite Navy Blue Tokens */
-  --color-navy-obsidian: #080D1A;
-  --color-navy-deep: #0E1726;
-  --color-navy-card: #131F35;
-  --color-navy-surface: #1A2A47;
-  --color-navy-border: rgba(255, 255, 255, 0.08);
-  --color-navy-border-hover: rgba(56, 189, 248, 0.35);
+  /* Corporate Tokens */
+  --color-navy-dark: #0B192C;
+  --color-navy-corporate: #0E2A47;
+  --color-navy-surface: #16365C;
+  --color-paper-light: #F8FAFC;
+  --color-card-light: #FFFFFF;
+  --color-border-light: #E2E8F0;
   
-  --color-cyan-glow: #38BDF8;
-  --color-gold-safety: #F59E0B;
-  --color-oxide-copper: #C25E3E;
-  --color-steel-sheet: #CAD5E2;
-  --color-whatsapp: #22C55E;
+  --color-amber-gold: #D97706;
+  --color-amber-vibrant: #F59E0B;
+  --color-steel-accent: #2563EB;
+  --color-whatsapp: #16A34A;
 }
 
 :root {
-  --radius: 6px;
+  --radius: 4px;
 
-  /* Architectural Navy Palette */
-  --background: #080D1A;
-  --foreground: #FFFFFF;
-  --surface: #0E1726;
+  /* Light Architectural Foundation */
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+  --surface: #FFFFFF;
 
-  --card: #131F35;
-  --card-foreground: #FFFFFF;
+  --card: #FFFFFF;
+  --card-foreground: #0F172A;
 
-  --primary: #F59E0B;
-  --primary-foreground: #080D1A;
+  --primary: #D97706;
+  --primary-foreground: #FFFFFF;
 
-  --secondary: #1A2A47;
+  --secondary: #0E2A47;
   --secondary-foreground: #FFFFFF;
 
-  --muted: #1A2A47;
-  --muted-foreground: #94A3B8;
+  --muted: #F1F5F9;
+  --muted-foreground: #475569;
 
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: #38BDF8;
+  --border: #E2E8F0;
+  --input: #CBD5E1;
+  --ring: #0E2A47;
 }
 
 .dark {
-  --background: #080D1A;
-  --foreground: #FFFFFF;
-  --surface: #0E1726;
-  --card: #131F35;
-  --card-foreground: #FFFFFF;
+  --background: #0B192C;
+  --foreground: #F8FAFC;
+  --surface: #0E2A47;
+  --card: #132B4F;
+  --card-foreground: #F8FAFC;
   --primary: #F59E0B;
-  --primary-foreground: #080D1A;
-  --secondary: #1A2A47;
+  --primary-foreground: #0B192C;
+  --secondary: #1E3E62;
   --secondary-foreground: #FFFFFF;
-  --muted: #1A2A47;
+  --muted: #1E3E62;
   --muted-foreground: #94A3B8;
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.12);
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.16);
   --ring: #38BDF8;
 }
 
@@ -122,12 +122,12 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: 5rem;
   }
 
   body {
-    background-color: #080D1A;
-    color: #FFFFFF;
+    background-color: #F8FAFC;
+    color: #0F172A;
     font-family: var(--font-sans);
     font-weight: 400;
     line-height: 1.6;
@@ -139,7 +139,8 @@
     font-family: var(--font-display);
     font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.15;
+    color: #0F172A;
+    line-height: 1.2;
   }
 
   .font-mono, [data-mono] {
@@ -149,123 +150,117 @@
   }
 }
 
-/* ──────── ELITE INDUSTRIAL UTILITY CLASSES ──────── */
+/* ──────── CLEAN CORPORATE UTILITY CLASSES ──────── */
 
-@utility navy-card {
+/* Clean Corporate White Card (No neon glow, crisp 1px border, subtle shadow) */
+@utility corp-card {
   position: relative;
-  background-color: #131F35;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
   border-radius: var(--radius-sm);
-  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
   &:hover {
-    border-color: rgba(56, 189, 248, 0.35);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    border-color: #CBD5E1;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
   }
 }
 
-@utility navy-glass {
-  background: rgba(14, 23, 38, 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Clean Navy Block */
+@utility navy-block {
+  background-color: #0B192C;
+  color: #FFFFFF;
 }
 
-@utility blueprint-grid {
-  background-image:
-    linear-gradient(to right, rgba(56, 189, 248, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-@utility btn-elite {
+/* Solid Corporate Action Button (Sharp 4px radius, no glow, no gradient) */
+@utility btn-corp-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border-radius: var(--radius-xs);
-  background-color: #F59E0B;
+  border-radius: 4px;
+  background-color: #D97706;
   padding: 0.75rem 1.4rem;
   font-family: var(--font-display);
   font-size: 0.875rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.01em;
-  color: #080D1A;
-  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);
-  transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  color: #FFFFFF;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: background-color 0.15s ease;
   &:hover {
-    background-color: #D97706;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+    background-color: #B45309;
   }
   &:active {
-    transform: translateY(0);
+    transform: translateY(1px);
   }
   &:focus-visible {
-    outline: 2px solid #38BDF8;
+    outline: 2px solid #0E2A47;
     outline-offset: 2px;
   }
 }
 
-@utility btn-navy-outline {
+/* Corporate Secondary Button */
+@utility btn-corp-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border-radius: var(--radius-xs);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background-color: rgba(19, 31, 53, 0.7);
-  backdrop-filter: blur(8px);
+  border-radius: 4px;
+  border: 1px solid #CBD5E1;
+  background-color: #FFFFFF;
+  padding: 0.6875rem 1.35rem;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0E2A47;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+  &:hover {
+    border-color: #0E2A47;
+    background-color: #F1F5F9;
+  }
+  &:focus-visible {
+    outline: 2px solid #0E2A47;
+    outline-offset: 2px;
+  }
+}
+
+/* Corporate Navy Outline Button */
+@utility btn-corp-navy-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.05);
   padding: 0.6875rem 1.35rem;
   font-family: var(--font-display);
   font-size: 0.875rem;
   font-weight: 600;
   color: #FFFFFF;
-  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
   &:hover {
-    border-color: #38BDF8;
-    background-color: #1A2A47;
-    color: #38BDF8;
+    border-color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.12);
   }
   &:focus-visible {
-    outline: 2px solid #38BDF8;
+    outline: 2px solid #D97706;
     outline-offset: 2px;
   }
 }
 
-@utility spec-plate-navy {
-  position: relative;
-  background: linear-gradient(145deg, #131F35 0%, #0E1726 100%);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  border-radius: var(--radius-sm);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 12px 32px rgba(0, 0, 0, 0.4);
-}
-
-@utility eyebrow-navy {
+/* Clean Category Tag */
+@utility tag-corp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 3px;
+  background-color: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  padding: 0.25rem 0.625rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #38BDF8;
-}
-
-/* ──────── SIGNATURE SVG CAD TRUSS LINE DRAWING ──────── */
-@keyframes drawTrussPath {
-  from {
-    stroke-dashoffset: 1400;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.truss-line-animated {
-  stroke-dasharray: 1400;
-  stroke-dashoffset: 0;
-  animation: drawTrussPath 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .truss-line-animated {
-    animation: none;
-  }
+  color: #0E2A47;
 }
