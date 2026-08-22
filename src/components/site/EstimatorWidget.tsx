@@ -63,20 +63,20 @@ export function EstimatorWidget() {
   const estimatedMaxCost = Math.round((area * totalRatePerSqFt * 1.05) / 100000);
 
   return (
-    <div className="arch-card-dark overflow-hidden bg-[#14171A] border border-white/15 shadow-2xl p-6 sm:p-10 text-white">
+    <div className="overflow-hidden bg-[#101B3B] border border-indigo-200/25 shadow-2xl p-6 sm:p-10 text-white rounded-[3px]">
       
       {/* Header */}
-      <div className="border-b border-white/10 pb-6 mb-8">
+      <div className="border-b border-indigo-200/15 pb-6 mb-8">
         <div className="flex items-center gap-3 mb-2">
-          <span className="h-px w-8 bg-[#B08A4A]" />
-          <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
+          <span className="h-px w-8 bg-[#F59E0B]" />
+          <span className="font-mono-tag text-[#F59E0B] text-xs font-bold">
             INTERACTIVE BOQ TOOL
           </span>
         </div>
         <h3 className="font-editorial-title text-2xl sm:text-4xl font-extrabold uppercase">
           Steel Tonnage &amp; Cost Estimator
         </h3>
-        <p className="mt-2 text-xs sm:text-sm text-[#8C9398] font-sans">
+        <p className="mt-2 text-xs sm:text-sm text-[#8E9CB8] font-sans">
           Calculate estimated IS 2062 prime steel tonnage, metric tonnes, and budget range based on covered area and structural scope.
         </p>
       </div>
@@ -97,18 +97,14 @@ export function EstimatorWidget() {
                   key={type.type}
                   type="button"
                   onClick={() => setSelectedType(type.type)}
-                  className={`p-3.5 text-left border transition-all ${
+                  className={`p-3.5 text-left border rounded-[2px] transition-all ${
                     selectedType === type.type
-                      ? "border-[#B08A4A] bg-[#B08A4A] text-[#0B0D0F] shadow-sm font-bold"
-                      : "border-white/15 bg-[#0B0D0F] text-white hover:border-[#B08A4A]"
+                      ? "border-[#F59E0B] bg-[#0A1128] text-white shadow-md"
+                      : "border-indigo-200/20 bg-[#0A1128]/70 text-[#C7D2FE] hover:border-indigo-200/40"
                   }`}
                 >
-                  <span className="font-editorial-title text-xs font-bold uppercase block">
-                    {type.label}
-                  </span>
-                  <span className={`text-[0.6875rem] font-sans block mt-1 line-clamp-2 ${selectedType === type.type ? "text-[#0B0D0F]/80" : "text-[#8C9398]"}`}>
-                    {type.desc}
-                  </span>
+                  <div className="font-editorial-title text-sm font-bold uppercase">{type.label}</div>
+                  <div className="font-mono text-[0.625rem] text-[#F59E0B] mt-1">~{type.kgPerSqFt} kg / sq.ft</div>
                 </button>
               ))}
             </div>
@@ -117,9 +113,11 @@ export function EstimatorWidget() {
           {/* Area Slider */}
           <div>
             <div className="flex items-center justify-between font-mono text-xs mb-2">
-              <span className="font-bold text-white uppercase">2. COVERED AREA (SQ.FT)</span>
-              <span className="font-bold text-[#B08A4A] text-sm tabular-nums">
-                {area.toLocaleString()} SQ.FT
+              <label className="font-bold text-white uppercase">
+                2. ESTIMATED COVERED AREA (SQ FT)
+              </label>
+              <span className="text-[#F59E0B] font-bold text-sm tabular-nums">
+                {area.toLocaleString()} SQ FT
               </span>
             </div>
             <input
@@ -129,106 +127,81 @@ export function EstimatorWidget() {
               step={500}
               value={area}
               onChange={(e) => setArea(Number(e.target.value))}
-              className="w-full accent-[#B08A4A] bg-[#0B0D0F] h-2 rounded-none cursor-pointer"
+              className="w-full accent-[#F59E0B] bg-[#0A1128] h-2 rounded-lg cursor-pointer"
             />
-            <div className="flex justify-between font-mono text-[0.6875rem] text-[#8C9398] mt-1">
-              <span>1,000 sq.ft</span>
-              <span>25,000 sq.ft</span>
-              <span>50,000+ sq.ft</span>
+            <div className="flex justify-between font-mono text-[0.625rem] text-[#8E9CB8] mt-1">
+              <span>1,000 sq ft</span>
+              <span>25,000 sq ft</span>
+              <span>50,000+ sq ft</span>
             </div>
           </div>
 
-          {/* Optional Additions */}
-          <div>
-            <label className="block font-mono text-xs font-bold text-white uppercase mb-2">
-              3. STRUCTURAL ADDITIONS
+          {/* Structural Add-ons */}
+          <div className="space-y-3 pt-2">
+            <label className="block font-mono text-xs font-bold text-white uppercase">
+              3. ADDITIONAL STRUCTURAL PROVISIONS
             </label>
-            <div className="space-y-2 font-mono text-xs">
-              <label className="flex items-center gap-3 p-3 border border-white/15 bg-[#0B0D0F] cursor-pointer">
+            <div className="flex flex-col sm:flex-row gap-3 font-mono text-xs">
+              <label className="flex items-center gap-2.5 p-3 bg-[#0A1128] border border-indigo-200/20 rounded-[2px] cursor-pointer flex-1">
                 <input
                   type="checkbox"
                   checked={craneGantry}
                   onChange={(e) => setCraneGantry(e.target.checked)}
-                  className="size-4 accent-[#B08A4A]"
+                  className="accent-[#F59E0B] size-4"
                 />
-                <div>
-                  <span className="font-bold text-white block">Include Heavy Crane Gantry Girder Columns (+20% Steel)</span>
-                  <span className="text-[0.6875rem] text-[#8C9398]">Engineered to support 5T to 20T overhead electric traveling (EOT) cranes</span>
-                </div>
+                <span>Include Overhead EOT Crane Gantry</span>
               </label>
-
-              <label className="flex items-center gap-3 p-3 border border-white/15 bg-[#0B0D0F] cursor-pointer">
+              <label className="flex items-center gap-2.5 p-3 bg-[#0A1128] border border-indigo-200/20 rounded-[2px] cursor-pointer flex-1">
                 <input
                   type="checkbox"
                   checked={pufInsulation}
                   onChange={(e) => setPufInsulation(e.target.checked)}
-                  className="size-4 accent-[#B08A4A]"
+                  className="accent-[#F59E0B] size-4"
                 />
-                <div>
-                  <span className="font-bold text-white block">Include PUF / PIR Thermal Insulation Sandwich Panels</span>
-                  <span className="text-[0.6875rem] text-[#8C9398]">For cold storages and temperature-sensitive manufacturing bays</span>
-                </div>
+                <span>Include PUF Insulation Panels</span>
               </label>
             </div>
           </div>
 
         </div>
 
-        {/* Right Column: BOQ Calculation Card (5 cols) */}
-        <div className="lg:col-span-5 arch-card-dark p-6 sm:p-8 bg-[#0B0D0F] text-white border border-white/15 space-y-6">
-          
-          <div>
-            <span className="font-mono text-[0.6875rem] text-[#B08A4A] font-bold uppercase tracking-widest block mb-1">
-              ESTIMATED STRUCTURAL LEDGER
-            </span>
-            <h4 className="font-editorial-title text-xl font-bold uppercase text-white">
-              Preliminary BOQ Output
-            </h4>
-          </div>
+        {/* Right Column: Dynamic Estimates Result Card (5 cols) */}
+        <div className="lg:col-span-5 bg-[#0A1128] border border-indigo-200/20 p-6 sm:p-8 rounded-[3px] shadow-2xl">
+          <span className="font-mono text-xs font-bold text-[#F59E0B] uppercase tracking-wider block mb-4 border-b border-indigo-200/15 pb-2">
+            ESTIMATED PROJECT METRICS
+          </span>
 
-          <div className="border-t border-b border-white/10 py-4 space-y-3 font-mono text-xs">
-            <div className="flex items-center justify-between text-[#8C9398]">
-              <span>Covered Ground Footprint:</span>
-              <strong className="text-white tabular-nums">{area.toLocaleString()} sq.ft</strong>
+          <div className="space-y-4 font-mono text-xs">
+            <div>
+              <span className="text-[#8E9CB8] block text-[0.6875rem]">APPROX. STEEL WEIGHT</span>
+              <div className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white">
+                <span className="text-[#F59E0B]">{totalTonnage}</span> <span className="text-base text-[#8E9CB8]">METRIC TONNES</span>
+              </div>
             </div>
 
-            <div className="flex items-center justify-between text-[#8C9398]">
-              <span>Estimated Prime Steel:</span>
-              <strong className="text-[#B08A4A] text-sm tabular-nums">~{totalTonnage} MT (Tonnes)</strong>
-            </div>
-
-            <div className="flex items-center justify-between text-[#8C9398]">
-              <span>Avg Turnkey Rate:</span>
-              <strong className="text-white tabular-nums">₹{totalRatePerSqFt} / sq.ft</strong>
+            <div className="pt-3 border-t border-indigo-200/15">
+              <span className="text-[#8E9CB8] block text-[0.6875rem]">APPROX. TURNKEY COST</span>
+              <div className="font-editorial-title text-2xl sm:text-3xl font-extrabold text-white">
+                ₹{estimatedMinCost} - ₹{estimatedMaxCost} <span className="text-base text-[#8E9CB8]">LAKHS</span>
+              </div>
+              <p className="text-[0.6875rem] text-[#8E9CB8] font-sans mt-1">
+                Includes IS 2062 prime steel, welding, red oxide priming, and turnkey mobile crane erection.
+              </p>
             </div>
           </div>
 
-          <div>
-            <span className="font-mono text-[0.6875rem] text-[#8C9398] uppercase block mb-1">
-              ESTIMATED PROJECT BUDGET RANGE:
-            </span>
-            <div className="font-editorial-title text-2xl sm:text-3xl font-extrabold text-white">
-              ₹{estimatedMinCost} Lakh - ₹{estimatedMaxCost} Lakh
-            </div>
-            <p className="mt-1 text-[0.6875rem] text-[#8C9398] font-mono">
-              *Includes IS 2062 steel, welding, red oxide primer &amp; crane erection. Final rate subject to site elevation survey.
-            </p>
-          </div>
-
-          <div className="pt-2">
+          <div className="mt-8 pt-6 border-t border-indigo-200/15">
             <Link
               to="/quote"
-              className="btn-arch-primary w-full text-center justify-center py-3.5"
+              className="btn-red-primary text-xs w-full flex items-center justify-center gap-2"
             >
-              <span>Get Itemized Written BOQ</span>
-              <ArrowRight className="size-4" />
+              <span>LOCK YARD ESTIMATE FOR THIS SPEC</span>
+              <ArrowRight className="size-3.5" />
             </Link>
           </div>
-
         </div>
 
       </div>
-
     </div>
   );
 }

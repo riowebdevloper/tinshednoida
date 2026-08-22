@@ -6,7 +6,7 @@ import { MobileCta } from "./MobileCta";
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#0B0D0F] text-white selection:bg-[#B08A4A] selection:text-[#0B0D0F] flex flex-col justify-between">
+    <div className="min-h-screen bg-[#0A1128] text-white selection:bg-[#F59E0B] selection:text-[#0A1128] flex flex-col justify-between">
       <div>
         <SiteHeader />
         <main id="main-content" className="pb-16 sm:pb-0">
@@ -30,18 +30,18 @@ export function PageHero({
   description: string;
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-[#0B0D0F] px-4 pb-16 pt-28 text-white sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 border-b border-white/10 arch-grid-pattern">
+    <section className="relative isolate overflow-hidden bg-[#0A1128] px-4 pb-16 pt-28 text-white sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 border-b border-indigo-200/15 arch-grid-pattern">
       <div className="relative mx-auto max-w-7xl">
         <div className="flex items-center gap-3 mb-4">
-          <span className="h-px w-8 bg-[#B08A4A]" />
-          <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
+          <span className="h-px w-8 bg-[#F59E0B]" />
+          <span className="font-mono-tag text-[#F59E0B] text-xs font-bold">
             {eyebrow}
           </span>
         </div>
         <h1 className="max-w-4xl font-editorial-title text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white uppercase leading-[1.06]">
           {title}
         </h1>
-        <p className="mt-4 max-w-2xl text-sm sm:text-base lg:text-lg leading-relaxed text-[#8C9398] font-sans">
+        <p className="mt-4 max-w-2xl text-sm sm:text-base lg:text-lg leading-relaxed text-[#C7D2FE] font-sans">
           {description}
         </p>
       </div>

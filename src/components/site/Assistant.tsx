@@ -98,90 +98,43 @@ function generateAIResponse(
       text: `Structural steel fabrication rates depend on clear-span width and crane requirements:\n\n• Industrial Factory Shed: ₹280 - ₹380 / sq.ft (Turnkey)\n• Warehouse / Godown: ₹240 - ₹340 / sq.ft\n• Heavy MS Framework: Custom / MT fabrication rate\n• 0.50mm Galvalume / PUF Roofing: ₹140 - ₹220 / sq.ft\n\nAll rates include IS 2062 prime steel, dual-coat red oxide primer, and crane erection.`,
       newContext: nextContext,
       actions: [
-        { label: "Request Written BOQ", action: "quote" },
-        { label: "Call Yard: +91 85279 77714", action: "call" },
+        { label: "Calculate Exact BOQ", action: "quote" },
+        { label: "Speak with Lead Estimator", action: "call" },
       ],
     };
   }
 
-  // Clear Span & Technical Capabilities
-  if (text.includes("span") || text.includes("120") || text.includes("crane") || text.includes("height") || text.includes("pillar")) {
+  // Clear Span & Engineering Capabilities
+  if (text.includes("span") || text.includes("column") || text.includes("truss") || text.includes("height") || text.includes("clear span")) {
     return {
-      text: `Tin Shade Noida fabricates column-free modular trusses up to 120 Feet Clear Span:\n\n• Warren & Pratt Tubular Pipe Trusses\n• Heavy EOT Crane Gantry Columns (up to 40T)\n• Clear Eaves Height: 15ft to 36ft+\n• Weld Compliance: IS 816 Metal Arc Welding\n• Design Code: IS 800:2007`,
+      text: `Our Noida engineering shop designs and fabricates portal truss frames with column-free clear spans up to 120 FT (approx 36.5 meters) engineered to IS 800:2007 structural standards.\n\nWe provide 3D Tekla connection modeling, moment-resistant baseplate anchor design, and overhead EOT crane gantry calculations up to 25 Tonnes.`,
       newContext: nextContext,
       actions: [
-        { label: "View Executed Projects", action: "projects" },
-        { label: "Download Work Catalog", action: "brochure" },
+        { label: "View Clear-Span Projects", action: "projects" },
+        { label: "Calculate Shed Quote", action: "quote" },
       ],
     };
   }
 
-  // Repair / Renovation
-  if (text.includes("repair") || text.includes("leak") || text.includes("rust") || text.includes("renovat") || text.includes("purana") || text.includes("damage")) {
+  // Catalog / PDF
+  if (text.includes("catalog") || text.includes("brochure") || text.includes("pdf") || text.includes("book") || text.includes("portfolio")) {
     return {
-      text: `Industrial Shed Repair & Renovation Services:\n\n• Monsoon roof leak proofing & fastener replacement\n• Corroded GI sheet replacement with 0.50mm Galvalume\n• Sagging truss gusset reinforcement & column strengthening\n• Heavy-gauge gutter replacement (1.2mm - 1.6mm GI)\n\nWe execute repair work in phased sections with zero disruption to your factory operations.`,
-      newContext: nextContext,
-      actions: [
-        { label: "Request Repair Inspection", action: "quote" },
-        { label: "WhatsApp Yard Desk", action: "whatsapp" },
-      ],
-    };
-  }
-
-  // PEB Pre-Engineered Buildings
-  if (text.includes("peb") || text.includes("pre-engineered") || text.includes("portal frame")) {
-    return {
-      text: `Pre-Engineered Building (PEB) Solutions:\n\n• Tapered built-up I-sections (High-tensile 345 MPa steel)\n• Cold-formed galvanized Z & C purlins (275 GSM zinc)\n• Up to 40% faster on-site bolted assembly\n• Clear spans up to 120ft without center pillars`,
-      newContext: nextContext,
-      actions: [
-        { label: "PEB Technical Details", action: "projects" },
-        { label: "Request PEB Quote", action: "quote" },
-      ],
-    };
-  }
-
-  // Site Survey / Inspection
-  if (text.includes("visit") || text.includes("survey") || text.includes("inspect") || text.includes("noida") || text.includes("location") || text.includes("dekhna")) {
-    return {
-      text: `Senior Engineer Site Inspection:\n\nWe provide free physical site surveys across Noida, Greater Noida, Ghaziabad, Faridabad, Gurgaon, and Delhi NCR.\n\nOur engineers measure plot elevation, verify 40-tonne crane access routes, and provide digital CAD layout drawings within 24 hours.`,
-      newContext: nextContext,
-      actions: [
-        { label: "Schedule Free Survey", action: "quote" },
-        { label: "WhatsApp Yard Desk", action: "whatsapp" },
-      ],
-    };
-  }
-
-  // Working Hours & Yard Address
-  if (text.includes("hour") || text.includes("time") || text.includes("address") || text.includes("kahan") || text.includes("location") || text.includes("office")) {
-    return {
-      text: `Tin Shade Noida Yard Details:\n\n📍 Workshop & Yard: D179 Sector 10, Noida, Uttar Pradesh 201301\n🕒 Operational Hours: Monday - Saturday (8:00 AM - 8:00 PM), Sunday by appointment\n📞 Direct Hotline: +91 85279 77714\n\nYou are welcome to visit our yard to inspect raw IS 2062 steel stocks and watch ongoing arc welding in person.`,
-      newContext: nextContext,
-      actions: [
-        { label: "Call +91 85279 77714", action: "call" },
-        { label: "WhatsApp Direct", action: "whatsapp" },
-      ],
-    };
-  }
-
-  // Brochure / Catalog
-  if (text.includes("catalog") || text.includes("brochure") || text.includes("pdf") || text.includes("download") || text.includes("file")) {
-    return {
-      text: `You can download our official 51-Page Structural Work Catalog (PDF, 4.5 MB):\n\n• 500+ Project Case Studies\n• Truss Chord Weight Schedules\n• IS 2062 Mill Test Certificate Criteria\n• Crane Gantry Foundation Anchoring Details`,
+      text: `You can explore our complete 51-Page Work Catalog right here on the website with high-resolution drawings, project photography, and engineering certifications, or download the full PDF submittal document.`,
       newContext: nextContext,
       actions: [
         { label: "Download 51-Page PDF", action: "brochure" },
+        { label: "Browse Catalog Online", action: "projects" },
       ],
     };
   }
 
-  // Default Consultation Response
+  // Default Grounded Response
   return {
-    text: `Hello! This is the Engineering Desk at Tin Shade Noida (Fabrication Yard: D179 Sector 10, Noida).\n\nHow can we assist you with your industrial shed, warehouse, MS framing, or roofing project today?`,
+    text: `Namaste! I am the Tin Shade Noida Engineering Desk Assistant.\n\nWe fabricate industrial factory sheds, logistics warehouses, PEB structures, and heavy MS frameworks at our Noida Sector 10 yard with turnkey hydraulic crane erection across India.\n\nHow can I help you today? You can ask about square foot pricing, steel tonnage, clear span capabilities, or request a free site visit.`,
     newContext: nextContext,
     actions: [
-      { label: "Get Itemized Quote", action: "quote" },
-      { label: "Call +91 85279 77714", action: "call" },
+      { label: "Calculate Instant BOQ", action: "quote" },
+      { label: "Call Yard: +91 85279 77714", action: "call" },
       { label: "WhatsApp Direct", action: "whatsapp" },
     ],
   };
@@ -191,61 +144,58 @@ export function Assistant() {
   const [open, setOpen] = useState(false);
   const [minimized, setMinimized] = useState(false);
   const [input, setInput] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
   const [context, setContext] = useState<ConversationContext>({});
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: "welcome",
+      id: "w-init",
       role: "assistant",
-      text: "Welcome to Tin Shade Noida Engineering Desk.\n\nAsk about steel tonnage calculations, square foot rates, 120ft clear-span trusses, or schedule a free site survey.",
+      text: "Namaste! Welcome to Tin Shade Noida.\n\nI can calculate your steel tonnage, estimate square foot costs, check crane mobilization timelines, or schedule a free site survey in Noida / Pan India.",
       timestamp: "Just now",
       actions: [
         { label: "Estimate Steel Tonnage", action: "quote" },
-        { label: "Schedule Site Survey", action: "whatsapp" },
-        { label: "51-Page Catalog PDF", action: "brochure" },
+        { label: "Schedule Free Survey", action: "whatsapp" },
+        { label: "Call Yard Desk", action: "call" },
       ],
     },
   ]);
 
-  const chatEndRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (open && !minimized) {
-      chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [messages, isTyping, open, minimized]);
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const handleSend = (textToSend?: string) => {
-    const query = (textToSend || input).trim();
-    if (!query) return;
+    const query = textToSend || input;
+    if (!query.trim()) return;
 
-    const userMsg: Message = {
+    const userMessage: Message = {
       id: `u-${Date.now()}`,
       role: "user",
-      text: query,
-      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      text: query.trim(),
+      timestamp: "Just now",
     };
 
-    setMessages((prev) => [...prev, userMsg]);
-    setInput("");
-    setIsTyping(true);
+    setMessages((prev) => [...prev, userMessage]);
+    if (!textToSend) setInput("");
 
     setTimeout(() => {
-      const resp = generateAIResponse(query, context);
-      setContext(resp.newContext);
-      const assistantMsg: Message = {
+      const response = generateAIResponse(query, context);
+      setContext(response.newContext);
+
+      const aiMessage: Message = {
         id: `a-${Date.now()}`,
         role: "assistant",
-        text: resp.text,
-        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-        actions: resp.actions,
+        text: response.text,
+        timestamp: "Just now",
+        actions: response.actions,
       };
-      setMessages((prev) => [...prev, assistantMsg]);
-      setIsTyping(false);
-    }, 450);
+
+      setMessages((prev) => [...prev, aiMessage]);
+    }, 350);
   };
 
-  const executeAction = (action: MessageAction) => {
+  const handleActionClick = (action: MessageAction) => {
     if (action.action === "quote") {
       if (action.need) {
         triggerQuoteForNeed(action.need);
@@ -286,7 +236,7 @@ export function Assistant() {
 
   return (
     <>
-      {/* Clean Architectural Floating Consultation Launcher */}
+      {/* Floating Consultation Launcher in Navy & Safety Yellow */}
       <button
         type="button"
         onClick={() => {
@@ -294,11 +244,11 @@ export function Assistant() {
           setMinimized(false);
         }}
         aria-label="Open Engineering Consultation Desk"
-        className={`fixed bottom-20 right-4 z-40 sm:bottom-6 sm:right-6 items-center gap-2 border border-white/20 bg-[#14171A] hover:bg-[#0B0D0F] px-4 py-3 text-white shadow-2xl transition-all active:scale-98 ${
+        className={`fixed bottom-20 right-4 z-40 sm:bottom-6 sm:right-6 items-center gap-2.5 border border-indigo-200/30 bg-[#101B3B] hover:bg-[#162650] px-4 py-3 text-white shadow-2xl transition-all active:scale-98 rounded-[3px] ${
           open && !minimized ? "hidden" : "flex"
         }`}
       >
-        <span className="size-2 rounded-full bg-[#B08A4A] animate-pulse" />
+        <span className="size-2.5 rounded-full bg-[#F59E0B] animate-pulse" />
         <span className="font-editorial-title text-xs font-bold text-white uppercase tracking-wider">
           TIN SHADE ASSISTANT
         </span>
@@ -306,23 +256,23 @@ export function Assistant() {
 
       {/* Consultation Box */}
       {open && !minimized && (
-        <div className="fixed bottom-4 right-4 z-50 flex max-h-[85vh] h-[520px] w-[min(26rem,calc(100vw-2rem))] flex-col overflow-hidden border border-white/20 bg-[#0B0D0F] text-white shadow-2xl animate-in slide-in-from-bottom-3 duration-200">
+        <div className="fixed bottom-4 right-4 z-50 flex max-h-[85vh] h-[540px] w-[min(26rem,calc(100vw-2rem))] flex-col overflow-hidden border border-indigo-200/30 bg-[#0A1128] text-white shadow-2xl rounded-[3px] animate-in slide-in-from-bottom-3 duration-200">
           
-          {/* Header */}
-          <div className="flex items-center justify-between border-b border-white/10 bg-[#14171A] px-4 py-3 text-white">
+          {/* Header in Navy Surface */}
+          <div className="flex items-center justify-between border-b border-indigo-200/20 bg-[#101B3B] px-4 py-3 text-white">
             <div className="flex items-center gap-2.5">
-              <span className="size-2 rounded-full bg-[#B08A4A]" />
+              <span className="size-2.5 rounded-full bg-[#F59E0B]" />
               <div>
                 <h3 className="font-editorial-title text-sm font-bold tracking-tight text-white uppercase">
                   Tin Shade Assistant
                 </h3>
-                <p className="text-[0.625rem] text-[#8C9398] font-mono">
+                <p className="text-[0.625rem] text-[#8E9CB8] font-mono">
                   D179 Sector 10, Noida · Active Yard Desk
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-1 text-[#8C9398]">
+            <div className="flex items-center gap-1 text-[#8E9CB8]">
               <button
                 type="button"
                 onClick={handleClearChat}
@@ -345,92 +295,81 @@ export function Assistant() {
           </div>
 
           {/* Messages Body */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3.5 text-xs sm:text-sm bg-[#0B0D0F]">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3.5 text-xs sm:text-sm bg-[#0A1128]">
             {messages.map((msg) => (
               <div
                 key={msg.id}
                 className={`flex gap-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-[88%] p-3.5 leading-relaxed whitespace-pre-line text-xs ${
+                  className={`max-w-[88%] p-3.5 leading-relaxed whitespace-pre-line text-xs rounded-[2px] ${
                     msg.role === "user"
-                      ? "bg-[#B08A4A] text-[#0B0D0F] font-bold shadow-sm"
-                      : "border border-white/10 bg-[#14171A] text-[#C8CCD0]"
+                      ? "bg-[#F59E0B] text-[#0A1128] font-bold shadow-md"
+                      : "border border-indigo-200/20 bg-[#101B3B] text-[#C7D2FE]"
                   }`}
                 >
-                  {msg.text}
+                  <p>{msg.text}</p>
 
-                  {/* Contextual Actions */}
+                  {/* Actions Chips */}
                   {msg.actions && msg.actions.length > 0 && (
-                    <div className="mt-3 flex flex-wrap gap-1.5 pt-2.5 border-t border-white/10">
-                      {msg.actions.map((act, idx) => (
+                    <div className="mt-3 pt-2.5 border-t border-indigo-200/15 flex flex-wrap gap-1.5">
+                      {msg.actions.map((act, aIdx) => (
                         <button
-                          key={idx}
+                          key={aIdx}
                           type="button"
-                          onClick={() => executeAction(act)}
-                          className="inline-flex items-center gap-1 border border-white/15 bg-white/5 hover:bg-white/15 px-2.5 py-1 font-mono text-[0.6875rem] font-bold uppercase tracking-wider text-white transition-colors"
+                          onClick={() => handleActionClick(act)}
+                          className="bg-[#0A1128] hover:bg-[#1E3A8A] text-white border border-indigo-200/25 px-2.5 py-1 text-[0.6875rem] font-mono font-bold transition-colors flex items-center gap-1 rounded-[2px]"
                         >
                           <span>{act.label}</span>
-                          <ArrowRight className="size-2.5" />
+                          <ArrowRight className="size-2.5 text-[#F59E0B]" />
                         </button>
                       ))}
                     </div>
                   )}
-
-                  <span className="mt-1.5 block text-[0.625rem] text-[#8C9398] text-right font-mono">
-                    {msg.timestamp}
-                  </span>
                 </div>
               </div>
             ))}
-
-            {isTyping && (
-              <div className="flex items-center gap-2 text-xs text-[#8C9398] italic py-1 font-mono">
-                <span className="size-2 rounded-full bg-[#B08A4A] animate-pulse" />
-                Calculating engineering specifications…
-              </div>
-            )}
-            <div ref={chatEndRef} />
+            <div ref={messagesEndRef} />
           </div>
 
-          {/* Quick Suggestions */}
-          <div className="no-scrollbar flex gap-1.5 overflow-x-auto border-t border-white/10 bg-[#14171A] px-3 py-2">
-            {defaultSuggestions.map((sug) => (
+          {/* Suggestions Bar */}
+          <div className="border-t border-indigo-200/15 bg-[#101B3B]/70 px-3 py-2 overflow-x-auto flex gap-1.5 scrollbar-none">
+            {defaultSuggestions.slice(0, 3).map((sugg, sIdx) => (
               <button
-                key={sug}
+                key={sIdx}
                 type="button"
-                onClick={() => handleSend(sug)}
-                className="shrink-0 border border-white/15 bg-[#0B0D0F] px-2.5 py-1 text-[0.6875rem] font-mono text-[#8C9398] hover:border-[#B08A4A] hover:text-white transition-all"
+                onClick={() => handleSend(sugg)}
+                className="whitespace-nowrap px-2.5 py-1 bg-[#0A1128] hover:bg-[#1E3A8A] text-[0.625rem] font-mono text-[#C7D2FE] border border-indigo-200/20 rounded-[2px] transition-colors"
               >
-                {sug}
+                {sugg}
               </button>
             ))}
           </div>
 
-          {/* Input Form */}
+          {/* Input Box */}
           <form
             onSubmit={(e) => {
               e.preventDefault();
               handleSend();
             }}
-            className="flex items-center gap-2 border-t border-white/10 bg-[#14171A] p-2.5"
+            className="border-t border-indigo-200/20 bg-[#101B3B] p-2.5 flex items-center gap-2"
           >
             <input
-              type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about rates, tonnages, spans, site visits…"
-              className="min-w-0 flex-1 border border-white/15 bg-[#0B0D0F] px-3 py-2 text-xs text-white placeholder:text-[#8C9398] outline-none focus:border-[#B08A4A] font-sans"
+              placeholder="Ask about shed pricing, steel weight, clear span..."
+              className="flex-1 border border-indigo-200/20 bg-[#0A1128] px-3 py-2 text-xs text-white outline-none focus:border-[#F59E0B] font-sans rounded-[2px]"
             />
             <button
               type="submit"
               disabled={!input.trim()}
+              className="btn-red-primary text-xs py-2 px-3 disabled:opacity-40"
               aria-label="Send message"
-              className="flex size-8 shrink-0 items-center justify-center bg-[#B08A4A] hover:bg-[#C59D5B] text-[#0B0D0F] disabled:opacity-40 transition-colors font-bold"
             >
               <Send className="size-3.5" />
             </button>
           </form>
+
         </div>
       )}
     </>

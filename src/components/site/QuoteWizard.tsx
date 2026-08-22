@@ -68,44 +68,80 @@ export function triggerQuoteForNeed(needOption: string) {
 export function QuoteWizard() {
   const send = useServerFn(submitLead);
   const [stepIndex, setStepIndex] = useState(0);
-  const [answers, setAnswers] = useState<Partial<Answers>>({});
-  const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [validationError, setValidationError] = useState<string | null>(null);
-  const [whatsappRedirectUrl, setWhatsappRedirectUrl] = useState<string | null>(null);
+  const [answers, setAnswers] = useState<Answers>({
+    need: "",
+    size: "",
+    place: "",
+    timeline: "",
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
 
   useEffect(() => {
-    const handlePreselect = (e: CustomEvent<{ need: string }>) => {
-      if (e.detail?.need) {
-        setAnswers((prev) => ({ ...prev, need: e.detail.need }));
+    function handleNeedSelection(e: Event) {
+      const customEvent = e as CustomEvent<{ need: string }>;
+      if (customEvent.detail?.need) {
+        setAnswers((prev) => ({ ...prev, need: customEvent.detail.need }));
         setStepIndex(1);
       }
-    };
-
-    window.addEventListener("tsn-select-quote-need" as any, handlePreselect);
-    return () => window.removeEventListener("tsn-select-quote-need" as any, handlePreselect);
+    }
+    window.addEventListener("tsn-select-quote-need", handleNeedSelection);
+    return () => window.removeEventListener("tsn-select-quote-need", handleNeedSelection);
   }, []);
 
-  const total = steps.length + 1; // 5 steps total
+  const totalSteps = steps.length + 1; // 4 questions + 1 contact form
+  const isQuestionStep = stepIndex < steps.length;
   const isDetails = stepIndex === steps.length;
-  const progress = Math.round(((stepIndex + (isDetails ? 1 : 0)) / total) * 100);
+  const currentStep = isQuestionStep ? steps[stepIndex] : null;
 
-  function choose(key: keyof Answers, value: string) {
-    setAnswers((prev) => ({ ...prev, [key]: value }));
-    setStepIndex((i) => Math.min(i + 1, steps.length));
+  function selectOption(key: (typeof steps)[number]["key"], val: string) {
+    setAnswers((prev) => ({ ...prev, [key]: val }));
+    setStepIndex((prev) => prev + 1);
   }
 
-  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  function goBack() {
+    if (stepIndex > 0) {
+      setStepIndex((prev) => prev - 1);
+    }
+  }
+
+  function resetForm() {
+    setAnswers({
+      need: "",
+      size: "",
+      place: "",
+      timeline: "",
+      name: "",
+      phone: "",
+      email: "",
+      message: "",
+    });
+    setStepIndex(0);
+    setStatus("idle");
+    setValidationError(null);
+  }
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     setValidationError(null);
 
-    const form = new FormData(event.currentTarget);
-    const name = String(form.get("name") ?? "").trim();
-    const phone = String(form.get("phone") ?? "").trim();
-    const email = String(form.get("email") ?? "").trim();
-    const message = String(form.get("message") ?? "").trim();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const name = String(data.get("name") ?? "").trim();
+    const phone = String(data.get("phone") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const message = String(data.get("message") ?? "").trim();
+    const botField = String(data.get("company_url") ?? "").trim();
+
+    if (botField) return;
 
     if (!name || name.length < 2) {
-      setValidationError("Please enter your full name (at least 2 characters).");
+      setValidationError("Please enter your full name.");
       return;
     }
 
@@ -114,26 +150,34 @@ export function QuoteWizard() {
       return;
     }
 
-    setStatus("sending");
+    setStatus("submitting");
+
+    const fullMessage = [
+      answers.need && `Requirement: ${answers.need}`,
+      answers.size && `Size: ${answers.size}`,
+      answers.place && `Location: ${answers.place}`,
+      answers.timeline && `Timeline: ${answers.timeline}`,
+      message && `Notes: ${message}`,
+    ]
+      .filter(Boolean)
+      .join(" | ");
+
     try {
       const res = await send({
         data: {
           name,
           phone,
-          email: email || undefined,
-          location: answers.place ?? "Pan India",
-          requirementType: answers.need ?? "Industrial Shed",
-          size: answers.size ?? "-",
-          timeline: answers.timeline ?? "-",
-          message: `Need: ${answers.need ?? "-"} | Size: ${answers.size ?? "-"} | Timeline: ${answers.timeline ?? "-"} | Project Details: ${message || "Standard inquiry"}`,
+          location: answers.place || "Not specified",
+          requirementType: answers.need || "General Quote",
+          message: fullMessage,
           source: "quote-wizard",
-          company: String(form.get("company") ?? ""),
+          email,
         },
       });
 
-      setStatus("done");
+      setStatus("success");
       if (res?.whatsappUrl) {
-        setWhatsappRedirectUrl(res.whatsappUrl);
+        window.open(res.whatsappUrl, "_blank");
       }
     } catch {
       setStatus("error");
@@ -141,244 +185,248 @@ export function QuoteWizard() {
   }
 
   return (
-    <section id="quote" className="bg-[#0B0D0F] text-white py-24 sm:py-36 border-b border-white/10">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="border-b border-white/10 pb-8 mb-10">
-          <div className="flex items-center gap-3 mb-3">
-            <span className="h-px w-8 bg-[#B08A4A]" />
-            <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
-              ITEMIZED BOQ ESTIMATION
-            </span>
-          </div>
-          <h2 className="font-editorial-title text-3xl sm:text-5xl font-extrabold text-white tracking-tight uppercase leading-[1.06]">
-            REQUEST A FORMAL QUOTATION.
-          </h2>
-          <p className="mt-2 text-sm sm:text-base text-[#8C9398] font-sans">
-            Select your parameters below to receive an itemized structural BOQ and schedule a free senior engineer site survey.
-          </p>
+    <div
+      id="quote"
+      className="bg-[#101B3B] border border-indigo-200/25 p-6 sm:p-10 rounded-[3px] shadow-2xl text-white relative overflow-hidden"
+    >
+      {/* Background Accent */}
+      <div className="absolute top-0 right-0 size-72 bg-[#1E3A8A]/15 blur-3xl pointer-events-none" />
+
+      {/* ──────── TOP PROGRESS BAR IN SAFETY YELLOW ──────── */}
+      <div className="mb-8 border-b border-indigo-200/15 pb-6">
+        <div className="flex items-center justify-between font-mono text-xs text-[#8E9CB8] mb-3">
+          <span className="font-bold text-[#F59E0B] tracking-wider uppercase">
+            {status === "success" ? "BOQ DISPATCHED" : `STEP 0${stepIndex + 1} OF 0${totalSteps}`}
+          </span>
+          <span className="text-[#C7D2FE]">
+            {status === "success" ? "100%" : `${Math.round(((stepIndex + 1) / totalSteps) * 100)}% COMPLETED`}
+          </span>
         </div>
 
-        {/* Wizard Box */}
-        <div className="arch-card-dark overflow-hidden bg-[#14171A] border border-white/15 shadow-2xl">
-          {/* Progress Bar */}
-          <div className="h-1.5 w-full bg-[#1C2024]">
-            <div
-              className="h-full bg-[#B08A4A] transition-all duration-300"
-              style={{ width: `${status === "done" ? 100 : progress}%` }}
-            />
+        {/* Progress Track */}
+        <div className="h-1.5 w-full bg-[#0A1128] overflow-hidden rounded-[1px]">
+          <div
+            className="h-full bg-[#F59E0B] transition-all duration-500 ease-out"
+            style={{
+              width: status === "success" ? "100%" : `${((stepIndex + 1) / totalSteps) * 100}%`,
+            }}
+          />
+        </div>
+      </div>
+
+      {/* ──────── STEP CONTENT ──────── */}
+      {status === "success" ? (
+        /* SUCCESS CONFIRMATION */
+        <div className="py-10 text-center space-y-6">
+          <div className="size-16 rounded-full bg-[#25D366]/20 border border-[#25D366]/40 flex items-center justify-center mx-auto text-[#25D366]">
+            <CheckCircle2 className="size-8" />
           </div>
 
-          <div className="p-6 sm:p-10">
-            {status === "done" ? (
-              <div className="flex flex-col items-center gap-4 py-10 text-center">
-                <div className="size-16 rounded-full bg-emerald-950/30 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
-                  <CheckCircle2 className="size-10" />
-                </div>
-                <div className="space-y-2 max-w-md">
-                  <h3 className="font-editorial-title text-2xl font-extrabold text-white uppercase">
-                    Thank you. Your enquiry has been received.
-                  </h3>
-                  <p className="text-sm text-[#8C9398] font-sans">
-                    Our team will contact you shortly to review your specifications and schedule a site survey.
-                  </p>
-                </div>
+          <div className="space-y-2">
+            <h3 className="font-editorial-title text-2xl sm:text-4xl font-extrabold text-white uppercase">
+              Specification Received
+            </h3>
+            <p className="text-sm text-[#C7D2FE] font-sans max-w-md mx-auto">
+              Our master engineering desk in Noida Sector 10 is reviewing your requirements. We will connect with initial steel tonnage and timeline within 2 hours.
+            </p>
+          </div>
 
-                {whatsappRedirectUrl && (
-                  <div className="mt-4 pt-4 border-t border-white/10 w-full max-w-sm">
-                    <a
-                      href={whatsappRedirectUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 bg-[#16A34A] hover:bg-[#15803D] px-5 py-3 font-display text-xs font-bold text-white uppercase tracking-wider transition-colors shadow-sm"
-                    >
-                      <MessageCircle className="size-4" />
-                      <span>Also Open in WhatsApp</span>
-                    </a>
-                  </div>
-                )}
+          <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
+            <button
+              type="button"
+              onClick={resetForm}
+              className="btn-navy-outline text-xs"
+            >
+              <span>CALCULATE ANOTHER ESTIMATE</span>
+            </button>
+            <a
+              href="tel:+918527977714"
+              className="btn-red-primary text-xs"
+            >
+              <span>SPEAK DIRECTLY: +91 85279 77714</span>
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div>
+          {isQuestionStep && currentStep ? (
+            /* QUESTIONS STEP (1 to 4) */
+            <div className="space-y-6">
+              <div>
+                <span className="font-mono text-xs font-bold text-[#F59E0B] uppercase">
+                  {currentStep.label}
+                </span>
+                <h3 className="font-editorial-title text-2xl sm:text-3xl font-extrabold text-white uppercase mt-1">
+                  {currentStep.desc}
+                </h3>
               </div>
-            ) : isDetails ? (
-              /* STEP 5: CONTACT DETAILS */
-              <form onSubmit={onSubmit} className="space-y-5 font-mono text-xs">
-                
-                {/* Active Parameters Pills */}
-                <div className="flex flex-wrap gap-1.5 border-b border-white/10 pb-4">
-                  {steps.map((step) => {
-                    const value = answers[step.key];
-                    return value ? (
-                      <span
-                        key={step.key}
-                        className="bg-[#1C2024] px-3 py-1 text-xs font-bold text-white border border-white/15"
-                      >
-                        {value}
-                      </span>
-                    ) : null;
-                  })}
-                </div>
 
-                <div className="pt-2">
-                  <span className="font-mono text-xs font-bold text-[#B08A4A] uppercase">
-                    STEP 5: CONTACT DETAILS
-                  </span>
-                  <h3 className="font-editorial-title text-xl sm:text-2xl font-extrabold text-white uppercase mt-1">
-                    Where should we dispatch your quotation?
-                  </h3>
-                </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                {currentStep.options.map((opt) => {
+                  const isSelected = answers[currentStep.key] === opt;
+                  return (
+                    <button
+                      key={opt}
+                      type="button"
+                      onClick={() => selectOption(currentStep.key, opt)}
+                      className={`p-4 text-left border rounded-[2px] font-mono text-xs font-bold transition-all flex items-center justify-between ${
+                        isSelected
+                          ? "bg-[#0A1128] border-[#F59E0B] text-white shadow-md pl-5"
+                          : "bg-[#0A1128]/70 border-indigo-200/20 text-[#C7D2FE] hover:border-indigo-200/50 hover:text-white"
+                      }`}
+                    >
+                      <span>{opt}</span>
+                      <ArrowRight
+                        className={`size-3.5 ${
+                          isSelected ? "text-[#F59E0B]" : "text-[#8E9CB8] opacity-50"
+                        }`}
+                      />
+                    </button>
+                  );
+                })}
+              </div>
 
-                {validationError && (
-                  <div className="border border-red-500/30 bg-red-950/20 p-3 text-red-400 font-sans text-xs flex items-center gap-2">
-                    <AlertCircle className="size-4 shrink-0" />
-                    <span>{validationError}</span>
-                  </div>
-                )}
-
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div>
-                    <label className="block text-white uppercase mb-1.5 font-bold">
-                      Full Name <span className="text-[#B08A4A]">*</span>
-                    </label>
-                    <input
-                      name="name"
-                      required
-                      minLength={2}
-                      placeholder="e.g. Rajesh Kumar"
-                      className="w-full border border-white/15 bg-[#0B0D0F] px-4 py-3 text-xs text-white outline-none focus:border-[#B08A4A] font-sans"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-white uppercase mb-1.5 font-bold">
-                      Phone Number <span className="text-[#B08A4A]">*</span>
-                    </label>
-                    <input
-                      name="phone"
-                      type="tel"
-                      required
-                      placeholder="+91 10-Digit Mobile"
-                      className="w-full border border-white/15 bg-[#0B0D0F] px-4 py-3 text-xs text-white outline-none focus:border-[#B08A4A] font-sans"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-white uppercase mb-1.5 font-bold">
-                    Email Address (Optional)
-                  </label>
-                  <input
-                    name="email"
-                    type="email"
-                    placeholder="e.g. rajesh@company.com"
-                    className="w-full border border-white/15 bg-[#0B0D0F] px-4 py-3 text-xs text-white outline-none focus:border-[#B08A4A] font-sans"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-white uppercase mb-1.5 font-bold">
-                    Project Details &amp; Dimensions (Optional)
-                  </label>
-                  <textarea
-                    name="message"
-                    rows={3}
-                    placeholder="Clear span requirements, eaves height, crane support needs, site plot address..."
-                    className="w-full border border-white/15 bg-[#0B0D0F] px-4 py-3 text-xs text-white outline-none focus:border-[#B08A4A] font-sans"
-                  />
-                </div>
-
-                {/* Anti-spam honeypot */}
-                <input
-                  type="text"
-                  name="company"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  aria-hidden="true"
-                  style={{ display: "none" }}
-                  className="hidden"
-                />
-
-                {status === "error" && (
-                  <div className="border border-[#B08A4A] bg-[#1C2024] p-3 text-white font-sans text-xs">
-                    Could not submit to server directly. Please call our yard desk at +91 85279 77714 or open in WhatsApp.
-                  </div>
-                )}
-
-                <div className="flex items-center justify-between pt-5 border-t border-white/10">
+              {stepIndex > 0 && (
+                <div className="pt-4 border-t border-indigo-200/15">
                   <button
                     type="button"
-                    onClick={() => setStepIndex(steps.length - 1)}
-                    className="inline-flex items-center gap-1 font-mono text-xs font-bold text-[#8C9398] hover:text-white transition-colors"
+                    onClick={goBack}
+                    className="inline-flex items-center gap-1.5 font-mono text-xs text-[#8E9CB8] hover:text-white transition-colors"
                   >
                     <ArrowLeft className="size-3.5" />
-                    <span>Back</span>
-                  </button>
-
-                  <button
-                    type="submit"
-                    disabled={status === "sending"}
-                    className="btn-arch-primary"
-                  >
-                    {status === "sending" ? (
-                      <Loader2 className="size-4 animate-spin" />
-                    ) : (
-                      <ArrowRight className="size-4" />
-                    )}
-                    <span>REQUEST MY QUOTE</span>
+                    <span>PREVIOUS STEP</span>
                   </button>
                 </div>
-              </form>
-            ) : (
-              /* STEPS 1-4 */
-              <div className="space-y-6">
-                <div className="flex items-center justify-between gap-4 font-mono text-xs text-[#8C9398] border-b border-white/10 pb-3">
-                  <span>
-                    STEP {stepIndex + 1} OF {total}
-                  </span>
-                  {stepIndex > 0 ? (
-                    <button
-                      type="button"
-                      onClick={() => setStepIndex((i) => i - 1)}
-                      className="inline-flex items-center gap-1 text-white hover:text-[#B08A4A] transition-colors font-bold"
+              )}
+            </div>
+          ) : isDetails ? (
+            /* STEP 5: CONTACT DETAILS */
+            <form onSubmit={onSubmit} className="space-y-5 font-mono text-xs">
+              
+              {/* Active Parameters Pills */}
+              <div className="flex flex-wrap gap-1.5 border-b border-indigo-200/15 pb-4">
+                {steps.map((step) => {
+                  const value = answers[step.key];
+                  return value ? (
+                    <span
+                      key={step.key}
+                      className="bg-[#0A1128] px-3 py-1 text-xs font-bold text-white border border-indigo-200/20 rounded-[2px]"
                     >
-                      <ArrowLeft className="size-3.5" />
-                      <span>Back</span>
-                    </button>
-                  ) : null}
-                </div>
+                      {value}
+                    </span>
+                  ) : null;
+                })}
+              </div>
 
+              <div className="pt-2">
+                <span className="font-mono text-xs font-bold text-[#F59E0B] uppercase">
+                  STEP 5: CONTACT DETAILS
+                </span>
+                <h3 className="font-editorial-title text-xl sm:text-2xl font-extrabold text-white uppercase mt-1">
+                  Where should we dispatch your quotation?
+                </h3>
+              </div>
+
+              {validationError && (
+                <div className="border border-red-500/30 bg-red-950/20 p-3 text-red-400 font-sans text-xs flex items-center gap-2 rounded-[2px]">
+                  <AlertCircle className="size-4 shrink-0" />
+                  <span>{validationError}</span>
+                </div>
+              )}
+
+              <div className="grid gap-5 sm:grid-cols-2">
                 <div>
-                  <span className="font-mono text-xs font-bold text-[#B08A4A] uppercase">
-                    {steps[stepIndex]!.label}
-                  </span>
-                  <p className="text-xs sm:text-sm text-[#8C9398] font-sans mt-1">
-                    {steps[stepIndex]!.desc}
-                  </p>
+                  <label className="block text-white uppercase mb-1.5 font-bold">
+                    Full Name <span className="text-[#F59E0B]">*</span>
+                  </label>
+                  <input
+                    name="name"
+                    required
+                    minLength={2}
+                    placeholder="e.g. Rajesh Kumar"
+                    className="w-full border border-indigo-200/20 bg-[#0A1128] px-4 py-3 text-xs text-white outline-none focus:border-[#F59E0B] font-sans rounded-[2px]"
+                  />
                 </div>
-
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {steps[stepIndex]!.options.map((option) => {
-                    const selected = answers[steps[stepIndex]!.key] === option;
-                    return (
-                      <button
-                        key={option}
-                        type="button"
-                        onClick={() => choose(steps[stepIndex]!.key, option)}
-                        className={`p-4 text-left font-editorial-title text-sm sm:text-base font-bold uppercase tracking-wide transition-all border ${
-                          selected
-                            ? "border-[#B08A4A] bg-[#B08A4A] text-[#0B0D0F] shadow-md"
-                            : "border-white/15 bg-[#0B0D0F] text-white hover:border-[#B08A4A] hover:bg-[#1C2024]"
-                        }`}
-                      >
-                        {option}
-                      </button>
-                    );
-                  })}
+                <div>
+                  <label className="block text-white uppercase mb-1.5 font-bold">
+                    Phone Number <span className="text-[#F59E0B]">*</span>
+                  </label>
+                  <input
+                    name="phone"
+                    type="tel"
+                    required
+                    placeholder="+91 10-Digit Mobile"
+                    className="w-full border border-indigo-200/20 bg-[#0A1128] px-4 py-3 text-xs text-white outline-none focus:border-[#F59E0B] font-sans rounded-[2px]"
+                  />
                 </div>
               </div>
-            )}
-          </div>
-        </div>
 
-      </div>
-    </section>
+              <div>
+                <label className="block text-white uppercase mb-1.5 font-bold">
+                  Email Address (Optional)
+                </label>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="e.g. rajesh@company.com"
+                  className="w-full border border-indigo-200/20 bg-[#0A1128] px-4 py-3 text-xs text-white outline-none focus:border-[#F59E0B] font-sans rounded-[2px]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-white uppercase mb-1.5 font-bold">
+                  Project Details &amp; Dimensions (Optional)
+                </label>
+                <textarea
+                  name="message"
+                  rows={3}
+                  placeholder="Clear span requirements, eaves height, crane support needs, site plot address..."
+                  className="w-full border border-indigo-200/20 bg-[#0A1128] px-4 py-3 text-xs text-white outline-none focus:border-[#F59E0B] font-sans rounded-[2px]"
+                />
+              </div>
+
+              {/* Anti-spam honeypot */}
+              <input
+                type="text"
+                name="company_url"
+                tabIndex={-1}
+                autoComplete="off"
+                className="hidden"
+              />
+
+              <div className="pt-4 flex items-center justify-between gap-4 border-t border-indigo-200/15">
+                <button
+                  type="button"
+                  onClick={goBack}
+                  className="inline-flex items-center gap-1.5 text-[#8E9CB8] hover:text-white transition-colors"
+                >
+                  <ArrowLeft className="size-3.5" />
+                  <span>BACK</span>
+                </button>
+
+                <button
+                  type="submit"
+                  disabled={status === "submitting"}
+                  className="btn-red-primary text-xs"
+                >
+                  {status === "submitting" ? (
+                    <>
+                      <Loader2 className="size-4 animate-spin" />
+                      <span>DISPATCHING SPECIFICATION...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>SUBMIT FOR BOQ CALCULATION</span>
+                      <ArrowRight className="size-4" />
+                    </>
+                  )}
+                </button>
+              </div>
+
+            </form>
+          ) : null}
+        </div>
+      )}
+    </div>
   );
 }

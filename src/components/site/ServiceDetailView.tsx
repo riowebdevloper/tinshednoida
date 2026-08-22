@@ -29,14 +29,14 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
   const relatedVideo = youtubeVideos.find((v) => v.id === data.relatedVideoId) ?? youtubeVideos[0]!;
 
   return (
-    <div className="bg-[#0B0D0F] text-white">
+    <div className="bg-[#0A1128] text-white">
       
       {/* ──────── 1. SERVICE HERO ──────── */}
-      <section className="relative isolate overflow-hidden bg-[#0B0D0F] px-4 pb-20 pt-28 text-white sm:px-6 sm:pb-24 sm:pt-36 lg:px-8 border-b border-white/10 arch-grid-pattern">
+      <section className="relative isolate overflow-hidden bg-[#0A1128] px-4 pb-20 pt-28 text-white sm:px-6 sm:pb-24 sm:pt-36 lg:px-8 border-b border-indigo-200/15 arch-grid-pattern">
         <div className="relative mx-auto max-w-7xl">
           <div className="flex items-center gap-3 mb-4">
-            <span className="h-px w-8 bg-[#B08A4A]" />
-            <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
+            <span className="h-px w-8 bg-[#F59E0B]" />
+            <span className="font-mono-tag text-[#F59E0B] text-xs font-bold">
               {data.eyebrow}
             </span>
           </div>
@@ -45,14 +45,14 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
             {data.name}
           </h1>
 
-          <p className="mt-5 max-w-3xl text-sm sm:text-base lg:text-lg leading-relaxed text-[#8C9398] font-sans">
+          <p className="mt-5 max-w-3xl text-sm sm:text-base lg:text-lg leading-relaxed text-[#C7D2FE] font-sans">
             {data.tagline}
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               to="/quote"
-              className="btn-arch-primary"
+              className="btn-red-primary"
             >
               <span>Request Custom Quote</span>
               <ArrowRight className="size-3.5" />
@@ -60,87 +60,81 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
 
             <a
               href="#estimator"
-              className="btn-arch-secondary"
+              className="btn-yellow-primary"
             >
-              <Ruler className="size-3.5 text-[#B08A4A]" />
+              <Ruler className="size-3.5" />
               <span>Calculate Steel Tonnage</span>
             </a>
 
             <a
               href={company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf"}
               download="TIN_SHADE_NOIDA_CATALOG.pdf"
-              className="inline-flex items-center gap-2 font-mono text-xs text-[#8C9398] hover:text-white transition-colors py-2 px-1"
+              className="btn-navy-outline text-xs"
             >
-              <Download className="size-3.5 text-[#B08A4A]" />
+              <Download className="size-3.5 text-[#F59E0B]" />
               <span>Download 51-Page Catalog</span>
             </a>
           </div>
 
           {/* Quick Technical Bar */}
-          <div className="mt-12 pt-6 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-6 font-mono text-xs text-[#8C9398]">
+          <div className="mt-12 pt-6 border-t border-indigo-200/15 grid grid-cols-2 sm:grid-cols-4 gap-6 font-mono text-xs text-[#8E9CB8]">
             <div>
-              <span className="text-[#8C9398] block text-[0.6875rem] uppercase">CLEAR SPAN</span>
+              <span className="text-[#8E9CB8] block text-[0.6875rem] uppercase">CLEAR SPAN</span>
               <strong className="text-white text-sm mt-0.5 block tabular-nums">{data.spanReach}</strong>
             </div>
             <div>
-              <span className="text-[#8C9398] block text-[0.6875rem] uppercase">STEEL GRADE</span>
+              <span className="text-[#8E9CB8] block text-[0.6875rem] uppercase">STEEL GRADE</span>
               <strong className="text-white text-sm mt-0.5 block">{data.steelGrade}</strong>
             </div>
             <div>
-              <span className="text-[#8C9398] block text-[0.6875rem] uppercase">EAVES HEIGHT</span>
+              <span className="text-[#8E9CB8] block text-[0.6875rem] uppercase">EAVES HEIGHT</span>
               <strong className="text-white text-sm mt-0.5 block tabular-nums">{data.eavesHeight}</strong>
             </div>
             <div>
-              <span className="text-[#8C9398] block text-[0.6875rem] uppercase">STANDARD CODE</span>
-              <strong className="text-[#B08A4A] text-sm mt-0.5 block">{data.standardCode}</strong>
+              <span className="text-[#8E9CB8] block text-[0.6875rem] uppercase">STANDARD CODE</span>
+              <strong className="text-[#F59E0B] text-sm mt-0.5 block">{data.standardCode}</strong>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ──────── 2. OVERVIEW & PHOTOGRAPHY ──────── */}
-      <section className="py-24 sm:py-32 border-b border-white/10 bg-[#0B0D0F]">
+      {/* ──────── 2. OVERVIEW & TECHNICAL BLUEPRINT ──────── */}
+      <section className="py-16 sm:py-24 border-b border-indigo-200/15 bg-[#0A1128]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-12 items-center">
             
-            <div className="lg:col-span-6 space-y-5">
-              <div className="flex items-center gap-3">
-                <span className="h-px w-8 bg-[#B08A4A]" />
-                <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
-                  STRUCTURAL SPECIFICATIONS
-                </span>
-              </div>
-              <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white uppercase leading-tight">
-                Engineered for High Structural Integrity &amp; Longevity
+            <div className="lg:col-span-7 space-y-6">
+              <span className="font-mono text-xs font-semibold text-[#F59E0B] uppercase tracking-tight block">
+                STRUCTURAL SPECIFICATIONS
+              </span>
+              <h2 className="font-editorial-title text-2xl sm:text-4xl font-extrabold text-white tracking-tight uppercase">
+                Direct Yard Engineering &amp; Certified Assembly
               </h2>
-              <p className="text-sm sm:text-base leading-relaxed text-[#C8CCD0] font-sans">
+              <p className="text-sm sm:text-base text-[#C7D2FE] leading-relaxed font-sans">
                 {data.overview}
               </p>
 
-              <div className="pt-2 space-y-2.5 font-mono text-xs text-[#C8CCD0]">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="size-4 text-[#B08A4A] shrink-0" />
-                  <span>Fabricated with certified IS 2062 prime grade mild steel</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="size-4 text-[#B08A4A] shrink-0" />
-                  <span>Dual-coat anti-rust red oxide primer to IS 2074 standards</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="size-4 text-[#B08A4A] shrink-0" />
-                  <span>Turnkey erection using dedicated hydraulic mobile crane fleets</span>
-                </div>
+              <div className="pt-4 border-t border-indigo-200/15 grid sm:grid-cols-2 gap-4 font-mono text-xs text-white">
+                {data.benefits.map((b, i) => (
+                  <div key={i} className="flex items-start gap-2.5 p-3 bg-[#101B3B] border border-indigo-200/20 rounded-[2px]">
+                    <CheckCircle2 className="size-4 text-[#F59E0B] shrink-0 mt-0.5" />
+                    <span className="text-xs text-[#C7D2FE]">{b}</span>
+                  </div>
+                ))}
               </div>
             </div>
 
-            <div className="lg:col-span-6">
-              <div className="arch-card-dark overflow-hidden p-2.5 bg-[#14171A] border border-white/15 shadow-xl">
-                <div className="relative aspect-[4/3] bg-[#0B0D0F] overflow-hidden">
+            <div className="lg:col-span-5">
+              <div className="bg-[#101B3B] border border-indigo-200/25 p-4 rounded-[3px] shadow-2xl">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-black rounded-[2px]">
                   <img
                     src={data.image}
                     alt={data.name}
                     className="size-full object-cover"
                   />
+                  <div className="absolute bottom-3 left-3 bg-[#0A1128]/90 px-3 py-1 font-mono text-[0.6875rem] text-[#F59E0B] border border-indigo-200/20 rounded-[2px]">
+                    PORTFOLIO: PAGES {data.catalogPageRange}
+                  </div>
                 </div>
               </div>
             </div>
@@ -149,245 +143,12 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
         </div>
       </section>
 
-      {/* ──────── 3. APPLICATIONS ──────── */}
-      <section className="py-24 sm:py-32 border-b border-white/10 bg-[#0B0D0F]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl border-b border-white/10 pb-6 mb-12">
-            <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block mb-2">
-              VERSATILE DEPLOYMENTS
-            </span>
-            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white uppercase">
-              Common Industrial Applications
-            </h2>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {data.applications.map((app, idx) => (
-              <div key={idx} className="arch-card-dark p-6 bg-[#14171A] border border-white/10">
-                <span className="font-mono text-2xl font-extrabold text-[#B08A4A] block mb-2 tabular-nums">
-                  0{idx + 1}
-                </span>
-                <h3 className="font-editorial-title font-bold text-base text-white uppercase">
-                  {app}
-                </h3>
-                <span className="text-xs font-mono text-[#8C9398] block mt-1">
-                  Turnkey Execution Across India
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ──────── 4. EXECUTION PROCESS ──────── */}
-      <section className="py-24 sm:py-32 border-b border-white/10 bg-[#0B0D0F]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl border-b border-white/10 pb-6 mb-12">
-            <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block mb-2">
-              EXECUTION PROTOCOL
-            </span>
-            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white uppercase">
-              Fabrication &amp; Crane Erection Phases
-            </h2>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {data.constructionProcess.map((proc, idx) => (
-              <div key={idx} className="arch-card-dark p-6 sm:p-8 bg-[#14171A] border border-white/15">
-                <span className="font-mono text-3xl font-extrabold text-[#B08A4A] block mb-2 tabular-nums">
-                  {proc.step}
-                </span>
-                <h3 className="font-editorial-title text-lg font-bold text-white uppercase">
-                  {proc.title}
-                </h3>
-                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#8C9398] font-sans">
-                  {proc.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ──────── 5. VERIFIED MATERIALS & QUALITY ──────── */}
-      <section className="py-24 sm:py-32 border-b border-white/10 bg-[#0B0D0F]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-12 items-start">
-            
-            <div className="lg:col-span-6 space-y-5">
-              <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block">
-                PRIME RAW MATERIAL GRADES
-              </span>
-              <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white uppercase">
-                Verified Structural Steel &amp; Cladding
-              </h2>
-              <p className="text-xs sm:text-sm text-[#8C9398] font-sans">
-                Every component is sourced from certified prime mills with full Mill Test Certificates (MTC) verifying yield stress, chemical composition, and tensile strength.
-              </p>
-
-              <div className="space-y-3 pt-2">
-                {data.materials.map((mat, idx) => (
-                  <div key={idx} className="p-4 border border-white/10 bg-[#14171A]">
-                    <h3 className="font-editorial-title text-sm font-bold text-white uppercase">
-                      {mat.title}
-                    </h3>
-                    <p className="mt-1 text-xs text-[#8C9398] font-sans">
-                      {mat.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="lg:col-span-6 space-y-5">
-              <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block">
-                ENGINEERING ADVANTAGES
-              </span>
-              <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white uppercase">
-                Direct Yard Quality Inclusions
-              </h2>
-
-              <div className="p-6 bg-[#14171A] border border-white/10 space-y-3">
-                {data.benefits.map((ben, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
-                    <CheckCircle2 className="size-4 text-[#B08A4A] shrink-0 mt-0.5" />
-                    <span className="text-xs sm:text-sm text-[#C8CCD0] font-sans leading-relaxed">
-                      {ben}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ──────── 6. STEEL ESTIMATOR WIDGET ──────── */}
-      <section id="estimator" className="py-24 sm:py-32 border-b border-white/10 bg-[#0B0D0F]">
+      {/* ──────── 3. ESTIMATOR WIDGET ──────── */}
+      <div id="estimator" className="py-12 bg-[#0A1128] border-b border-indigo-200/15">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <EstimatorWidget />
         </div>
-      </section>
-
-      {/* ──────── 7. RELATED PROJECTS & CATALOG ──────── */}
-      <section className="py-24 sm:py-32 border-b border-white/10 bg-[#0B0D0F]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6 mb-12">
-            <div>
-              <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block mb-2">
-                AUTHENTIC CASE STUDIES
-              </span>
-              <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white uppercase">
-                Related Executed Projects
-              </h2>
-            </div>
-            <Link
-              to="/projects"
-              className="btn-arch-secondary self-start md:self-auto text-xs"
-            >
-              <span>View All Projects</span>
-              <ArrowRight className="size-3.5" />
-            </Link>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {relatedProjects.map((p) => (
-              <div key={p.id} className="arch-card-dark overflow-hidden bg-[#14171A] border border-white/10 flex flex-col justify-between">
-                <div className="relative aspect-[4/3] bg-[#0B0D0F]">
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    className="size-full object-cover"
-                  />
-                  <div className="absolute top-2 left-2 bg-black/85 text-white px-2 py-0.5 font-mono text-[0.6875rem] font-bold border border-white/10">
-                    {p.location}
-                  </div>
-                </div>
-                <div className="p-5 flex flex-col justify-between flex-1">
-                  <div>
-                    <span className="font-mono text-xs text-[#B08A4A] font-bold uppercase block mb-1">
-                      {p.category}
-                    </span>
-                    <h3 className="font-editorial-title font-bold text-base text-white uppercase">
-                      {p.title}
-                    </h3>
-                    <p className="mt-1.5 text-xs text-[#8C9398] line-clamp-2 font-sans">
-                      {p.summary}
-                    </p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between font-mono text-xs">
-                    <span className="text-[#8C9398]">{p.material}</span>
-                    <Link to="/quote" className="font-bold text-[#B08A4A] hover:underline">
-                      Quote &rarr;
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Catalog Callout */}
-          <div className="mt-12 p-6 sm:p-8 border border-white/10 bg-[#14171A] flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <span className="font-mono text-xs font-bold text-[#B08A4A] uppercase block">
-                51-PAGE WORK CATALOG SUBMITTAL
-              </span>
-              <h3 className="font-editorial-title text-xl font-bold text-white uppercase mt-1">
-                Technical Schedules: {data.catalogPageRange}
-              </h3>
-              <p className="text-xs text-[#8C9398] font-sans mt-1">
-                View chord schedules, anchor bolt spacing charts, and photographic case studies in our official catalog.
-              </p>
-            </div>
-            <Link
-              to="/catalog"
-              className="btn-arch-primary text-xs"
-            >
-              <FileText className="size-4" />
-              <span>Browse Catalog (PDF)</span>
-            </Link>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ──────── 8. FAQS ──────── */}
-      <section className="py-24 sm:py-32 border-b border-white/10 bg-[#0B0D0F]">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="border-b border-white/10 pb-6 mb-12 text-center">
-            <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block mb-2">
-              TECHNICAL CLARIFICATIONS
-            </span>
-            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white uppercase">
-              Frequently Asked Technical Questions
-            </h2>
-          </div>
-
-          <div className="divide-y divide-white/10 border-y border-white/10">
-            {data.faqs.map((faq, idx) => (
-              <div key={idx} className="py-6">
-                <h3 className="font-editorial-title text-base sm:text-lg font-bold text-white uppercase">
-                  {faq.q}
-                </h3>
-                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#C8CCD0] font-sans">
-                  {faq.a}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <Link
-              to="/quote"
-              className="btn-arch-primary"
-            >
-              <span>Schedule Free On-Site Inspection &rarr;</span>
-            </Link>
-          </div>
-        </div>
-      </section>
+      </div>
 
     </div>
   );
