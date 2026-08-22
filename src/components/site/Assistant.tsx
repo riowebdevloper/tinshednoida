@@ -14,6 +14,9 @@ import {
   X,
   Building,
   HardHat,
+  MapPin,
+  Clock,
+  Wrench,
 } from "lucide-react";
 import { company, needs, projects, services } from "@/lib/site-data";
 import { triggerQuoteForNeed } from "./QuoteWizard";
@@ -44,13 +47,14 @@ interface ConversationContext {
 
 const defaultSuggestions = [
   "Estimate Steel Tonnage for my site",
+  "Mujhe 2500 sqft ka warehouse banana hai",
   "What is the cost per sq ft for Factory Sheds?",
   "Clear span capability up to 120ft",
   "Schedule a free site survey in Noida / NCR",
   "Download 51-Page Work Catalog (PDF)",
 ];
 
-// Grounded engineering assistant logic with zero hallucinations
+// Grounded conversational AI assistant logic with zero hallucinations
 function generateAIResponse(
   userText: string,
   context: ConversationContext,
@@ -58,8 +62,28 @@ function generateAIResponse(
   const text = userText.toLowerCase().trim();
   const nextContext = { ...context };
 
+  // Contextual natural query: "Mujhe 2500 sqft ka warehouse banana hai" or similar
+  if (
+    (text.includes("warehouse") || text.includes("shed") || text.includes("factory") || text.includes("banana")) &&
+    (/\d+/.test(text) || text.includes("sqft") || text.includes("sq ft"))
+  ) {
+    const numbers = text.match(/\d+[\d,]*/);
+    const sizeStr = numbers ? `${numbers[0]} sq.ft` : "your specified area";
+    nextContext.size = sizeStr;
+
+    return {
+      text: `Bahut badhiya! ${sizeStr} ke structure ke liye hum direct Noida yard fabrication aur turnkey crane erection provide karte hain.\n\nProject ko accurately plan karne ke liye kripya kuch details batayein:\n1. Site Location kahan hai (e.g. Noida, Greater Noida, Ghaziabad ya elsewhere)?\n2. Usage purpose kya hai (Storage/Warehouse, Manufacturing, ya Machine Shop)?\n3. Clear Eaves Height kitni chahiye (Standard 18ft, 24ft, ya 30ft+ for Crane)?\n4. Erection timeline kya hai?`,
+      newContext: nextContext,
+      actions: [
+        { label: "Request Free Site Survey", action: "quote" },
+        { label: "Chat on WhatsApp", action: "whatsapp" },
+        { label: "Call Yard: +91 85279 77714", action: "call" },
+      ],
+    };
+  }
+
   // Steel Tonnage Calculation / Estimator
-  if (text.includes("tonnage") || text.includes("weight") || text.includes("calculate") || text.includes("estimate")) {
+  if (text.includes("tonnage") || text.includes("weight") || text.includes("calculate") || text.includes("estimate") || text.includes("vajan")) {
     return {
       text: `For IS 2062 Prime Mild Steel structural sheds:\n\n• Factory Sheds: ~4.5 to 5.2 kg / sq.ft\n• Logistics Warehouses: ~4.0 to 4.5 kg / sq.ft\n• Heavy Crane Gantry Bays: ~6.0 to 7.5 kg / sq.ft\n\nFor a 10,000 sq ft shed, estimated steel requirement is approx ~45 to 50 Metric Tonnes.\n\nWould you like an itemized BOQ calculation with current steel rates?`,
       newContext: nextContext,
@@ -71,7 +95,7 @@ function generateAIResponse(
   }
 
   // Cost / Pricing
-  if (text.includes("cost") || text.includes("price") || text.includes("rate") || text.includes("₹") || text.includes("budget")) {
+  if (text.includes("cost") || text.includes("price") || text.includes("rate") || text.includes("₹") || text.includes("budget") || text.includes("kharcha") || text.includes("dam")) {
     return {
       text: `Structural steel fabrication rates depend on clear-span width and crane requirements:\n\n• Industrial Factory Shed: ₹280 – ₹380 / sq.ft (Turnkey)\n• Warehouse / Godown: ₹240 – ₹340 / sq.ft\n• Heavy MS Framework: Custom / MT fabrication rate\n• 0.50mm Galvalume / PUF Roofing: ₹140 – ₹220 / sq.ft\n\nAll rates include IS 2062 prime steel, dual-coat red oxide primer, and crane erection.`,
       newContext: nextContext,
@@ -83,7 +107,7 @@ function generateAIResponse(
   }
 
   // Clear Span & Technical Capabilities
-  if (text.includes("span") || text.includes("120") || text.includes("crane") || text.includes("height")) {
+  if (text.includes("span") || text.includes("120") || text.includes("crane") || text.includes("height") || text.includes("pillar")) {
     return {
       text: `Tin Shade Noida fabricates column-free modular trusses up to 120 Feet Clear Span:\n\n• Warren & Pratt Tubular Pipe Trusses\n• Heavy EOT Crane Gantry Columns (up to 40T)\n• Clear Eaves Height: 15ft to 36ft+\n• Weld Compliance: IS 816 Metal Arc Welding\n• Design Code: IS 800:2007`,
       newContext: nextContext,
@@ -94,8 +118,32 @@ function generateAIResponse(
     };
   }
 
+  // Repair / Renovation
+  if (text.includes("repair") || text.includes("leak") || text.includes("rust") || text.includes("renovat") || text.includes("purana") || text.includes("damage")) {
+    return {
+      text: `Industrial Shed Repair & Renovation Services:\n\n• Monsoon roof leak proofing & fastener replacement\n• Corroded GI sheet replacement with 0.50mm Galvalume\n• Sagging truss gusset reinforcement & column strengthening\n• Heavy-gauge gutter replacement (1.2mm – 1.6mm GI)\n\nWe execute repair work in phased sections with zero disruption to your factory operations.`,
+      newContext: nextContext,
+      actions: [
+        { label: "Request Repair Inspection", action: "quote" },
+        { label: "WhatsApp Yard Desk", action: "whatsapp" },
+      ],
+    };
+  }
+
+  // PEB Pre-Engineered Buildings
+  if (text.includes("peb") || text.includes("pre-engineered") || text.includes("portal frame")) {
+    return {
+      text: `Pre-Engineered Building (PEB) Solutions:\n\n• Tapered built-up I-sections (High-tensile 345 MPa steel)\n• Cold-formed galvanized Z & C purlins (275 GSM zinc)\n• Up to 40% faster on-site bolted assembly\n• Clear spans up to 120ft without center pillars`,
+      newContext: nextContext,
+      actions: [
+        { label: "PEB Technical Details", action: "projects" },
+        { label: "Request PEB Quote", action: "quote" },
+      ],
+    };
+  }
+
   // Site Survey / Inspection
-  if (text.includes("visit") || text.includes("survey") || text.includes("inspect") || text.includes("noida") || text.includes("location")) {
+  if (text.includes("visit") || text.includes("survey") || text.includes("inspect") || text.includes("noida") || text.includes("location") || text.includes("dekhna")) {
     return {
       text: `Senior Engineer Site Inspection:\n\nWe provide free physical site surveys across Noida, Greater Noida, Ghaziabad, Faridabad, Gurgaon, and Delhi NCR.\n\nOur engineers measure plot elevation, verify 40-tonne crane access routes, and provide digital CAD layout drawings within 24 hours.`,
       newContext: nextContext,
@@ -106,8 +154,20 @@ function generateAIResponse(
     };
   }
 
+  // Working Hours & Yard Address
+  if (text.includes("hour") || text.includes("time") || text.includes("address") || text.includes("kahan") || text.includes("location") || text.includes("office")) {
+    return {
+      text: `Tin Shade Noida Yard Details:\n\n📍 Workshop & Yard: D179 Sector 10, Noida, Uttar Pradesh 201301\n🕒 Operational Hours: Monday – Saturday (8:00 AM – 8:00 PM), Sunday by appointment\n📞 Direct Hotline: +91 85279 77714\n\nYou are welcome to visit our yard to inspect raw IS 2062 steel stocks and watch ongoing arc welding in person.`,
+      newContext: nextContext,
+      actions: [
+        { label: "Call +91 85279 77714", action: "call" },
+        { label: "WhatsApp Direct", action: "whatsapp" },
+      ],
+    };
+  }
+
   // Brochure / Catalog
-  if (text.includes("catalog") || text.includes("brochure") || text.includes("pdf") || text.includes("download")) {
+  if (text.includes("catalog") || text.includes("brochure") || text.includes("pdf") || text.includes("download") || text.includes("file")) {
     return {
       text: `You can download our official 51-Page Structural Work Catalog (PDF, 4.5 MB):\n\n• 500+ Project Case Studies\n• Truss Chord Weight Schedules\n• IS 2062 Mill Test Certificate Criteria\n• Crane Gantry Foundation Anchoring Details`,
       newContext: nextContext,
@@ -119,7 +179,7 @@ function generateAIResponse(
 
   // Default Consultation Response
   return {
-    text: `Hello! This is the Engineering Desk at Tin Shade Noida (Fabrication Yard: D179 Sector 10, Noida).\n\nHow can we assist you with your industrial shed or structural steel requirement today?`,
+    text: `Hello! This is the Engineering Desk at Tin Shade Noida (Fabrication Yard: D179 Sector 10, Noida).\n\nHow can we assist you with your industrial shed, warehouse, MS framing, or roofing project today?`,
     newContext: nextContext,
     actions: [
       { label: "Get Itemized Quote", action: "quote" },
@@ -195,6 +255,8 @@ export function Assistant() {
         const elem = document.getElementById("estimator") || document.getElementById("quote");
         if (elem) {
           elem.scrollIntoView({ behavior: "smooth" });
+        } else {
+          window.location.href = "/quote";
         }
       }
       setMinimized(true);
@@ -240,7 +302,7 @@ export function Assistant() {
       >
         <HardHat className="size-4 text-amber-400" aria-hidden="true" />
         <span className="font-display text-xs font-bold text-white tracking-wide">
-          Engineering Desk
+          Tin Shade Assistant
         </span>
       </button>
 
@@ -256,7 +318,7 @@ export function Assistant() {
               </div>
               <div>
                 <h3 className="font-display text-sm font-bold tracking-tight text-white">
-                  Tin Shade Engineering Desk
+                  Tin Shade Assistant
                 </h3>
                 <p className="text-[0.6875rem] text-slate-300 font-mono">
                   D179 Sector 10, Noida · Active Yard

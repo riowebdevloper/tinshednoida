@@ -16,6 +16,14 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as QuoteRouteImport } from './routes/quote'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as VideosRouteImport } from './routes/videos'
+import { Route as AboutFoundersRouteImport } from './routes/about/founders'
+import { Route as ServicesIndustrialShedRouteImport } from './routes/services/industrial-shed'
+import { Route as ServicesMsStructureRouteImport } from './routes/services/ms-structure'
+import { Route as ServicesPebStructureRouteImport } from './routes/services/peb-structure'
+import { Route as ServicesRepairRenovationRouteImport } from './routes/services/repair-renovation'
+import { Route as ServicesTinRoofingRouteImport } from './routes/services/tin-roofing'
+import { Route as ServicesWarehouseShedRouteImport } from './routes/services/warehouse-shed'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,34 +60,99 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VideosRoute = VideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutFoundersRoute = AboutFoundersRouteImport.update({
+  id: '/founders',
+  path: '/founders',
+  getParentRoute: () => AboutRoute,
+} as any)
+const ServicesIndustrialShedRoute = ServicesIndustrialShedRouteImport.update({
+  id: '/industrial-shed',
+  path: '/industrial-shed',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesMsStructureRoute = ServicesMsStructureRouteImport.update({
+  id: '/ms-structure',
+  path: '/ms-structure',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesPebStructureRoute = ServicesPebStructureRouteImport.update({
+  id: '/peb-structure',
+  path: '/peb-structure',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesRepairRenovationRoute =
+  ServicesRepairRenovationRouteImport.update({
+    id: '/repair-renovation',
+    path: '/repair-renovation',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesTinRoofingRoute = ServicesTinRoofingRouteImport.update({
+  id: '/tin-roofing',
+  path: '/tin-roofing',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesWarehouseShedRoute = ServicesWarehouseShedRouteImport.update({
+  id: '/warehouse-shed',
+  path: '/warehouse-shed',
+  getParentRoute: () => ServicesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/about': typeof AboutRouteWithChildren
   '/catalog': typeof CatalogRoute
   '/contact': typeof ContactRoute
   '/projects': typeof ProjectsRoute
   '/quote': typeof QuoteRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/videos': typeof VideosRoute
+  '/about/founders': typeof AboutFoundersRoute
+  '/services/industrial-shed': typeof ServicesIndustrialShedRoute
+  '/services/ms-structure': typeof ServicesMsStructureRoute
+  '/services/peb-structure': typeof ServicesPebStructureRoute
+  '/services/repair-renovation': typeof ServicesRepairRenovationRoute
+  '/services/tin-roofing': typeof ServicesTinRoofingRoute
+  '/services/warehouse-shed': typeof ServicesWarehouseShedRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/about': typeof AboutRouteWithChildren
   '/catalog': typeof CatalogRoute
   '/contact': typeof ContactRoute
   '/projects': typeof ProjectsRoute
   '/quote': typeof QuoteRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/videos': typeof VideosRoute
+  '/about/founders': typeof AboutFoundersRoute
+  '/services/industrial-shed': typeof ServicesIndustrialShedRoute
+  '/services/ms-structure': typeof ServicesMsStructureRoute
+  '/services/peb-structure': typeof ServicesPebStructureRoute
+  '/services/repair-renovation': typeof ServicesRepairRenovationRoute
+  '/services/tin-roofing': typeof ServicesTinRoofingRoute
+  '/services/warehouse-shed': typeof ServicesWarehouseShedRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/about': typeof AboutRouteWithChildren
   '/catalog': typeof CatalogRoute
   '/contact': typeof ContactRoute
   '/projects': typeof ProjectsRoute
   '/quote': typeof QuoteRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/videos': typeof VideosRoute
+  '/about/founders': typeof AboutFoundersRoute
+  '/services/industrial-shed': typeof ServicesIndustrialShedRoute
+  '/services/ms-structure': typeof ServicesMsStructureRoute
+  '/services/peb-structure': typeof ServicesPebStructureRoute
+  '/services/repair-renovation': typeof ServicesRepairRenovationRoute
+  '/services/tin-roofing': typeof ServicesTinRoofingRoute
+  '/services/warehouse-shed': typeof ServicesWarehouseShedRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +164,14 @@ export interface FileRouteTypes {
     | '/projects'
     | '/quote'
     | '/services'
+    | '/videos'
+    | '/about/founders'
+    | '/services/industrial-shed'
+    | '/services/ms-structure'
+    | '/services/peb-structure'
+    | '/services/repair-renovation'
+    | '/services/tin-roofing'
+    | '/services/warehouse-shed'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +181,14 @@ export interface FileRouteTypes {
     | '/projects'
     | '/quote'
     | '/services'
+    | '/videos'
+    | '/about/founders'
+    | '/services/industrial-shed'
+    | '/services/ms-structure'
+    | '/services/peb-structure'
+    | '/services/repair-renovation'
+    | '/services/tin-roofing'
+    | '/services/warehouse-shed'
   id:
     | '__root__'
     | '/'
@@ -109,16 +198,25 @@ export interface FileRouteTypes {
     | '/projects'
     | '/quote'
     | '/services'
+    | '/videos'
+    | '/about/founders'
+    | '/services/industrial-shed'
+    | '/services/ms-structure'
+    | '/services/peb-structure'
+    | '/services/repair-renovation'
+    | '/services/tin-roofing'
+    | '/services/warehouse-shed'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
+  AboutRoute: typeof AboutRouteWithChildren
   CatalogRoute: typeof CatalogRoute
   ContactRoute: typeof ContactRoute
   ProjectsRoute: typeof ProjectsRoute
   QuoteRoute: typeof QuoteRoute
-  ServicesRoute: typeof ServicesRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
+  VideosRoute: typeof VideosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,17 +270,106 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/videos': {
+      id: '/videos'
+      path: '/videos'
+      fullPath: '/videos'
+      preLoaderRoute: typeof VideosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about/founders': {
+      id: '/about/founders'
+      path: '/founders'
+      fullPath: '/about/founders'
+      preLoaderRoute: typeof AboutFoundersRouteImport
+      parentRoute: typeof AboutRoute
+    }
+    '/services/industrial-shed': {
+      id: '/services/industrial-shed'
+      path: '/industrial-shed'
+      fullPath: '/services/industrial-shed'
+      preLoaderRoute: typeof ServicesIndustrialShedRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/ms-structure': {
+      id: '/services/ms-structure'
+      path: '/ms-structure'
+      fullPath: '/services/ms-structure'
+      preLoaderRoute: typeof ServicesMsStructureRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/peb-structure': {
+      id: '/services/peb-structure'
+      path: '/peb-structure'
+      fullPath: '/services/peb-structure'
+      preLoaderRoute: typeof ServicesPebStructureRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/repair-renovation': {
+      id: '/services/repair-renovation'
+      path: '/repair-renovation'
+      fullPath: '/services/repair-renovation'
+      preLoaderRoute: typeof ServicesRepairRenovationRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/tin-roofing': {
+      id: '/services/tin-roofing'
+      path: '/tin-roofing'
+      fullPath: '/services/tin-roofing'
+      preLoaderRoute: typeof ServicesTinRoofingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/warehouse-shed': {
+      id: '/services/warehouse-shed'
+      path: '/warehouse-shed'
+      fullPath: '/services/warehouse-shed'
+      preLoaderRoute: typeof ServicesWarehouseShedRouteImport
+      parentRoute: typeof ServicesRoute
+    }
   }
 }
 
+interface AboutRouteChildren {
+  AboutFoundersRoute: typeof AboutFoundersRoute
+}
+
+const AboutRouteChildren: AboutRouteChildren = {
+  AboutFoundersRoute: AboutFoundersRoute,
+}
+
+const AboutRouteWithChildren = AboutRoute._addFileChildren(AboutRouteChildren)
+
+interface ServicesRouteChildren {
+  ServicesIndustrialShedRoute: typeof ServicesIndustrialShedRoute
+  ServicesMsStructureRoute: typeof ServicesMsStructureRoute
+  ServicesPebStructureRoute: typeof ServicesPebStructureRoute
+  ServicesRepairRenovationRoute: typeof ServicesRepairRenovationRoute
+  ServicesTinRoofingRoute: typeof ServicesTinRoofingRoute
+  ServicesWarehouseShedRoute: typeof ServicesWarehouseShedRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesIndustrialShedRoute: ServicesIndustrialShedRoute,
+  ServicesMsStructureRoute: ServicesMsStructureRoute,
+  ServicesPebStructureRoute: ServicesPebStructureRoute,
+  ServicesRepairRenovationRoute: ServicesRepairRenovationRoute,
+  ServicesTinRoofingRoute: ServicesTinRoofingRoute,
+  ServicesWarehouseShedRoute: ServicesWarehouseShedRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
+  AboutRoute: AboutRouteWithChildren,
   CatalogRoute: CatalogRoute,
   ContactRoute: ContactRoute,
   ProjectsRoute: ProjectsRoute,
   QuoteRoute: QuoteRoute,
-  ServicesRoute: ServicesRoute,
+  ServicesRoute: ServicesRouteWithChildren,
+  VideosRoute: VideosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

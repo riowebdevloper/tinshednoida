@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
+import { PdfCatalogBrowser } from "@/components/site/PdfCatalogBrowser";
 import { CatalogViewer } from "@/components/site/CatalogViewer";
 import { FinalCta } from "@/components/site/FinalCta";
 import { Download, FileText, CheckCircle2, ShieldCheck, ExternalLink } from "lucide-react";
@@ -58,10 +59,13 @@ function CatalogPage() {
         description="Comprehensive technical submittal binder prepared for industrial plant directors, structural consultants, civil contractors, and procurement heads."
       />
 
-      {/* 1. Catalog Viewer & 5-Stage Blueprint Sequence */}
+      {/* 1. Interactive 51-Page Catalog Browser with Page Thumbnails, Zoom & Jump */}
+      <PdfCatalogBrowser />
+
+      {/* 2. 5-Stage Blueprint Sequence */}
       <CatalogViewer />
 
-      {/* 2. Catalog Table of Contents Overview */}
+      {/* 3. Catalog Table of Contents Overview */}
       <section className="bg-white py-16 sm:py-20 border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
@@ -128,7 +132,7 @@ function CatalogPage() {
         </div>
       </section>
 
-      {/* 3. Direct Final CTA */}
+      {/* 4. Direct Final CTA */}
       <FinalCta />
     </SiteLayout>
   );

@@ -63,11 +63,12 @@ export const company = {
 };
 
 export const nav = [
+  { label: "Home", to: "/" as const },
   { label: "Services", to: "/services" as const },
   { label: "Projects", to: "/projects" as const },
-  { label: "About", to: "/about" as const },
+  { label: "Videos", to: "/videos" as const },
   { label: "Catalog", to: "/catalog" as const },
-  { label: "Videos", to: "/" as const, hash: "videos" },
+  { label: "About", to: "/about" as const },
   { label: "Contact", to: "/contact" as const },
 ];
 
@@ -285,11 +286,11 @@ export const projectCategories = [
   "All",
   "Industrial Shed",
   "Warehouse",
+  "Factory",
   "MS Structure",
-  "Tin Roofing",
-  "PEB Structure",
-  "Completed Projects",
-  "Under Construction",
+  "Roofing",
+  "PEB",
+  "Repair/Renovation",
 ] as const;
 
 export type ProjectCategory = (typeof projectCategories)[number];
