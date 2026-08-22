@@ -1,77 +1,83 @@
-import { ArrowRight, Phone, MessageCircle, Download, ShieldCheck, Mail, MapPin } from "lucide-react";
+import { ArrowRight, MessageSquare, Phone, ShieldCheck } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { company } from "@/lib/site-data";
 
 export function FinalCta() {
   return (
-    <section className="relative bg-[#0B0D0F] text-white py-24 sm:py-36 border-t border-white/10 overflow-hidden arch-grid-pattern">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section
+      aria-label="Final Engineering Call to Action"
+      className="relative bg-[#0A1128] text-white py-24 sm:py-36 lg:py-44 border-t border-indigo-200/20 overflow-hidden"
+    >
+      {/* Background Subtle Gradient & Grid */}
+      <div className="absolute inset-0 arch-grid-pattern opacity-60 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[650px] bg-[#1E3A8A]/20 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
         
-        <div className="max-w-4xl">
+        {/* Eyebrow */}
+        <div className="inline-flex items-center gap-2.5 mb-6 px-3.5 py-1 bg-[#101B3B] border border-indigo-200/25 rounded-[2px]">
+          <span className="size-2 rounded-full bg-[#DC2626] animate-pulse" />
+          <span className="font-mono-tag text-[#F59E0B] text-xs font-bold tracking-widest">
+            START YOUR STRUCTURAL PROJECT TODAY
+          </span>
+        </div>
+
+        {/* Large Editorial Headline */}
+        <h2 className="font-editorial-title text-4xl sm:text-6xl lg:text-7xl font-extrabold uppercase text-white leading-[1.03] tracking-tight mb-6">
+          READY TO BUILD <br />
+          <span className="text-[#F59E0B]">SOMETHING STRONG?</span>
+        </h2>
+
+        {/* Subtitle */}
+        <p className="mx-auto max-w-2xl text-base sm:text-lg text-[#C7D2FE] font-sans leading-relaxed mb-10">
+          Get direct yard pricing, certified IS 2062 prime steel, and turnkey hydraulic crane erection. Talk directly with our master fabricators in Noida Sector 10.
+        </p>
+
+        {/* 3 High-Energy Conversion Triggers: Red, Yellow & Green/WhatsApp */}
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-12">
           
-          {/* Eyebrow */}
-          <div className="flex items-center gap-3 mb-6">
-            <span className="h-px w-8 bg-[#B08A4A]" />
-            <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
-              START YOUR PROJECT
-            </span>
+          <Link
+            to="/quote"
+            className="btn-red-primary text-sm py-4 px-8"
+          >
+            <span>CALCULATE PROJECT BOQ</span>
+            <ArrowRight className="size-4" />
+          </Link>
+
+          <a
+            href="tel:+918527977714"
+            className="btn-yellow-primary text-sm py-4 px-8"
+          >
+            <Phone className="size-4" />
+            <span>CALL: +91 85279 77714</span>
+          </a>
+
+          <a
+            href="https://wa.me/918527977714?text=Hi%20Tin%20Shade%20Noida,%20I%20need%20a%20turnkey%20shed%20quote%20for%20my%20site."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-navy-outline text-sm py-4 px-8 hover:bg-[#25D366] hover:border-[#25D366] hover:text-black transition-colors"
+          >
+            <MessageSquare className="size-4 text-[#25D366]" />
+            <span>WHATSAPP DRAWING</span>
+          </a>
+
+        </div>
+
+        {/* Trust Badges in Safety Yellow */}
+        <div className="pt-8 border-t border-indigo-200/15 flex flex-wrap items-center justify-center gap-6 sm:gap-10 font-mono text-xs text-[#8E9CB8]">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="size-4 text-[#F59E0B]" />
+            <span>IS 800:2007 Structural Compliance</span>
           </div>
-
-          {/* Dramatic Large Headline */}
-          <h2 className="font-editorial-title text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight uppercase leading-[1.04]">
-            READY TO BUILD <br />
-            <span className="text-[#B08A4A]">SOMETHING STRONG?</span>
-          </h2>
-
-          <p className="mt-6 text-base sm:text-lg text-[#8C9398] font-sans leading-relaxed max-w-2xl">
-            Whether you need a 2,500 sq.ft storage shed or a 100,000+ sq.ft industrial manufacturing complex, speak directly with our senior fabrication engineers in Noida.
-          </p>
-
-          {/* 3 Dramatic Primary Actions */}
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
-              to="/quote"
-              className="btn-arch-primary py-4 px-8 text-sm"
-            >
-              <span>GET A FREE QUOTE</span>
-              <ArrowRight className="size-4" />
-            </Link>
-
-            <a
-              href="tel:+918527977714"
-              className="btn-arch-secondary py-4 px-8 text-sm"
-            >
-              <Phone className="size-4 text-[#B08A4A]" />
-              <span>CALL NOW: +91 85279 77714</span>
-            </a>
-
-            <a
-              href={company.whatsappText}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 py-4 px-6 border border-emerald-500/30 bg-emerald-950/20 text-emerald-400 hover:text-white font-mono text-xs uppercase tracking-wider font-bold transition-colors"
-            >
-              <MessageCircle className="size-4 text-emerald-400" />
-              <span>WHATSAPP DIRECT</span>
-            </a>
+          <div className="flex items-center gap-2">
+            <span className="text-[#F59E0B] font-bold">✓</span>
+            <span>Direct Noida Sector 10 Yard</span>
           </div>
-
-          {/* Direct Address & Trust Strip */}
-          <div className="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-6 font-mono text-xs text-[#8C9398]">
-            <div className="flex items-center gap-2">
-              <MapPin className="size-3.5 text-[#B08A4A]" />
-              <span>D179 Sector 10, Noida, UP 201301</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Mail className="size-3.5 text-[#B08A4A]" />
-              <span>tinshadenoida@gmail.com</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="size-3.5 text-[#B08A4A]" />
-              <span>IS 2062 Certified Prime Mild Steel</span>
-            </div>
+          <div className="flex items-center gap-2">
+            <span className="text-[#F59E0B] font-bold">✓</span>
+            <span>500+ Projects Across India</span>
           </div>
-
         </div>
 
       </div>

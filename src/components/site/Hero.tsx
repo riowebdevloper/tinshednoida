@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight, Download } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Download, Phone, ShieldAlert } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { company } from "@/lib/site-data";
 
@@ -26,7 +26,7 @@ const slides: HeroSlideData[] = [
     headlineTop: "ENGINEERED",
     headlineBottom: "FOR SCALE.",
     subheadline:
-      "Industrial sheds, structural steel and roofing solutions built for demanding commercial and industrial environments. In-house fabrication shop in Noida Sector 10 with turnkey crane erection nationwide.",
+      "Heavy-duty industrial sheds, structural steel and turnkey warehouse solutions engineered to IS 800 standards. In-house fabrication shop in Noida Sector 10 with direct crane erection across India.",
     projectName: "HEAVY INDUSTRIAL MANUFACTURING FACILITY",
     location: "NOIDA SECTOR 63 · 100 FT CLEAR SPAN",
   },
@@ -107,12 +107,12 @@ export function Hero() {
 
   return (
     <section
-      aria-label="Cinematic Hero"
-      className="relative w-full h-[95vh] min-h-[660px] lg:h-screen lg:min-h-[760px] max-h-[1120px] bg-[#0B0D0F] text-white overflow-hidden flex flex-col justify-between"
+      aria-label="Cinematic Industrial Hero"
+      className="relative w-full h-[95vh] min-h-[680px] lg:h-screen lg:min-h-[760px] max-h-[1150px] bg-[#0A1128] text-white overflow-hidden flex flex-col justify-between"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* ──────── BACKGROUND IMAGE CINEMATIC CROSSFADE ──────── */}
+      {/* ──────── CINEMATIC PARALLAX BACKGROUND ──────── */}
       {slides.map((slide, idx) => {
         const isCurrent = idx === current;
         return (
@@ -130,105 +130,105 @@ export function Hero() {
                 alt={`${slide.headlineTop} ${slide.headlineBottom}`}
                 loading={idx === 0 ? "eager" : "lazy"}
                 fetchPriority={idx === 0 ? "high" : "auto"}
-                className={`size-full object-cover object-center brightness-[0.34] contrast-[1.10] transition-transform duration-[7500ms] ease-out ${
-                  isCurrent ? "scale-100" : "scale-103"
+                className={`size-full object-cover object-center brightness-[0.38] contrast-[1.12] transition-transform duration-[8000ms] ease-out ${
+                  isCurrent ? "scale-100" : "scale-104"
                 }`}
               />
             </picture>
 
-            {/* Deep Cinematic Architectural Contrast Gradients */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0D0F] via-[#0B0D0F]/40 to-[#0B0D0F]/75" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0B0D0F]/90 via-[#0B0D0F]/35 to-transparent" />
+            {/* Deep Navy Blue Contrast Gradients */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/50 to-[#0A1128]/80" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0A1128]/95 via-[#0A1128]/55 to-transparent" />
+            <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#0A1128]/30 to-[#0A1128]/90" />
           </div>
         );
       })}
 
-      {/* ──────── ARCHITECTURAL FOREGROUND CONTENT ──────── */}
+      {/* ──────── FOREGROUND ARCHITECTURAL CONTENT ──────── */}
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pt-28 sm:pt-36 lg:pt-40 flex-1 flex flex-col justify-center">
         <div className="max-w-3xl">
           
-          {/* Eyebrow Label in JetBrains Mono */}
-          <div className="inline-flex items-center gap-2.5 mb-5">
-            <span className="h-px w-8 bg-[#B08A4A]" />
-            <span className="font-mono-tag text-[#B08A4A] tracking-widest text-xs">
+          {/* Eyebrow Label with Live Red Pulse & Safety Yellow Text */}
+          <div className="inline-flex items-center gap-2.5 mb-5 px-3 py-1 bg-[#101B3B]/80 border border-indigo-200/20 backdrop-blur-md rounded-[2px]">
+            <span className="size-2 rounded-full bg-[#DC2626] animate-pulse" />
+            <span className="font-mono-tag text-[#F59E0B] tracking-widest text-xs font-bold">
               PAN INDIA INDUSTRIAL STRUCTURES
             </span>
           </div>
 
           {/* Massive Display Headline */}
-          <h1 className="font-editorial-title text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight text-white leading-[1.03] uppercase">
+          <h1 className="font-editorial-title text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight text-white leading-[1.03] uppercase drop-shadow-md">
             <span className="block">{active.headlineTop}</span>
-            <span className="block text-white/95">{active.headlineBottom}</span>
+            <span className="block text-[#F59E0B]">{active.headlineBottom}</span>
           </h1>
 
           {/* Secondary Subtitle */}
-          <p className="mt-6 text-sm sm:text-base lg:text-lg text-[#C8CCD0] font-sans leading-relaxed max-w-2xl">
+          <p className="mt-6 text-sm sm:text-base lg:text-lg text-[#C7D2FE] font-sans leading-relaxed max-w-2xl">
             {active.subheadline}
           </p>
 
-          {/* Primary & Secondary Action CTAs */}
+          {/* 3 High-Energy Action Buttons: Precision Red & Safety Yellow */}
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
-              to="/projects"
-              className="btn-arch-primary"
+              to="/quote"
+              className="btn-red-primary"
             >
-              <span>EXPLORE PROJECTS</span>
-              <ArrowRight className="size-3.5" />
+              <span>GET A FREE QUOTE</span>
+              <ArrowRight className="size-4" />
             </Link>
 
             <Link
-              to="/quote"
-              className="btn-arch-secondary"
+              to="/projects"
+              className="btn-yellow-primary"
             >
-              <span>GET A QUOTE</span>
+              <span>EXPLORE PROJECTS</span>
             </Link>
 
             <a
-              href={company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf"}
-              download="TIN_SHADE_NOIDA_CATALOG.pdf"
-              className="inline-flex items-center gap-2 font-mono text-xs text-[#8C9398] hover:text-white transition-colors py-2 px-1"
+              href="tel:+918527977714"
+              className="btn-navy-outline hidden sm:inline-flex items-center gap-2"
             >
-              <Download className="size-3.5 text-[#B08A4A]" />
-              <span>DOWNLOAD PROJECT BROCHURE</span>
+              <Phone className="size-3.5 text-[#F59E0B]" />
+              <span>CALL: +91 85279 77714</span>
             </a>
           </div>
 
         </div>
       </div>
 
-      {/* ──────── BOTTOM ARCHITECTURAL LEDGER & SLIDER CONTROLS ──────── */}
+      {/* ──────── BOTTOM ARCHITECTURAL LEDGER & CONTROLS ──────── */}
       <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pb-8 sm:pb-10">
-        <div className="pt-5 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="pt-5 border-t border-indigo-200/15 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           
-          {/* Active Project Identification */}
-          <div className="flex items-center gap-4 font-mono text-xs text-[#8C9398]">
-            <span className="text-[#B08A4A] font-bold tracking-widest tabular-nums">
+          {/* Active Project Details */}
+          <div className="flex items-center gap-4 font-mono text-xs text-[#8E9CB8]">
+            <span className="text-[#F59E0B] font-bold tracking-widest tabular-nums text-sm">
               {active.num}
             </span>
-            <span className="hidden sm:inline text-white/20">|</span>
-            <span className="text-white font-medium truncate max-w-xs sm:max-w-md">
+            <span className="hidden sm:inline text-indigo-200/30">|</span>
+            <span className="text-white font-semibold truncate max-w-xs sm:max-w-md">
               {active.projectName}
             </span>
-            <span className="hidden md:inline text-white/20">·</span>
-            <span className="hidden md:inline text-[#8C9398]">
+            <span className="hidden md:inline text-indigo-200/30">·</span>
+            <span className="hidden md:inline text-[#C7D2FE]">
               {active.location}
             </span>
           </div>
 
-          {/* Language Pills & Slider Arrows */}
+          {/* 5-Language Switcher Pills & Prev/Next Arrows */}
           <div className="flex items-center gap-3 shrink-0">
             
-            {/* Multilingual Indicators */}
-            <div className="flex items-center gap-1 bg-[#14171A] p-1 border border-white/10">
+            {/* Multilingual Selector */}
+            <div className="flex items-center gap-1 bg-[#101B3B] p-1 border border-indigo-200/20 rounded-[2px]">
               {slides.map((s, idx) => (
                 <button
                   key={s.langTag}
                   type="button"
                   onClick={() => setCurrent(idx)}
-                  className={`px-2 py-0.5 font-mono text-[0.6875rem] font-bold transition-all ${
+                  className={`px-2.5 py-1 font-mono text-[0.6875rem] font-bold transition-all rounded-[2px] ${
                     idx === current
-                      ? "bg-[#B08A4A] text-[#0B0D0F]"
-                      : "text-[#8C9398] hover:text-white"
+                      ? "bg-[#F59E0B] text-[#0A1128] shadow-sm"
+                      : "text-[#8E9CB8] hover:text-white"
                   }`}
                   aria-label={`Switch to slide ${idx + 1} (${s.language})`}
                 >
@@ -242,7 +242,7 @@ export function Hero() {
               <button
                 type="button"
                 onClick={handlePrev}
-                className="flex size-8 items-center justify-center border border-white/15 bg-white/5 text-white hover:bg-white/15 transition-colors"
+                className="flex size-8 items-center justify-center border border-indigo-200/20 bg-[#101B3B] text-white hover:bg-[#1E3A8A] transition-colors rounded-[2px]"
                 aria-label="Previous Slide"
               >
                 <ChevronLeft className="size-4" />
@@ -250,7 +250,7 @@ export function Hero() {
               <button
                 type="button"
                 onClick={handleNext}
-                className="flex size-8 items-center justify-center border border-white/15 bg-white/5 text-white hover:bg-white/15 transition-colors"
+                className="flex size-8 items-center justify-center border border-indigo-200/20 bg-[#101B3B] text-white hover:bg-[#1E3A8A] transition-colors rounded-[2px]"
                 aria-label="Next Slide"
               >
                 <ChevronRight className="size-4" />

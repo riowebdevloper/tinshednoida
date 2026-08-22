@@ -2,25 +2,30 @@
 
 @layer base {
   :root {
-    --canvas-dark: #0B0D0F;
-    --canvas-surface: #14171A;
-    --canvas-elevated: #1C2024;
-    --metal: #8C9398;
-    --metal-light: #C8CCD0;
-    --brass: #B08A4A;
-    --brass-hover: #C59D5B;
-    --brass-light: rgba(176, 138, 74, 0.15);
+    --navy-base: #0A1128;
+    --navy-surface: #101B3B;
+    --navy-elevated: #162650;
+    --navy-card: #121F44;
+    --navy-highlight: #1E3A8A;
+    --metal: #8E9CB8;
+    --metal-light: #C7D2FE;
+    --yellow-safety: #F59E0B;
+    --yellow-hover: #FBBF24;
+    --yellow-light: rgba(245, 158, 11, 0.15);
+    --red-primary: #DC2626;
+    --red-hover: #EF4444;
+    --red-light: rgba(220, 38, 38, 0.15);
     --text-primary: #FFFFFF;
-    --text-secondary: #C8CCD0;
-    --text-muted: #8C9398;
-    --border-dark: rgba(255, 255, 255, 0.10);
-    --border-hover: rgba(176, 138, 74, 0.45);
-    --border-light: rgba(255, 255, 255, 0.18);
+    --text-secondary: #C7D2FE;
+    --text-muted: #8E9CB8;
+    --border-dark: rgba(199, 210, 254, 0.14);
+    --border-hover: rgba(245, 158, 11, 0.50);
+    --border-light: rgba(199, 210, 254, 0.22);
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: var(--canvas-dark);
+    background-color: var(--navy-base);
     color: var(--text-primary);
     font-family: "Manrope", "Inter", system-ui, -apple-system, sans-serif;
     text-rendering: optimizeLegibility;
@@ -30,7 +35,7 @@
 
   body {
     overflow-x: hidden;
-    background-color: var(--canvas-dark);
+    background-color: var(--navy-base);
     color: var(--text-primary);
     margin: 0;
     padding: 0;
@@ -60,11 +65,11 @@
   text-transform: uppercase;
 }
 
-/* ──────── ARCHITECTURAL SURFACES & CARDS ──────── */
+/* ──────── NAVY ARCHITECTURAL SURFACES & CARDS ──────── */
 .arch-card-dark, .corp-card {
-  background-color: var(--canvas-surface);
+  background-color: var(--navy-surface);
   border: 1px solid var(--border-dark);
-  border-radius: 2px;
+  border-radius: 3px;
   transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
 }
 
@@ -73,51 +78,83 @@
 }
 
 .arch-card-elevated {
-  background-color: var(--canvas-elevated);
+  background-color: var(--navy-elevated);
   border: 1px solid var(--border-dark);
-  border-radius: 2px;
+  border-radius: 3px;
   transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .arch-card-elevated:hover {
-  border-color: rgba(176, 138, 74, 0.55);
+  border-color: rgba(245, 158, 11, 0.6);
 }
 
-/* ──────── ARCHITECTURAL BUTTONS (SHARP, PRECISE, CONFIDENT) ──────── */
-.btn-arch-primary, .btn-corp-primary {
+/* ──────── BUTTONS: PRECISION RED, SAFETY YELLOW & NAVY OUTLINE ──────── */
+.btn-arch-primary, .btn-red-primary, .btn-corp-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.625rem;
-  background-color: var(--brass);
-  color: #0B0D0F;
+  background-color: var(--red-primary);
+  color: #FFFFFF;
   font-family: "Manrope", sans-serif;
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   padding: 0.9375rem 1.75rem;
-  border-radius: 2px;
-  border: 1px solid transparent;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35);
 }
 
-.btn-arch-primary:hover, .btn-corp-primary:hover {
-  background-color: var(--brass-hover);
-  transform: translateY(-1px);
+.btn-arch-primary:hover, .btn-red-primary:hover, .btn-corp-primary:hover {
+  background-color: var(--red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.5);
 }
 
-.btn-arch-primary:active, .btn-corp-primary:active {
+.btn-arch-primary:active, .btn-red-primary:active, .btn-corp-primary:active {
   transform: scale(0.98);
 }
 
-.btn-arch-secondary, .btn-corp-secondary {
+.btn-yellow-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.625rem;
-  background-color: transparent;
+  background-color: var(--yellow-safety);
+  color: #0A1128;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 0.9375rem 1.75rem;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+}
+
+.btn-yellow-primary:hover {
+  background-color: var(--yellow-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5);
+}
+
+.btn-yellow-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-arch-secondary, .btn-corp-secondary, .btn-navy-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  background-color: rgba(199, 210, 254, 0.08);
   color: #FFFFFF;
   font-family: "Manrope", sans-serif;
   font-size: 0.75rem;
@@ -125,53 +162,29 @@
   letter-spacing: 0.09em;
   text-transform: uppercase;
   padding: 0.9375rem 1.75rem;
-  border-radius: 2px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 3px;
+  border: 1px solid rgba(199, 210, 254, 0.25);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
+  backdrop-blur: 4px;
 }
 
-.btn-arch-secondary:hover, .btn-corp-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.08);
+.btn-arch-secondary:hover, .btn-corp-secondary:hover, .btn-navy-outline:hover {
+  background-color: rgba(199, 210, 254, 0.16);
   border-color: #FFFFFF;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
-.btn-arch-secondary:active, .btn-corp-secondary:active {
+.btn-arch-secondary:active, .btn-corp-secondary:active, .btn-navy-outline:active {
   transform: scale(0.98);
 }
 
-.btn-arch-dark-outline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.625rem;
-  background-color: transparent;
-  color: #FFFFFF;
-  font-family: "Manrope", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.875rem 1.5rem;
-  border-radius: 2px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-}
-
-.btn-arch-dark-outline:hover {
-  border-color: var(--brass);
-  color: var(--brass);
-  background-color: rgba(176, 138, 74, 0.08);
-}
-
-/* ──────── ARCHITECTURAL GRID OVERLAY PATTERN ──────── */
+/* ──────── ARCHITECTURAL STRUCTURAL GRID OVERLAY ──────── */
 .arch-grid-pattern {
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 64px 64px;
+    linear-gradient(to right, rgba(199, 210, 254, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(199, 210, 254, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
 /* ──────── SCROLL-TRIGGERED LINE-BY-LINE TEXT REVEAL ──────── */

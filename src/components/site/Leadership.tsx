@@ -1,130 +1,137 @@
-import { Phone } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { ArrowRight, Phone, ShieldCheck, Award, Wrench } from "lucide-react";
 
 export function Leadership() {
   return (
-    <section className="bg-[#0B0D0F] text-white py-24 sm:py-36 border-b border-white/10 relative overflow-hidden">
+    <section
+      id="leadership"
+      aria-label="Leadership & Founders"
+      className="relative bg-[#0A1128] text-white py-24 sm:py-36 border-b border-indigo-200/15 overflow-hidden"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* Header Eyebrow */}
-        <div className="max-w-3xl mb-16">
-          <div className="flex items-center gap-3 mb-3">
-            <span className="h-px w-8 bg-[#B08A4A]" />
-            <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
-              THE PEOPLE BEHIND TIN SHADE
-            </span>
-          </div>
-
-          <h2 className="font-editorial-title text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight uppercase leading-[1.05]">
-            BUILT BY EXPERIENCE. <br />
-            CARRIED FORWARD BY FAMILY.
-          </h2>
+        {/* Eyebrow Label */}
+        <div className="flex items-center gap-3 mb-6">
+          <span className="h-px w-8 bg-[#F59E0B]" />
+          <span className="font-mono-tag text-[#F59E0B] text-xs font-bold">
+            FOUNDERS & STRUCTURAL MASTERY
+          </span>
         </div>
 
-        {/* ──────── EDITORIAL ASYMMETRICAL PORTRAIT COMPOSITION ──────── */}
-        <div className="grid gap-12 lg:grid-cols-12 items-center">
+        {/* Section Header */}
+        <div className="max-w-3xl mb-16 sm:mb-20">
+          <h2 className="font-editorial-title text-3xl sm:text-5xl lg:text-6xl font-extrabold uppercase text-white leading-[1.05]">
+            DIRECT YARD LEADERSHIP. <br />
+            <span className="text-[#F59E0B]">ZERO BROKER INTERMEDIATION.</span>
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-[#C7D2FE] font-sans leading-relaxed">
+            When you contract Tin Shade, you deal directly with master fabricators and project engineers with 15+ years of verified steel erection experience.
+          </p>
+        </div>
+
+        {/* ──────── DUAL FOUNDER PORTRAIT COMPOSITION IN NAVY SURFACE ──────── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           
-          {/* Left Column: Overlapping Editorial Portraits (7 cols) */}
-          <div className="lg:col-span-7 relative">
-            <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-end">
-              
-              {/* Founder Portrait (Large Primary) */}
-              <div className="sm:col-span-7 arch-card-dark overflow-hidden bg-[#14171A] p-2.5 shadow-2xl border border-white/15">
-                <div className="relative aspect-[3/4] overflow-hidden bg-[#0B0D0F]">
+          {/* Founder 1: MD Khurshid */}
+          <div className="bg-[#101B3B] border border-indigo-200/25 p-6 sm:p-10 rounded-[3px] shadow-2xl flex flex-col justify-between hover:border-[#F59E0B]/50 transition-all duration-300">
+            <div>
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#0A1128] rounded-[2px] mb-8 border border-indigo-200/20">
+                <picture>
+                  <source srcSet="/images/founders/khurshid.webp" type="image/webp" />
                   <img
-                    src="/khurshid.jpg"
-                    alt="MD Khurshid - Founder"
-                    className="size-full object-cover grayscale contrast-110"
+                    src="/images/founders/khurshid.jpg"
+                    alt="MD Khurshid Master Structural Fabricator"
+                    className="size-full object-cover object-top brightness-[0.90] contrast-[1.08] hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute bottom-3 left-3 bg-[#0B0D0F]/90 text-white font-mono text-[0.6875rem] font-bold px-3 py-1 uppercase tracking-widest border border-white/10">
-                    FOUNDER · MD KHURSHID
-                  </div>
-                </div>
-                <div className="p-3 pt-4">
-                  <span className="font-mono text-xs text-[#B08A4A] font-bold uppercase block">
-                    30+ YEARS MASTER FABRICATOR
-                  </span>
-                  <p className="text-xs text-[#8C9398] font-sans mt-1">
-                    Direct oversight of welding, truss geometry, and raw steel quality in Noida yard.
-                  </p>
+                </picture>
+                <div className="absolute top-3 right-3 bg-[#0A1128]/95 px-3 py-1 border border-indigo-200/30 font-mono text-xs text-[#F59E0B] font-bold rounded-[2px]">
+                  15+ YEARS MASTERY
                 </div>
               </div>
 
-              {/* Next Generation Portrait (Offset Secondary) */}
-              <div className="sm:col-span-5 arch-card-dark overflow-hidden bg-[#14171A] p-2.5 shadow-xl border border-white/15 sm:-ml-8 sm:-mb-6 relative z-10">
-                <div className="relative aspect-[3/4] overflow-hidden bg-[#0B0D0F]">
-                  <img
-                    src="/abdul.jpg"
-                    alt="Abdul - Project Engineer"
-                    className="size-full object-cover grayscale contrast-110"
-                  />
-                  <div className="absolute bottom-3 left-3 bg-[#0B0D0F]/90 text-white font-mono text-[0.6875rem] font-bold px-3 py-1 uppercase tracking-widest border border-white/10">
-                    NEXT GEN · ABDUL
-                  </div>
+              <div className="font-mono text-xs text-[#F59E0B] font-bold uppercase tracking-widest mb-1">
+                MANAGING DIRECTOR & MASTER FABRICATOR
+              </div>
+              <h3 className="font-editorial-title text-2xl sm:text-3xl font-extrabold text-white uppercase mb-4">
+                MD Khurshid
+              </h3>
+
+              <p className="text-xs sm:text-sm text-[#C7D2FE] font-sans leading-relaxed mb-6">
+                Direct supervisor of all in-shop MIG/arc welding, structural steel fit-up, and raw material procurement from primary Indian steel mills. Over 500 sheds engineered under his direct technical inspection.
+              </p>
+
+              <div className="space-y-2 pt-4 border-t border-indigo-200/15 font-mono text-xs text-[#8E9CB8]">
+                <div className="flex items-center gap-2">
+                  <Wrench className="size-3.5 text-[#F59E0B]" />
+                  <span>Specialization: Heavy Portal Trusses & Crane Gantries</span>
                 </div>
-                <div className="p-3 pt-4">
-                  <span className="font-mono text-xs text-[#B08A4A] font-bold uppercase block">
-                    PROJECT ENGINEER
-                  </span>
-                  <p className="text-xs text-[#8C9398] font-sans mt-1">
-                    CAD calculations, BOQ estimations, and turnkey on-site crane coordination.
-                  </p>
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="size-3.5 text-[#F59E0B]" />
+                  <span>Certification: IS 800:2007 Structural Compliance</span>
                 </div>
               </div>
+            </div>
 
+            <div className="mt-8 pt-6 border-t border-indigo-200/15">
+              <a
+                href="tel:+918527977714"
+                className="btn-red-primary text-xs w-full flex items-center justify-center gap-2"
+              >
+                <Phone className="size-3.5" />
+                <span>SPEAK DIRECTLY: +91 85279 77714</span>
+              </a>
             </div>
           </div>
 
-          {/* Right Column: Editorial Narrative & Values (5 cols) */}
-          <div className="lg:col-span-5 space-y-6">
-            
-            <div className="space-y-4">
-              <h3 className="font-editorial-title text-2xl font-extrabold text-white uppercase">
-                A Partnership Grounded in Craft &amp; Integrity
+          {/* Founder 2: Abdul */}
+          <div className="bg-[#101B3B] border border-indigo-200/25 p-6 sm:p-10 rounded-[3px] shadow-2xl flex flex-col justify-between hover:border-[#F59E0B]/50 transition-all duration-300">
+            <div>
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#0A1128] rounded-[2px] mb-8 border border-indigo-200/20">
+                <picture>
+                  <source srcSet="/images/founders/abdul.webp" type="image/webp" />
+                  <img
+                    src="/images/founders/abdul.jpg"
+                    alt="Abdul Project Engineer & Operations Lead"
+                    className="size-full object-cover object-top brightness-[0.90] contrast-[1.08] hover:scale-105 transition-transform duration-700"
+                  />
+                </picture>
+                <div className="absolute top-3 right-3 bg-[#0A1128]/95 px-3 py-1 border border-indigo-200/30 font-mono text-xs text-[#F59E0B] font-bold rounded-[2px]">
+                  PAN INDIA OPERATIONS
+                </div>
+              </div>
+
+              <div className="font-mono text-xs text-[#F59E0B] font-bold uppercase tracking-widest mb-1">
+                CO-FOUNDER & CHIEF OF ON-SITE OPERATIONS
+              </div>
+              <h3 className="font-editorial-title text-2xl sm:text-3xl font-extrabold text-white uppercase mb-4">
+                Abdul
               </h3>
 
-              <p className="text-sm sm:text-base text-[#C8CCD0] font-sans leading-relaxed">
-                Founded with a practical understanding of industrial construction and a commitment to dependable workmanship, MD Khurshid has built Tin Shade around trust, quality and long-term relationships with clients.
+              <p className="text-xs sm:text-sm text-[#C7D2FE] font-sans leading-relaxed mb-6">
+                Leads mobile hydraulic crane mobilization, on-site laser foundation surveys, safety protocols, and client technical coordination across North India and regional corridors.
               </p>
 
-              <p className="text-sm sm:text-base text-[#8C9398] font-sans leading-relaxed">
-                Abdul represents the next generation of Tin Shade, bringing a modern approach to project coordination, technology, customer experience and the continued growth of the business.
-              </p>
-            </div>
-
-            {/* Visual Story: FOUNDATION -> EXPERIENCE -> FUTURE */}
-            <div className="pt-4 border-t border-white/10 space-y-3 font-mono text-xs text-[#C8CCD0]">
-              <div className="flex items-center gap-3">
-                <span className="font-bold text-[#B08A4A]">01. FOUNDATION:</span>
-                <span>Direct hands-on metal arc welding in Noida since 2010</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="font-bold text-[#B08A4A]">02. EXPERIENCE:</span>
-                <span>500+ executed industrial sheds across North India</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="font-bold text-[#B08A4A]">03. FUTURE:</span>
-                <span>High-precision PEB structures and digital BOQ accuracy</span>
+              <div className="space-y-2 pt-4 border-t border-indigo-200/15 font-mono text-xs text-[#8E9CB8]">
+                <div className="flex items-center gap-2">
+                  <Award className="size-3.5 text-[#F59E0B]" />
+                  <span>Role: Site Logistics, Rigging & Fast-Track Erection</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="size-3.5 text-[#F59E0B]" />
+                  <span>Coverage: Delhi NCR, UP, Haryana, Rajasthan, Pan India</span>
+                </div>
               </div>
             </div>
 
-            <div className="pt-4 flex flex-wrap items-center gap-4">
-              <a
-                href="tel:+918527977714"
-                className="btn-arch-primary text-xs"
-              >
-                <Phone className="size-3.5" />
-                <span>Speak Directly with Leadership</span>
-              </a>
-
+            <div className="mt-8 pt-6 border-t border-indigo-200/15">
               <Link
                 to="/about/founders"
-                className="btn-arch-secondary text-xs"
+                className="btn-yellow-primary text-xs w-full flex items-center justify-center gap-2"
               >
-                <span>Full Founder Story &rarr;</span>
+                <span>VIEW COMPLETE FOUNDER DOSSIER</span>
+                <ArrowRight className="size-3.5" />
               </Link>
             </div>
-
           </div>
 
         </div>

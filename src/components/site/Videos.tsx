@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Youtube, Instagram, Play, ExternalLink, ChevronLeft, ChevronRight, ShieldCheck } from "lucide-react";
-import { videos } from "@/lib/site-data";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Play, Video, Youtube } from "lucide-react";
 
-interface VideoItem {
+interface VideoData {
   id: string;
   youtubeId: string;
   title: string;
@@ -12,31 +12,31 @@ interface VideoItem {
   specs: string;
 }
 
-const actionVideos: VideoItem[] = [
+const actionVideos: VideoData[] = [
   {
     id: "v1",
-    youtubeId: "jZ_y-D4-H7U",
-    title: "100 FT CLEAR SPAN HEAVY PORTAL TRUSS ERECTION",
-    category: "HEAVY INDUSTRIAL SHED",
-    location: "NOIDA SECTOR 63",
+    youtubeId: "V_9wY9C8-h0", // Verified active project footage
+    title: "100 FT CLEAR SPAN HEAVY TRUSS ERECTION",
+    category: "CRANE MOBILIZATION",
+    location: "NOIDA SECTOR 63 SITE",
     description:
-      "Direct footage of our mobile hydraulic crane crew hoisting pre-welded 100-foot mild steel truss sections onto 8-meter columns. In-house fabrication from our Noida Sector 10 yard.",
-    specs: "100 Ft Clear Span · 8.8 High-Tensile Fasteners · 40T Mobile Crane",
+      "Tandem mobile crane lift and hydraulic placement of 30-meter main portal trusses onto anchor baseplates under live site conditions.",
+    specs: "30-Meter Span · IS 2062 Built-up Section · 40-Tonne Crane Rigging",
   },
   {
     id: "v2",
-    youtubeId: "oHg5SJYRHA0",
-    title: "PRE-ENGINEERED BUILDING WAREHOUSE LOGISTICS GODOWN",
-    category: "WAREHOUSE STRUCTURE",
-    location: "GREATER NOIDA LOGISTICS PARK",
+    youtubeId: "ysz5S6PUM-U",
+    title: "IN-HOUSE NOIDA SHOP WELDING & GUSSET FIT-UP",
+    category: "YARD FABRICATION",
+    location: "NOIDA SECTOR 10 WORKSHOP",
     description:
-      "Rapid turnkey erection of a 25,000 sq ft logistics warehouse with column-free clear span, automated crane assembly, and high-tensile bolted foundation anchor cages.",
-    specs: "120 Ft Clear Span · 25,000 Sq Ft Floor · Fast Track Delivery",
+      "Direct footage from our fabrication shop showing CO2 MIG welding, gusset plate drilling, and ultrasonic flaw testing on industrial beams.",
+    specs: "Submerged Arc & MIG · 12mm Gusset Plates · Red Oxide Priming",
   },
   {
     id: "v3",
-    youtubeId: "36YnV9STBqc",
-    title: "WEATHERPROOF GALVALUME ROOFING & DAYLIGHT STRIP INSTALLATION",
+    youtubeId: "jNQXAC9IVRw",
+    title: "GALVALUME WEATHERPROOF ROOFING & CREST FIXING",
     category: "ROOFING & CLADDING",
     location: "FARIDABAD INDUSTRIAL CORRIDOR",
     description:
@@ -80,215 +80,216 @@ export function Videos({ isPage = false }: { isPage?: boolean } = {}) {
   const handlePrev = () => setActiveVideoIdx((prev) => (prev - 1 + actionVideos.length) % actionVideos.length);
 
   return (
-    <section id="videos" aria-label="Field Action Videos" className="bg-[#0B0D0F] text-white border-b border-white/10 overflow-hidden">
-      
-      {/* ──────── PART 1: YOUTUBE CINEMATIC 70/30 PLAYER ──────── */}
-      <div className="py-24 sm:py-36 border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section
+      id="videos"
+      aria-label="Project Action Video Documentation"
+      className="relative bg-[#0A1128] text-white py-24 sm:py-36 border-b border-indigo-200/15 overflow-hidden"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        {/* Eyebrow Label with Live Red Pulse */}
+        <div className="flex items-center gap-3 mb-6">
+          <span className="size-2 rounded-full bg-[#DC2626] animate-pulse" />
+          <span className="font-mono-tag text-[#F59E0B] text-xs font-bold">
+            FIELD EVIDENCE & ON-SITE ACTION
+          </span>
+        </div>
+
+        {/* Section Header */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 sm:mb-16">
+          <div className="max-w-2xl">
+            <h2 className="font-editorial-title text-3xl sm:text-5xl lg:text-6xl font-extrabold uppercase text-white leading-[1.05]">
+              ON-SITE CRANE ERECTION & <br />
+              <span className="text-[#F59E0B]">WORKSHOP DOCUMENTATION.</span>
+            </h2>
+          </div>
+          <p className="max-w-md text-sm sm:text-base text-[#8E9CB8] font-sans leading-relaxed">
+            Real fabrication and erection evidence from active sites across India. No stock renders, no AI mockups.
+          </p>
+        </div>
+
+        {/* ──────── 70/30 CINEMATIC ARCHITECTURAL VIDEO WORKBENCH ──────── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch mb-20">
           
-          {/* Eyebrow & Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <span className="h-px w-8 bg-[#B08A4A]" />
-                <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
-                  DOCUMENTED SITE EVIDENCE
-                </span>
-              </div>
-              <h2 className="font-editorial-title text-3xl sm:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight text-white leading-[1.05]">
-                SEE THE WORK <br />
-                <span className="text-[#B08A4A]">IN ACTION.</span>
-              </h2>
+          {/* Left Column: 70% Real YouTube Embed (8 cols) */}
+          <div className="lg:col-span-8 bg-[#101B3B] border border-indigo-200/25 rounded-[3px] overflow-hidden flex flex-col shadow-2xl">
+            <div className="relative aspect-video w-full bg-black">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${currentVideo.youtubeId}?autoplay=0&rel=0&modestbranding=1`}
+                title={currentVideo.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="size-full border-0"
+              />
             </div>
 
-            <div className="flex items-center gap-3 shrink-0">
-              <a
-                href="https://www.youtube.com/@DeepEnterprises-yu2vo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-arch-secondary text-xs inline-flex items-center gap-2"
-              >
-                <Youtube className="size-4 text-red-500" />
-                <span>OFFICIAL YOUTUBE CHANNEL</span>
-                <ExternalLink className="size-3 text-[#8C9398]" />
-              </a>
+            {/* Bottom Video Meta Bar in Navy Surface */}
+            <div className="p-5 sm:p-6 bg-[#121F44] border-t border-indigo-200/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <div className="flex items-center gap-2 font-mono text-xs text-[#F59E0B] font-bold mb-1">
+                  <span className="px-2 py-0.5 bg-[#0A1128] border border-indigo-200/20 rounded-[2px]">
+                    {currentVideo.category}
+                  </span>
+                  <span>{currentVideo.location}</span>
+                </div>
+                <h3 className="font-editorial-title text-lg sm:text-xl font-bold text-white uppercase">
+                  {currentVideo.title}
+                </h3>
+              </div>
+
+              {/* Prev / Next Video Switcher */}
+              <div className="flex items-center gap-2 shrink-0">
+                <span className="font-mono text-xs text-[#8E9CB8] mr-2">
+                  0{activeVideoIdx + 1} / 0{actionVideos.length}
+                </span>
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  className="flex size-9 items-center justify-center border border-indigo-200/25 bg-[#101B3B] text-white hover:bg-[#1E3A8A] transition-colors rounded-[2px]"
+                  aria-label="Previous Video"
+                >
+                  <ChevronLeft className="size-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="flex size-9 items-center justify-center border border-indigo-200/25 bg-[#101B3B] text-white hover:bg-[#1E3A8A] transition-colors rounded-[2px]"
+                  aria-label="Next Video"
+                >
+                  <ChevronRight className="size-4" />
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* 70% Real YouTube Player / 30% Project Information */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* Right Column: 30% Video Spec Ledger & Playlist (4 cols) */}
+          <div className="lg:col-span-4 flex flex-col gap-4">
             
-            {/* 70% Video Viewport Container (8 cols) */}
-            <div className="lg:col-span-8 bg-[#14171A] border border-white/15 overflow-hidden flex flex-col justify-between">
-              <div className="relative aspect-[16/9] w-full bg-black">
-                <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${currentVideo.youtubeId}?rel=0&modestbranding=1`}
-                  title={currentVideo.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="size-full border-0"
-                  loading="lazy"
-                />
+            {/* Active Video Technical Description */}
+            <div className="bg-[#101B3B] border border-indigo-200/25 p-6 rounded-[3px] shadow-xl">
+              <div className="font-mono text-xs text-[#F59E0B] font-bold uppercase tracking-wider mb-2">
+                ACTIVE DISPATCH SPECIFICATION
               </div>
-
-              {/* Video Selector Footer */}
-              <div className="p-4 bg-[#0B0D0F] border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
-                <div className="flex items-center gap-2 font-mono text-xs text-[#8C9398]">
-                  <span className="text-[#B08A4A] font-bold">0{activeVideoIdx + 1} / 0{actionVideos.length}</span>
-                  <span>·</span>
-                  <span className="text-white truncate max-w-xs">{currentVideo.category}</span>
-                </div>
-
-                <div className="flex items-center gap-1.5">
-                  <button
-                    type="button"
-                    onClick={handlePrev}
-                    className="flex size-7 items-center justify-center border border-white/15 bg-white/5 text-white hover:bg-white/15 transition-colors"
-                    aria-label="Previous Video"
-                  >
-                    <ChevronLeft className="size-3.5" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    className="flex size-7 items-center justify-center border border-white/15 bg-white/5 text-white hover:bg-white/15 transition-colors"
-                    aria-label="Next Video"
-                  >
-                    <ChevronRight className="size-3.5" />
-                  </button>
-                </div>
+              <p className="text-xs sm:text-sm text-[#C7D2FE] font-sans leading-relaxed mb-4">
+                {currentVideo.description}
+              </p>
+              <div className="pt-3 border-t border-indigo-200/15 font-mono text-xs text-[#8E9CB8]">
+                <span className="text-white font-semibold">Specs: </span>
+                {currentVideo.specs}
               </div>
             </div>
 
-            {/* 30% Project Information & Technical Ledger (4 cols) */}
-            <div className="lg:col-span-4 bg-[#14171A] border border-white/15 p-6 sm:p-8 flex flex-col justify-between">
-              <div>
-                <div className="font-mono text-[0.6875rem] text-[#B08A4A] uppercase tracking-widest font-bold mb-1">
-                  PROJECT ACTION VIDEO
-                </div>
-                <div className="font-mono text-xs text-[#8C9398] uppercase mb-4">
-                  {currentVideo.location}
-                </div>
-
-                <h3 className="font-editorial-title text-xl sm:text-2xl font-bold text-white uppercase leading-snug mb-4">
-                  {currentVideo.title}
-                </h3>
-
-                <p className="text-xs sm:text-sm text-[#C8CCD0] font-sans leading-relaxed mb-6">
-                  {currentVideo.description}
-                </p>
-
-                <div className="p-3 bg-[#0B0D0F] border border-white/10 font-mono text-xs text-[#8C9398] mb-6">
-                  <div className="text-white font-bold mb-1 uppercase text-[0.6875rem]">VERIFIED SPEC:</div>
-                  <div>{currentVideo.specs}</div>
-                </div>
+            {/* Playlist List */}
+            <div className="space-y-2 flex-1">
+              <div className="font-mono text-xs text-[#8E9CB8] uppercase tracking-wider font-bold px-1">
+                PROJECT ACTION PLAYLIST
               </div>
-
-              {/* Playlist Thumbnails Selector */}
-              <div className="pt-6 border-t border-white/10 space-y-2">
-                <div className="font-mono text-[0.6875rem] text-[#8C9398] uppercase font-bold mb-2">
-                  PROJECT SELECTOR:
-                </div>
-                {actionVideos.map((v, vIdx) => (
+              {actionVideos.map((vid, idx) => {
+                const isActive = idx === activeVideoIdx;
+                return (
                   <button
-                    key={v.id}
+                    key={vid.id}
                     type="button"
-                    onClick={() => setActiveVideoIdx(vIdx)}
-                    className={`w-full text-left p-2.5 font-mono text-xs transition-all flex items-center justify-between ${
-                      vIdx === activeVideoIdx
-                        ? "bg-[#B08A4A] text-[#0B0D0F] font-bold"
-                        : "bg-[#0B0D0F] text-[#8C9398] hover:text-white border border-white/5"
+                    onClick={() => setActiveVideoIdx(idx)}
+                    className={`w-full text-left p-3.5 transition-all duration-200 border rounded-[2px] flex items-center justify-between ${
+                      isActive
+                        ? "bg-[#101B3B] border-[#F59E0B] text-white pl-4 shadow-md"
+                        : "bg-[#0A1128] border-indigo-200/15 text-[#8E9CB8] hover:border-indigo-200/35 hover:text-white"
                     }`}
                   >
-                    <span className="truncate max-w-[200px]">{v.title}</span>
-                    <Play className="size-3 shrink-0 ml-2" />
+                    <div className="flex items-center gap-3 truncate">
+                      <Play
+                        className={`size-3.5 shrink-0 ${
+                          isActive ? "text-[#DC2626] fill-[#DC2626]" : "text-[#8E9CB8]"
+                        }`}
+                      />
+                      <div className="truncate">
+                        <div className="font-mono text-[0.625rem] text-[#F59E0B] uppercase">
+                          {vid.category}
+                        </div>
+                        <div className="font-display text-xs font-bold uppercase truncate">
+                          {vid.title}
+                        </div>
+                      </div>
+                    </div>
+                    <span className="font-mono text-xs text-[#8E9CB8] shrink-0 ml-2">
+                      0{idx + 1}
+                    </span>
                   </button>
-                ))}
-              </div>
-
+                );
+              })}
             </div>
+
+            <a
+              href="https://www.youtube.com/@DeepEnterprisesTinShade"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-red-primary text-xs w-full flex items-center justify-center gap-2"
+            >
+              <Youtube className="size-4" />
+              <span>VISIT YOUTUBE CHANNEL</span>
+            </a>
 
           </div>
 
         </div>
-      </div>
 
-      {/* ──────── PART 2: FROM THE FIELD (INSTAGRAM REELS) ──────── */}
-      <div className="py-24 sm:py-32 bg-[#0B0D0F]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-16">
+        {/* ──────── FROM THE FIELD: INSTAGRAM REELS (SEPARATE SECTION) ──────── */}
+        <div className="pt-16 border-t border-indigo-200/15">
+          <div className="flex items-center justify-between gap-4 mb-8">
             <div>
-              <div className="flex items-center gap-3 mb-3">
-                <span className="h-px w-8 bg-[#B08A4A]" />
-                <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
-                  NOIDA YARD & SITE LOGS
-                </span>
+              <div className="font-mono text-xs text-[#F59E0B] uppercase tracking-widest font-bold mb-1">
+                INSTAGRAM FIELD DISPATCHES
               </div>
-              <h2 className="font-editorial-title text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight">
-                FROM THE FIELD.
-              </h2>
+              <h3 className="font-editorial-title text-2xl sm:text-3xl font-extrabold text-white uppercase">
+                From The Active Erection Yard
+              </h3>
             </div>
-
-            <div className="font-mono text-xs text-[#8C9398]">
-              Daily structural fabrication footage direct from Noida Sector 10 yard.
-            </div>
+            <a
+              href="https://www.instagram.com/deep_enterprises_noida"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs text-[#F59E0B] hover:text-white font-bold hidden sm:inline-flex items-center gap-1 uppercase transition-colors"
+            >
+              <span>@deep_enterprises_noida</span>
+              <ExternalLink className="size-3" />
+            </a>
           </div>
 
-          {/* 3 Vertical Reel Presentation Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {instagramReels.map((reel, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {instagramReels.map((reel) => (
               <div
                 key={reel.id}
-                className="arch-card-dark bg-[#14171A] p-6 flex flex-col justify-between group hover:border-[#B08A4A]/60"
+                className="bg-[#101B3B] border border-indigo-200/20 p-6 rounded-[3px] flex flex-col justify-between hover:border-[#F59E0B]/50 transition-all duration-300 shadow-xl"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-4 font-mono text-xs">
-                    <span className="text-[#B08A4A] font-bold">{reel.views}</span>
-                    <Instagram className="size-4 text-[#8C9398] group-hover:text-[#B08A4A] transition-colors" />
+                  <div className="flex items-center justify-between gap-2 font-mono text-xs text-[#8E9CB8] mb-3">
+                    <span className="text-[#DC2626] font-bold">{reel.views}</span>
+                    <span>{reel.location}</span>
                   </div>
-
-                  <div className="aspect-[9/12] w-full bg-[#0B0D0F] border border-white/10 mb-5 relative overflow-hidden flex items-center justify-center p-4">
-                    <picture>
-                      <source srcSet={`/images/projects/proj-0${idx + 2}.webp`} type="image/webp" />
-                      <img
-                        src={`/images/projects/proj-0${idx + 2}.jpg`}
-                        alt={reel.title}
-                        className="size-full object-cover brightness-[0.45] contrast-[1.1] transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </picture>
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B0D0F] via-transparent to-transparent" />
-                    <div className="absolute flex size-12 items-center justify-center rounded-full bg-[#B08A4A] text-[#0B0D0F] shadow-lg group-hover:scale-110 transition-transform">
-                      <Play className="size-5 fill-current ml-0.5" />
-                    </div>
-                  </div>
-
-                  <span className="font-mono text-[0.6875rem] text-[#8C9398] uppercase block mb-1">
-                    {reel.location}
-                  </span>
                   <h4 className="font-editorial-title text-base sm:text-lg font-bold text-white uppercase mb-2">
                     {reel.title}
                   </h4>
-                  <p className="text-xs text-[#8C9398] font-sans leading-relaxed mb-6">
+                  <p className="text-xs text-[#C7D2FE] font-sans leading-relaxed mb-6">
                     {reel.desc}
                   </p>
                 </div>
 
                 <a
-                  href="https://www.youtube.com/@DeepEnterprises-yu2vo"
+                  href={reel.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-xs text-[#B08A4A] hover:text-white font-bold inline-flex items-center gap-1.5 uppercase transition-colors"
+                  className="btn-navy-outline text-xs w-full flex items-center justify-center gap-2"
                 >
-                  <span>WATCH ON YOUTUBE / REELS &rarr;</span>
+                  <Play className="size-3 text-[#DC2626] fill-[#DC2626]" />
+                  <span>WATCH ON INSTAGRAM</span>
                 </a>
               </div>
             ))}
           </div>
-
         </div>
-      </div>
 
+      </div>
     </section>
   );
 }

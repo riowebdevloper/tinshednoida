@@ -40,8 +40,8 @@ export function SiteHeader() {
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#0B0D0F]/95 backdrop-blur-md border-b border-white/10 py-2.5 shadow-xl"
-          : "bg-gradient-to-b from-[#0B0D0F]/90 via-[#0B0D0F]/40 to-transparent py-4"
+          ? "bg-[#0A1128]/95 backdrop-blur-md border-b border-indigo-200/20 py-2.5 shadow-2xl"
+          : "bg-gradient-to-b from-[#0A1128]/95 via-[#0A1128]/60 to-transparent py-4"
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -56,20 +56,20 @@ export function SiteHeader() {
             <img
               src={company.logo}
               alt="Tin Shade Noida Logo"
-              className="h-8 sm:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-103"
+              className="h-8 sm:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
             <div className="leading-tight">
               <span className="block font-display text-base sm:text-lg font-bold tracking-tight text-white uppercase">
                 {company.name}
               </span>
-              <span className="block font-mono-tag text-[0.625rem] text-[#8C9398]">
-                EST. 2010 · NOIDA YARD
+              <span className="block font-mono-tag text-[0.625rem] text-[#F59E0B] font-bold">
+                EST. 2010 · NOIDA YARD DIRECT
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links - Guaranteed 1-line */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-xs font-semibold tracking-widest text-[#C8CCD0] font-display">
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-xs font-bold tracking-widest text-[#C7D2FE] font-display">
             {navItems.map((item) => {
               const isActive = currentPath === item.to || currentPath.startsWith(item.to + "/");
               return (
@@ -77,82 +77,91 @@ export function SiteHeader() {
                   key={item.label}
                   to={item.to}
                   className={`transition-colors relative py-1 hover:text-white ${
-                    isActive ? "text-white font-bold" : "text-[#8C9398]"
+                    isActive ? "text-white font-extrabold" : "text-[#8E9CB8]"
                   }`}
                 >
                   <span>{item.label}</span>
                   {isActive && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-[#B08A4A]" />
+                    <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#F59E0B]" />
                   )}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Right Action CTA */}
+          {/* Right Action CTA: Red Quote Button & Phone */}
           <div className="hidden sm:flex items-center gap-4 shrink-0">
             <a
               href="tel:+918527977714"
-              className="hidden lg:flex items-center gap-2 font-mono text-xs text-[#8C9398] hover:text-white transition-colors"
+              className="hidden lg:flex items-center gap-2 font-mono text-xs text-[#C7D2FE] hover:text-white transition-colors"
             >
-              <Phone className="size-3 text-[#B08A4A]" />
+              <Phone className="size-3.5 text-[#F59E0B]" />
               <span>+91 85279 77714</span>
             </a>
 
             <Link
               to="/quote"
-              className="btn-arch-primary py-2 px-4 text-xs font-bold"
+              className="btn-red-primary text-xs py-2 px-4 shadow-md"
             >
               <span>GET A QUOTE</span>
-              <ArrowRight className="size-3.5" />
+              <ArrowRight className="size-3" />
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            type="button"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex size-9 items-center justify-center border border-white/15 bg-white/5 text-white hover:bg-white/10 rounded-[2px]"
-            aria-label="Toggle navigation menu"
-          >
-            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-          </button>
+          <div className="flex md:hidden items-center gap-2">
+            <Link
+              to="/quote"
+              className="btn-red-primary text-[0.6875rem] py-1.5 px-3"
+            >
+              <span>QUOTE</span>
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => setMobileOpen((o) => !o)}
+              className="p-2 text-white border border-indigo-200/20 bg-[#101B3B] hover:bg-[#1E3A8A] rounded-[2px]"
+              aria-label="Toggle mobile menu"
+            >
+              {mobileOpen ? <X className="size-5 text-[#F59E0B]" /> : <Menu className="size-5" />}
+            </button>
+          </div>
 
         </div>
       </div>
 
-      {/* ──────── FULL-SCREEN MOBILE OVERLAY DRAWER ──────── */}
+      {/* ──────── MOBILE NAVIGATION DRAWER ──────── */}
       {mobileOpen && (
-        <div className="md:hidden fixed inset-x-0 top-[56px] bottom-0 bg-[#0B0D0F] border-t border-white/10 p-6 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-top-2 duration-200">
-          <nav className="space-y-6 pt-4">
+        <div className="md:hidden fixed inset-x-0 top-[60px] bg-[#0A1128]/98 border-b border-indigo-200/20 backdrop-blur-xl px-6 py-8 shadow-2xl transition-all">
+          <nav className="flex flex-col space-y-5">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 to={item.to}
-                className="block font-editorial-title text-2xl tracking-tight text-white hover:text-[#B08A4A] transition-colors"
+                className="font-editorial-title text-xl text-white hover:text-[#F59E0B] tracking-tight uppercase"
               >
                 {item.label}
               </Link>
             ))}
+
+            <div className="pt-6 border-t border-indigo-200/20 flex flex-col gap-3 font-mono text-xs">
+              <a
+                href="tel:+918527977714"
+                className="btn-yellow-primary text-xs w-full flex items-center justify-center gap-2"
+              >
+                <Phone className="size-3.5" />
+                <span>DIRECT CALL: +91 85279 77714</span>
+              </a>
+
+              <Link
+                to="/quote"
+                className="btn-red-primary text-xs w-full flex items-center justify-center gap-2"
+              >
+                <span>CALCULATE BOQ ESTIMATE</span>
+                <ArrowRight className="size-3.5" />
+              </Link>
+            </div>
           </nav>
-
-          <div className="pt-8 border-t border-white/10 space-y-4">
-            <Link
-              to="/quote"
-              className="btn-arch-primary w-full text-center justify-center py-3.5"
-            >
-              <span>GET A FREE QUOTE</span>
-              <ArrowRight className="size-4" />
-            </Link>
-
-            <a
-              href="tel:+918527977714"
-              className="flex items-center justify-center gap-2 py-3 text-xs font-mono text-[#8C9398] border border-white/15 hover:text-white"
-            >
-              <Phone className="size-3.5 text-[#B08A4A]" />
-              <span>CALL YARD: +91 85279 77714</span>
-            </a>
-          </div>
         </div>
       )}
     </header>
