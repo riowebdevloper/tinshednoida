@@ -4,37 +4,40 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Tin Shade Noida — Industrial Craft Design System
+ * Tin Shade Noida — Elite Architectural Navy Blue Design System
  * 
  * Palette:
- * - Galvalume grey #B8BCC0
- * - Warm paper off-white #F2EFE9
- * - Charcoal #1C1E20
- * - Safety yellow #F4B000 (single disciplined accent)
- * - Oxide red-brown #8C4A2F (anti-rust primer accent)
+ * - Obsidian Navy: #080D1A (Deep structural canvas)
+ * - Architectural Navy: #0E1726 & #131F35 (Section & card backdrops)
+ * - Steel Navy Surface: #1A2A47 (Elevated interactive surfaces)
+ * - Hairline Highlights: rgba(255, 255, 255, 0.09)
+ * - Engineering Cyan: #38BDF8 (CAD drafting & technical nodes)
+ * - Safety Gold: #F59E0B (Primary quote actions & IS standard stamps)
+ * - Red Oxide Copper: #C25E3E (Anti-rust primer accent)
  *
  * Typography:
- * - Display: Barlow Condensed (weight 600-700)
- * - Body: IBM Plex Sans (weight 400-500)
- * - Technical Data: IBM Plex Mono with tabular-nums
+ * - Display: Plus Jakarta Sans (weights 600, 700, 800) / Space Grotesk
+ * - Body: Plus Jakarta Sans (weights 400, 500)
+ * - Technical Data: JetBrains Mono with tabular-nums
  */
 
 @theme inline {
-  --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 6px;
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
 
-  --font-display: "Barlow Condensed", system-ui, sans-serif;
-  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", monospace;
+  --font-display: "Plus Jakarta Sans", "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 
-  /* Strict Deliberate Type Scale: 12 / 14 / 16 / 20 / 28 / 40 / 56 px */
+  /* Deliberate Editorial Type Scale */
   --font-size-xs: 0.75rem;    /* 12px */
   --font-size-sm: 0.875rem;   /* 14px */
   --font-size-base: 1rem;     /* 16px */
-  --font-size-lg: 1.25rem;    /* 20px */
-  --font-size-xl: 1.75rem;    /* 28px */
-  --font-size-2xl: 2.5rem;    /* 40px */
+  --font-size-lg: 1.1875rem;  /* 19px */
+  --font-size-xl: 1.625rem;   /* 26px */
+  --font-size-2xl: 2.25rem;   /* 36px */
   --font-size-3xl: 3.5rem;    /* 56px */
 
   --color-background: var(--background);
@@ -55,59 +58,61 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Exact Material Tokens */
-  --color-galvalume: #B8BCC0;
-  --color-paper: #F2EFE9;
-  --color-charcoal: #1C1E20;
-  --color-charcoal-deep: #141618;
-  --color-safety: #F4B000;
-  --color-oxide: #8C4A2F;
-  --color-steel: #24272A;
-  --color-steel-deep: #181A1C;
-  --color-steel-muted: #8F949A;
-  --color-whatsapp: #1E7E34;
+  /* Elite Navy Blue Tokens */
+  --color-navy-obsidian: #080D1A;
+  --color-navy-deep: #0E1726;
+  --color-navy-card: #131F35;
+  --color-navy-surface: #1A2A47;
+  --color-navy-border: rgba(255, 255, 255, 0.08);
+  --color-navy-border-hover: rgba(56, 189, 248, 0.35);
+  
+  --color-cyan-glow: #38BDF8;
+  --color-gold-safety: #F59E0B;
+  --color-oxide-copper: #C25E3E;
+  --color-steel-sheet: #CAD5E2;
+  --color-whatsapp: #22C55E;
 }
 
 :root {
-  --radius: 3px;
+  --radius: 6px;
 
-  /* Material Base: Warm paper off-white background & Charcoal text */
-  --background: #F2EFE9;
-  --foreground: #1C1E20;
-  --surface: #E8E4DB;
+  /* Architectural Navy Palette */
+  --background: #080D1A;
+  --foreground: #FFFFFF;
+  --surface: #0E1726;
 
-  --card: #FFFFFF;
-  --card-foreground: #1C1E20;
+  --card: #131F35;
+  --card-foreground: #FFFFFF;
 
-  --primary: #F4B000;
-  --primary-foreground: #1C1E20;
+  --primary: #F59E0B;
+  --primary-foreground: #080D1A;
 
-  --secondary: #E0DBD0;
-  --secondary-foreground: #1C1E20;
+  --secondary: #1A2A47;
+  --secondary-foreground: #FFFFFF;
 
-  --muted: #E0DBD0;
-  --muted-foreground: #585E64;
+  --muted: #1A2A47;
+  --muted-foreground: #94A3B8;
 
-  --border: #D2CDC2;
-  --input: #D2CDC2;
-  --ring: #F4B000;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #38BDF8;
 }
 
 .dark {
-  --background: #141618;
-  --foreground: #F2EFE9;
-  --surface: #1E2124;
-  --card: #1C1E20;
-  --card-foreground: #F2EFE9;
-  --primary: #F4B000;
-  --primary-foreground: #1C1E20;
-  --secondary: #26292D;
-  --secondary-foreground: #F2EFE9;
-  --muted: #26292D;
-  --muted-foreground: #8F949A;
-  --border: rgba(255, 255, 255, 0.12);
-  --input: rgba(255, 255, 255, 0.16);
-  --ring: #F4B000;
+  --background: #080D1A;
+  --foreground: #FFFFFF;
+  --surface: #0E1726;
+  --card: #131F35;
+  --card-foreground: #FFFFFF;
+  --primary: #F59E0B;
+  --primary-foreground: #080D1A;
+  --secondary: #1A2A47;
+  --secondary-foreground: #FFFFFF;
+  --muted: #1A2A47;
+  --muted-foreground: #94A3B8;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #38BDF8;
 }
 
 @layer base {
@@ -117,29 +122,26 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 5.5rem;
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: #080D1A;
+    color: #FFFFFF;
     font-family: var(--font-sans);
     font-weight: 400;
-    line-height: 1.55;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
-  /* Display Typography: Width & Structure over raw weight jumps */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     font-weight: 700;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
-    line-height: 1.1;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
   }
 
-  /* Technical Data in Monospace Tabular Nums */
   .font-mono, [data-mono] {
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
@@ -147,117 +149,123 @@
   }
 }
 
-/* ──────── INDUSTRIAL UTILITY CLASSES ──────── */
+/* ──────── ELITE INDUSTRIAL UTILITY CLASSES ──────── */
 
-/* Understated Eyebrows (Tight tracking 0.03em, 12-13px, not decorative) */
-@utility eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: #8C4A2F;
+@utility navy-card {
+  position: relative;
+  background-color: #131F35;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  &:hover {
+    border-color: rgba(56, 189, 248, 0.35);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  }
 }
 
-/* Solid Industrial Buttons (2-3px radius, sharp, no pill, no glow) */
-@utility btn-primary {
+@utility navy-glass {
+  background: rgba(14, 23, 38, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@utility blueprint-grid {
+  background-image:
+    linear-gradient(to right, rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+@utility btn-elite {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border-radius: 2px;
-  background-color: #F4B000;
+  border-radius: var(--radius-xs);
+  background-color: #F59E0B;
+  padding: 0.75rem 1.4rem;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #080D1A;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);
+  transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  &:hover {
+    background-color: #D97706;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+  }
+  &:active {
+    transform: translateY(0);
+  }
+  &:focus-visible {
+    outline: 2px solid #38BDF8;
+    outline-offset: 2px;
+  }
+}
+
+@utility btn-navy-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background-color: rgba(19, 31, 53, 0.7);
+  backdrop-filter: blur(8px);
   padding: 0.6875rem 1.35rem;
   font-family: var(--font-display);
   font-size: 0.875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: #1C1E20;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  transition: background-color 0.15s ease, transform 0.1s ease;
+  font-weight: 600;
+  color: #FFFFFF;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
   &:hover {
-    background-color: #E2A400;
-  }
-  &:active {
-    transform: translateY(1px);
+    border-color: #38BDF8;
+    background-color: #1A2A47;
+    color: #38BDF8;
   }
   &:focus-visible {
-    outline: 2px solid #1C1E20;
+    outline: 2px solid #38BDF8;
     outline-offset: 2px;
   }
 }
 
-@utility btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 2px;
-  border: 1px solid #1C1E20;
-  background-color: transparent;
-  padding: 0.625rem 1.25rem;
-  font-family: var(--font-display);
-  font-size: 0.875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: #1C1E20;
-  transition: background-color 0.15s ease, color 0.15s ease;
-  &:hover {
-    background-color: #1C1E20;
-    color: #F2EFE9;
-  }
-  &:active {
-    transform: translateY(1px);
-  }
-  &:focus-visible {
-    outline: 2px solid #F4B000;
-    outline-offset: 2px;
-  }
-}
-
-/* Flat Riveted Spec Plate (Hairline border, flat backing, no soft drop shadow) */
-@utility plate-riveted {
+@utility spec-plate-navy {
   position: relative;
-  border: 1px solid #363B40;
-  background-color: #181A1C;
-  color: #F2EFE9;
+  background: linear-gradient(145deg, #131F35 0%, #0E1726 100%);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 12px 32px rgba(0, 0, 0, 0.4);
 }
 
-/* CAD Drafting Lines */
-@utility cad-grid {
-  background-image:
-    linear-gradient(to right, rgba(28, 30, 32, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(28, 30, 32, 0.05) 1px, transparent 1px);
-  background-size: 32px 32px;
+@utility eyebrow-navy {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #38BDF8;
 }
 
-@utility cad-grid-dark {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-/* ──────── SIGNATURE MOTION: TRUSS DRAW ANIMATION (ONE MOMENT ONLY) ──────── */
-@keyframes drawTruss {
+/* ──────── SIGNATURE SVG CAD TRUSS LINE DRAWING ──────── */
+@keyframes drawTrussPath {
   from {
-    stroke-dashoffset: 1200;
+    stroke-dashoffset: 1400;
   }
   to {
     stroke-dashoffset: 0;
   }
 }
 
-.truss-draw-line {
-  stroke-dasharray: 1200;
+.truss-line-animated {
+  stroke-dasharray: 1400;
   stroke-dashoffset: 0;
-  animation: drawTruss 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: drawTrussPath 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .truss-draw-line {
+  .truss-line-animated {
     animation: none;
   }
 }

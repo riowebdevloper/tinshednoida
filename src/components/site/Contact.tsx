@@ -7,11 +7,10 @@ import {
   MapPin,
   MessageCircle,
   Phone,
-  RefreshCw,
+  ArrowRight,
+  ShieldCheck,
 } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
-import { SectionHeading } from "./SectionHeading";
-import { Reveal } from "./Reveal";
 import { company, quoteOptions } from "@/lib/site-data";
 import { indianPhoneRegex, submitLead } from "@/lib/leads.functions";
 
@@ -79,294 +78,190 @@ export function Contact() {
   }
 
   const channels = [
-    { icon: Phone, label: "Call us", value: company.phone, href: company.phoneHref },
-    { icon: MessageCircle, label: "WhatsApp", value: company.phone, href: company.whatsapp },
-    { icon: Mail, label: "Email", value: company.email, href: `mailto:${company.email}` },
-    { icon: Instagram, label: "Instagram", value: company.instagramHandle, href: company.instagram },
-    { icon: MapPin, label: "Workshop & HQ", value: company.address },
+    { icon: Phone, label: "Direct Yard Hotline", value: company.phone, href: company.phoneHref },
+    { icon: MessageCircle, label: "WhatsApp Instant", value: "+91 85279 77714", href: company.whatsappText },
+    { icon: Mail, label: "Official Email", value: company.email, href: `mailto:${company.email}` },
+    { icon: Instagram, label: "Instagram On-Site Media", value: company.instagramHandle, href: company.instagram },
+    { icon: MapPin, label: "Fabrication Yard & Workshop", value: company.address, href: undefined },
   ];
 
   return (
-    <>
-      <section className="bg-steel py-16 text-steel-foreground">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-8 px-6 lg:px-10">
-          <div className="max-w-xl">
-            <h2 className="font-display text-2xl font-extrabold uppercase leading-tight sm:text-3xl">
-              Planning a shed or roofing project?
+    <section className="bg-navy-obsidian py-16 sm:py-24 border-b border-white/10 relative">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+        
+        {/* Left Column: Direct Yard Communication (5 cols) */}
+        <div className="lg:col-span-5 space-y-6">
+          <div>
+            <div className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-amber-400 mb-2">
+              <span className="size-1.5 rounded-full bg-amber-400" />
+              <span>DIRECT FABRICATOR CONSULTATION</span>
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
+              Talk Directly with Our Site Engineers
             </h2>
-            <p className="mt-3 text-sm text-steel-muted">
-              Share your location, shed size and purpose — get a free site visit and cost estimate
-              today.
+            <p className="mt-3 text-sm text-slate-300 leading-relaxed font-sans">
+              No junior call center agents. MD Khurshid and Abdul respond personally to structural queries, schedule laser site surveys, and prepare itemized BOQ estimates.
             </p>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={company.phoneHref}
-              className="inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-            >
-              <Phone className="size-4" /> {company.phone}
-            </a>
-            <a
-              href={company.whatsappText}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-sm border border-steel-line px-6 py-3.5 text-sm font-semibold transition-colors hover:border-primary"
-            >
-              <MessageCircle className="size-4" /> WhatsApp
-            </a>
+
+          <div className="spec-plate-navy p-5 space-y-4">
+            {channels.map(({ icon: Icon, label, value, href }) => (
+              <div key={label} className="flex items-start gap-3.5 border-b border-white/5 pb-3.5 last:border-b-0 last:pb-0 font-mono text-xs">
+                <div className="size-8 rounded-xs bg-white/5 border border-white/10 flex items-center justify-center text-amber-400 shrink-0 mt-0.5">
+                  <Icon className="size-4" />
+                </div>
+                <div>
+                  <span className="text-[0.6875rem] text-slate-400 block uppercase font-semibold">
+                    {label}
+                  </span>
+                  {href ? (
+                    <a
+                      href={href}
+                      target={href.startsWith("http") ? "_blank" : undefined}
+                      rel="noreferrer"
+                      className="text-white font-medium hover:text-amber-400 transition-colors mt-0.5 block"
+                    >
+                      {value}
+                    </a>
+                  ) : (
+                    <span className="text-white font-medium mt-0.5 block">{value}</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Working Hours Stamp */}
+          <div className="p-4 rounded-xs border border-white/10 bg-[#0E1726] font-mono text-xs text-slate-300">
+            <p className="text-white font-semibold">Operating Schedule:</p>
+            <p className="text-slate-400 mt-1">Yard Open: Monday – Saturday (8:00 AM – 8:00 PM)</p>
+            <p className="text-amber-400 mt-0.5">Crane Erection: 24/7 Night Shifts on Special Projects</p>
           </div>
         </div>
-      </section>
 
-      <section id="contact" className="bg-background py-20 lg:py-28">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:px-10">
-          <div>
-            <SectionHeading
-              eyebrow="Get in touch"
-              title={
-                <>
-                  Talk to the <span className="text-primary">site team</span>
-                </>
-              }
-              sub="We answer every enquiry personally — usually within the hour."
-            />
-            <ul className="mt-10 divide-y divide-border border-y border-border">
-              {channels.map(({ icon: Icon, label, value, href }) => (
-                <li key={label} className="flex items-center gap-4 py-4">
-                  <span className="inline-flex size-10 items-center justify-center rounded-sm bg-accent text-accent-foreground">
-                    <Icon className="size-4" />
-                  </span>
-                  <span>
-                    <span className="eyebrow block text-muted-foreground">{label}</span>
-                    {href ? (
-                      <a
-                        href={href}
-                        target={href.startsWith("http") ? "_blank" : undefined}
-                        rel="noreferrer"
-                        className="text-sm font-semibold text-foreground transition-colors hover:text-primary"
-                      >
-                        {value}
-                      </a>
-                    ) : (
-                      <span className="text-sm font-semibold text-foreground">{value}</span>
-                    )}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <Reveal
-            as="form"
-            variant="right"
-            onSubmit={onSubmit}
-            className="rounded-sm border border-border bg-card p-6 shadow-card sm:p-9"
-          >
-            <h3 className="font-display text-2xl font-bold uppercase text-foreground">
-              Request a quotation
-            </h3>
-            <p className="mt-1 text-xs text-muted-foreground">
-              Fill in your project details below to receive a written estimate and free site visit
-              schedule.
-            </p>
-
-            <input
-              type="text"
-              name="company"
-              tabIndex={-1}
-              autoComplete="off"
-              aria-hidden="true"
-              style={{ display: "none" }}
-              className="sr-only"
-            />
+        {/* Right Column: Contact & Site Survey Form (7 cols) */}
+        <div className="lg:col-span-7">
+          <div className="spec-plate-navy p-6 sm:p-8">
+            <div className="border-b border-white/10 pb-4 mb-6">
+              <span className="font-mono text-xs font-semibold text-sky-400 uppercase block mb-1">
+                ONLINE CONSULTATION REQUEST
+              </span>
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
+                Request Free Site Visit &amp; Cost Estimation
+              </h3>
+            </div>
 
             {status === "sent" ? (
-              <div className="mt-6 flex flex-col items-center gap-4 rounded-sm border border-whatsapp/30 bg-whatsapp/10 p-6 text-center">
-                <CheckCircle2 className="size-12 text-whatsapp" />
-                <div>
-                  <h4 className="font-display text-xl font-bold uppercase text-foreground">
-                    ENQUIRY RECEIVED
-                  </h4>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Thank you. Our team will review your requirement and contact you shortly.
-                  </p>
-                </div>
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-3 w-full">
-                  <a
-                    href={company.phoneHref}
-                    className="inline-flex items-center gap-2 rounded-sm bg-primary px-5 py-3 font-display text-sm font-semibold uppercase text-primary-foreground shadow-sm"
-                  >
-                    <Phone className="size-4" />
-                    CALL US
-                  </a>
-                  <a
-                    href={company.whatsappText}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-sm bg-whatsapp px-5 py-3 font-display text-sm font-semibold uppercase text-white shadow-sm"
-                  >
-                    <MessageCircle className="size-4" />
-                    WHATSAPP US
-                  </a>
-                </div>
+              <div className="p-6 rounded-xs bg-[#0B1320] border border-emerald-500 text-center space-y-3">
+                <CheckCircle2 className="size-10 text-emerald-400 mx-auto" />
+                <h4 className="font-display text-xl font-bold text-white">Inquiry Dispatched</h4>
+                <p className="text-xs font-mono text-slate-300">
+                  Your inquiry has been sent to our Noida Sector 10 engineers. We will call you shortly.
+                </p>
                 <button
                   type="button"
                   onClick={() => setStatus("idle")}
-                  className="mt-2 text-xs font-semibold text-muted-foreground underline hover:text-foreground"
+                  className="text-xs font-mono text-amber-400 underline"
                 >
-                  Submit Another Requirement
+                  Submit another inquiry
                 </button>
               </div>
-            ) : status === "error" ? (
-              <div className="mt-6 flex flex-col items-center gap-4 rounded-sm border border-destructive/30 bg-destructive/10 p-6 text-center">
-                <div>
-                  <h4 className="font-display text-lg font-bold uppercase text-destructive">
-                    Something went wrong while sending your enquiry.
-                  </h4>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Please try again or connect directly with our team on WhatsApp.
-                  </p>
-                </div>
-                <div className="mt-2 flex flex-wrap items-center justify-center gap-3 w-full">
-                  <button
-                    type="button"
-                    onClick={() => setStatus("idle")}
-                    className="inline-flex items-center gap-2 rounded-sm border border-border bg-background px-5 py-3 font-display text-xs font-semibold uppercase text-foreground"
-                  >
-                    <RefreshCw className="size-4" />
-                    TRY AGAIN
-                  </button>
-                  <a
-                    href={company.whatsappText}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-sm bg-whatsapp px-5 py-3 font-display text-xs font-semibold uppercase text-white"
-                  >
-                    <MessageCircle className="size-4" />
-                    CONTACT US ON WHATSAPP
-                  </a>
-                </div>
-              </div>
             ) : (
-              <>
-                <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                  <Field
-                    label="Full name"
-                    name="name"
-                    placeholder="Rahul Sharma"
-                    autoComplete="name"
-                    required
-                  />
-                  <Field
-                    label="Phone number"
-                    name="phone"
-                    type="tel"
-                    placeholder="98xxxxxxxx"
-                    autoComplete="tel"
-                    required
-                  />
+              <form onSubmit={onSubmit} className="space-y-4 font-mono text-xs">
+                
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="block text-slate-300 uppercase mb-1 font-semibold">
+                      Your Full Name <span className="text-amber-400">*</span>
+                    </label>
+                    <input
+                      name="name"
+                      required
+                      minLength={2}
+                      placeholder="e.g. Rahul Sharma"
+                      className="w-full rounded-xs border border-white/15 bg-[#080D1A] px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-sky-400 focus:outline-none font-sans"
+                    />
+                  </div>
 
-                  <div className="sm:col-span-2">
-                    <label
-                      className="eyebrow block text-muted-foreground"
-                      htmlFor="requirementType"
-                    >
-                      Requirement type
+                  <div>
+                    <label className="block text-slate-300 uppercase mb-1 font-semibold">
+                      Mobile / WhatsApp Number <span className="text-amber-400">*</span>
+                    </label>
+                    <input
+                      name="phone"
+                      required
+                      inputMode="tel"
+                      placeholder="+91 10-Digit Mobile"
+                      className="w-full rounded-xs border border-white/15 bg-[#080D1A] px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-sky-400 focus:outline-none font-sans"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="block text-slate-300 uppercase mb-1 font-semibold">
+                      Site Location / City <span className="text-amber-400">*</span>
+                    </label>
+                    <input
+                      name="location"
+                      required
+                      placeholder="e.g. Noida Phase 2, Greater Noida"
+                      className="w-full rounded-xs border border-white/15 bg-[#080D1A] px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-sky-400 focus:outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-300 uppercase mb-1 font-semibold">
+                      Structure Requirement
                     </label>
                     <select
-                      id="requirementType"
                       name="requirementType"
-                      className="mt-2 w-full rounded-sm border border-input bg-background px-3.5 py-3 text-sm text-foreground outline-none transition-colors focus:border-ring"
+                      className="w-full rounded-xs border border-white/15 bg-[#080D1A] px-3.5 py-2.5 text-xs text-white focus:border-sky-400 focus:outline-none"
                     >
-                      {quoteOptions.need.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
+                      {quoteOptions.need.map((n) => (
+                        <option key={n} value={n}>
+                          {n}
                         </option>
                       ))}
                     </select>
                   </div>
+                </div>
 
-                  <div className="sm:col-span-2">
-                    <Field
-                      label="Location / site address"
-                      name="location"
-                      placeholder="e.g. Sector 63 Noida / Greater Noida"
-                      autoComplete="street-address"
-                      required
-                    />
-                  </div>
-
-                  <div className="sm:col-span-2">
-                    <label className="eyebrow block text-muted-foreground" htmlFor="message">
-                      Project details
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={4}
-                      required
-                      placeholder="Shed size, purpose, timeline…"
-                      className="mt-2 w-full rounded-sm border border-input bg-background px-3.5 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring"
-                    />
-                  </div>
+                <div>
+                  <label className="block text-slate-300 uppercase mb-1 font-semibold">
+                    Project Details / Area Dimensions <span className="text-amber-400">*</span>
+                  </label>
+                  <textarea
+                    name="message"
+                    required
+                    rows={3}
+                    placeholder="Describe clear span needs, land area (sq ft), eaves height, or overhead crane requirements..."
+                    className="w-full rounded-xs border border-white/15 bg-[#080D1A] px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-sky-400 focus:outline-none font-sans"
+                  />
                 </div>
 
                 {validationError && (
-                  <p className="mt-3 text-xs font-semibold text-destructive">{validationError}</p>
+                  <p className="text-red-400 font-mono text-xs">{validationError}</p>
                 )}
 
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-sm bg-signal px-6 py-4 font-display text-sm font-semibold uppercase tracking-wider text-signal-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+                  className="btn-elite w-full py-3.5 mt-2"
                 >
                   {status === "sending" ? (
-                    <>
-                      <Loader2 className="size-4 animate-spin" />
-                      Sending enquiry…
-                    </>
+                    <Loader2 className="size-4 animate-spin" />
                   ) : (
-                    "Send enquiry"
+                    <ArrowRight className="size-4" />
                   )}
+                  <span>Dispatch Consultation Request</span>
                 </button>
-              </>
+              </form>
             )}
-          </Reveal>
+          </div>
         </div>
-      </section>
-    </>
-  );
-}
 
-function Field({
-  label,
-  name,
-  type = "text",
-  required,
-  autoComplete,
-  placeholder,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-  autoComplete?: string;
-  placeholder?: string;
-}) {
-  return (
-    <div>
-      <label className="eyebrow block text-muted-foreground" htmlFor={name}>
-        {label}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        required={required}
-        autoComplete={autoComplete}
-        placeholder={placeholder}
-        className="mt-2 w-full rounded-sm border border-input bg-background px-3.5 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring"
-      />
-    </div>
+      </div>
+    </section>
   );
 }

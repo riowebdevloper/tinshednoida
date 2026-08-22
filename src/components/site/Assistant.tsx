@@ -458,52 +458,52 @@ export function Assistant() {
 
   return (
     <>
-      {/* Floating Assistant Button */}
+      {/* Floating Launcher Button */}
       <button
         type="button"
         onClick={() => {
           setOpen(true);
           setMinimized(false);
         }}
-        aria-label="Open Tin Shade AI Assistant"
-        className={`fixed bottom-5 right-5 z-40 inline-flex items-center gap-2.5 rounded-full border border-steel-line bg-steel px-3.5 py-2 text-white shadow-card transition-transform hover:scale-105 hover:border-primary ${
+        aria-label="Open chat assistant"
+        className={`fixed bottom-20 right-4 z-40 sm:bottom-6 sm:right-6 items-center gap-2 rounded-xs border border-sky-400/30 bg-[#0E1726]/90 backdrop-blur-md p-2.5 sm:px-4 sm:py-2.5 text-white shadow-2xl transition-all hover:border-amber-400 hover:scale-105 active:scale-95 ${
           open && !minimized ? "hidden" : "flex"
         }`}
       >
-        <div className="flex size-7 items-center justify-center rounded-full bg-primary text-primary-foreground">
+        <div className="flex size-7 items-center justify-center rounded-full bg-amber-400 text-slate-950">
           <Bot className="size-4" aria-hidden="true" />
         </div>
         <span className="font-display text-xs font-bold text-white hidden sm:inline">
-          AI Assistant
+          Yard Assistant
         </span>
       </button>
 
       {/* Main Chat Assistant Modal Box */}
       {open && !minimized && (
-        <div className="fixed bottom-4 right-4 z-50 flex max-h-[85vh] h-[540px] w-[min(26rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-sm border border-steel-line bg-steel-deep text-steel-foreground shadow-elevated animate-in slide-in-from-bottom-4 duration-300">
+        <div className="fixed bottom-4 right-4 z-50 flex max-h-[85vh] h-[540px] w-[min(26rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-xs border border-sky-400/30 bg-[#0A101D] text-white shadow-2xl animate-in slide-in-from-bottom-4 duration-300">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-steel-line bg-steel px-4 py-3">
+          <div className="flex items-center justify-between border-b border-white/10 bg-[#0E1726] px-4 py-3">
             <div className="flex items-center gap-3">
-              <div className="flex size-9 items-center justify-center rounded-full bg-primary/20 text-primary border border-primary/40">
+              <div className="flex size-9 items-center justify-center rounded-full bg-amber-400/20 text-amber-400 border border-amber-400/40">
                 <Sparkles className="size-4" />
               </div>
               <div>
                 <h3 className="font-display text-sm font-bold uppercase text-white tracking-wide">
-                  Tin Shade Assistant
+                  Tin Shade Yard AI
                 </h3>
-                <p className="text-xs text-steel-muted">
-                  Pan India Service · Usually replies instantly
+                <p className="text-xs text-slate-400 font-mono">
+                  Direct Engineering Information
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-1 text-steel-muted">
+            <div className="flex items-center gap-1 text-slate-400">
               <button
                 type="button"
                 onClick={handleClearChat}
                 title="Clear chat"
                 aria-label="Clear chat history"
-                className="rounded-sm p-1.5 hover:bg-steel-deep hover:text-white transition-colors"
+                className="rounded-xs p-1.5 hover:bg-white/10 hover:text-white transition-colors"
               >
                 <Trash2 className="size-4" />
               </button>
@@ -512,7 +512,7 @@ export function Assistant() {
                 onClick={() => setMinimized(true)}
                 title="Minimize chat"
                 aria-label="Minimize chat assistant"
-                className="rounded-sm p-1.5 hover:bg-steel-deep hover:text-white transition-colors"
+                className="rounded-xs p-1.5 hover:bg-white/10 hover:text-white transition-colors"
               >
                 <X className="size-4" />
               </button>
@@ -527,29 +527,29 @@ export function Assistant() {
                 className={`flex gap-2.5 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 {msg.role === "assistant" && (
-                  <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary border border-primary/30 mt-0.5">
+                  <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-sky-500/20 text-sky-400 border border-sky-400/30 mt-0.5">
                     <Bot className="size-3.5" />
                   </div>
                 )}
 
                 <div
-                  className={`max-w-[85%] rounded-sm p-3.5 leading-relaxed whitespace-pre-line shadow-xs ${
+                  className={`max-w-[85%] rounded-xs p-3.5 leading-relaxed whitespace-pre-line shadow-xs ${
                     msg.role === "user"
-                      ? "bg-primary text-primary-foreground font-medium"
-                      : "border border-steel-line bg-steel/90 text-steel-foreground"
+                      ? "bg-amber-400 text-slate-950 font-medium font-sans"
+                      : "border border-white/10 bg-[#131F35] text-slate-200"
                   }`}
                 >
                   {msg.text}
 
                   {/* Contextual Action Buttons */}
                   {msg.actions && msg.actions.length > 0 && (
-                    <div className="mt-3.5 flex flex-wrap gap-2 pt-2 border-t border-steel-line/40">
+                    <div className="mt-3.5 flex flex-wrap gap-2 pt-2 border-t border-white/10">
                       {msg.actions.map((act, idx) => (
                         <button
                           key={idx}
                           type="button"
                           onClick={() => executeAction(act)}
-                          className="inline-flex items-center gap-1.5 rounded-sm bg-primary px-3 py-1.5 font-display text-[0.7rem] font-bold uppercase tracking-wider text-primary-foreground shadow-xs transition-transform hover:scale-102"
+                          className="inline-flex items-center gap-1.5 rounded-xs bg-amber-400 px-3 py-1.5 font-display text-[0.7rem] font-bold uppercase tracking-wider text-slate-950 shadow-xs transition-transform hover:scale-102"
                         >
                           {act.label}
                           <ArrowRight className="size-3" />
@@ -558,13 +558,13 @@ export function Assistant() {
                     </div>
                   )}
 
-                  <span className="mt-1 block text-[0.6rem] text-steel-muted text-right font-mono opacity-70">
+                  <span className="mt-1 block text-[0.6rem] text-slate-400 text-right font-mono opacity-70">
                     {msg.timestamp}
                   </span>
                 </div>
 
                 {msg.role === "user" && (
-                  <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-steel text-steel-muted border border-steel-line mt-0.5">
+                  <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-slate-800 text-slate-400 border border-white/10 mt-0.5">
                     <User className="size-3.5" />
                   </div>
                 )}
@@ -572,24 +572,24 @@ export function Assistant() {
             ))}
 
             {isTyping && (
-              <div className="flex items-center gap-2 text-xs text-steel-muted italic py-1">
-                <span className="flex size-6 items-center justify-center rounded-full bg-primary/20 text-primary">
+              <div className="flex items-center gap-2 text-xs text-slate-400 italic py-1 font-mono">
+                <span className="flex size-6 items-center justify-center rounded-full bg-amber-400/20 text-amber-400">
                   <Sparkles className="size-3 animate-spin" />
                 </span>
-                Tin Shade Assistant is typing…
+                Tin Shade Assistant is calculating…
               </div>
             )}
             <div ref={chatEndRef} />
           </div>
 
           {/* Quick Suggestion Pills */}
-          <div className="no-scrollbar flex gap-1.5 overflow-x-auto border-t border-steel-line bg-steel/40 px-3 py-2">
+          <div className="no-scrollbar flex gap-1.5 overflow-x-auto border-t border-white/10 bg-[#0E1726] px-3 py-2">
             {defaultSuggestions.map((sug) => (
               <button
                 key={sug}
                 type="button"
                 onClick={() => handleSend(sug)}
-                className="shrink-0 rounded-full border border-steel-line bg-steel-deep px-3 py-1 text-[0.7rem] font-medium text-steel-muted transition-all hover:border-primary hover:text-white"
+                className="shrink-0 rounded-xs border border-white/10 bg-[#131F35] px-3 py-1 text-[0.7rem] font-mono text-slate-300 transition-all hover:border-amber-400 hover:text-white"
               >
                 {sug}
               </button>
@@ -602,22 +602,22 @@ export function Assistant() {
               e.preventDefault();
               handleSend();
             }}
-            className="flex items-center gap-2 border-t border-steel-line bg-steel p-3"
+            className="flex items-center gap-2 border-t border-white/10 bg-[#0E1726] p-3"
           >
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about sheds, roofing, pricing, projects…"
-              className="min-w-0 flex-1 rounded-sm border border-steel-line bg-steel-deep px-3.5 py-2.5 text-xs text-white placeholder:text-steel-muted outline-none transition-colors focus:border-primary"
+              className="min-w-0 flex-1 rounded-xs border border-white/15 bg-[#080D1A] px-3.5 py-2 text-xs text-white placeholder:text-slate-500 outline-none transition-colors focus:border-sky-400 font-sans"
             />
             <button
               type="submit"
               disabled={!input.trim()}
               aria-label="Send message to AI assistant"
-              className="flex size-9 shrink-0 items-center justify-center rounded-sm bg-primary text-primary-foreground transition-opacity disabled:opacity-50"
+              className="flex size-8 shrink-0 items-center justify-center rounded-xs bg-amber-400 text-slate-950 transition-opacity disabled:opacity-50"
             >
-              <Send className="size-4" />
+              <Send className="size-3.5" />
             </button>
           </form>
         </div>

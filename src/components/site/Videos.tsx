@@ -23,38 +23,42 @@ export function Videos() {
   }, [selectedVideo]);
 
   return (
-    <section id="videos" className="bg-paper py-16 sm:py-20 border-b border-border">
+    <section id="videos" className="bg-navy-obsidian py-16 sm:py-24 border-b border-white/10 relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-        {/* Section Header (No repetitive eyebrow) */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-charcoal/15 pb-6">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-6">
           <div className="max-w-2xl">
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-charcoal tracking-tight">
+            <div className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-sky-400 mb-2">
+              <span className="size-1.5 rounded-full bg-sky-400" />
+              <span>ON-SITE SITE RIGGING &amp; ERECTION FOOTAGE</span>
+            </div>
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
               Watch Our Crew on Active Erection Sites
             </h2>
-            <p className="mt-2 text-sm sm:text-base text-muted-foreground leading-relaxed font-sans">
+            <p className="mt-2 text-sm sm:text-base text-slate-300 leading-relaxed font-sans">
               Authentic on-site video footage of structural steel fabrication, heavy crane lifting, warehouse truss hoisting, and roofing installations across India.
             </p>
           </div>
 
           {/* Social Channels */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-3">
             <a
               href={company.youtube}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-xs border border-border bg-card px-3 py-1.5 font-mono text-xs font-semibold text-charcoal hover:border-red-600 hover:text-red-600 transition-colors"
+              className="inline-flex items-center gap-2 rounded-xs border border-red-500/30 bg-red-500/10 px-3.5 py-2 font-mono text-xs font-semibold text-red-400 hover:bg-red-500/20 transition-colors"
             >
-              <Youtube className="size-3.5 text-red-600" />
+              <Youtube className="size-4 text-red-400" />
               <span>YouTube</span>
             </a>
             <a
               href={company.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-xs border border-border bg-card px-3 py-1.5 font-mono text-xs font-semibold text-charcoal hover:border-pink-600 hover:text-pink-600 transition-colors"
+              className="inline-flex items-center gap-2 rounded-xs border border-pink-500/30 bg-pink-500/10 px-3.5 py-2 font-mono text-xs font-semibold text-pink-400 hover:bg-pink-500/20 transition-colors"
             >
-              <Instagram className="size-3.5 text-pink-600" />
+              <Instagram className="size-4 text-pink-400" />
               <span>Instagram</span>
             </a>
           </div>
@@ -66,9 +70,9 @@ export function Videos() {
             <article
               key={video.id}
               onClick={() => setSelectedVideo(video)}
-              className="group relative cursor-pointer overflow-hidden rounded-xs border border-border bg-card transition-colors hover:border-charcoal"
+              className="navy-card group cursor-pointer overflow-hidden"
             >
-              <div className="relative aspect-video overflow-hidden bg-charcoal">
+              <div className="relative aspect-video overflow-hidden bg-navy-deep">
                 <img
                   src={video.thumbnail}
                   alt={video.title}
@@ -76,27 +80,27 @@ export function Videos() {
                   decoding="async"
                   className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors" />
+                <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition-colors" />
 
                 {/* Play Button */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex size-11 items-center justify-center rounded-full bg-safety text-charcoal shadow-md transition-transform group-hover:scale-110">
-                    <Play className="size-4 fill-charcoal ml-0.5" />
+                  <div className="flex size-12 items-center justify-center rounded-full bg-amber-400 text-slate-950 shadow-xl transition-transform group-hover:scale-110">
+                    <Play className="size-4 fill-slate-950 ml-0.5" />
                   </div>
                 </div>
 
                 {/* Location Badge */}
-                <div className="absolute bottom-2 left-2 font-mono text-xs text-white bg-charcoal/90 px-2 py-0.5 rounded-xs border border-white/20">
+                <div className="absolute bottom-2.5 left-2.5 font-mono text-xs text-white bg-slate-950/80 backdrop-blur-xs px-2.5 py-0.5 rounded-xs border border-white/20">
                   {video.location}
                 </div>
               </div>
 
-              <div className="p-3.5">
-                <h3 className="font-display text-sm font-bold text-charcoal leading-snug line-clamp-2 group-hover:text-oxide transition-colors">
+              <div className="p-4">
+                <h3 className="font-display text-sm font-bold text-white leading-snug line-clamp-2 group-hover:text-amber-400 transition-colors">
                   {video.title}
                 </h3>
-                <p className="mt-1 text-[0.6875rem] text-muted-foreground font-mono">
-                  Site: {video.location}
+                <p className="mt-1.5 text-[0.6875rem] text-slate-400 font-mono">
+                  Site Location: {video.location}
                 </p>
               </div>
             </article>
@@ -109,22 +113,22 @@ export function Videos() {
       {selectedVideo && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-150">
           <div
-            className="fixed inset-0 bg-charcoal/90 backdrop-blur-xs"
+            className="fixed inset-0 bg-[#060A14]/90 backdrop-blur-md"
             onClick={() => setSelectedVideo(null)}
           />
 
-          <div className="relative w-full max-w-4xl overflow-hidden rounded-xs border border-charcoal bg-charcoal text-paper shadow-lg">
-            <div className="flex items-center justify-between border-b border-white/10 p-3.5">
+          <div className="relative w-full max-w-4xl overflow-hidden rounded-xs border border-sky-400/30 bg-[#0E1726] text-white shadow-2xl">
+            <div className="flex items-center justify-between border-b border-white/10 p-4">
               <div className="flex items-center gap-2">
-                <Film className="size-3.5 text-safety" />
-                <span className="font-display text-xs font-bold uppercase text-white truncate max-w-md">
+                <Film className="size-4 text-amber-400" />
+                <span className="font-display text-sm font-bold uppercase text-white truncate max-w-md">
                   {selectedVideo.title}
                 </span>
               </div>
               <button
                 type="button"
                 onClick={() => setSelectedVideo(null)}
-                className="rounded-xs border border-white/20 p-1 text-paper hover:bg-white/10"
+                className="rounded-xs border border-white/20 p-1.5 text-white hover:bg-white/10"
               >
                 <X className="size-4" />
               </button>
@@ -143,7 +147,7 @@ export function Videos() {
         </div>
       )}
 
-      <TrussDivider type="pratt" className="mt-14" />
+      <TrussDivider dark type="pratt" className="mt-14" />
     </section>
   );
 }

@@ -2,10 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { CatalogViewer } from "@/components/site/CatalogViewer";
 import { FinalCta } from "@/components/site/FinalCta";
+import { Download, FileText, CheckCircle2, ShieldCheck, ExternalLink } from "lucide-react";
+import { company } from "@/lib/site-data";
 
-const title = "Official Work Catalog (51 Pages) — Tin Shade Noida";
+const title = "51-Page Structural Work Catalog (PDF) — Tin Shade Noida";
 const description =
-  "Download or view our 51-page work catalog with structural designs, completed projects and material specifications.";
+  "Download our official 51-page structural engineering submittal catalog featuring truss schedules, IS 2062 material certificates, and photographic case studies.";
 
 export const Route = createFileRoute("/catalog")({
   head: () => ({
@@ -23,14 +25,111 @@ export const Route = createFileRoute("/catalog")({
 });
 
 function CatalogPage() {
+  const pdfUrl = company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf";
+
+  const catalogSections = [
+    {
+      sec: "SECTION A",
+      title: "Truss Geometry & Clear Span Schedules",
+      desc: "Detailed CAD chord elevation drawings for Warren, Pratt, and Howe modular tubular and angle-iron trusses from 30ft to 120ft spans.",
+    },
+    {
+      sec: "SECTION B",
+      title: "IS 2062 Material Quality Standards",
+      desc: "Mill Test Certificate (MTC) criteria for yield stress (250–350 MPa), tensile strength, elongation percentages, and zinc phosphate primer thickness.",
+    },
+    {
+      sec: "SECTION C",
+      title: "Column Base-Plate & Foundation Anchoring",
+      desc: "Civil anchor bolt spacing, base-plate gusset stiffeners, and crane gantry beam load calculations to IS 800:2007 structural steel codes.",
+    },
+    {
+      sec: "SECTION D",
+      title: "Photographic Archive of 500+ Sheds",
+      desc: "High-resolution on-site photographs of completed manufacturing factories, cold storages, logistics parks, and multi-tier mezzanine floors.",
+    },
+  ];
+
   return (
     <SiteLayout>
       <PageHero
-        eyebrow="Official catalog"
-        title="51-page project and structure catalog"
-        description="Structural designs, site photographs and completed project documentation."
+        eyebrow="OFFICIAL ENGINEERING SUBMITTAL BINDER"
+        title="51-Page Structural Work Catalog"
+        description="Comprehensive technical submittal binder prepared for industrial plant directors, structural consultants, civil contractors, and procurement heads."
       />
+
+      {/* 1. Catalog Viewer & 5-Stage Blueprint Sequence */}
       <CatalogViewer />
+
+      {/* 2. Catalog Table of Contents Overview */}
+      <section className="bg-navy-obsidian py-16 sm:py-20 border-b border-white/10 relative">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          
+          <div className="max-w-2xl border-b border-white/10 pb-5 mb-8">
+            <div className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-amber-400 mb-2">
+              <FileText className="size-4" />
+              <span>SUBMITTAL CONTENTS OVERVIEW</span>
+            </div>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              What Is Inside the 51-Page Work Catalog
+            </h2>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2">
+            {catalogSections.map((s) => (
+              <div key={s.sec} className="navy-card p-6">
+                <div className="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
+                  <span className="font-mono text-xs font-bold text-amber-400">
+                    {s.sec}
+                  </span>
+                  <ShieldCheck className="size-4 text-sky-400" />
+                </div>
+                <h3 className="font-display text-lg font-bold text-white">
+                  {s.title}
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-300 font-sans">
+                  {s.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Download Callout */}
+          <div className="mt-10 p-6 rounded-xs border border-sky-400/30 bg-[#0E1726] flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h4 className="font-display text-lg font-bold text-white">
+                Download Official PDF Submittal
+              </h4>
+              <p className="text-xs font-mono text-slate-400 mt-0.5 tabular-nums">
+                File Size: 4.5 MB · Instant Download · PDF Document
+              </p>
+            </div>
+
+            <div className="flex gap-3">
+              <a
+                href={pdfUrl}
+                download="TIN_SHADE_NOIDA_CATALOG.pdf"
+                className="btn-elite"
+              >
+                <Download className="size-4" />
+                <span>Download PDF (4.5 MB)</span>
+              </a>
+              <a
+                href={pdfUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-navy-outline"
+              >
+                <ExternalLink className="size-4" />
+                <span>View Online</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. Direct Final CTA */}
       <FinalCta />
     </SiteLayout>
   );
