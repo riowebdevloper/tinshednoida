@@ -2,12 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   Calculator,
-  Check,
   Download,
   FileText,
   MessageCircle,
   Phone,
-  RefreshCw,
   Send,
   Trash2,
   User,
@@ -252,7 +250,7 @@ export function Assistant() {
       if (action.need) {
         triggerQuoteForNeed(action.need);
       } else {
-        const elem = document.getElementById("estimator") || document.getElementById("quote");
+        const elem = document.getElementById("quote");
         if (elem) {
           elem.scrollIntoView({ behavior: "smooth" });
         } else {
@@ -288,7 +286,7 @@ export function Assistant() {
 
   return (
     <>
-      {/* Clean Corporate Floating Launcher Button */}
+      {/* Clean Architectural Floating Consultation Launcher */}
       <button
         type="button"
         onClick={() => {
@@ -296,43 +294,41 @@ export function Assistant() {
           setMinimized(false);
         }}
         aria-label="Open Engineering Consultation Desk"
-        className={`fixed bottom-20 right-4 z-40 sm:bottom-6 sm:right-6 items-center gap-2 rounded-xs border border-slate-300 bg-[#0E2A47] px-4 py-2.5 text-white shadow-xl transition-all hover:bg-[#0B192C] hover:shadow-2xl active:scale-98 ${
+        className={`fixed bottom-20 right-4 z-40 sm:bottom-6 sm:right-6 items-center gap-2 border border-white/20 bg-[#14171A] hover:bg-[#0B0D0F] px-4 py-3 text-white shadow-2xl transition-all active:scale-98 ${
           open && !minimized ? "hidden" : "flex"
         }`}
       >
-        <HardHat className="size-4 text-amber-400" aria-hidden="true" />
-        <span className="font-display text-xs font-bold text-white tracking-wide">
-          Tin Shade Assistant
+        <span className="size-2 rounded-full bg-[#B08A4A] animate-pulse" />
+        <span className="font-editorial-title text-xs font-bold text-white uppercase tracking-wider">
+          TIN SHADE ASSISTANT
         </span>
       </button>
 
-      {/* Corporate Consultation Modal Box */}
+      {/* Consultation Box */}
       {open && !minimized && (
-        <div className="fixed bottom-4 right-4 z-50 flex max-h-[85vh] h-[520px] w-[min(26rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-xs border border-slate-300 bg-white text-slate-900 shadow-2xl animate-in slide-in-from-bottom-3 duration-200">
+        <div className="fixed bottom-4 right-4 z-50 flex max-h-[85vh] h-[520px] w-[min(26rem,calc(100vw-2rem))] flex-col overflow-hidden border border-white/20 bg-[#0B0D0F] text-white shadow-2xl animate-in slide-in-from-bottom-3 duration-200">
           
-          {/* Executive Header */}
-          <div className="flex items-center justify-between border-b border-[#0B192C]/10 bg-[#0E2A47] px-4 py-3 text-white">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-white/10 bg-[#14171A] px-4 py-3 text-white">
             <div className="flex items-center gap-2.5">
-              <div className="flex size-8 items-center justify-center rounded-xs bg-amber-400 text-slate-950">
-                <HardHat className="size-4" />
-              </div>
+              <span className="size-2 rounded-full bg-[#B08A4A]" />
               <div>
-                <h3 className="font-display text-sm font-bold tracking-tight text-white">
+                <h3 className="font-editorial-title text-sm font-bold tracking-tight text-white uppercase">
                   Tin Shade Assistant
                 </h3>
-                <p className="text-[0.6875rem] text-slate-300 font-mono">
-                  D179 Sector 10, Noida · Active Yard
+                <p className="text-[0.625rem] text-[#8C9398] font-mono">
+                  D179 Sector 10, Noida · Active Yard Desk
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-1 text-slate-300">
+            <div className="flex items-center gap-1 text-[#8C9398]">
               <button
                 type="button"
                 onClick={handleClearChat}
                 title="Reset conversation"
                 aria-label="Reset conversation"
-                className="rounded-xs p-1.5 hover:bg-white/10 hover:text-white transition-colors"
+                className="p-1.5 hover:bg-white/10 hover:text-white transition-colors"
               >
                 <Trash2 className="size-3.5" />
               </button>
@@ -341,38 +337,38 @@ export function Assistant() {
                 onClick={() => setMinimized(true)}
                 title="Close desk"
                 aria-label="Close desk"
-                className="rounded-xs p-1.5 hover:bg-white/10 hover:text-white transition-colors"
+                className="p-1.5 hover:bg-white/10 hover:text-white transition-colors"
               >
                 <X className="size-4" />
               </button>
             </div>
           </div>
 
-          {/* Messages Body in Clean White & Slate */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3.5 text-xs sm:text-sm bg-[#F8FAFC]">
+          {/* Messages Body */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-3.5 text-xs sm:text-sm bg-[#0B0D0F]">
             {messages.map((msg) => (
               <div
                 key={msg.id}
                 className={`flex gap-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-[88%] rounded-xs p-3 leading-relaxed whitespace-pre-line text-xs ${
+                  className={`max-w-[88%] p-3.5 leading-relaxed whitespace-pre-line text-xs ${
                     msg.role === "user"
-                      ? "bg-[#0E2A47] text-white font-medium shadow-xs"
-                      : "border border-slate-200 bg-white text-slate-800 shadow-xs"
+                      ? "bg-[#B08A4A] text-[#0B0D0F] font-bold shadow-sm"
+                      : "border border-white/10 bg-[#14171A] text-[#C8CCD0]"
                   }`}
                 >
                   {msg.text}
 
-                  {/* Contextual Action Buttons */}
+                  {/* Contextual Actions */}
                   {msg.actions && msg.actions.length > 0 && (
-                    <div className="mt-3 flex flex-wrap gap-1.5 pt-2 border-t border-slate-100">
+                    <div className="mt-3 flex flex-wrap gap-1.5 pt-2.5 border-t border-white/10">
                       {msg.actions.map((act, idx) => (
                         <button
                           key={idx}
                           type="button"
                           onClick={() => executeAction(act)}
-                          className="inline-flex items-center gap-1 rounded-xs bg-[#0E2A47] hover:bg-[#0B192C] px-2.5 py-1 font-display text-[0.6875rem] font-bold uppercase tracking-wider text-white transition-colors"
+                          className="inline-flex items-center gap-1 border border-white/15 bg-white/5 hover:bg-white/15 px-2.5 py-1 font-mono text-[0.6875rem] font-bold uppercase tracking-wider text-white transition-colors"
                         >
                           <span>{act.label}</span>
                           <ArrowRight className="size-2.5" />
@@ -381,7 +377,7 @@ export function Assistant() {
                     </div>
                   )}
 
-                  <span className="mt-1 block text-[0.625rem] text-slate-400 text-right font-mono">
+                  <span className="mt-1.5 block text-[0.625rem] text-[#8C9398] text-right font-mono">
                     {msg.timestamp}
                   </span>
                 </div>
@@ -389,48 +385,48 @@ export function Assistant() {
             ))}
 
             {isTyping && (
-              <div className="flex items-center gap-2 text-xs text-slate-500 italic py-1 font-mono">
-                <span className="size-2 rounded-full bg-amber-500 animate-pulse" />
+              <div className="flex items-center gap-2 text-xs text-[#8C9398] italic py-1 font-mono">
+                <span className="size-2 rounded-full bg-[#B08A4A] animate-pulse" />
                 Calculating engineering specifications…
               </div>
             )}
             <div ref={chatEndRef} />
           </div>
 
-          {/* Quick Consultation Suggestions */}
-          <div className="no-scrollbar flex gap-1.5 overflow-x-auto border-t border-slate-200 bg-slate-100 px-3 py-2">
+          {/* Quick Suggestions */}
+          <div className="no-scrollbar flex gap-1.5 overflow-x-auto border-t border-white/10 bg-[#14171A] px-3 py-2">
             {defaultSuggestions.map((sug) => (
               <button
                 key={sug}
                 type="button"
                 onClick={() => handleSend(sug)}
-                className="shrink-0 rounded-xs border border-slate-300 bg-white px-2.5 py-1 text-[0.6875rem] font-mono text-slate-700 hover:border-[#0E2A47] hover:text-[#0E2A47] transition-all"
+                className="shrink-0 border border-white/15 bg-[#0B0D0F] px-2.5 py-1 text-[0.6875rem] font-mono text-[#8C9398] hover:border-[#B08A4A] hover:text-white transition-all"
               >
                 {sug}
               </button>
             ))}
           </div>
 
-          {/* Clean Input Form */}
+          {/* Input Form */}
           <form
             onSubmit={(e) => {
               e.preventDefault();
               handleSend();
             }}
-            className="flex items-center gap-2 border-t border-slate-200 bg-white p-2.5"
+            className="flex items-center gap-2 border-t border-white/10 bg-[#14171A] p-2.5"
           >
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about rates, tonnages, spans, site visits…"
-              className="min-w-0 flex-1 rounded-xs border border-slate-300 bg-slate-50 px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 outline-none focus:border-[#0E2A47] font-sans"
+              className="min-w-0 flex-1 border border-white/15 bg-[#0B0D0F] px-3 py-2 text-xs text-white placeholder:text-[#8C9398] outline-none focus:border-[#B08A4A] font-sans"
             />
             <button
               type="submit"
               disabled={!input.trim()}
               aria-label="Send message"
-              className="flex size-8 shrink-0 items-center justify-center rounded-xs bg-[#0E2A47] hover:bg-[#0B192C] text-white disabled:opacity-40 transition-colors"
+              className="flex size-8 shrink-0 items-center justify-center bg-[#B08A4A] hover:bg-[#C59D5B] text-[#0B0D0F] disabled:opacity-40 transition-colors font-bold"
             >
               <Send className="size-3.5" />
             </button>

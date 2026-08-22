@@ -142,53 +142,57 @@ export function QuoteWizard() {
   }
 
   return (
-    <section id="quote" className="bg-[#F8FAFC] py-14 sm:py-20 border-b border-slate-200">
+    <section id="quote" className="bg-warm-paper py-24 sm:py-36 border-b border-[#0B0D0F]/10 text-[#0B0D0F]">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="border-b border-slate-200 pb-5 mb-8">
-          <span className="font-mono text-xs font-semibold text-amber-700 uppercase tracking-tight block mb-1">
-            GUIDED FIVE-STEP ESTIMATION WIZARD
-          </span>
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-            Request an Itemized Structural Quotation
+        <div className="border-b border-[#0B0D0F]/15 pb-8 mb-10">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="h-px w-8 bg-[#B08A4A]" />
+            <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
+              ITEMIZED BOQ ESTIMATION
+            </span>
+          </div>
+          <h2 className="font-editorial-title text-3xl sm:text-5xl font-extrabold text-[#0B0D0F] tracking-tight uppercase leading-[1.06]">
+            REQUEST A FORMAL QUOTATION.
           </h2>
-          <p className="mt-1.5 text-xs sm:text-sm text-slate-600 font-sans">
-            Select your project parameters to receive an official written quotation and schedule a free senior engineer site survey.
+          <p className="mt-2 text-sm sm:text-base text-[#525860] font-sans">
+            Select your parameters below to receive an itemized structural BOQ and schedule a free senior engineer site survey.
           </p>
         </div>
 
-        <div className="corp-card overflow-hidden bg-white border border-slate-300 shadow-md">
+        {/* Wizard Box */}
+        <div className="arch-card-light overflow-hidden bg-white border border-[#0B0D0F]/15 shadow-xl">
           {/* Progress Bar */}
-          <div className="h-1.5 w-full bg-slate-100">
+          <div className="h-1.5 w-full bg-[#F3F1EC]">
             <div
-              className="h-full bg-[#0E2A47] transition-all duration-300"
+              className="h-full bg-[#B08A4A] transition-all duration-300"
               style={{ width: `${status === "done" ? 100 : progress}%` }}
             />
           </div>
 
-          <div className="p-6 sm:p-8">
+          <div className="p-6 sm:p-10">
             {status === "done" ? (
-              <div className="flex flex-col items-center gap-4 py-8 text-center">
-                <div className="size-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
+              <div className="flex flex-col items-center gap-4 py-10 text-center">
+                <div className="size-16 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center border border-emerald-200">
                   <CheckCircle2 className="size-10" />
                 </div>
-                <div className="space-y-1.5 max-w-md">
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-slate-900">
+                <div className="space-y-2 max-w-md">
+                  <h3 className="font-editorial-title text-2xl font-extrabold text-[#0B0D0F] uppercase">
                     Thank you. Your enquiry has been received.
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 font-sans">
+                  <p className="text-sm text-[#525860] font-sans">
                     Our team will contact you shortly to review your specifications and schedule a site survey.
                   </p>
                 </div>
 
                 {whatsappRedirectUrl && (
-                  <div className="mt-3 pt-3 border-t border-slate-200 w-full max-w-sm">
+                  <div className="mt-4 pt-4 border-t border-[#0B0D0F]/10 w-full max-w-sm">
                     <a
                       href={whatsappRedirectUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 rounded-xs bg-[#16A34A] hover:bg-[#15803D] px-4 py-3 font-display text-xs font-bold text-white uppercase tracking-wider transition-colors shadow-sm"
+                      className="flex items-center justify-center gap-2 bg-[#16A34A] hover:bg-[#15803D] px-5 py-3 font-display text-xs font-bold text-white uppercase tracking-wider transition-colors shadow-sm"
                     >
                       <MessageCircle className="size-4" />
                       <span>Also Open in WhatsApp</span>
@@ -198,16 +202,16 @@ export function QuoteWizard() {
               </div>
             ) : isDetails ? (
               /* STEP 5: CONTACT DETAILS */
-              <form onSubmit={onSubmit} className="space-y-4 font-mono text-xs">
+              <form onSubmit={onSubmit} className="space-y-5 font-mono text-xs">
                 
                 {/* Active Parameters Pills */}
-                <div className="flex flex-wrap gap-1.5 border-b border-slate-100 pb-3">
+                <div className="flex flex-wrap gap-1.5 border-b border-[#0B0D0F]/10 pb-4">
                   {steps.map((step) => {
                     const value = answers[step.key];
                     return value ? (
                       <span
                         key={step.key}
-                        className="rounded-xs bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-800 border border-slate-200"
+                        className="bg-[#F3F1EC] px-3 py-1 text-xs font-bold text-[#0B0D0F] border border-[#0B0D0F]/15"
                       >
                         {value}
                       </span>
@@ -216,69 +220,69 @@ export function QuoteWizard() {
                 </div>
 
                 <div className="pt-2">
-                  <span className="font-mono text-xs font-bold text-amber-700 uppercase">
+                  <span className="font-mono text-xs font-bold text-[#B08A4A] uppercase">
                     STEP 5: CONTACT DETAILS
                   </span>
-                  <h3 className="font-display text-lg sm:text-xl font-bold text-slate-900 mt-0.5">
-                    Where should we send your quotation?
+                  <h3 className="font-editorial-title text-xl sm:text-2xl font-extrabold text-[#0B0D0F] uppercase mt-1">
+                    Where should we dispatch your quotation?
                   </h3>
                 </div>
 
                 {validationError && (
-                  <div className="rounded-xs border border-red-200 bg-red-50 p-3 text-red-700 font-sans text-xs flex items-center gap-2">
+                  <div className="border border-red-200 bg-red-50 p-3 text-red-700 font-sans text-xs flex items-center gap-2">
                     <AlertCircle className="size-4 shrink-0" />
                     <span>{validationError}</span>
                   </div>
                 )}
 
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid gap-5 sm:grid-cols-2">
                   <div>
-                    <label className="block text-slate-700 uppercase mb-1 font-semibold">
-                      Full Name <span className="text-amber-600">*</span>
+                    <label className="block text-[#0B0D0F] uppercase mb-1.5 font-bold">
+                      Full Name <span className="text-[#B08A4A]">*</span>
                     </label>
                     <input
                       name="name"
                       required
                       minLength={2}
                       placeholder="e.g. Rajesh Kumar"
-                      className="w-full rounded-xs border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-xs text-slate-900 outline-none focus:border-[#0E2A47] font-sans"
+                      className="w-full border border-[#0B0D0F]/20 bg-[#F3F1EC] px-4 py-3 text-xs text-[#0B0D0F] outline-none focus:border-[#0B0D0F] font-sans"
                     />
                   </div>
                   <div>
-                    <label className="block text-slate-700 uppercase mb-1 font-semibold">
-                      Phone Number <span className="text-amber-600">*</span>
+                    <label className="block text-[#0B0D0F] uppercase mb-1.5 font-bold">
+                      Phone Number <span className="text-[#B08A4A]">*</span>
                     </label>
                     <input
                       name="phone"
                       type="tel"
                       required
                       placeholder="+91 10-Digit Mobile"
-                      className="w-full rounded-xs border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-xs text-slate-900 outline-none focus:border-[#0E2A47] font-sans"
+                      className="w-full border border-[#0B0D0F]/20 bg-[#F3F1EC] px-4 py-3 text-xs text-[#0B0D0F] outline-none focus:border-[#0B0D0F] font-sans"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-slate-700 uppercase mb-1 font-semibold">
+                  <label className="block text-[#0B0D0F] uppercase mb-1.5 font-bold">
                     Email Address (Optional)
                   </label>
                   <input
                     name="email"
                     type="email"
                     placeholder="e.g. rajesh@company.com"
-                    className="w-full rounded-xs border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-xs text-slate-900 outline-none focus:border-[#0E2A47] font-sans"
+                    className="w-full border border-[#0B0D0F]/20 bg-[#F3F1EC] px-4 py-3 text-xs text-[#0B0D0F] outline-none focus:border-[#0B0D0F] font-sans"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-700 uppercase mb-1 font-semibold">
+                  <label className="block text-[#0B0D0F] uppercase mb-1.5 font-bold">
                     Project Details &amp; Dimensions (Optional)
                   </label>
                   <textarea
                     name="message"
                     rows={3}
-                    placeholder="Clear span requirements, eaves height, crane support needs, specific site landmarks..."
-                    className="w-full rounded-xs border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-xs text-slate-900 outline-none focus:border-[#0E2A47] font-sans"
+                    placeholder="Clear span requirements, eaves height, crane support needs, site plot address..."
+                    className="w-full border border-[#0B0D0F]/20 bg-[#F3F1EC] px-4 py-3 text-xs text-[#0B0D0F] outline-none focus:border-[#0B0D0F] font-sans"
                   />
                 </div>
 
@@ -294,16 +298,16 @@ export function QuoteWizard() {
                 />
 
                 {status === "error" && (
-                  <div className="rounded-xs border border-amber-200 bg-amber-50 p-3 text-amber-900 font-sans text-xs">
-                    Could not submit to server directly. Please call our yard desk at +91 85279 77714 or click below to send via WhatsApp.
+                  <div className="border border-[#B08A4A] bg-amber-50 p-3 text-[#0B0D0F] font-sans text-xs">
+                    Could not submit to server directly. Please call our yard desk at +91 85279 77714 or open in WhatsApp.
                   </div>
                 )}
 
-                <div className="flex items-center justify-between pt-4 border-t border-slate-200">
+                <div className="flex items-center justify-between pt-5 border-t border-[#0B0D0F]/10">
                   <button
                     type="button"
                     onClick={() => setStepIndex(steps.length - 1)}
-                    className="inline-flex items-center gap-1 font-mono text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors"
+                    className="inline-flex items-center gap-1 font-mono text-xs font-bold text-[#525860] hover:text-[#0B0D0F] transition-colors"
                   >
                     <ArrowLeft className="size-3.5" />
                     <span>Back</span>
@@ -312,7 +316,7 @@ export function QuoteWizard() {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="btn-corp-primary"
+                    className="btn-arch-primary"
                   >
                     {status === "sending" ? (
                       <Loader2 className="size-4 animate-spin" />
@@ -325,16 +329,16 @@ export function QuoteWizard() {
               </form>
             ) : (
               /* STEPS 1–4 */
-              <div className="space-y-5">
-                <div className="flex items-center justify-between gap-4 font-mono text-xs text-slate-500 border-b border-slate-200 pb-2">
+              <div className="space-y-6">
+                <div className="flex items-center justify-between gap-4 font-mono text-xs text-[#8C9398] border-b border-[#0B0D0F]/10 pb-3">
                   <span>
-                    Step {stepIndex + 1} of {total}
+                    STEP {stepIndex + 1} OF {total}
                   </span>
                   {stepIndex > 0 ? (
                     <button
                       type="button"
                       onClick={() => setStepIndex((i) => i - 1)}
-                      className="inline-flex items-center gap-1 hover:text-slate-900 transition-colors"
+                      className="inline-flex items-center gap-1 text-[#0B0D0F] hover:text-[#B08A4A] transition-colors font-bold"
                     >
                       <ArrowLeft className="size-3.5" />
                       <span>Back</span>
@@ -343,15 +347,15 @@ export function QuoteWizard() {
                 </div>
 
                 <div>
-                  <span className="font-mono text-xs font-bold text-amber-700 uppercase">
+                  <span className="font-mono text-xs font-bold text-[#B08A4A] uppercase">
                     {steps[stepIndex]!.label}
                   </span>
-                  <p className="text-xs text-slate-600 font-sans mt-0.5">
+                  <p className="text-xs sm:text-sm text-[#525860] font-sans mt-1">
                     {steps[stepIndex]!.desc}
                   </p>
                 </div>
 
-                <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {steps[stepIndex]!.options.map((option) => {
                     const selected = answers[steps[stepIndex]!.key] === option;
                     return (
@@ -359,10 +363,10 @@ export function QuoteWizard() {
                         key={option}
                         type="button"
                         onClick={() => choose(steps[stepIndex]!.key, option)}
-                        className={`rounded-xs border p-3.5 text-left font-display text-sm font-bold tracking-wide transition-all ${
+                        className={`p-4 text-left font-editorial-title text-sm sm:text-base font-bold uppercase tracking-wide transition-all border ${
                           selected
-                            ? "border-[#0E2A47] bg-[#0E2A47] text-white shadow-xs"
-                            : "border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50"
+                            ? "border-[#0B0D0F] bg-[#0B0D0F] text-white shadow-md"
+                            : "border-[#0B0D0F]/15 bg-white text-[#0B0D0F] hover:border-[#0B0D0F] hover:bg-[#F3F1EC]"
                         }`}
                       >
                         {option}

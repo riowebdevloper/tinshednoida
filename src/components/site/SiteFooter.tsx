@@ -1,177 +1,122 @@
-import { Download, Instagram, Youtube, Phone, MessageCircle, Mail, MapPin, ShieldCheck } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { company } from "@/lib/site-data";
-import { TrussDivider } from "./TrussDivider";
+import { Youtube, Instagram, Phone, Mail, MapPin, ArrowRight, Download, ShieldCheck } from "lucide-react";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[#07101C] text-white border-t border-white/10" role="contentinfo">
-      
-      <TrussDivider dark type="warren" />
-
-      {/* 4-Column Corporate Engineering Ledger */}
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+    <footer className="bg-[#070809] text-white border-t border-white/10 pt-16 pb-12 font-sans">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* Column 1: YARD PROVENANCE */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2">
-            <span className="font-display text-lg font-bold uppercase tracking-wide text-white">
-              {company.name}
-            </span>
-          </div>
+        {/* Top Ledger */}
+        <div className="grid gap-10 lg:grid-cols-12 pb-14 border-b border-white/10">
+          
+          {/* Brand & Mission (5 cols) */}
+          <div className="lg:col-span-5 space-y-4">
+            <Link to="/" className="flex items-center gap-3">
+              <img
+                src={company.logo}
+                alt="Tin Shade Noida Logo"
+                className="h-10 w-auto object-contain"
+              />
+              <div>
+                <span className="block font-editorial-title text-xl font-bold tracking-tight text-white uppercase">
+                  {company.name}
+                </span>
+                <span className="block font-mono-tag text-[0.625rem] text-[#8C9398]">
+                  TIN SHED &amp; MS STRUCTURE MANUFACTURER
+                </span>
+              </div>
+            </Link>
 
-          <p className="text-xs leading-relaxed text-slate-300 font-sans">
-            In-house structural steel fabrication yard in Noida Sector 10. Direct master fabricators delivering industrial factories, clear-span warehouses, and heavy MS frameworks across India.
-          </p>
+            <p className="text-xs sm:text-sm text-[#8C9398] leading-relaxed max-w-sm font-sans pt-2">
+              Engineering high-integrity industrial factory sheds, logistics warehouses, and heavy mild steel frameworks. In-house fabrication shop in Sector 10 Noida with turnkey hydraulic crane erection nationwide.
+            </p>
 
-          <div className="pt-2">
-            <a
-              href={company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf"}
-              download="TIN_SHADE_NOIDA_CATALOG.pdf"
-              className="inline-flex items-center gap-2 rounded-xs border border-amber-500/40 bg-[#0E2A47] px-3.5 py-2 font-display text-xs font-bold uppercase tracking-wider text-amber-400 hover:bg-amber-500 hover:text-slate-950 transition-colors"
-            >
-              <Download className="size-3.5" />
-              <span>51-Page Work Catalog (PDF)</span>
-            </a>
-          </div>
-        </div>
-
-        {/* Column 2: STRUCTURAL SCOPE */}
-        <div>
-          <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-amber-400">
-            STRUCTURAL CAPABILITIES
-          </h3>
-          <ul className="mt-4 space-y-2 font-mono text-xs text-slate-300">
-            <li>
-              <Link to="/services" className="hover:text-white transition-colors">
-                Industrial Factory Sheds
-              </Link>
-            </li>
-            <li>
-              <Link to="/services" className="hover:text-white transition-colors">
-                Clear-Span Warehouses (Up to 120ft)
-              </Link>
-            </li>
-            <li>
-              <Link to="/services" className="hover:text-white transition-colors">
-                Heavy MS Structures &amp; Trusses
-              </Link>
-            </li>
-            <li>
-              <Link to="/services" className="hover:text-white transition-colors">
-                Pre-Engineered Buildings (PEB)
-              </Link>
-            </li>
-            <li>
-              <Link to="/services" className="hover:text-white transition-colors">
-                0.50mm Galvalume &amp; PUF Roofing
-              </Link>
-            </li>
-            <li>
-              <Link to="/services" className="hover:text-white transition-colors">
-                Heavy-Duty Mezzanine Floors
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Column 3: YARD LOCATION & CONTACT */}
-        <div>
-          <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-amber-400">
-            YARD &amp; CONTACT
-          </h3>
-          <ul className="mt-4 space-y-3 font-mono text-xs text-slate-300">
-            <li className="flex items-start gap-2.5">
-              <MapPin className="size-4 mt-0.5 shrink-0 text-amber-400" />
-              <span>D179 Sector 10, Noida, Uttar Pradesh 201301</span>
-            </li>
-            <li>
+            <div className="pt-2 flex items-center gap-3">
               <a
-                href="tel:+918527977714"
-                className="flex items-center gap-2.5 hover:text-white transition-colors text-white"
-              >
-                <Phone className="size-4 shrink-0 text-amber-400" />
-                <span className="tabular-nums font-semibold">+91 85279 77714</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href={company.whatsappText}
+                href={company.youtube}
                 target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2.5 hover:text-white transition-colors text-emerald-400 font-semibold"
+                rel="noopener noreferrer"
+                className="flex size-9 items-center justify-center border border-white/15 bg-white/5 text-[#8C9398] hover:text-white hover:border-red-500 transition-colors"
+                aria-label="YouTube Channel"
               >
-                <MessageCircle className="size-4 shrink-0" />
-                <span>WhatsApp Instant Inquiry</span>
+                <Youtube className="size-4 text-red-500" />
               </a>
-            </li>
-            <li>
               <a
-                href="mailto:contact@tinshednoida.com"
-                className="flex items-center gap-2.5 hover:text-white transition-colors text-slate-300"
+                href={company.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex size-9 items-center justify-center border border-white/15 bg-white/5 text-[#8C9398] hover:text-white hover:border-pink-500 transition-colors"
+                aria-label="Instagram Profile"
               >
-                <Mail className="size-4 shrink-0 text-slate-400" />
-                <span>contact@tinshednoida.com</span>
+                <Instagram className="size-4 text-pink-500" />
               </a>
-            </li>
-          </ul>
-        </div>
-
-        {/* Column 4: IS STANDARDS & HOURS */}
-        <div>
-          <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-amber-400">
-            ENGINEERING CODES
-          </h3>
-          <div className="mt-4 space-y-2 font-mono text-xs text-slate-300">
-            <p><strong className="text-white">IS 2062:</strong> Prime Structural Mild Steel</p>
-            <p><strong className="text-white">IS 800:2007:</strong> General Construction in Steel</p>
-            <p><strong className="text-white">IS 875:</strong> Design Loads (Wind &amp; Dead)</p>
-            <p><strong className="text-white">IS 816:</strong> Metal Arc Welding Protocol</p>
-            <p><strong className="text-white">IS 2074:</strong> Red Oxide Zinc Phosphate Primer</p>
+            </div>
           </div>
 
-          <div className="mt-5 pt-3 border-t border-white/10 flex items-center gap-3">
-            <a
-              href={company.youtube}
-              target="_blank"
-              rel="noreferrer"
-              className="text-slate-400 hover:text-red-400 transition-colors"
-              title="YouTube"
-            >
-              <Youtube className="size-4" />
-            </a>
-            <a
-              href={company.instagram}
-              target="_blank"
-              rel="noreferrer"
-              className="text-slate-400 hover:text-pink-400 transition-colors"
-              title="Instagram"
-            >
-              <Instagram className="size-4" />
-            </a>
+          {/* Quick Links (3 cols) */}
+          <div className="lg:col-span-3 space-y-3 font-mono text-xs">
+            <span className="font-bold text-[#B08A4A] uppercase block tracking-widest text-[0.6875rem]">
+              NAVIGATION
+            </span>
+            <ul className="space-y-2 text-[#8C9398]">
+              <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors">Services Hub</Link></li>
+              <li><Link to="/projects" className="hover:text-white transition-colors">Project Portfolio</Link></li>
+              <li><Link to="/videos" className="hover:text-white transition-colors">Project Action Videos</Link></li>
+              <li><Link to="/catalog" className="hover:text-white transition-colors">51-Page Work Catalog</Link></li>
+              <li><Link to="/about" className="hover:text-white transition-colors">About Tin Shade</Link></li>
+              <li><Link to="/about/founders" className="hover:text-white transition-colors">Founders MD Khurshid &amp; Abdul</Link></li>
+              <li><Link to="/contact" className="hover:text-white transition-colors">Contact Hub</Link></li>
+            </ul>
+          </div>
+
+          {/* Direct Fabrication Yard Details (4 cols) */}
+          <div className="lg:col-span-4 space-y-3 font-mono text-xs text-[#8C9398]">
+            <span className="font-bold text-[#B08A4A] uppercase block tracking-widest text-[0.6875rem]">
+              DIRECT YARD DESK
+            </span>
+
+            <div className="space-y-2.5">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="size-4 text-[#B08A4A] shrink-0 mt-0.5" />
+                <span className="text-white">D179 Sector 10, Noida, Uttar Pradesh 201301</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Phone className="size-4 text-[#B08A4A] shrink-0" />
+                <a href="tel:+918527977714" className="text-white hover:text-[#B08A4A]">+91 85279 77714 / 9899793714</a>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Mail className="size-4 text-[#B08A4A] shrink-0" />
+                <span className="text-white">tinshadenoida@gmail.com</span>
+              </div>
+            </div>
+
+            <div className="pt-3">
+              <a
+                href={company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf"}
+                download="TIN_SHADE_NOIDA_CATALOG.pdf"
+                className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#B08A4A] hover:underline"
+              >
+                <Download className="size-3.5" />
+                <span>DOWNLOAD 51-PAGE WORK CATALOG (PDF)</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Bottom Copyright & Pan India Tag */}
+        <div className="pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-[0.6875rem] text-[#8C9398]">
+          <div>
+            &copy; {new Date().getFullYear()} {company.name}. All rights reserved. IS 2062 Certified Prime Mild Steel.
+          </div>
+          <div className="text-white font-bold tracking-wider uppercase">
+            PAN INDIA CRANE ERECTION COVERAGE
           </div>
         </div>
 
       </div>
-
-      {/* Bottom Sub-Footer Bar */}
-      <div className="border-t border-white/10 bg-[#040912] py-5 text-center text-xs font-mono text-slate-400">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
-          <p>© {new Date().getFullYear()} {company.name}. Direct In-House Steel Fabrication Yard · Sector 10 Noida, UP.</p>
-          <div className="flex items-center gap-4 text-xs">
-            <Link to="/about" className="hover:text-white transition-colors">About Us</Link>
-            <span>·</span>
-            <Link to="/services" className="hover:text-white transition-colors">Services</Link>
-            <span>·</span>
-            <Link to="/projects" className="hover:text-white transition-colors">Projects</Link>
-            <span>·</span>
-            <Link to="/catalog" className="hover:text-white transition-colors">Catalog (51 Pages)</Link>
-            <span>·</span>
-            <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
-          </div>
-        </div>
-      </div>
-
     </footer>
   );
 }

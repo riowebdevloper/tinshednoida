@@ -1,181 +1,74 @@
-import { useState } from "react";
-import { ArrowRight, HardHat, CheckCircle2, ShieldCheck, MapPin } from "lucide-react";
-import { company, needs } from "@/lib/site-data";
+import { ArrowRight, Phone, MessageCircle, Download, ShieldCheck, Mail, MapPin } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { company } from "@/lib/site-data";
 
 export function FinalCta() {
-  const [projectType, setProjectType] = useState("Industrial Factory Shed");
-  const [area, setArea] = useState("");
-  const [phone, setPhone] = useState("");
-  const [location, setLocation] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!phone) return;
-    
-    const text = encodeURIComponent(
-      `Hello Tin Shade Noida Team,\n\nI want to schedule a site inspection & quotation:\n` +
-      `• Project Type: ${projectType}\n` +
-      `• Estimated Area: ${area || "To be measured on site"} Sq. Ft.\n` +
-      `• Site Location: ${location || "Noida / NCR"}\n` +
-      `• Contact Phone: ${phone}\n\n` +
-      `Please contact me to confirm the site inspection.`
-    );
-
-    window.open(`https://wa.me/918527977714?text=${text}`, "_blank");
-    setSubmitted(true);
-  };
-
   return (
-    <section id="quote" className="bg-[#0B192C] text-white py-16 sm:py-24 border-b border-white/10 relative">
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-[#0B0D0F] text-white py-24 sm:py-36 border-t border-white/10 overflow-hidden arch-grid-pattern">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        <div className="grid gap-10 lg:grid-cols-12 items-center">
+        <div className="max-w-4xl">
           
-          {/* Left Column: Direct Yard Provenance (6 cols) */}
-          <div className="lg:col-span-6 space-y-4">
-            <div className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-amber-400">
-              <HardHat className="size-3.5" />
-              <span>DIRECT YARD QUOTATION DISPATCH</span>
-            </div>
-
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
-              Request an Itemized Structural Quotation
-            </h2>
-
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-sans">
-              Share your project specifications or land dimensions. Master fabricator MD Khurshid and project engineer Abdul will review your drawings, calculate IS 2062 mild steel tonnages, and schedule a physical site inspection.
-            </p>
-
-            {/* Direct Provenance Points in JetBrains Mono */}
-            <div className="space-y-2.5 pt-2 font-mono text-xs text-slate-200">
-              <div className="flex items-center gap-2.5">
-                <CheckCircle2 className="size-4 text-emerald-400 shrink-0" />
-                <span>Free Senior Engineer Site Visit in Noida, Greater Noida &amp; NCR</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <CheckCircle2 className="size-4 text-emerald-400 shrink-0" />
-                <span>Itemized BOQ with Mild Steel Tonnage &amp; 0.50mm Sheet Breakdown</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <CheckCircle2 className="size-4 text-emerald-400 shrink-0" />
-                <span>24-Hour Digital CAD Drawing &amp; Cost Estimation Turnaround</span>
-              </div>
-            </div>
-
-            {/* Yard Contact Stamp */}
-            <div className="pt-4 border-t border-white/10 flex flex-wrap items-center gap-3 text-xs font-mono text-slate-300">
-              <span className="text-white font-semibold">Yard Office:</span>
-              <span>D179 Sector 10, Noida, UP</span>
-              <span>·</span>
-              <span className="text-amber-400 tabular-nums font-semibold">+91 85279 77714</span>
-            </div>
+          {/* Eyebrow */}
+          <div className="flex items-center gap-3 mb-6">
+            <span className="h-px w-8 bg-[#B08A4A]" />
+            <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
+              START YOUR PROJECT
+            </span>
           </div>
 
-          {/* Right Column: Single Clear Quotation Form (6 cols) */}
-          <div className="lg:col-span-6">
-            <div className="rounded-xs border border-white/15 bg-[#0E2A47] p-6 sm:p-8 shadow-xl">
-              
-              <div className="border-b border-white/10 pb-3 mb-5">
-                <span className="font-mono text-xs font-semibold text-amber-400 uppercase block mb-0.5">
-                  OFFICIAL INQUIRY FORM
-                </span>
-                <h3 className="font-display text-lg sm:text-xl font-bold text-white">
-                  Schedule Site Survey &amp; BOQ
-                </h3>
-              </div>
+          {/* Dramatic Large Headline */}
+          <h2 className="font-editorial-title text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight uppercase leading-[1.04]">
+            READY TO BUILD <br />
+            <span className="text-[#B08A4A]">SOMETHING STRONG?</span>
+          </h2>
 
-              {submitted ? (
-                <div className="p-6 rounded-xs bg-[#0B192C] border border-emerald-500 text-center space-y-3">
-                  <CheckCircle2 className="size-10 text-emerald-400 mx-auto" />
-                  <h4 className="font-display text-xl font-bold text-white">Inquiry Dispatched</h4>
-                  <p className="text-xs font-mono text-slate-300">
-                    Your details have been forwarded to our Noida yard engineers. Abdul will contact you shortly.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setSubmitted(false)}
-                    className="mt-2 text-xs font-mono text-amber-400 underline"
-                  >
-                    Submit another inquiry
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4 font-mono text-xs">
-                  
-                  <div>
-                    <label className="block text-slate-300 uppercase mb-1 font-semibold">
-                      Structure Type
-                    </label>
-                    <select
-                      value={projectType}
-                      onChange={(e) => setProjectType(e.target.value)}
-                      className="w-full rounded-xs border border-white/20 bg-[#0B192C] px-3 py-2.5 text-xs text-white focus:border-amber-400 focus:outline-none"
-                    >
-                      {needs.map((n) => (
-                        <option key={n.id} value={n.label}>
-                          {n.label} ({n.short})
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+          <p className="mt-6 text-base sm:text-lg text-[#8C9398] font-sans leading-relaxed max-w-2xl">
+            Whether you need a 2,500 sq.ft storage shed or a 100,000+ sq.ft industrial manufacturing complex, speak directly with our senior fabrication engineers in Noida.
+          </p>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-slate-300 uppercase mb-1 font-semibold">
-                        Approx Area (Sq Ft)
-                      </label>
-                      <input
-                        type="text"
-                        value={area}
-                        onChange={(e) => setArea(e.target.value)}
-                        placeholder="e.g. 5,000"
-                        className="w-full rounded-xs border border-white/20 bg-[#0B192C] px-3 py-2.5 text-xs text-white placeholder:text-slate-400 focus:border-amber-400 focus:outline-none tabular-nums"
-                      />
-                    </div>
+          {/* 3 Dramatic Primary Actions */}
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Link
+              to="/quote"
+              className="btn-arch-primary py-4 px-8 text-sm"
+            >
+              <span>GET A FREE QUOTE</span>
+              <ArrowRight className="size-4" />
+            </Link>
 
-                    <div>
-                      <label className="block text-slate-300 uppercase mb-1 font-semibold">
-                        Site Location
-                      </label>
-                      <input
-                        type="text"
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
-                        placeholder="e.g. Noida Sec 63"
-                        className="w-full rounded-xs border border-white/20 bg-[#0B192C] px-3 py-2.5 text-xs text-white placeholder:text-slate-400 focus:border-amber-400 focus:outline-none"
-                      />
-                    </div>
-                  </div>
+            <a
+              href="tel:+918527977714"
+              className="btn-arch-secondary py-4 px-8 text-sm"
+            >
+              <Phone className="size-4 text-[#B08A4A]" />
+              <span>CALL NOW: +91 85279 77714</span>
+            </a>
 
-                  <div>
-                    <label className="block text-slate-300 uppercase mb-1 font-semibold">
-                      Phone Number <span className="text-amber-400">*</span>
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      placeholder="+91 Mobile Number"
-                      className="w-full rounded-xs border border-white/20 bg-[#0B192C] px-3 py-2.5 text-xs text-white placeholder:text-slate-400 focus:border-amber-400 focus:outline-none font-sans"
-                    />
-                  </div>
+            <a
+              href={company.whatsappText}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 py-4 px-6 border border-emerald-500/30 bg-emerald-950/20 text-emerald-400 hover:text-white font-mono text-xs uppercase tracking-wider font-bold transition-colors"
+            >
+              <MessageCircle className="size-4 text-emerald-400" />
+              <span>WHATSAPP DIRECT</span>
+            </a>
+          </div>
 
-                  <button
-                    type="submit"
-                    className="btn-corp-primary w-full py-3.5 mt-2"
-                  >
-                    <span>Dispatch Quotation Request</span>
-                    <ArrowRight className="size-4" />
-                  </button>
-
-                  <p className="text-[0.6875rem] text-slate-400 text-center pt-1 font-sans">
-                    Direct line to master fabricators · No spam · Instant WhatsApp confirmation
-                  </p>
-                </form>
-              )}
-
+          {/* Direct Address & Trust Strip */}
+          <div className="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-6 font-mono text-xs text-[#8C9398]">
+            <div className="flex items-center gap-2">
+              <MapPin className="size-3.5 text-[#B08A4A]" />
+              <span>D179 Sector 10, Noida, UP 201301</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Mail className="size-3.5 text-[#B08A4A]" />
+              <span>tinshadenoida@gmail.com</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="size-3.5 text-[#B08A4A]" />
+              <span>IS 2062 Certified Prime Mild Steel</span>
             </div>
           </div>
 

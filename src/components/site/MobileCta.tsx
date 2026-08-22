@@ -1,35 +1,45 @@
+import { Phone, MessageCircle, ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { MessageCircle, Phone, Ruler } from "lucide-react";
 import { company } from "@/lib/site-data";
 
 export function MobileCta() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-3 border-t border-slate-200 bg-white text-slate-900 sm:hidden shadow-2xl">
-      <a
-        href={company.phoneHref}
-        className="flex flex-col items-center justify-center gap-1 py-2.5 font-mono text-[0.6875rem] font-bold uppercase tracking-wider text-slate-800 hover:text-amber-600 transition-colors"
-      >
-        <Phone className="size-4 text-amber-600" />
-        <span>Call Yard</span>
-      </a>
-      
-      <a
-        href={company.whatsappText}
-        target="_blank"
-        rel="noreferrer"
-        className="flex flex-col items-center justify-center gap-1 border-x border-slate-200 py-2.5 font-mono text-[0.6875rem] font-bold uppercase tracking-wider text-slate-800 hover:text-emerald-600 transition-colors"
-      >
-        <MessageCircle className="size-4 text-emerald-600" />
-        <span>WhatsApp</span>
-      </a>
+    <div className="fixed bottom-0 inset-x-0 z-40 sm:hidden bg-[#0B0D0F]/95 backdrop-blur-md border-t border-white/15 p-2 px-3 shadow-2xl">
+      <div className="grid grid-cols-3 gap-2 font-display text-[0.6875rem] font-bold uppercase tracking-wider">
+        
+        {/* Call Button */}
+        <a
+          href={company.phoneHref}
+          className="flex items-center justify-center gap-1.5 py-2.5 px-2 bg-white/10 text-white hover:bg-white/20 border border-white/15 rounded-[2px]"
+          aria-label="Call yard directly"
+        >
+          <Phone className="size-3.5 text-[#B08A4A]" />
+          <span>CALL</span>
+        </a>
 
-      <Link
-        to="/quote"
-        className="flex flex-col items-center justify-center gap-1 bg-[#0E2A47] text-white py-2.5 font-mono text-[0.6875rem] font-bold uppercase tracking-wider"
-      >
-        <Ruler className="size-4 text-amber-400" />
-        <span>Get Quote</span>
-      </Link>
+        {/* WhatsApp Button */}
+        <a
+          href={company.whatsappText}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-1.5 py-2.5 px-2 bg-[#16A34A] text-white hover:bg-[#15803D] rounded-[2px]"
+          aria-label="Chat on WhatsApp"
+        >
+          <MessageCircle className="size-3.5" />
+          <span>WHATSAPP</span>
+        </a>
+
+        {/* Quote Button */}
+        <Link
+          to="/quote"
+          className="flex items-center justify-center gap-1.5 py-2.5 px-2 bg-[#B08A4A] text-[#0B0D0F] hover:bg-[#C59D5B] font-extrabold rounded-[2px]"
+          aria-label="Request quote"
+        >
+          <span>QUOTE</span>
+          <ArrowRight className="size-3" />
+        </Link>
+
+      </div>
     </div>
   );
 }

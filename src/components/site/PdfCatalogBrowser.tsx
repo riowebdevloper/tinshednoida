@@ -9,9 +9,8 @@ import {
   ZoomIn,
   ZoomOut,
   FileText,
-  Layers,
-  ArrowRight,
   ShieldCheck,
+  ArrowRight,
 } from "lucide-react";
 import { company } from "@/lib/site-data";
 
@@ -139,19 +138,22 @@ export function PdfCatalogBrowser() {
   const handleZoomOut = () => setZoomLevel((z) => Math.max(z - 0.25, 0.75));
 
   return (
-    <section className="py-16 sm:py-20 border-b border-slate-200 bg-[#F8FAFC]">
+    <section className="py-24 sm:py-36 border-b border-[#0B0D0F]/10 bg-warm-paper text-[#0B0D0F]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-6 mb-8">
+        {/* Editorial Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#0B0D0F]/15 pb-8 mb-12">
           <div>
-            <span className="font-mono text-xs font-semibold text-amber-700 uppercase tracking-tight block mb-1">
-              INTERACTIVE 51-PAGE WORK CATALOG VIEWER
-            </span>
-            <h2 className="font-display text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-              Official Structural Engineering Submittal
+            <div className="flex items-center gap-3 mb-3">
+              <span className="h-px w-8 bg-[#B08A4A]" />
+              <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
+                THE PROJECT BOOK
+              </span>
+            </div>
+            <h2 className="font-editorial-title text-3xl sm:text-5xl font-extrabold text-[#0B0D0F] tracking-tight uppercase leading-[1.06]">
+              51-PAGE WORK CATALOG.
             </h2>
-            <p className="mt-2 text-xs sm:text-sm text-slate-600 font-sans max-w-2xl">
+            <p className="mt-2 text-sm sm:text-base text-[#525860] font-sans max-w-2xl">
               Inspect verified case studies, truss chord schedules, and raw material certificates from our 51-page official catalog.
             </p>
           </div>
@@ -160,7 +162,7 @@ export function PdfCatalogBrowser() {
             <a
               href={pdfUrl}
               download="TIN_SHADE_NOIDA_CATALOG.pdf"
-              className="btn-corp-primary text-xs"
+              className="btn-arch-primary text-xs"
             >
               <Download className="size-3.5" />
               <span>Download Full PDF (4.5 MB)</span>
@@ -169,7 +171,7 @@ export function PdfCatalogBrowser() {
               href={pdfUrl}
               target="_blank"
               rel="noreferrer"
-              className="btn-corp-secondary text-xs"
+              className="btn-arch-dark-outline text-xs"
             >
               <ExternalLink className="size-3.5" />
               <span>Open in Browser</span>
@@ -178,16 +180,16 @@ export function PdfCatalogBrowser() {
         </div>
 
         {/* ──────── INTERACTIVE CATALOG BROWSER CHROME ──────── */}
-        <div className={`corp-card bg-white border border-slate-300 shadow-lg ${isFullscreen ? "fixed inset-4 z-50 overflow-y-auto" : "p-4 sm:p-6"}`}>
+        <div className={`arch-card-light bg-white border border-[#0B0D0F]/15 shadow-xl ${isFullscreen ? "fixed inset-4 z-50 overflow-y-auto" : "p-4 sm:p-6"}`}>
           
           {/* Top Control Toolbar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3 mb-4 font-mono text-xs text-slate-700">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#0B0D0F]/10 pb-3 mb-4 font-mono text-xs text-[#0B0D0F]">
             <div className="flex items-center gap-2">
-              <span className="font-bold text-[#0E2A47]">
-                Page {currentPage.page} of 51
+              <span className="font-bold text-[#0B0D0F]">
+                PAGE {currentPage.page} OF 51
               </span>
-              <span className="text-slate-400">·</span>
-              <span className="text-amber-700 font-semibold">{currentPage.category}</span>
+              <span className="text-[#8C9398]">·</span>
+              <span className="text-[#B08A4A] font-bold">{currentPage.category}</span>
             </div>
 
             {/* Navigation & Zoom Controls */}
@@ -195,7 +197,7 @@ export function PdfCatalogBrowser() {
               <button
                 type="button"
                 onClick={handlePrev}
-                className="flex size-7 items-center justify-center rounded-xs border border-slate-300 bg-white hover:bg-slate-50 transition-colors"
+                className="flex size-7 items-center justify-center border border-[#0B0D0F]/20 bg-white hover:bg-slate-50 transition-colors"
                 title="Previous Page"
                 aria-label="Previous Page"
               >
@@ -208,7 +210,7 @@ export function PdfCatalogBrowser() {
                   setCurrentIndex(Number(e.target.value));
                   setZoomLevel(1);
                 }}
-                className="rounded-xs border border-slate-300 bg-slate-50 px-2 py-1 text-xs font-mono text-slate-900 focus:outline-none focus:border-[#0E2A47]"
+                className="border border-[#0B0D0F]/20 bg-[#F3F1EC] px-2 py-1 text-xs font-mono text-[#0B0D0F] focus:outline-none focus:border-[#0B0D0F]"
               >
                 {catalogPages.map((p, idx) => (
                   <option key={p.page} value={idx}>
@@ -220,18 +222,18 @@ export function PdfCatalogBrowser() {
               <button
                 type="button"
                 onClick={handleNext}
-                className="flex size-7 items-center justify-center rounded-xs border border-slate-300 bg-white hover:bg-slate-50 transition-colors"
+                className="flex size-7 items-center justify-center border border-[#0B0D0F]/20 bg-white hover:bg-slate-50 transition-colors"
                 title="Next Page"
                 aria-label="Next Page"
               >
                 <ChevronRight className="size-4" />
               </button>
 
-              <div className="hidden sm:flex items-center gap-1 border-l border-slate-200 pl-2">
+              <div className="hidden sm:flex items-center gap-1 border-l border-[#0B0D0F]/10 pl-2">
                 <button
                   type="button"
                   onClick={handleZoomOut}
-                  className="flex size-7 items-center justify-center rounded-xs border border-slate-300 bg-white hover:bg-slate-50"
+                  className="flex size-7 items-center justify-center border border-[#0B0D0F]/20 bg-white hover:bg-slate-50"
                   title="Zoom Out"
                   aria-label="Zoom Out"
                 >
@@ -243,7 +245,7 @@ export function PdfCatalogBrowser() {
                 <button
                   type="button"
                   onClick={handleZoomIn}
-                  className="flex size-7 items-center justify-center rounded-xs border border-slate-300 bg-white hover:bg-slate-50"
+                  className="flex size-7 items-center justify-center border border-[#0B0D0F]/20 bg-white hover:bg-slate-50"
                   title="Zoom In"
                   aria-label="Zoom In"
                 >
@@ -252,7 +254,7 @@ export function PdfCatalogBrowser() {
                 <button
                   type="button"
                   onClick={() => setIsFullscreen(!isFullscreen)}
-                  className="flex size-7 items-center justify-center rounded-xs border border-slate-300 bg-white hover:bg-slate-50 ml-1"
+                  className="flex size-7 items-center justify-center border border-[#0B0D0F]/20 bg-white hover:bg-slate-50 ml-1"
                   title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
                   aria-label={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
                 >
@@ -266,7 +268,7 @@ export function PdfCatalogBrowser() {
           <div className="grid gap-6 lg:grid-cols-12 items-start">
             
             {/* Image Canvas with Zoom (8 cols) */}
-            <div className="lg:col-span-8 overflow-hidden rounded-xs border border-slate-200 bg-slate-100 flex items-center justify-center p-2 min-h-[420px] max-h-[580px]">
+            <div className="lg:col-span-8 overflow-hidden border border-[#0B0D0F]/10 bg-[#F3F1EC] flex items-center justify-center p-3 min-h-[420px] max-h-[580px]">
               <div
                 className="transition-transform duration-200 ease-out origin-center"
                 style={{ transform: `scale(${zoomLevel})` }}
@@ -274,37 +276,37 @@ export function PdfCatalogBrowser() {
                 <img
                   src={currentPage.image}
                   alt={currentPage.title}
-                  className="max-h-[540px] w-auto object-contain shadow-md rounded-xs"
+                  className="max-h-[520px] w-auto object-contain shadow-md"
                 />
               </div>
             </div>
 
             {/* Right Meta & Scope (4 cols) */}
             <div className="lg:col-span-4 space-y-4 font-mono text-xs">
-              <div className="p-4 rounded-xs border border-slate-200 bg-slate-50 space-y-2">
-                <span className="font-bold text-amber-700 uppercase block text-[0.6875rem]">
+              <div className="p-4 border border-[#0B0D0F]/10 bg-[#F3F1EC] space-y-2">
+                <span className="font-bold text-[#B08A4A] uppercase block text-[0.6875rem]">
                   SELECTED SUBMITTAL PAGE
                 </span>
-                <h3 className="font-display text-lg font-bold text-slate-900 leading-tight">
+                <h3 className="font-editorial-title text-lg font-bold text-[#0B0D0F] uppercase leading-tight">
                   {currentPage.title}
                 </h3>
-                <p className="text-slate-600 font-sans text-xs leading-relaxed">
+                <p className="text-[#525860] font-sans text-xs leading-relaxed">
                   {currentPage.description}
                 </p>
               </div>
 
-              <div className="p-4 rounded-xs border border-slate-200 bg-slate-50 space-y-2 text-slate-700">
+              <div className="p-4 border border-[#0B0D0F]/10 bg-[#F3F1EC] space-y-2 text-[#525860]">
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="size-4 text-emerald-600 shrink-0" />
-                  <span>IS 2062 Prime Mild Steel Tested</span>
+                  <ShieldCheck className="size-4 text-emerald-700 shrink-0" />
+                  <span className="text-[#0B0D0F] font-semibold">IS 2062 Prime Mild Steel Tested</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="size-4 text-emerald-600 shrink-0" />
-                  <span>Dual-Coat Red Oxide Primer (IS 2074)</span>
+                  <ShieldCheck className="size-4 text-emerald-700 shrink-0" />
+                  <span className="text-[#0B0D0F] font-semibold">Dual-Coat Red Oxide Primer (IS 2074)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="size-4 text-emerald-600 shrink-0" />
-                  <span>Turnkey Crane Erection Handover</span>
+                  <ShieldCheck className="size-4 text-emerald-700 shrink-0" />
+                  <span className="text-[#0B0D0F] font-semibold">Turnkey Crane Erection Handover</span>
                 </div>
               </div>
 
@@ -312,7 +314,7 @@ export function PdfCatalogBrowser() {
                 <a
                   href={pdfUrl}
                   download="TIN_SHADE_NOIDA_CATALOG.pdf"
-                  className="btn-corp-primary w-full text-center"
+                  className="btn-arch-primary w-full text-center justify-center"
                 >
                   <Download className="size-4" />
                   <span>Download Complete 51-Page PDF</span>
@@ -323,9 +325,9 @@ export function PdfCatalogBrowser() {
           </div>
 
           {/* Bottom Thumbnail Strip */}
-          <div className="mt-6 pt-4 border-t border-slate-200">
-            <span className="font-mono text-[0.6875rem] font-bold text-slate-500 uppercase block mb-2">
-              Catalog Page Thumbnails (Click to Jump)
+          <div className="mt-6 pt-4 border-t border-[#0B0D0F]/10">
+            <span className="font-mono text-[0.6875rem] font-bold text-[#8C9398] uppercase block mb-2 tracking-wider">
+              CATALOG PAGE THUMBNAILS (CLICK TO JUMP)
             </span>
             <div className="no-scrollbar flex gap-2.5 overflow-x-auto pb-2">
               {catalogPages.map((p, idx) => (
@@ -336,10 +338,10 @@ export function PdfCatalogBrowser() {
                     setCurrentIndex(idx);
                     setZoomLevel(1);
                   }}
-                  className={`relative shrink-0 w-24 aspect-[4/3] rounded-xs overflow-hidden border transition-all ${
+                  className={`relative shrink-0 w-24 aspect-[4/3] overflow-hidden border transition-all ${
                     idx === currentIndex
-                      ? "border-[#0E2A47] ring-2 ring-[#0E2A47] opacity-100"
-                      : "border-slate-300 opacity-60 hover:opacity-100"
+                      ? "border-[#0B0D0F] ring-2 ring-[#0B0D0F] opacity-100"
+                      : "border-[#0B0D0F]/20 opacity-60 hover:opacity-100"
                   }`}
                 >
                   <img
@@ -347,7 +349,7 @@ export function PdfCatalogBrowser() {
                     alt={p.title}
                     className="size-full object-cover"
                   />
-                  <span className="absolute bottom-1 right-1 bg-black/80 text-white font-mono text-[0.625rem] px-1 rounded-xs">
+                  <span className="absolute bottom-1 right-1 bg-black/85 text-white font-mono text-[0.625rem] px-1 font-bold">
                     P.{p.page}
                   </span>
                 </button>

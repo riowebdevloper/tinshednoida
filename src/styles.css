@@ -1,266 +1,210 @@
 @import "tailwindcss";
-@source "../src";
-
-@custom-variant dark (&:is(.dark *));
-
-/*
- * Tin Shade Noida — Human-Crafted Corporate Engineering Design System
- * 
- * Palette:
- * - Executive Navy: #0B192C (Header, Hero, Footer, Structural Badges)
- * - Corporate Navy Surface: #0E2A47 & #16365C
- * - Crisp Architectural White: #FFFFFF & #F8FAFC (Content surfaces, service cards, estimator)
- * - Light Steel Border: #E2E8F0
- * - Slate Text: #0F172A (Headings) & #475569 (Body)
- * - Industrial Amber / Gold: #D97706 & #F59E0B (Primary action buttons & tags)
- * - Steel Blue Accent: #2563EB
- * - WhatsApp Green: #16A34A
- *
- * Typography:
- * - Display: Plus Jakarta Sans / Space Grotesk (weight 600, 700)
- * - Body: Plus Jakarta Sans / Inter (weight 400, 500)
- * - Technical Data: JetBrains Mono with tabular-nums
- */
-
-@theme inline {
-  --radius-xs: 3px;
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
-
-  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
-
-  /* Executive Corporate Type Scale */
-  --font-size-xs: 0.75rem;    /* 12px */
-  --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
-  --font-size-lg: 1.1875rem;  /* 19px */
-  --font-size-xl: 1.5rem;     /* 24px */
-  --font-size-2xl: 2.25rem;   /* 36px */
-  --font-size-3xl: 3.25rem;   /* 52px */
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  /* Corporate Tokens */
-  --color-navy-dark: #0B192C;
-  --color-navy-corporate: #0E2A47;
-  --color-navy-surface: #16365C;
-  --color-paper-light: #F8FAFC;
-  --color-card-light: #FFFFFF;
-  --color-border-light: #E2E8F0;
-  
-  --color-amber-gold: #D97706;
-  --color-amber-vibrant: #F59E0B;
-  --color-steel-accent: #2563EB;
-  --color-whatsapp: #16A34A;
-}
-
-:root {
-  --radius: 4px;
-
-  /* Light Architectural Foundation */
-  --background: #F8FAFC;
-  --foreground: #0F172A;
-  --surface: #FFFFFF;
-
-  --card: #FFFFFF;
-  --card-foreground: #0F172A;
-
-  --primary: #D97706;
-  --primary-foreground: #FFFFFF;
-
-  --secondary: #0E2A47;
-  --secondary-foreground: #FFFFFF;
-
-  --muted: #F1F5F9;
-  --muted-foreground: #475569;
-
-  --border: #E2E8F0;
-  --input: #CBD5E1;
-  --ring: #0E2A47;
-}
-
-.dark {
-  --background: #0B192C;
-  --foreground: #F8FAFC;
-  --surface: #0E2A47;
-  --card: #132B4F;
-  --card-foreground: #F8FAFC;
-  --primary: #F59E0B;
-  --primary-foreground: #0B192C;
-  --secondary: #1E3E62;
-  --secondary-foreground: #FFFFFF;
-  --muted: #1E3E62;
-  --muted-foreground: #94A3B8;
-  --border: rgba(255, 255, 255, 0.12);
-  --input: rgba(255, 255, 255, 0.16);
-  --ring: #38BDF8;
-}
 
 @layer base {
-  * {
-    border-color: var(--color-border);
+  :root {
+    --canvas-dark: #0B0D0F;
+    --canvas-light: #F3F1EC;
+    --canvas-surface: #14171A;
+    --canvas-card-light: #FFFFFF;
+    --metal: #8C9398;
+    --metal-dark: #1C2024;
+    --brass: #B08A4A;
+    --brass-hover: #C59D5B;
+    --steel-blue: #182A36;
+    --text-primary-dark: #FFFFFF;
+    --text-secondary-dark: #9BA1A6;
+    --text-primary-light: #0B0D0F;
+    --text-secondary-light: #525860;
+    --border-dark: rgba(255, 255, 255, 0.09);
+    --border-light: rgba(11, 13, 15, 0.12);
   }
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    background-color: var(--canvas-dark);
+    color: var(--text-primary-dark);
+    font-family: "Manrope", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 
   body {
-    background-color: #F8FAFC;
-    color: #0F172A;
-    font-family: var(--font-sans);
-    font-weight: 400;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: #0F172A;
-    line-height: 1.2;
-  }
-
-  .font-mono, [data-mono] {
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-    font-feature-settings: "tnum" 1;
+    background-color: var(--canvas-dark);
+    margin: 0;
+    padding: 0;
   }
 }
 
-/* ──────── CLEAN CORPORATE UTILITY CLASSES ──────── */
-
-/* Clean Corporate White Card (No neon glow, crisp 1px border, subtle shadow) */
-@utility corp-card {
-  position: relative;
-  background-color: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: var(--radius-sm);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-  &:hover {
-    border-color: #CBD5E1;
-    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
-  }
+/* ──────── EDITORIAL TYPOGRAPHY CLASSES ──────── */
+.font-display {
+  font-family: "Manrope", "Plus Jakarta Sans", system-ui, sans-serif;
+  letter-spacing: -0.03em;
+  font-weight: 700;
 }
 
-/* Clean Navy Block */
-@utility navy-block {
-  background-color: #0B192C;
-  color: #FFFFFF;
+.font-editorial-title {
+  font-family: "Manrope", "Space Grotesk", system-ui, sans-serif;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
-/* Solid Corporate Action Button (Sharp 4px radius, no glow, no gradient) */
-@utility btn-corp-primary {
+.font-mono-tag {
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: 0.14em;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* ──────── ARCHITECTURAL CARDS & SURFACES ──────── */
+.arch-card-dark {
+  background-color: var(--canvas-surface);
+  border: 1px solid var(--border-dark);
+  border-radius: 2px;
+  transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.arch-card-dark:hover {
+  border-color: rgba(176, 138, 74, 0.4);
+}
+
+.arch-card-light {
+  background-color: var(--canvas-card-light);
+  border: 1px solid var(--border-light);
+  border-radius: 2px;
+  transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.arch-card-light:hover {
+  border-color: var(--brass);
+}
+
+/* ──────── BUTTONS (SHARP, EDITORIAL, MICRO-INTERACTIONS) ──────── */
+.btn-arch-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  border-radius: 4px;
-  background-color: #D97706;
-  padding: 0.75rem 1.4rem;
-  font-family: var(--font-display);
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  color: #FFFFFF;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  transition: background-color 0.15s ease;
-  &:hover {
-    background-color: #B45309;
-  }
-  &:active {
-    transform: translateY(1px);
-  }
-  &:focus-visible {
-    outline: 2px solid #0E2A47;
-    outline-offset: 2px;
-  }
-}
-
-/* Corporate Secondary Button */
-@utility btn-corp-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #CBD5E1;
-  background-color: #FFFFFF;
-  padding: 0.6875rem 1.35rem;
-  font-family: var(--font-display);
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #0E2A47;
-  transition: border-color 0.15s ease, background-color 0.15s ease;
-  &:hover {
-    border-color: #0E2A47;
-    background-color: #F1F5F9;
-  }
-  &:focus-visible {
-    outline: 2px solid #0E2A47;
-    outline-offset: 2px;
-  }
-}
-
-/* Corporate Navy Outline Button */
-@utility btn-corp-navy-outline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 0.6875rem 1.35rem;
-  font-family: var(--font-display);
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #FFFFFF;
-  transition: border-color 0.15s ease, background-color 0.15s ease;
-  &:hover {
-    border-color: #FFFFFF;
-    background-color: rgba(255, 255, 255, 0.12);
-  }
-  &:focus-visible {
-    outline: 2px solid #D97706;
-    outline-offset: 2px;
-  }
-}
-
-/* Clean Category Tag */
-@utility tag-corp {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  border-radius: 3px;
-  background-color: #F1F5F9;
-  border: 1px solid #E2E8F0;
-  padding: 0.25rem 0.625rem;
-  font-family: var(--font-mono);
+  gap: 0.625rem;
+  background-color: var(--brass);
+  color: #0B0D0F;
+  font-family: "Manrope", sans-serif;
   font-size: 0.75rem;
-  font-weight: 600;
-  color: #0E2A47;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.875rem 1.625rem;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-arch-primary:hover {
+  background-color: var(--brass-hover);
+  transform: translateY(-1px);
+}
+
+.btn-arch-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-arch-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  background-color: transparent;
+  color: #FFFFFF;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.875rem 1.625rem;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-arch-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.btn-arch-secondary:active {
+  transform: scale(0.98);
+}
+
+.btn-arch-dark-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  background-color: transparent;
+  color: var(--text-primary-light);
+  font-family: "Manrope", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.875rem 1.625rem;
+  border-radius: 2px;
+  border: 1px solid var(--text-primary-light);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-arch-dark-outline:hover {
+  background-color: var(--text-primary-light);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+/* ──────── ARCHITECTURAL GRID LINES & BACKGROUNDS ──────── */
+.bg-warm-paper {
+  background-color: var(--canvas-light);
+  color: var(--text-primary-light);
+}
+
+.bg-charcoal {
+  background-color: var(--canvas-dark);
+  color: var(--text-primary-dark);
+}
+
+.arch-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+.arch-grid-pattern-light {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(11, 13, 15, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 13, 15, 0.05) 1px, transparent 1px);
+}
+
+/* ──────── ANIMATIONS ──────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

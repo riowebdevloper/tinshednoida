@@ -3,12 +3,13 @@ import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { Services } from "@/components/site/Services";
 import { EstimatorWidget } from "@/components/site/EstimatorWidget";
 import { FinalCta } from "@/components/site/FinalCta";
-import { ShieldCheck, CheckCircle2, ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2, FileText, Ruler, ShieldCheck, Download } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { company } from "@/lib/site-data";
 
-const title = "Services | Industrial Shed, Warehouse & Steel Fabrication — Tin Shade Noida";
+const title = "Industrial Shed & Structural Steel Services — Tin Shade Noida";
 const description =
-  "Industrial shed and structural steel fabrication solutions from requirement to crane erection across Noida, Greater Noida, and Pan India.";
+  "Comprehensive industrial shed engineering services: factory sheds, warehouses, MS frameworks, PEB structures, 0.50mm Galvalume roofing, and shed repair.";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -22,128 +23,135 @@ export const Route = createFileRoute("/services")({
     ],
     links: [{ rel: "canonical", href: "/services" }],
   }),
-  component: ServicesPage,
+  component: ServicesHubPage,
 });
 
-function ServicesPage() {
-  const comparisonMatrix = [
-    {
-      category: "Industrial Factory Sheds",
-      span: "30 – 100 FT Clear Span",
-      steelGrade: "IS 2062 E250 / E350",
-      roofing: "0.50mm Galvalume / PPGL",
-      eavesHeight: "15 – 30 Feet",
-      turnaround: "15 – 30 Days",
-      isStandard: "IS 800:2007",
-    },
-    {
-      category: "Logistics Warehouses & Godowns",
-      span: "50 – 120 FT Clear Span",
-      steelGrade: "Heavy Tubular / I-Beam",
-      roofing: "Trapezoidal + Skylights",
-      eavesHeight: "20 – 36 Feet",
-      turnaround: "20 – 45 Days",
-      isStandard: "IS 875 (Wind)",
-    },
-    {
-      category: "Heavy MS Steel Frameworks",
-      span: "Custom Engineered",
-      steelGrade: "IS 2062 Prime Mild Steel",
-      roofing: "Open Frame / Custom",
-      eavesHeight: "Up to 40 Feet",
-      turnaround: "Custom MT Rate",
-      isStandard: "IS 816 Welding",
-    },
-    {
-      category: "Pre-Engineered Buildings (PEB)",
-      span: "40 – 120 FT Clear Span",
-      steelGrade: "High-Tensile 345 MPa",
-      roofing: "Insulated Sandwiched Panels",
-      eavesHeight: "18 – 32 Feet",
-      turnaround: "30 – 60 Days",
-      isStandard: "MBMA / IS 800",
-    },
-    {
-      category: "Heavy-Duty Mezzanine Floors",
-      span: "Modular Grid",
-      steelGrade: "Heavy ISMB Columns & Joists",
-      roofing: "Decking Sheet + Concrete",
-      eavesHeight: "10 – 18 Feet Deck",
-      turnaround: "10 – 20 Days",
-      isStandard: "500–1500 kg/m²",
-    },
-  ];
+const serviceMatrix = [
+  {
+    name: "Industrial Factory Shed",
+    span: "Up to 100 FT",
+    steel: "IS 2062 Mild Steel",
+    cladding: "0.50mm Galvalume",
+    crane: "Up to 40T EOT",
+    link: "/services/industrial-shed",
+  },
+  {
+    name: "Logistics Warehouse / Godown",
+    span: "Up to 120 FT",
+    steel: "Modular CHS / RHS Trusses",
+    cladding: "0.50mm PPGL / Galvalume",
+    crane: "Optional EOT",
+    link: "/services/warehouse-shed",
+  },
+  {
+    name: "Mild Steel (MS) Structure",
+    span: "Custom Engineered",
+    steel: "ISMB / ISMC / Angles",
+    cladding: "Custom / Open",
+    crane: "Heavy Gantry",
+    link: "/services/ms-structure",
+  },
+  {
+    name: "Tin Roofing & Sheeting",
+    span: "Modular Slope",
+    steel: "Cold-Formed Z/C Purlins",
+    cladding: "AZ150 Galvalume / PUF",
+    crane: "N/A",
+    link: "/services/tin-roofing",
+  },
+  {
+    name: "Pre-Engineered Building (PEB)",
+    span: "Up to 120 FT",
+    steel: "Grade 345 MPa Plates",
+    cladding: "High-Tensile Profiles",
+    crane: "Integrated Brackets",
+    link: "/services/peb-structure",
+  },
+  {
+    name: "Industrial Shed Repair",
+    span: "Retrofit & Extension",
+    steel: "IS 2062 Gussets / Plates",
+    cladding: "Replacement Galvalume",
+    crane: "N/A",
+    link: "/services/repair-renovation",
+  },
+];
 
+function ServicesHubPage() {
   return (
     <SiteLayout>
       <PageHero
-        eyebrow="STRUCTURAL ENGINEERING CAPABILITIES"
-        title="Industrial Sheds, Warehouses & Heavy Steel Framing"
-        description="Every structural component is cut, arc-welded, and dual-coat primed in our Noida Sector 10 yard with IS 2062 certified mild steel, then erected with hydraulic cranes across India."
+        eyebrow="IN-HOUSE FABRICATION CAPABILITIES"
+        title="Industrial Shed &amp; Structural Steel Services"
+        description="Heavy-duty clear-span factory sheds, column-free logistics warehouses, modular pipe trusses, and PEB portal frames engineered to IS 800:2007 structural standards."
       />
 
-      {/* 1. Core Services Component */}
+      {/* 1. Vertical Architectural Service List */}
       <Services />
 
-      {/* 2. Engineering Comparison Matrix */}
-      <section className="bg-white py-16 sm:py-20 border-b border-slate-200">
+      {/* 2. Technical Comparison Matrix Table */}
+      <section className="bg-white py-24 sm:py-32 border-b border-[#0B0D0F]/10 text-[#0B0D0F]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
-          <div className="max-w-2xl border-b border-slate-200 pb-5 mb-8">
-            <span className="font-mono text-xs font-semibold text-amber-700 uppercase tracking-tight block mb-1">
-              TECHNICAL SPECIFICATION MATRIX
+          <div className="max-w-2xl border-b border-[#0B0D0F]/15 pb-6 mb-12">
+            <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block mb-2">
+              TECHNICAL MATRIX
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-              Structural Capacity &amp; Code Standards
+            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold uppercase">
+              Specification Comparison Matrix
             </h2>
-            <p className="mt-2 text-xs sm:text-sm text-slate-600 font-sans">
-              Compare structural clear-span capabilities, steel grades, eaves heights, and IS code compliance across all shed types.
-            </p>
           </div>
 
-          {/* Matrix Table in JetBrains Mono */}
-          <div className="corp-card overflow-hidden p-1 sm:p-2 bg-white border border-slate-300 shadow-sm">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left font-mono text-xs text-slate-700">
-                <thead className="border-b border-slate-200 bg-[#0E2A47] text-white font-bold uppercase text-[0.6875rem]">
-                  <tr>
-                    <th className="p-3.5 sm:p-4">Structure Category</th>
-                    <th className="p-3.5 sm:p-4">Clear Span Reach</th>
-                    <th className="p-3.5 sm:p-4">Steel Grade</th>
-                    <th className="p-3.5 sm:p-4">Eaves Height</th>
-                    <th className="p-3.5 sm:p-4">Avg Timeline</th>
-                    <th className="p-3.5 sm:p-4">Standard Code</th>
+          <div className="overflow-x-auto border border-[#0B0D0F]/15">
+            <table className="w-full text-left font-mono text-xs">
+              <thead className="bg-[#0B0D0F] text-white uppercase tracking-wider text-[0.6875rem]">
+                <tr>
+                  <th className="p-4">SERVICE DISCIPLINE</th>
+                  <th className="p-4">CLEAR SPAN</th>
+                  <th className="p-4">PRIMARY STEEL</th>
+                  <th className="p-4">ROOF CLADDING</th>
+                  <th className="p-4">CRANE SUPPORT</th>
+                  <th className="p-4 text-right">ACTION</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#0B0D0F]/10 bg-[#F3F1EC]">
+                {serviceMatrix.map((item) => (
+                  <tr key={item.name} className="hover:bg-white transition-colors">
+                    <td className="p-4 font-bold text-[#0B0D0F]">
+                      <Link to={item.link} className="hover:text-[#B08A4A] transition-colors">
+                        {item.name}
+                      </Link>
+                    </td>
+                    <td className="p-4 text-[#525860] tabular-nums">{item.span}</td>
+                    <td className="p-4 text-[#525860]">{item.steel}</td>
+                    <td className="p-4 text-[#525860]">{item.cladding}</td>
+                    <td className="p-4 text-[#525860]">{item.crane}</td>
+                    <td className="p-4 text-right">
+                      <Link
+                        to={item.link}
+                        className="font-bold text-[#0B0D0F] hover:text-[#B08A4A] transition-colors inline-flex items-center gap-1"
+                      >
+                        <span>Details</span>
+                        <ArrowRight className="size-3" />
+                      </Link>
+                    </td>
                   </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100 bg-white">
-                  {comparisonMatrix.map((row) => (
-                    <tr key={row.category} className="hover:bg-slate-50 transition-colors">
-                      <td className="p-3.5 sm:p-4 font-display text-sm font-bold text-slate-900">
-                        {row.category}
-                      </td>
-                      <td className="p-3.5 sm:p-4 text-[#0E2A47] font-semibold tabular-nums">{row.span}</td>
-                      <td className="p-3.5 sm:p-4 text-slate-700">{row.steelGrade}</td>
-                      <td className="p-3.5 sm:p-4 tabular-nums">{row.eavesHeight}</td>
-                      <td className="p-3.5 sm:p-4 text-amber-700 font-semibold tabular-nums">{row.turnaround}</td>
-                      <td className="p-3.5 sm:p-4 text-slate-500">{row.isStandard}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                ))}
+              </tbody>
+            </table>
           </div>
 
         </div>
       </section>
 
-      {/* 3. Interactive Steel Estimator on Services Page */}
-      <section className="bg-[#F8FAFC] py-16 sm:py-20 border-b border-slate-200">
+      {/* 3. Estimator Calculator */}
+      <section className="bg-warm-paper py-24 sm:py-32 border-b border-[#0B0D0F]/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <EstimatorWidget />
         </div>
       </section>
 
-      {/* 4. Direct Final CTA */}
+      {/* 4. Final CTA */}
       <FinalCta />
     </SiteLayout>
   );

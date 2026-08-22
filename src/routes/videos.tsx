@@ -27,11 +27,11 @@ function VideosPage() {
     <SiteLayout>
       <PageHero
         eyebrow="ON-SITE ACTION VIDEO ARCHIVE"
-        title="Heavy Crane Erection & Workshop Fabrication"
+        title="Heavy Crane Erection &amp; Workshop Fabrication"
         description="Authentic project action videos, YouTube channel documentation, and Instagram reels from active industrial construction sites across India."
       />
 
-      {/* Main Video System with 3 Tabs */}
+      {/* Main Video System with 70/30 Player & Instagram Reels */}
       <Videos isPage={true} />
 
       {/* Direct Final CTA */}

@@ -1,14 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { Leadership } from "@/components/site/Leadership";
-import { Journey } from "@/components/site/Journey";
+import { PanIndia } from "@/components/site/PanIndia";
 import { FinalCta } from "@/components/site/FinalCta";
-import { company } from "@/lib/site-data";
-import { Wrench, ShieldCheck, CheckCircle2, Factory, HardHat, Sparkles } from "lucide-react";
+import { Wrench, ShieldCheck, Factory, Compass, CheckCircle2, Award, Clock, ArrowRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import heroImg from "@/assets/gen/hero-3.jpg";
 
-const title = `About ${company.name} | Master Steel Fabricators Since ${company.since}`;
+const title = "About Tin Shade Noida | 15+ Years Industrial Steel Fabrication";
 const description =
-  "In-house structural steel fabrication yard in Noida Sector 10. Learn how MD Khurshid & Abdul deliver 500+ industrial sheds with zero broker markups.";
+  "Established in 2010 with an in-house fabrication yard in Sector 10 Noida. Learn about our master fabricators, IS 2062 quality standards, and turnkey crane erection across India.";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -26,140 +27,125 @@ export const Route = createFileRoute("/about")({
 });
 
 function AboutPage() {
-  const yardMachinery = [
-    {
-      equipment: "Heavy Hydraulic Mobile Cranes",
-      capacity: "20T & 40T Lifting Capacity",
-      usage: "On-site modular truss hoisting, high-bay column placement, and gantry girder installation.",
-    },
-    {
-      equipment: "Multi-Station Arc & MIG Welding",
-      capacity: "IS 816 Compliant Continuous Fillet",
-      usage: "Full-penetration web-to-flange welding on heavy I-beams, purlins, and gusset joints.",
-    },
-    {
-      equipment: "Automated Oxy-Fuel & Plasma Cutters",
-      capacity: "Up to 50mm Plate Thickness",
-      usage: "High-precision base-plate profiling, rafter beveling, and cleat slotting.",
-    },
-    {
-      equipment: "Dual-Coat Red Oxide Primer Booth",
-      capacity: "IS 2074 Certified Zinc Phosphate",
-      usage: "Shop-applied protective anti-rust coating before transit to prevent weather oxidation.",
-    },
-  ];
-
-  const advantages = [
-    {
-      title: "Direct Yard Pricing (0% Broker Margin)",
-      desc: "Commercial shed aggregators sub-contract out work and add 20-30% markups. With Tin Shade Noida, you deal directly with the master fabricators cutting your steel.",
-    },
-    {
-      title: "Full Material Provenance (IS 2062)",
-      desc: "Every metric tonne of steel sourced for your project comes with original mill test certificates (MTC) verifying tensile strength, elongation, and yield stress.",
-    },
-    {
-      title: "In-House Erection Crew & Cranes",
-      desc: "We do not rely on ad-hoc daily labor. Our dedicated riggers and certified crane operators execute installations according to strict IS 800:2007 safety guidelines.",
-    },
-  ];
-
   return (
     <SiteLayout>
       <PageHero
-        eyebrow={`DIRECT STRUCTURAL FABRICATION SINCE ${company.since}`}
-        title="Master Fabricators, Not Sales Middlemen"
-        description="Founded in 2010 by MD Khurshid, Tin Shade Noida operates a direct fabrication workshop in Sector 10 Noida, delivering 500+ industrial sheds with transparent pricing and engineering accountability."
+        eyebrow="ESTABLISHED NOIDA FABRICATION YARD"
+        title="Our Story &amp; Engineering Mastery"
+        description="Founded with a practical understanding of metal fabrication and a commitment to dependable workmanship, Tin Shade has built over 500 industrial structures across India."
       />
 
-      {/* 1. Leadership Story */}
+      {/* 1. OUR STORY & EXPERIENCE */}
+      <section className="bg-warm-paper py-24 sm:py-32 border-b border-[#0B0D0F]/10 text-[#0B0D0F]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-12 items-center">
+            
+            <div className="lg:col-span-6 space-y-6">
+              <div className="flex items-center gap-3">
+                <span className="h-px w-8 bg-[#B08A4A]" />
+                <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
+                  OUR STORY SINCE 2010
+                </span>
+              </div>
+              <h2 className="font-editorial-title text-3xl sm:text-5xl font-extrabold uppercase leading-tight">
+                Built on Trust, Steel &amp; Hand-Crafted Precision.
+              </h2>
+              <p className="text-sm sm:text-base text-[#525860] leading-relaxed font-sans">
+                Tin Shade Noida began as a dedicated structural fabrication workshop in D179 Sector 10, Noida. Over the past 15+ years, we have grown into one of North India’s most trusted direct-fabrication contractors, specializing in large clear-span manufacturing sheds, godowns, and heavy industrial framing.
+              </p>
+              <p className="text-sm sm:text-base text-[#525860] leading-relaxed font-sans">
+                Unlike brokers or commercial aggregators who subcontract execution, we maintain full direct control: our own certified welders fabricate every chord in Noida, and our own hydraulic mobile crane crew erects the steel on your site.
+              </p>
+
+              <div className="pt-2 flex flex-wrap gap-4 font-mono text-xs text-[#0B0D0F]">
+                <div className="p-3 bg-white border border-[#0B0D0F]/15">
+                  <strong className="text-base text-[#B08A4A] block tabular-nums">500+</strong>
+                  <span>Executed Projects</span>
+                </div>
+                <div className="p-3 bg-white border border-[#0B0D0F]/15">
+                  <strong className="text-base text-[#B08A4A] block tabular-nums">15+</strong>
+                  <span>Years Operation</span>
+                </div>
+                <div className="p-3 bg-white border border-[#0B0D0F]/15">
+                  <strong className="text-base text-[#B08A4A] block tabular-nums">120 FT</strong>
+                  <span>Clear Span Record</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-6">
+              <div className="arch-card-light overflow-hidden p-2.5 bg-white border border-[#0B0D0F]/15 shadow-2xl">
+                <div className="relative aspect-[4/3] bg-[#0B0D0F] overflow-hidden">
+                  <img
+                    src={heroImg}
+                    alt="Tin Shade Noida Workshop Erection"
+                    className="size-full object-cover grayscale contrast-115"
+                  />
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 2. HOW WE WORK & WHY CHOOSE US */}
+      <section className="bg-white py-24 sm:py-32 border-b border-[#0B0D0F]/10 text-[#0B0D0F]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          
+          <div className="max-w-3xl border-b border-[#0B0D0F]/15 pb-8 mb-16">
+            <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block mb-2">
+              THE DIRECT ADVANTAGE
+            </span>
+            <h2 className="font-editorial-title text-3xl sm:text-5xl font-extrabold uppercase">
+              Why Serious Industrial Clients Choose Tin Shade
+            </h2>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            
+            <div className="p-6 bg-[#F3F1EC] border border-[#0B0D0F]/10 space-y-2">
+              <ShieldCheck className="size-6 text-[#B08A4A]" />
+              <h3 className="font-editorial-title text-lg font-bold uppercase">
+                IS 2062 Prime Steel Only
+              </h3>
+              <p className="text-xs sm:text-sm text-[#525860] font-sans leading-relaxed">
+                Zero re-rolled or substandard scrap steel. Every member comes with verifiable Mill Test Certificates.
+              </p>
+            </div>
+
+            <div className="p-6 bg-[#F3F1EC] border border-[#0B0D0F]/10 space-y-2">
+              <Factory className="size-6 text-[#B08A4A]" />
+              <h3 className="font-editorial-title text-lg font-bold uppercase">
+                Direct Yard Fabrication
+              </h3>
+              <p className="text-xs sm:text-sm text-[#525860] font-sans leading-relaxed">
+                No middleman commissions. You deal directly with our master fabricators in Sector 10 Noida.
+              </p>
+            </div>
+
+            <div className="p-6 bg-[#F3F1EC] border border-[#0B0D0F]/10 space-y-2">
+              <Compass className="size-6 text-[#B08A4A]" />
+              <h3 className="font-editorial-title text-lg font-bold uppercase">
+                Turnkey Crane Assembly
+              </h3>
+              <p className="text-xs sm:text-sm text-[#525860] font-sans leading-relaxed">
+                We own and operate dedicated hydraulic cranes for safe, high-speed erection without third-party delays.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. EDITORIAL LEADERSHIP */}
       <Leadership />
 
-      {/* 2. In-House Yard Machinery & Capabilities */}
-      <section className="bg-white py-16 sm:py-20 border-b border-slate-200">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
-          <div className="max-w-2xl border-b border-slate-200 pb-5 mb-8">
-            <span className="font-mono text-xs font-semibold text-amber-700 uppercase tracking-tight block mb-1">
-              SHOP INFRASTRUCTURE &amp; RIGGING
-            </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-              Noida Sector 10 Yard Machinery
-            </h2>
-            <p className="mt-2 text-xs sm:text-sm text-slate-600 font-sans">
-              Take a look inside our in-house workshop. All cutting, fitting, and continuous arc welding take place under direct master supervision.
-            </p>
-          </div>
+      {/* 4. PAN INDIA */}
+      <PanIndia />
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {yardMachinery.map((item) => (
-              <div
-                key={item.equipment}
-                className="corp-card p-5 flex flex-col justify-between bg-[#F8FAFC]"
-              >
-                <div>
-                  <div className="flex items-center justify-between border-b border-slate-200 pb-2 mb-3">
-                    <span className="font-mono text-[0.6875rem] text-[#0E2A47] font-semibold uppercase">
-                      Equipment
-                    </span>
-                    <Wrench className="size-3.5 text-amber-600" />
-                  </div>
-
-                  <h3 className="font-display text-base font-bold text-slate-900">
-                    {item.equipment}
-                  </h3>
-                  
-                  <p className="mt-1 font-mono text-xs text-amber-700 font-semibold">
-                    {item.capacity}
-                  </p>
-
-                  <p className="mt-2 text-xs leading-relaxed text-slate-600 font-sans">
-                    {item.usage}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* 3. Execution Journey */}
-      <Journey />
-
-      {/* 4. Why Direct Fabrication Beats Middlemen */}
-      <section className="bg-[#F8FAFC] py-16 sm:py-20 border-b border-slate-200">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
-          <div className="max-w-2xl border-b border-slate-200 pb-5 mb-8">
-            <span className="font-mono text-xs font-semibold text-amber-700 uppercase tracking-tight block mb-1">
-              ACCOUNTABILITY PLEDGE
-            </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-              Why Direct Fabrication Beats Middlemen
-            </h2>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {advantages.map((adv) => (
-              <div key={adv.title} className="corp-card p-6 bg-white">
-                <div className="size-9 rounded-xs bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-700 mb-4">
-                  <CheckCircle2 className="size-5" />
-                </div>
-                <h3 className="font-display text-lg font-bold text-slate-900">
-                  {adv.title}
-                </h3>
-                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600 font-sans">
-                  {adv.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* 5. Direct Final CTA */}
+      {/* 5. FINAL CTA */}
       <FinalCta />
     </SiteLayout>
   );

@@ -1,241 +1,150 @@
 import { useEffect, useState } from "react";
-import { Download, Menu, Phone, X, MessageCircle, ArrowRight, ShieldCheck, MapPin } from "lucide-react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { company, nav } from "@/lib/site-data";
+import { ArrowRight, Menu, X, Phone, Download } from "lucide-react";
+import { company } from "@/lib/site-data";
+
+const navItems = [
+  { label: "SERVICES", to: "/services" as const },
+  { label: "PROJECTS", to: "/projects" as const },
+  { label: "VIDEOS", to: "/videos" as const },
+  { label: "CATALOG", to: "/catalog" as const },
+  { label: "ABOUT", to: "/about" as const },
+];
 
 export function SiteHeader() {
-  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const routerState = useRouterState();
   const currentPath = routerState.location.pathname;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+    setMobileOpen(false);
+  }, [currentPath]);
 
   return (
-    <header className="sticky top-0 z-50 bg-[#0B192C] text-white shadow-md">
-      {/* ──────── TOP YARD INFORMATION BAR ──────── */}
-      <div
-        className={`hidden overflow-hidden bg-[#07101C] text-slate-300 border-b border-white/10 transition-all duration-200 lg:block ${
-          scrolled ? "max-h-0 opacity-0" : "max-h-10 opacity-100"
-        }`}
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-xs font-mono">
-          <div className="flex items-center gap-3">
-            <span className="flex items-center gap-1.5 text-amber-400 font-semibold">
-              <MapPin className="size-3.5 text-amber-400" />
-              Fabrication Yard:
-            </span>
-            <span className="text-slate-300">D179 Sector 10, Noida · Turnkey Pan-India Erection</span>
-          </div>
-
-          <div className="flex items-center gap-5">
-            <a
-              href="tel:+918527977714"
-              className="inline-flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors"
-              title="Call +91 85279 77714"
-            >
-              <Phone className="size-3.5 text-amber-400" aria-hidden="true" />
-              <span className="tabular-nums font-semibold">+91 85279 77714</span>
-            </a>
-
-            <span className="h-3 w-px bg-white/20" aria-hidden="true" />
-
-            <a
-              href={company.whatsappText}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="WhatsApp Direct"
-              className="inline-flex items-center gap-1.5 text-slate-300 hover:text-emerald-400 transition-colors"
-            >
-              <MessageCircle className="size-3.5 text-emerald-400" aria-hidden="true" />
-              <span>WhatsApp Direct</span>
-            </a>
-
-            <span className="h-3 w-px bg-white/20" aria-hidden="true" />
-
-            <a
-              href={company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf"}
-              download="TIN_SHADE_NOIDA_CATALOG.pdf"
-              className="inline-flex items-center gap-1.5 text-amber-400 hover:text-white transition-colors font-semibold"
-            >
-              <Download className="size-3.5" aria-hidden="true" />
-              <span>51-Page Work Catalog (PDF)</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* ──────── MAIN EXECUTIVE NAVIGATION BAR ──────── */}
-      <div className={`transition-all duration-200 ${scrolled ? "py-2.5" : "py-3.5"}`}>
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-[#0B0D0F]/95 backdrop-blur-md border-b border-white/10 py-3 shadow-xl"
+          : "bg-gradient-to-b from-[#0B0D0F]/80 via-[#0B0D0F]/30 to-transparent py-5"
+      }`}
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-6">
           
-          {/* Brand Logo & Corporate Tagline */}
+          {/* Brand Logo & Name */}
           <Link
             to="/"
-            className="flex items-center gap-3 shrink-0 focus-visible:outline-none"
+            className="flex items-center gap-3.5 focus-visible:outline-none shrink-0 group"
             aria-label={`${company.name} home`}
           >
             <img
               src={company.logo}
               alt="Tin Shade Noida Logo"
-              className={`w-auto object-contain transition-all duration-200 ${
-                scrolled ? "h-9 sm:h-10" : "h-10 sm:h-11"
-              }`}
+              className="h-9 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-103"
             />
-            <div className="leading-tight hidden sm:block">
-              <span className="block font-display text-lg sm:text-xl font-bold tracking-tight text-white">
+            <div className="leading-tight">
+              <span className="block font-display text-base sm:text-lg font-bold tracking-tight text-white uppercase">
                 {company.name}
               </span>
-              <span className="block font-mono text-[0.6875rem] text-slate-400 tracking-tight">
-                Industrial Shed &amp; Structural Steel Fabrication
+              <span className="block font-mono-tag text-[0.625rem] text-[#8C9398]">
+                EST. 2010 · NOIDA YARD
               </span>
             </div>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-1 font-display text-sm font-semibold tracking-wide">
-            {nav.map((item) => {
-              const isActive = item.to ? currentPath === item.to : false;
-              
-              if (item.hash) {
-                return (
-                  <Link
-                    key={item.label}
-                    to="/"
-                    hash={item.hash}
-                    className="px-3.5 py-1.5 transition-colors text-slate-300 hover:text-white rounded-xs hover:bg-white/5"
-                  >
-                    {item.label}
-                  </Link>
-                );
-              }
-
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex items-center gap-7 text-xs font-semibold tracking-widest text-slate-300 font-display">
+            {navItems.map((item) => {
+              const isActive = currentPath === item.to || currentPath.startsWith(item.to + "/");
               return (
                 <Link
                   key={item.label}
-                  to={item.to ?? "/"}
-                  className={`px-3.5 py-1.5 transition-colors rounded-xs ${
-                    isActive
-                      ? "text-white bg-white/10 font-bold"
-                      : "text-slate-300 hover:text-white hover:bg-white/5"
+                  to={item.to}
+                  className={`transition-colors relative py-1 hover:text-white ${
+                    isActive ? "text-white font-bold" : "text-[#8C9398]"
                   }`}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  {isActive && (
+                    <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-[#B08A4A]" />
+                  )}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Primary Action */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Right Action CTA */}
+          <div className="hidden sm:flex items-center gap-4 shrink-0">
             <a
               href="tel:+918527977714"
-              className="inline-flex size-9 items-center justify-center rounded-xs border border-white/20 bg-white/5 text-slate-200 hover:bg-white/10 hover:text-white transition-colors"
-              title="Call Yard: +91 85279 77714"
-              aria-label="Call +91 85279 77714"
+              className="hidden lg:flex items-center gap-2 font-mono text-xs text-[#8C9398] hover:text-white transition-colors"
             >
-              <Phone className="size-4 text-amber-400" />
+              <Phone className="size-3 text-[#B08A4A]" />
+              <span>+91 85279 77714</span>
             </a>
 
             <Link
               to="/quote"
-              className="btn-corp-primary"
+              className="btn-arch-primary py-2.5 px-4 text-xs font-bold"
             >
-              <span>Get a Quote</span>
-              <ArrowRight className="size-4" aria-hidden="true" />
+              <span>GET A QUOTE</span>
+              <ArrowRight className="size-3.5" />
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center gap-2 sm:hidden">
-            <Link
-              to="/quote"
-              className="rounded-xs bg-amber-600 px-3 py-1.5 font-display text-xs font-bold text-white"
-            >
-              Quote
-            </Link>
-            <button
-              type="button"
-              onClick={() => setOpen(!open)}
-              className="rounded-xs border border-white/20 bg-white/5 p-2 text-white hover:bg-white/10 transition-colors"
-              aria-label={open ? "Close menu" : "Open menu"}
-              aria-expanded={open}
-            >
-              {open ? <X className="size-5" /> : <Menu className="size-5" />}
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden flex size-10 items-center justify-center border border-white/15 bg-white/5 text-white hover:bg-white/10 rounded-[2px]"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
 
         </div>
       </div>
 
-      {/* ──────── MOBILE MENU DRAWER ──────── */}
-      {open && (
-        <div className="fixed inset-0 top-[60px] z-50 bg-[#0B192C] text-white flex flex-col justify-between p-6 overflow-y-auto lg:hidden animate-in fade-in duration-150 border-t border-white/10">
-          <div className="space-y-6">
-            <div className="border-b border-white/10 pb-4">
-              <span className="font-mono text-xs text-amber-400 block font-semibold">
-                YARD: D179 SECTOR 10, NOIDA
-              </span>
-              <p className="text-xs text-slate-300 mt-1 font-sans">
-                Direct structural steel fabrication &amp; turnkey crane erection.
-              </p>
-            </div>
+      {/* ──────── FULL-SCREEN MOBILE OVERLAY DRAWER ──────── */}
+      {mobileOpen && (
+        <div className="md:hidden fixed inset-x-0 top-[60px] bottom-0 bg-[#0B0D0F] border-t border-white/10 p-6 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-top-2 duration-200">
+          <nav className="space-y-6 pt-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                className="block font-editorial-title text-2xl tracking-tight text-white hover:text-[#B08A4A] transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
-            <nav className="flex flex-col gap-2 font-display text-lg font-bold tracking-wide">
-              {nav.map((item) => (
-                <Link
-                  key={item.label}
-                  to={item.to ?? "/"}
-                  hash={item.hash}
-                  onClick={() => setOpen(false)}
-                  className="py-2.5 border-b border-white/10 text-slate-200 hover:text-amber-400 transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          <div className="pt-6 border-t border-white/10 space-y-3">
+          <div className="pt-8 border-t border-white/10 space-y-4">
             <Link
               to="/quote"
-              onClick={() => setOpen(false)}
-              className="w-full btn-corp-primary text-center justify-center py-3"
+              className="btn-arch-primary w-full text-center justify-center py-3.5"
             >
-              <span>Get a Structural Quote</span>
+              <span>GET A FREE QUOTE</span>
               <ArrowRight className="size-4" />
             </Link>
 
-            <div className="flex gap-2 font-mono text-xs">
-              <a
-                href="tel:+918527977714"
-                className="flex-1 flex items-center justify-center gap-1.5 rounded-xs border border-white/20 bg-white/5 py-2.5 text-white"
-              >
-                <Phone className="size-3.5 text-amber-400" />
-                <span className="tabular-nums">+91 85279 77714</span>
-              </a>
-              <a
-                href={company.whatsappText}
-                target="_blank"
-                rel="noreferrer"
-                className="flex-1 flex items-center justify-center gap-1.5 rounded-xs border border-emerald-500/40 bg-emerald-900/30 py-2.5 text-emerald-300"
-              >
-                <MessageCircle className="size-3.5 text-emerald-400" />
-                <span>WhatsApp</span>
-              </a>
-            </div>
+            <a
+              href="tel:+918527977714"
+              className="flex items-center justify-center gap-2 py-3 text-xs font-mono text-[#8C9398] border border-white/15 hover:text-white"
+            >
+              <Phone className="size-3.5 text-[#B08A4A]" />
+              <span>CALL YARD: +91 85279 77714</span>
+            </a>
           </div>
         </div>
       )}

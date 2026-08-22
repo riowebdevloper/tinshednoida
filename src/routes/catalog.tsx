@@ -66,31 +66,31 @@ function CatalogPage() {
       <CatalogViewer />
 
       {/* 3. Catalog Table of Contents Overview */}
-      <section className="bg-white py-16 sm:py-20 border-b border-slate-200">
+      <section className="bg-white py-24 sm:py-32 border-b border-[#0B0D0F]/10 text-[#0B0D0F]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
-          <div className="max-w-2xl border-b border-slate-200 pb-5 mb-8">
-            <span className="font-mono text-xs font-semibold text-amber-700 uppercase tracking-tight block mb-1">
+          <div className="max-w-2xl border-b border-[#0B0D0F]/15 pb-6 mb-12">
+            <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block mb-2">
               SUBMITTAL CONTENTS OVERVIEW
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold uppercase">
               What Is Inside the 51-Page Work Catalog
             </h2>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2">
             {catalogSections.map((s) => (
-              <div key={s.sec} className="corp-card p-6 bg-[#F8FAFC]">
-                <div className="flex items-center justify-between border-b border-slate-200 pb-2.5 mb-3">
-                  <span className="font-mono text-xs font-bold text-amber-700">
+              <div key={s.sec} className="p-8 bg-[#F3F1EC] border border-[#0B0D0F]/10 space-y-2">
+                <div className="flex items-center justify-between border-b border-[#0B0D0F]/10 pb-3 mb-2 font-mono text-xs">
+                  <span className="font-bold text-[#B08A4A]">
                     {s.sec}
                   </span>
-                  <ShieldCheck className="size-4 text-[#0E2A47]" />
+                  <ShieldCheck className="size-4 text-[#0B0D0F]" />
                 </div>
-                <h3 className="font-display text-lg font-bold text-slate-900">
+                <h3 className="font-editorial-title text-lg font-bold uppercase">
                   {s.title}
                 </h3>
-                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600 font-sans">
+                <p className="mt-1 text-xs sm:text-sm leading-relaxed text-[#525860] font-sans">
                   {s.desc}
                 </p>
               </div>
@@ -98,21 +98,21 @@ function CatalogPage() {
           </div>
 
           {/* Download Callout */}
-          <div className="mt-10 p-6 rounded-xs border border-slate-200 bg-[#F1F5F9] flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <h4 className="font-display text-lg font-bold text-slate-900">
+          <div className="mt-12 p-8 bg-[#0B0D0F] text-white border border-white/15 flex flex-wrap items-center justify-between gap-6 shadow-2xl">
+            <div className="space-y-1">
+              <h4 className="font-editorial-title text-xl font-bold uppercase text-white">
                 Download Official PDF Submittal
               </h4>
-              <p className="text-xs font-mono text-slate-500 mt-0.5 tabular-nums">
+              <p className="text-xs font-mono text-[#8C9398] tabular-nums">
                 File Size: 4.5 MB · Instant Download · PDF Document
               </p>
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               <a
                 href={pdfUrl}
                 download="TIN_SHADE_NOIDA_CATALOG.pdf"
-                className="btn-corp-primary"
+                className="btn-arch-primary"
               >
                 <Download className="size-4" />
                 <span>Download PDF (4.5 MB)</span>
@@ -121,7 +121,7 @@ function CatalogPage() {
                 href={pdfUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="btn-corp-secondary"
+                className="btn-arch-secondary"
               >
                 <ExternalLink className="size-4" />
                 <span>View Online</span>

@@ -1,44 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Hero } from "@/components/site/Hero";
-import { TrustStrip } from "@/components/site/TrustStrip";
-import { EstimatorWidget } from "@/components/site/EstimatorWidget";
+import { Statement } from "@/components/site/Statement";
+import { ProjectScale } from "@/components/site/ProjectScale";
 import { Services } from "@/components/site/Services";
-import { Projects } from "@/components/site/Projects";
+import { FeaturedProject } from "@/components/site/FeaturedProject";
 import { CatalogViewer } from "@/components/site/CatalogViewer";
 import { Videos } from "@/components/site/Videos";
 import { Leadership } from "@/components/site/Leadership";
+import { PanIndia } from "@/components/site/PanIndia";
 import { FinalCta } from "@/components/site/FinalCta";
-import { company, testimonials } from "@/lib/site-data";
 
 const title = "Tin Shade Noida | Industrial Shed & Structural Steel Fabrication";
 const description =
-  "Industrial tin sheds, warehouse roofing, and heavy MS steel structure fabrication across Noida, Greater Noida, and Pan India. In-house crew, crane erection, and free site visit. Call +91-8527977714.";
-
-const localBusiness = {
-  "@context": "https://schema.org",
-  "@type": "GeneralContractor",
-  name: company.name,
-  description,
-  telephone: company.phone,
-  email: company.email,
-  url: "/",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "D179 Sector 10",
-    addressLocality: "Noida",
-    addressRegion: "Uttar Pradesh",
-    addressCountry: "IN",
-  },
-  areaServed: ["Pan India", "Noida", "Greater Noida", "Delhi NCR"],
-  foundingDate: company.since,
-  sameAs: [company.instagram, company.youtube],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: String(testimonials.length),
-  },
-};
+  "In-house mild steel fabrication shop in Noida Sector 10. Turnkey manufacturing factory sheds, logistics warehouses, and heavy MS frameworks up to 120ft clear span across India.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -51,43 +26,41 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/" }],
-    scripts: [{ type: "application/ld+json", children: JSON.stringify(localBusiness) }],
   }),
-  component: Index,
+  component: HomePage,
 });
 
-function Index() {
+function HomePage() {
   return (
     <SiteLayout>
-      {/* 1. CINEMATIC HERO */}
+      {/* 1. Cinematic 100vh Hero Slider with Multilingual Campaign Slides */}
       <Hero />
 
-      {/* 2. ENGINEERING SPECIFICATION LEDGER */}
-      <TrustStrip />
+      {/* 2. Cinematic Editorial Statement Section */}
+      <Statement />
 
-      {/* 3. CORE STRUCTURAL CAPABILITIES */}
+      {/* 3. Project Scale & Statistics Section */}
+      <ProjectScale />
+
+      {/* 4. Vertical Editorial Architectural Service List (01 to 06) */}
       <Services />
 
-      {/* 4. INTERACTIVE STEEL TONNAGE & ESTIMATOR CALCULATOR */}
-      <section id="estimator" className="bg-[#F8FAFC] py-16 lg:py-24 border-b border-slate-200">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <EstimatorWidget />
-        </div>
-      </section>
+      {/* 5. Massive Full-Bleed Featured Project Case Study */}
+      <FeaturedProject />
 
-      {/* 5. PHOTOGRAPHIC PROJECT LEDGER */}
-      <Projects />
-
-      {/* 6. 51-PAGE CATALOG & 5-STAGE EXECUTION TIMELINE */}
+      {/* 6. Five-Stage IS 800 Erection Sequence */}
       <CatalogViewer />
 
-      {/* 7. ACTIVE ON-SITE VIDEO DOCUMENTATION */}
-      <Videos />
+      {/* 7. Project Action Video (70% YouTube / 30% Details + Instagram Field Reports) */}
+      <Videos isPage={false} />
 
-      {/* 8. IN-HOUSE MASTER LEADERSHIP */}
+      {/* 8. Editorial Founders Section (MD Khurshid & Abdul) */}
       <Leadership />
 
-      {/* 9. DIRECT B2B ACTION DISPATCH */}
+      {/* 9. Pan India Connectivity & Logistics Section */}
+      <PanIndia />
+
+      {/* 10. Dramatic Editorial Final CTA */}
       <FinalCta />
     </SiteLayout>
   );

@@ -1,6 +1,5 @@
-import { Download, ExternalLink, FileText, CheckCircle2, Compass, HardHat, Wrench, Layers, Award, ArrowRight } from "lucide-react";
+import { Download, Compass, HardHat, Wrench, Layers, Award } from "lucide-react";
 import { company } from "@/lib/site-data";
-import { TrussDivider } from "./TrussDivider";
 
 export function CatalogViewer() {
   const pdfUrl = company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf";
@@ -10,7 +9,7 @@ export function CatalogViewer() {
       num: "01",
       icon: Compass,
       stage: "SITE SURVEY & GROUND ANALYSIS",
-      title: "Site Survey & Soil Level Analysis",
+      title: "Laser Level Survey & Ground Alignment",
       desc: "Physical inspection of plot elevation, soil compaction, heavy 40-tonne crane access routes, and structural wind orientation to IS 875.",
       specs: "Laser level gauge · Soil check · Crane access clearance",
     },
@@ -49,47 +48,50 @@ export function CatalogViewer() {
   ];
 
   return (
-    <section id="process" className="bg-[#0B192C] text-white py-16 sm:py-24 border-b border-white/10 relative">
+    <section id="process" className="bg-[#0B0D0F] text-white py-24 sm:py-36 border-b border-white/10 relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* ──────── SECTION HEADER ──────── */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-6">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8 mb-12">
           <div className="max-w-2xl">
-            <span className="font-mono text-xs font-semibold text-amber-400 uppercase tracking-tight block mb-1">
-              IS 800:2007 ERECTION PROTOCOL
-            </span>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
-              Five-Stage Fabrication &amp; Erection Sequence
+            <div className="flex items-center gap-3 mb-3">
+              <span className="h-px w-8 bg-[#B08A4A]" />
+              <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
+                IS 800:2007 ERECTION PROTOCOL
+              </span>
+            </div>
+            <h2 className="font-editorial-title text-3xl sm:text-5xl font-extrabold text-white tracking-tight uppercase leading-[1.06]">
+              FIVE-STAGE SEQUENCE.
             </h2>
-            <p className="mt-2 text-sm sm:text-base text-slate-300 leading-relaxed font-sans">
+            <p className="mt-2 text-sm sm:text-base text-[#8C9398] font-sans leading-relaxed">
               No subcontractors or middlemen. Our in-house crew executes every phase from laser survey in Noida to high-tensile bolted crane erection on your site.
             </p>
           </div>
 
-          <div className="shrink-0 font-mono text-xs text-slate-300 flex items-center gap-2">
-            <span className="size-1.5 rounded-full bg-amber-400" />
+          <div className="shrink-0 font-mono text-xs text-[#8C9398] flex items-center gap-2">
+            <span className="size-1.5 rounded-full bg-[#B08A4A]" />
             <span>Turnkey Handover Across India</span>
           </div>
         </div>
 
-        {/* ──────── 5-STAGE SEQUENTIAL PROCESS CARDS ──────── */}
-        <div className="mt-10 space-y-4">
+        {/* 5-Stage Sequential Process Cards */}
+        <div className="space-y-4">
           {processStages.map((st) => {
             const Icon = st.icon;
             return (
               <div
                 key={st.num}
-                className="rounded-xs border border-white/10 bg-[#0E2A47] p-5 sm:p-6 transition-all hover:border-amber-400/40"
+                className="arch-card-dark p-6 sm:p-7 transition-all hover:border-[#B08A4A]/50 bg-[#14171A]"
               >
-                <div className="grid gap-5 md:grid-cols-12 items-center">
+                <div className="grid gap-6 md:grid-cols-12 items-center">
                   
-                  {/* Sequence Number Stamp */}
+                  {/* Sequence Number */}
                   <div className="md:col-span-2 flex items-center gap-3">
-                    <span className="font-mono text-3xl sm:text-4xl font-bold text-amber-400 tracking-tight tabular-nums">
+                    <span className="font-mono text-3xl sm:text-4xl font-extrabold text-[#B08A4A] tracking-tight tabular-nums">
                       {st.num}
                     </span>
                     <div className="block md:hidden">
-                      <span className="font-mono text-[0.6875rem] text-slate-300 uppercase block">
+                      <span className="font-mono text-[0.6875rem] text-[#8C9398] uppercase block">
                         {st.stage}
                       </span>
                     </div>
@@ -97,23 +99,25 @@ export function CatalogViewer() {
 
                   {/* Description & Scope */}
                   <div className="md:col-span-7">
-                    <span className="font-mono text-xs font-semibold text-slate-300 tracking-tight uppercase block mb-1">
+                    <span className="font-mono text-xs font-semibold text-[#8C9398] tracking-widest uppercase block mb-1">
                       {st.stage}
                     </span>
-                    <h3 className="font-display text-lg sm:text-xl font-bold text-white">
+                    <h3 className="font-editorial-title text-lg sm:text-xl font-bold text-white uppercase">
                       {st.title}
                     </h3>
-                    <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-slate-300 font-sans">
+                    <p className="mt-1.5 text-xs sm:text-sm text-[#C8CCD0] font-sans leading-relaxed">
                       {st.desc}
                     </p>
                   </div>
 
-                  {/* Technical Drawing Annotations Tag */}
-                  <div className="md:col-span-3 rounded-xs border border-white/10 bg-[#0B192C] p-3 font-mono text-xs text-slate-300">
-                    <span className="text-amber-400 font-semibold block uppercase text-[0.6875rem] mb-0.5">
-                      Quality Checks
+                  {/* Tech Specs */}
+                  <div className="md:col-span-3 border-t md:border-t-0 md:border-l border-white/10 pt-3 md:pt-0 md:pl-5">
+                    <span className="font-mono text-[0.6875rem] text-[#8C9398] uppercase block mb-1">
+                      KEY INCLUSIONS:
                     </span>
-                    <span className="text-slate-200 text-xs block leading-tight">{st.specs}</span>
+                    <span className="font-mono text-xs text-white leading-tight block">
+                      {st.specs}
+                    </span>
                   </div>
 
                 </div>
@@ -122,60 +126,7 @@ export function CatalogViewer() {
           })}
         </div>
 
-        {/* ──────── 51-PAGE WORK CATALOG SUBMITTAL BINDER ──────── */}
-        <div className="mt-12 rounded-xs border border-white/15 bg-[#0E2A47] p-6 sm:p-8 shadow-xl">
-          <div className="grid gap-6 lg:grid-cols-12 items-center">
-            
-            <div className="lg:col-span-8 space-y-2.5">
-              <div className="flex items-center gap-2 font-mono text-xs text-amber-400 font-semibold">
-                <FileText className="size-3.5" />
-                <span>OFFICIAL ENGINEERING SUBMITTAL · 51-PAGE WORK CATALOG (PDF)</span>
-              </div>
-
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
-                Download Complete Structural Work Catalog
-              </h3>
-              
-              <p className="text-xs sm:text-sm leading-relaxed text-slate-300 font-sans">
-                Includes full photographic records of 500+ completed sheds, steel truss chord schedules, IS 2062 material certificates, and gantry column engineering drawings.
-              </p>
-
-              <div className="flex flex-wrap gap-x-5 gap-y-1 pt-1 text-xs font-mono text-slate-400 tabular-nums">
-                <span>File Size: 4.5 MB</span>
-                <span>·</span>
-                <span>Format: PDF Document</span>
-                <span>·</span>
-                <span>Includes Weight Charts &amp; Layouts</span>
-              </div>
-            </div>
-
-            <div className="lg:col-span-4 flex flex-col gap-2.5">
-              <a
-                href={pdfUrl}
-                download="TIN_SHADE_NOIDA_CATALOG.pdf"
-                className="btn-corp-primary w-full text-center"
-              >
-                <Download className="size-4" />
-                <span>Download Work Catalog</span>
-              </a>
-
-              <a
-                href={pdfUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-corp-navy-outline w-full text-center text-xs"
-              >
-                <ExternalLink className="size-3.5" />
-                <span>Open PDF in Browser</span>
-              </a>
-            </div>
-
-          </div>
-        </div>
-
       </div>
-
-      <TrussDivider dark type="howe" className="mt-14" />
     </section>
   );
 }
