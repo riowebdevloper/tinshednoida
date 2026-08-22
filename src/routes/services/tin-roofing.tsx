@@ -4,7 +4,7 @@ import { ServiceDetailView, type ServiceDetailData } from "@/components/site/Ser
 import { FinalCta } from "@/components/site/FinalCta";
 import svcRoofing from "@/assets/gen/svc-roofing.jpg";
 
-const title = "Tin Roofing & Color-Coated Galvalume Sheeting — Tin Shade Noida";
+const title = "Tin Roofing & Color-Coated Galvalume Sheeting  -  Tin Shade Noida";
 const description =
   "Industrial tin roofing, color-coated Galvalume sheets, PUF thermal insulation panels, and commercial terrace sheds across India.";
 
@@ -68,7 +68,7 @@ const data: ServiceDetailData = {
   materials: [
     {
       title: "Galvalume Roofing Sheets",
-      desc: "55% Al-Zn alloy coated steel sheets (0.50mm – 0.60mm) providing 4x lifespan over standard galvanized iron.",
+      desc: "55% Al-Zn alloy coated steel sheets (0.50mm - 0.60mm) providing 4x lifespan over standard galvanized iron.",
     },
     {
       title: "PUF Sandwich Panels",
@@ -81,7 +81,7 @@ const data: ServiceDetailData = {
   ],
   relatedProjectIds: ["selected-page-07", "selected-page-22", "rooftop-tin-shade"],
   relatedVideoId: "BbsedKkhB8U",
-  catalogPageRange: "Pages 39 – 45",
+  catalogPageRange: "Pages 39 - 45",
   faqs: [
     {
       q: "What sheet thickness do you recommend for an industrial factory?",

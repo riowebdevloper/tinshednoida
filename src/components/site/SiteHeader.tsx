@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { ArrowRight, Menu, X, Phone, Download } from "lucide-react";
+import { ArrowRight, Menu, X, Phone } from "lucide-react";
 import { company } from "@/lib/site-data";
 
 const navItems = [
@@ -18,8 +18,15 @@ export function SiteHeader() {
   const currentPath = routerState.location.pathname;
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 30);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -33,23 +40,23 @@ export function SiteHeader() {
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#0B0D0F]/95 backdrop-blur-md border-b border-white/10 py-3 shadow-xl"
-          : "bg-gradient-to-b from-[#0B0D0F]/80 via-[#0B0D0F]/30 to-transparent py-5"
+          ? "bg-[#0B0D0F]/95 backdrop-blur-md border-b border-white/10 py-2.5 shadow-xl"
+          : "bg-gradient-to-b from-[#0B0D0F]/90 via-[#0B0D0F]/40 to-transparent py-4"
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-6">
+        <div className="flex items-center justify-between gap-6 h-12">
           
           {/* Brand Logo & Name */}
           <Link
             to="/"
-            className="flex items-center gap-3.5 focus-visible:outline-none shrink-0 group"
+            className="flex items-center gap-3 focus-visible:outline-none shrink-0 group"
             aria-label={`${company.name} home`}
           >
             <img
               src={company.logo}
               alt="Tin Shade Noida Logo"
-              className="h-9 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-103"
+              className="h-8 sm:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-103"
             />
             <div className="leading-tight">
               <span className="block font-display text-base sm:text-lg font-bold tracking-tight text-white uppercase">
@@ -61,8 +68,8 @@ export function SiteHeader() {
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-7 text-xs font-semibold tracking-widest text-slate-300 font-display">
+          {/* Desktop Navigation Links - Guaranteed 1-line */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-xs font-semibold tracking-widest text-[#C8CCD0] font-display">
             {navItems.map((item) => {
               const isActive = currentPath === item.to || currentPath.startsWith(item.to + "/");
               return (
@@ -94,7 +101,7 @@ export function SiteHeader() {
 
             <Link
               to="/quote"
-              className="btn-arch-primary py-2.5 px-4 text-xs font-bold"
+              className="btn-arch-primary py-2 px-4 text-xs font-bold"
             >
               <span>GET A QUOTE</span>
               <ArrowRight className="size-3.5" />
@@ -105,7 +112,7 @@ export function SiteHeader() {
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex size-10 items-center justify-center border border-white/15 bg-white/5 text-white hover:bg-white/10 rounded-[2px]"
+            className="md:hidden flex size-9 items-center justify-center border border-white/15 bg-white/5 text-white hover:bg-white/10 rounded-[2px]"
             aria-label="Toggle navigation menu"
           >
             {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -116,7 +123,7 @@ export function SiteHeader() {
 
       {/* ──────── FULL-SCREEN MOBILE OVERLAY DRAWER ──────── */}
       {mobileOpen && (
-        <div className="md:hidden fixed inset-x-0 top-[60px] bottom-0 bg-[#0B0D0F] border-t border-white/10 p-6 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-top-2 duration-200">
+        <div className="md:hidden fixed inset-x-0 top-[56px] bottom-0 bg-[#0B0D0F] border-t border-white/10 p-6 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-top-2 duration-200">
           <nav className="space-y-6 pt-4">
             {navItems.map((item) => (
               <Link

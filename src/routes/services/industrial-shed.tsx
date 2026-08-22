@@ -4,7 +4,7 @@ import { ServiceDetailView, type ServiceDetailData } from "@/components/site/Ser
 import { FinalCta } from "@/components/site/FinalCta";
 import svcIndustrial from "@/assets/gen/svc-industrial.jpg";
 
-const title = "Industrial Factory Shed Fabrication & Crane Erection — Tin Shade Noida";
+const title = "Industrial Factory Shed Fabrication & Crane Erection  -  Tin Shade Noida";
 const description =
   "Heavy-duty industrial factory sheds fabricated with IS 2062 prime steel for manufacturing units, machine workshops, and industrial plants across India.";
 
@@ -34,7 +34,7 @@ const data: ServiceDetailData = {
   image: svcIndustrial,
   spanReach: "Up to 100 FT Clear Span",
   steelGrade: "IS 2062 Grade Mild Steel",
-  eavesHeight: "15 – 30 Feet",
+  eavesHeight: "15 - 30 Feet",
   standardCode: "IS 800:2007 General Construction",
   applications: [
     "Heavy Manufacturing Plants",
@@ -72,7 +72,7 @@ const data: ServiceDetailData = {
     },
     {
       title: "Roof & Side Cladding",
-      desc: "0.50mm – 0.60mm high-tensile color-coated Galvalume sheets with EPDM leak-proof fasteners.",
+      desc: "0.50mm - 0.60mm high-tensile color-coated Galvalume sheets with EPDM leak-proof fasteners.",
     },
     {
       title: "Protective Primer",
@@ -81,7 +81,7 @@ const data: ServiceDetailData = {
   ],
   relatedProjectIds: ["selected-page-01", "selected-page-14", "factory-shed-sector-63"],
   relatedVideoId: "mkRndWdXPdI",
-  catalogPageRange: "Pages 01 – 15",
+  catalogPageRange: "Pages 01 - 15",
   faqs: [
     {
       q: "Can the factory shed structure support an overhead EOT crane?",

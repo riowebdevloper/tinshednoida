@@ -4,7 +4,7 @@ import { QuoteWizard } from "@/components/site/QuoteWizard";
 import { EstimatorWidget } from "@/components/site/EstimatorWidget";
 import { FinalCta } from "@/components/site/FinalCta";
 
-const title = "Get an Itemized Structural Quotation — Tin Shade Noida";
+const title = "Get an Itemized Structural Quotation - Tin Shade Noida";
 const description =
   "Request a formal itemized quotation for industrial sheds, warehouses, MS frameworks, and roofing. Direct fabrication shop pricing with zero broker fees.";
 
@@ -36,7 +36,7 @@ function QuotePage() {
       <QuoteWizard />
 
       {/* 2. Steel Tonnage & Cost Calculator */}
-      <section className="bg-white py-24 sm:py-32 border-b border-[#0B0D0F]/10">
+      <section className="bg-[#0B0D0F] py-24 sm:py-32 border-b border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <EstimatorWidget />
         </div>

@@ -4,15 +4,15 @@ import {
   ChevronRight,
   Download,
   ExternalLink,
-  Maximize2,
-  Minimize2,
   ZoomIn,
   ZoomOut,
   FileText,
   ShieldCheck,
   ArrowRight,
+  BookOpen,
 } from "lucide-react";
 import { company } from "@/lib/site-data";
+import { Link } from "@tanstack/react-router";
 
 export interface CatalogPageItem {
   page: number;
@@ -98,263 +98,211 @@ const catalogPages: CatalogPageItem[] = [
     title: "Terrace Utility & Mezzanine Shed",
     category: "MS Structure",
     image: "/images/selected/selected-43.jpg",
-    description: "Custom terrace extension creating covered operational space on an existing structure.",
+    description: "Multi-level rooftop structural shed creating functional indoor space on commercial buildings.",
   },
   {
-    page: 47,
-    title: "Custom Factory Extension Shed",
-    category: "Industrial Shed",
-    image: "/images/selected/selected-47.jpg",
-    description: "Seamless extension connected to existing manufacturing building to double storage capacity.",
-  },
-  {
-    page: 50,
-    title: "Full Project Catalog Handover Shed",
+    page: 51,
+    title: "Commercial Canopy & Walkway Cover",
     category: "Tin Roofing",
-    image: "/images/selected/selected-50.jpg",
-    description: "Complete turnkey shed project delivered with structural guarantees and clean finish.",
+    image: "/images/selected/selected-51.jpg",
+    description: "Protective architectural metal canopy for commercial entrances, walkways, and loading bays.",
   },
 ];
 
 export function PdfCatalogBrowser() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentPageIndex, setCurrentPageIndex] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
-  const [isFullscreen, setIsFullscreen] = useState(false);
 
-  const currentPage = catalogPages[currentIndex]!;
+  const currentPage = catalogPages[currentPageIndex] || catalogPages[0]!;
   const pdfUrl = company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf";
 
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % catalogPages.length);
-    setZoomLevel(1);
-  };
-
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + catalogPages.length) % catalogPages.length);
-    setZoomLevel(1);
+    setCurrentPageIndex((prev) => (prev > 0 ? prev - 1 : catalogPages.length - 1));
   };
 
-  const handleZoomIn = () => setZoomLevel((z) => Math.min(z + 0.25, 2.0));
-  const handleZoomOut = () => setZoomLevel((z) => Math.max(z - 0.25, 0.75));
+  const handleNext = () => {
+    setCurrentPageIndex((prev) => (prev < catalogPages.length - 1 ? prev + 1 : 0));
+  };
+
+  const handleZoomIn = () => setZoomLevel((prev) => Math.min(prev + 0.25, 2));
+  const handleZoomOut = () => setZoomLevel((prev) => Math.max(prev - 0.25, 0.75));
+  const handleResetZoom = () => setZoomLevel(1);
 
   return (
-    <section className="py-24 sm:py-36 border-b border-[#0B0D0F]/10 bg-warm-paper text-[#0B0D0F]">
+    <section id="catalog" aria-label="The Project Book" className="bg-[#0B0D0F] text-white py-24 sm:py-36 border-b border-white/10 relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* Editorial Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#0B0D0F]/15 pb-8 mb-12">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 sm:mb-20">
           <div>
             <div className="flex items-center gap-3 mb-3">
               <span className="h-px w-8 bg-[#B08A4A]" />
               <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
-                THE PROJECT BOOK
+                DOCUMENTED WORK CATALOG
               </span>
             </div>
-            <h2 className="font-editorial-title text-3xl sm:text-5xl font-extrabold text-[#0B0D0F] tracking-tight uppercase leading-[1.06]">
-              51-PAGE WORK CATALOG.
+            <h2 className="font-editorial-title text-3xl sm:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight text-white leading-[1.05]">
+              THE PROJECT BOOK.
             </h2>
-            <p className="mt-2 text-sm sm:text-base text-[#525860] font-sans max-w-2xl">
-              Inspect verified case studies, truss chord schedules, and raw material certificates from our 51-page official catalog.
-            </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <a
               href={pdfUrl}
               download="TIN_SHADE_NOIDA_CATALOG.pdf"
-              className="btn-arch-primary text-xs"
+              className="btn-arch-primary text-xs inline-flex items-center gap-2"
             >
               <Download className="size-3.5" />
-              <span>Download Full PDF (4.5 MB)</span>
-            </a>
-            <a
-              href={pdfUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-arch-dark-outline text-xs"
-            >
-              <ExternalLink className="size-3.5" />
-              <span>Open in Browser</span>
+              <span>DOWNLOAD 51-PAGE BROCHURE</span>
             </a>
           </div>
         </div>
 
-        {/* ──────── INTERACTIVE CATALOG BROWSER CHROME ──────── */}
-        <div className={`arch-card-light bg-white border border-[#0B0D0F]/15 shadow-xl ${isFullscreen ? "fixed inset-4 z-50 overflow-y-auto" : "p-4 sm:p-6"}`}>
+        {/* ──────── EDITORIAL 51-PAGE PORTFOLIO WORKBENCH ──────── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* Top Control Toolbar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#0B0D0F]/10 pb-3 mb-4 font-mono text-xs text-[#0B0D0F]">
-            <div className="flex items-center gap-2">
-              <span className="font-bold text-[#0B0D0F]">
-                PAGE {currentPage.page} OF 51
-              </span>
-              <span className="text-[#8C9398]">·</span>
-              <span className="text-[#B08A4A] font-bold">{currentPage.category}</span>
+          {/* Left Column: Large Catalog Preview Viewport (7 cols) */}
+          <div className="lg:col-span-7 bg-[#14171A] border border-white/15 p-6 flex flex-col justify-between">
+            
+            {/* Top Toolbar */}
+            <div className="flex items-center justify-between pb-4 border-b border-white/10 font-mono text-xs text-[#8C9398]">
+              <div className="flex items-center gap-2">
+                <BookOpen className="size-4 text-[#B08A4A]" />
+                <span className="text-white font-bold">PAGE {currentPage.page} OF 51</span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleZoomOut}
+                  className="p-1 hover:text-white transition-colors"
+                  aria-label="Zoom out"
+                >
+                  <ZoomOut className="size-4" />
+                </button>
+                <span className="text-[0.6875rem]">{Math.round(zoomLevel * 100)}%</span>
+                <button
+                  type="button"
+                  onClick={handleZoomIn}
+                  className="p-1 hover:text-white transition-colors"
+                  aria-label="Zoom in"
+                >
+                  <ZoomIn className="size-4" />
+                </button>
+              </div>
             </div>
 
-            {/* Navigation & Zoom Controls */}
-            <div className="flex items-center gap-2">
+            {/* Catalog Page Canvas */}
+            <div className="my-6 relative aspect-[16/11] w-full bg-[#0B0D0F] border border-white/10 overflow-hidden flex items-center justify-center p-2">
+              <div
+                className="size-full transition-transform duration-300 ease-out flex items-center justify-center"
+                style={{ transform: `scale(${zoomLevel})` }}
+              >
+                <picture>
+                  <source srcSet={currentPage.image} type="image/jpeg" />
+                  <img
+                    src={currentPage.image}
+                    alt={currentPage.title}
+                    className="size-full object-contain"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+            </div>
+
+            {/* Bottom Nav Controls */}
+            <div className="flex items-center justify-between pt-4 border-t border-white/10">
               <button
                 type="button"
                 onClick={handlePrev}
-                className="flex size-7 items-center justify-center border border-[#0B0D0F]/20 bg-white hover:bg-slate-50 transition-colors"
-                title="Previous Page"
-                aria-label="Previous Page"
+                className="btn-arch-secondary text-xs inline-flex items-center gap-1.5 py-2 px-3"
               >
-                <ChevronLeft className="size-4" />
+                <ChevronLeft className="size-3.5" />
+                <span>PREVIOUS PAGE</span>
               </button>
 
-              <select
-                value={currentIndex}
-                onChange={(e) => {
-                  setCurrentIndex(Number(e.target.value));
-                  setZoomLevel(1);
-                }}
-                className="border border-[#0B0D0F]/20 bg-[#F3F1EC] px-2 py-1 text-xs font-mono text-[#0B0D0F] focus:outline-none focus:border-[#0B0D0F]"
-              >
-                {catalogPages.map((p, idx) => (
-                  <option key={p.page} value={idx}>
-                    Page {p.page}: {p.title}
-                  </option>
-                ))}
-              </select>
+              <span className="font-mono text-xs text-[#B08A4A] font-bold">
+                PAGE {currentPage.page} / 51
+              </span>
 
               <button
                 type="button"
                 onClick={handleNext}
-                className="flex size-7 items-center justify-center border border-[#0B0D0F]/20 bg-white hover:bg-slate-50 transition-colors"
-                title="Next Page"
-                aria-label="Next Page"
+                className="btn-arch-secondary text-xs inline-flex items-center gap-1.5 py-2 px-3"
               >
-                <ChevronRight className="size-4" />
+                <span>NEXT PAGE</span>
+                <ChevronRight className="size-3.5" />
               </button>
-
-              <div className="hidden sm:flex items-center gap-1 border-l border-[#0B0D0F]/10 pl-2">
-                <button
-                  type="button"
-                  onClick={handleZoomOut}
-                  className="flex size-7 items-center justify-center border border-[#0B0D0F]/20 bg-white hover:bg-slate-50"
-                  title="Zoom Out"
-                  aria-label="Zoom Out"
-                >
-                  <ZoomOut className="size-3.5" />
-                </button>
-                <span className="text-[0.6875rem] font-mono tabular-nums px-1">
-                  {Math.round(zoomLevel * 100)}%
-                </span>
-                <button
-                  type="button"
-                  onClick={handleZoomIn}
-                  className="flex size-7 items-center justify-center border border-[#0B0D0F]/20 bg-white hover:bg-slate-50"
-                  title="Zoom In"
-                  aria-label="Zoom In"
-                >
-                  <ZoomIn className="size-3.5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setIsFullscreen(!isFullscreen)}
-                  className="flex size-7 items-center justify-center border border-[#0B0D0F]/20 bg-white hover:bg-slate-50 ml-1"
-                  title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
-                  aria-label={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
-                >
-                  {isFullscreen ? <Minimize2 className="size-3.5" /> : <Maximize2 className="size-3.5" />}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Main Sheet Viewport */}
-          <div className="grid gap-6 lg:grid-cols-12 items-start">
-            
-            {/* Image Canvas with Zoom (8 cols) */}
-            <div className="lg:col-span-8 overflow-hidden border border-[#0B0D0F]/10 bg-[#F3F1EC] flex items-center justify-center p-3 min-h-[420px] max-h-[580px]">
-              <div
-                className="transition-transform duration-200 ease-out origin-center"
-                style={{ transform: `scale(${zoomLevel})` }}
-              >
-                <img
-                  src={currentPage.image}
-                  alt={currentPage.title}
-                  className="max-h-[520px] w-auto object-contain shadow-md"
-                />
-              </div>
-            </div>
-
-            {/* Right Meta & Scope (4 cols) */}
-            <div className="lg:col-span-4 space-y-4 font-mono text-xs">
-              <div className="p-4 border border-[#0B0D0F]/10 bg-[#F3F1EC] space-y-2">
-                <span className="font-bold text-[#B08A4A] uppercase block text-[0.6875rem]">
-                  SELECTED SUBMITTAL PAGE
-                </span>
-                <h3 className="font-editorial-title text-lg font-bold text-[#0B0D0F] uppercase leading-tight">
-                  {currentPage.title}
-                </h3>
-                <p className="text-[#525860] font-sans text-xs leading-relaxed">
-                  {currentPage.description}
-                </p>
-              </div>
-
-              <div className="p-4 border border-[#0B0D0F]/10 bg-[#F3F1EC] space-y-2 text-[#525860]">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="size-4 text-emerald-700 shrink-0" />
-                  <span className="text-[#0B0D0F] font-semibold">IS 2062 Prime Mild Steel Tested</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="size-4 text-emerald-700 shrink-0" />
-                  <span className="text-[#0B0D0F] font-semibold">Dual-Coat Red Oxide Primer (IS 2074)</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="size-4 text-emerald-700 shrink-0" />
-                  <span className="text-[#0B0D0F] font-semibold">Turnkey Crane Erection Handover</span>
-                </div>
-              </div>
-
-              <div className="pt-2">
-                <a
-                  href={pdfUrl}
-                  download="TIN_SHADE_NOIDA_CATALOG.pdf"
-                  className="btn-arch-primary w-full text-center justify-center"
-                >
-                  <Download className="size-4" />
-                  <span>Download Complete 51-Page PDF</span>
-                </a>
-              </div>
             </div>
 
           </div>
 
-          {/* Bottom Thumbnail Strip */}
-          <div className="mt-6 pt-4 border-t border-[#0B0D0F]/10">
-            <span className="font-mono text-[0.6875rem] font-bold text-[#8C9398] uppercase block mb-2 tracking-wider">
-              CATALOG PAGE THUMBNAILS (CLICK TO JUMP)
-            </span>
-            <div className="no-scrollbar flex gap-2.5 overflow-x-auto pb-2">
-              {catalogPages.map((p, idx) => (
-                <button
-                  key={p.page}
-                  type="button"
-                  onClick={() => {
-                    setCurrentIndex(idx);
-                    setZoomLevel(1);
-                  }}
-                  className={`relative shrink-0 w-24 aspect-[4/3] overflow-hidden border transition-all ${
-                    idx === currentIndex
-                      ? "border-[#0B0D0F] ring-2 ring-[#0B0D0F] opacity-100"
-                      : "border-[#0B0D0F]/20 opacity-60 hover:opacity-100"
-                  }`}
-                >
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    className="size-full object-cover"
-                  />
-                  <span className="absolute bottom-1 right-1 bg-black/85 text-white font-mono text-[0.625rem] px-1 font-bold">
-                    P.{p.page}
-                  </span>
-                </button>
-              ))}
+          {/* Right Column: 51-Page Project Portfolio Ledger & Page Index (5 cols) */}
+          <div className="lg:col-span-5 bg-[#14171A] border border-white/15 p-6 sm:p-8 flex flex-col justify-between">
+            <div>
+              <div className="font-mono text-xs text-[#B08A4A] uppercase tracking-widest font-bold mb-2">
+                51-PAGE PROJECT PORTFOLIO
+              </div>
+
+              <h3 className="font-editorial-title text-2xl sm:text-3xl font-extrabold text-white uppercase mb-3">
+                {currentPage.title}
+              </h3>
+
+              <div className="inline-block px-2.5 py-1 bg-[#0B0D0F] border border-white/10 font-mono text-[0.6875rem] text-[#8C9398] uppercase mb-4">
+                CATEGORY: {currentPage.category}
+              </div>
+
+              <p className="text-xs sm:text-sm text-[#C8CCD0] font-sans leading-relaxed mb-6">
+                {currentPage.description}
+              </p>
+
+              {/* Verified Submittal Inclusions */}
+              <div className="p-4 bg-[#0B0D0F] border border-white/10 space-y-2 mb-6 font-mono text-xs text-[#8C9398]">
+                <div className="text-white font-bold uppercase text-[0.6875rem] mb-1">
+                  OFFICIAL SUBMITTAL INCLUSIONS:
+                </div>
+                <div>· 51 High-Resolution Verified Project Photographs</div>
+                <div>· Structural Layouts, Rafter Spans, & Foundation Drawings</div>
+                <div>· IS 2062 Mill Test Certificate (MTC) Documentation</div>
+              </div>
             </div>
+
+            {/* Quick Page Jump Selector */}
+            <div>
+              <div className="font-mono text-[0.6875rem] text-[#8C9398] uppercase font-bold mb-2">
+                KEY PAGES SELECTOR:
+              </div>
+              <div className="grid grid-cols-4 gap-1.5 mb-6">
+                {catalogPages.map((pg, idx) => (
+                  <button
+                    key={pg.page}
+                    type="button"
+                    onClick={() => {
+                      setCurrentPageIndex(idx);
+                      handleResetZoom();
+                    }}
+                    className={`py-1.5 font-mono text-xs text-center border transition-all ${
+                      idx === currentPageIndex
+                        ? "bg-[#B08A4A] text-[#0B0D0F] border-[#B08A4A] font-bold"
+                        : "bg-[#0B0D0F] text-[#8C9398] border-white/10 hover:text-white hover:border-white/25"
+                    }`}
+                  >
+                    PG {pg.page}
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Link
+                  to="/catalog"
+                  className="btn-arch-primary text-xs flex-1 text-center"
+                >
+                  <span>VIEW FULL CATALOG ARCHIVE</span>
+                  <ArrowRight className="size-3.5 ml-1" />
+                </Link>
+              </div>
+            </div>
+
           </div>
 
         </div>

@@ -55,7 +55,7 @@ export function Process() {
             <span className="block text-primary">ZERO COMPROMISES.</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
-            From initial site survey to final erection handover — an organized, structured engineering workflow.
+            From initial site survey to final erection handover  -  an organized, structured engineering workflow.
           </p>
         </Reveal>
 

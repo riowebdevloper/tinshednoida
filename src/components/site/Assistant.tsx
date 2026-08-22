@@ -95,7 +95,7 @@ function generateAIResponse(
   // Cost / Pricing
   if (text.includes("cost") || text.includes("price") || text.includes("rate") || text.includes("₹") || text.includes("budget") || text.includes("kharcha") || text.includes("dam")) {
     return {
-      text: `Structural steel fabrication rates depend on clear-span width and crane requirements:\n\n• Industrial Factory Shed: ₹280 – ₹380 / sq.ft (Turnkey)\n• Warehouse / Godown: ₹240 – ₹340 / sq.ft\n• Heavy MS Framework: Custom / MT fabrication rate\n• 0.50mm Galvalume / PUF Roofing: ₹140 – ₹220 / sq.ft\n\nAll rates include IS 2062 prime steel, dual-coat red oxide primer, and crane erection.`,
+      text: `Structural steel fabrication rates depend on clear-span width and crane requirements:\n\n• Industrial Factory Shed: ₹280 - ₹380 / sq.ft (Turnkey)\n• Warehouse / Godown: ₹240 - ₹340 / sq.ft\n• Heavy MS Framework: Custom / MT fabrication rate\n• 0.50mm Galvalume / PUF Roofing: ₹140 - ₹220 / sq.ft\n\nAll rates include IS 2062 prime steel, dual-coat red oxide primer, and crane erection.`,
       newContext: nextContext,
       actions: [
         { label: "Request Written BOQ", action: "quote" },
@@ -119,7 +119,7 @@ function generateAIResponse(
   // Repair / Renovation
   if (text.includes("repair") || text.includes("leak") || text.includes("rust") || text.includes("renovat") || text.includes("purana") || text.includes("damage")) {
     return {
-      text: `Industrial Shed Repair & Renovation Services:\n\n• Monsoon roof leak proofing & fastener replacement\n• Corroded GI sheet replacement with 0.50mm Galvalume\n• Sagging truss gusset reinforcement & column strengthening\n• Heavy-gauge gutter replacement (1.2mm – 1.6mm GI)\n\nWe execute repair work in phased sections with zero disruption to your factory operations.`,
+      text: `Industrial Shed Repair & Renovation Services:\n\n• Monsoon roof leak proofing & fastener replacement\n• Corroded GI sheet replacement with 0.50mm Galvalume\n• Sagging truss gusset reinforcement & column strengthening\n• Heavy-gauge gutter replacement (1.2mm - 1.6mm GI)\n\nWe execute repair work in phased sections with zero disruption to your factory operations.`,
       newContext: nextContext,
       actions: [
         { label: "Request Repair Inspection", action: "quote" },
@@ -155,7 +155,7 @@ function generateAIResponse(
   // Working Hours & Yard Address
   if (text.includes("hour") || text.includes("time") || text.includes("address") || text.includes("kahan") || text.includes("location") || text.includes("office")) {
     return {
-      text: `Tin Shade Noida Yard Details:\n\n📍 Workshop & Yard: D179 Sector 10, Noida, Uttar Pradesh 201301\n🕒 Operational Hours: Monday – Saturday (8:00 AM – 8:00 PM), Sunday by appointment\n📞 Direct Hotline: +91 85279 77714\n\nYou are welcome to visit our yard to inspect raw IS 2062 steel stocks and watch ongoing arc welding in person.`,
+      text: `Tin Shade Noida Yard Details:\n\n📍 Workshop & Yard: D179 Sector 10, Noida, Uttar Pradesh 201301\n🕒 Operational Hours: Monday - Saturday (8:00 AM - 8:00 PM), Sunday by appointment\n📞 Direct Hotline: +91 85279 77714\n\nYou are welcome to visit our yard to inspect raw IS 2062 steel stocks and watch ongoing arc welding in person.`,
       newContext: nextContext,
       actions: [
         { label: "Call +91 85279 77714", action: "call" },

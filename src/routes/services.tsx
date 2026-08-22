@@ -3,11 +3,10 @@ import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { Services } from "@/components/site/Services";
 import { EstimatorWidget } from "@/components/site/EstimatorWidget";
 import { FinalCta } from "@/components/site/FinalCta";
-import { ArrowRight, CheckCircle2, FileText, Ruler, ShieldCheck, Download } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { company } from "@/lib/site-data";
 
-const title = "Industrial Shed & Structural Steel Services — Tin Shade Noida";
+const title = "Industrial Shed & Structural Steel Services - Tin Shade Noida";
 const description =
   "Comprehensive industrial shed engineering services: factory sheds, warehouses, MS frameworks, PEB structures, 0.50mm Galvalume roofing, and shed repair.";
 
@@ -90,21 +89,21 @@ function ServicesHubPage() {
       <Services />
 
       {/* 2. Technical Comparison Matrix Table */}
-      <section className="bg-white py-24 sm:py-32 border-b border-[#0B0D0F]/10 text-[#0B0D0F]">
+      <section className="bg-[#0B0D0F] py-24 sm:py-32 border-b border-white/10 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
-          <div className="max-w-2xl border-b border-[#0B0D0F]/15 pb-6 mb-12">
+          <div className="max-w-2xl border-b border-white/10 pb-6 mb-12">
             <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block mb-2">
               TECHNICAL MATRIX
             </span>
-            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold uppercase">
+            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold uppercase text-white">
               Specification Comparison Matrix
             </h2>
           </div>
 
-          <div className="overflow-x-auto border border-[#0B0D0F]/15">
+          <div className="overflow-x-auto border border-white/15 arch-card-dark">
             <table className="w-full text-left font-mono text-xs">
-              <thead className="bg-[#0B0D0F] text-white uppercase tracking-wider text-[0.6875rem]">
+              <thead className="bg-[#14171A] text-white uppercase tracking-wider text-[0.6875rem] border-b border-white/10">
                 <tr>
                   <th className="p-4">SERVICE DISCIPLINE</th>
                   <th className="p-4">CLEAR SPAN</th>
@@ -114,22 +113,22 @@ function ServicesHubPage() {
                   <th className="p-4 text-right">ACTION</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#0B0D0F]/10 bg-[#F3F1EC]">
+              <tbody className="divide-y divide-white/10 bg-[#0B0D0F]">
                 {serviceMatrix.map((item) => (
-                  <tr key={item.name} className="hover:bg-white transition-colors">
-                    <td className="p-4 font-bold text-[#0B0D0F]">
+                  <tr key={item.name} className="hover:bg-[#14171A] transition-colors">
+                    <td className="p-4 font-bold text-white">
                       <Link to={item.link} className="hover:text-[#B08A4A] transition-colors">
                         {item.name}
                       </Link>
                     </td>
-                    <td className="p-4 text-[#525860] tabular-nums">{item.span}</td>
-                    <td className="p-4 text-[#525860]">{item.steel}</td>
-                    <td className="p-4 text-[#525860]">{item.cladding}</td>
-                    <td className="p-4 text-[#525860]">{item.crane}</td>
+                    <td className="p-4 text-[#8C9398] tabular-nums">{item.span}</td>
+                    <td className="p-4 text-[#8C9398]">{item.steel}</td>
+                    <td className="p-4 text-[#8C9398]">{item.cladding}</td>
+                    <td className="p-4 text-[#8C9398]">{item.crane}</td>
                     <td className="p-4 text-right">
                       <Link
                         to={item.link}
-                        className="font-bold text-[#0B0D0F] hover:text-[#B08A4A] transition-colors inline-flex items-center gap-1"
+                        className="font-bold text-[#B08A4A] hover:underline transition-colors inline-flex items-center gap-1"
                       >
                         <span>Details</span>
                         <ArrowRight className="size-3" />
@@ -145,7 +144,7 @@ function ServicesHubPage() {
       </section>
 
       {/* 3. Estimator Calculator */}
-      <section className="bg-warm-paper py-24 sm:py-32 border-b border-[#0B0D0F]/10">
+      <section className="bg-[#0B0D0F] py-24 sm:py-32 border-b border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <EstimatorWidget />
         </div>

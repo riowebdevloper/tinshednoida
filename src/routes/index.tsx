@@ -7,6 +7,7 @@ import { Services } from "@/components/site/Services";
 import { FeaturedProject } from "@/components/site/FeaturedProject";
 import { CatalogViewer } from "@/components/site/CatalogViewer";
 import { Videos } from "@/components/site/Videos";
+import { PdfCatalogBrowser } from "@/components/site/PdfCatalogBrowser";
 import { Leadership } from "@/components/site/Leadership";
 import { PanIndia } from "@/components/site/PanIndia";
 import { FinalCta } from "@/components/site/FinalCta";
@@ -52,15 +53,18 @@ function HomePage() {
       <CatalogViewer />
 
       {/* 7. Project Action Video (70% YouTube / 30% Details + Instagram Field Reports) */}
-      <Videos isPage={false} />
+      <Videos />
 
-      {/* 8. Editorial Founders Section (MD Khurshid & Abdul) */}
+      {/* 8. The Project Book (51-Page Work Catalog & Submittal Binder) */}
+      <PdfCatalogBrowser />
+
+      {/* 9. Editorial Founders Section (MD Khurshid & Abdul) */}
       <Leadership />
 
-      {/* 9. Pan India Connectivity & Logistics Section */}
+      {/* 10. Pan India Connectivity & Logistics Section */}
       <PanIndia />
 
-      {/* 10. Dramatic Editorial Final CTA */}
+      {/* 11. Dramatic Editorial Final CTA */}
       <FinalCta />
     </SiteLayout>
   );

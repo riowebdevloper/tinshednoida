@@ -10,17 +10,9 @@ import {
 } from "@/lib/site-data";
 import {
   ArrowRight,
-  ChevronRight,
-  Filter,
-  Layers,
   MapPin,
-  Maximize2,
-  Ruler,
-  ShieldCheck,
-  Wrench,
   X,
   Phone,
-  MessageCircle,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
@@ -60,11 +52,11 @@ function ProjectsPage() {
         description="Over 500 industrial manufacturing factory sheds, column-free logistics warehouses, and heavy mild steel structures delivered across India since 2010."
       />
 
-      <section className="py-20 sm:py-32 bg-warm-paper text-[#0B0D0F] border-b border-[#0B0D0F]/10">
+      <section className="py-20 sm:py-32 bg-[#0B0D0F] text-white border-b border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
           {/* Category Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2 border-b border-[#0B0D0F]/15 pb-6 mb-12">
+          <div className="flex flex-wrap items-center gap-2 border-b border-white/10 pb-6 mb-12">
             {projectCategories.map((cat) => (
               <button
                 key={cat}
@@ -72,8 +64,8 @@ function ProjectsPage() {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider transition-all border ${
                   activeCategory === cat
-                    ? "border-[#0B0D0F] bg-[#0B0D0F] text-white shadow-sm"
-                    : "border-[#0B0D0F]/15 bg-white text-[#0B0D0F] hover:border-[#0B0D0F]"
+                    ? "border-[#B08A4A] bg-[#B08A4A] text-[#0B0D0F] shadow-sm"
+                    : "border-white/15 bg-[#14171A] text-[#8C9398] hover:text-white hover:border-white/30"
                 }`}
               >
                 {cat}
@@ -84,7 +76,7 @@ function ProjectsPage() {
           {/* ──────── ASYMMETRICAL EDITORIAL PROJECT GRID ──────── */}
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-12 items-start">
             {filteredProjects.map((project, idx) => {
-              // Asymmetrical span: alternate 7-col and 5-col
+              // Asymmetrical span: alternate 8-col and 4-col
               const isLarge = idx % 3 === 0;
               const colSpan = isLarge ? "lg:col-span-8" : "lg:col-span-4";
 
@@ -92,7 +84,7 @@ function ProjectsPage() {
                 <article
                   key={project.id}
                   onClick={() => setSelectedProject(project)}
-                  className={`${colSpan} arch-card-light overflow-hidden bg-white border border-[#0B0D0F]/15 group cursor-pointer flex flex-col justify-between`}
+                  className={`${colSpan} arch-card-dark overflow-hidden bg-[#14171A] border border-white/10 group cursor-pointer flex flex-col justify-between`}
                 >
                   <div className={`relative overflow-hidden bg-[#0B0D0F] ${isLarge ? "aspect-[16/10]" : "aspect-[4/3]"}`}>
                     <img
@@ -110,7 +102,7 @@ function ProjectsPage() {
                       </span>
                     </div>
 
-                    <div className="absolute top-3 left-3 bg-[#0B0D0F]/90 text-white font-mono text-[0.6875rem] font-bold px-2.5 py-1 tracking-wider uppercase">
+                    <div className="absolute top-3 left-3 bg-[#0B0D0F]/90 text-white font-mono text-[0.6875rem] font-bold px-2.5 py-1 tracking-wider uppercase border border-white/10">
                       {project.location}
                     </div>
                   </div>
@@ -120,17 +112,17 @@ function ProjectsPage() {
                       <span className="font-mono text-xs text-[#B08A4A] font-bold uppercase block mb-1">
                         {project.category}
                       </span>
-                      <h3 className="font-editorial-title text-lg sm:text-xl font-bold text-[#0B0D0F] uppercase leading-tight group-hover:text-[#B08A4A] transition-colors">
+                      <h3 className="font-editorial-title text-lg sm:text-xl font-bold text-white uppercase leading-tight group-hover:text-[#B08A4A] transition-colors">
                         {project.title}
                       </h3>
-                      <p className="mt-2 text-xs sm:text-sm text-[#525860] line-clamp-2 font-sans">
+                      <p className="mt-2 text-xs sm:text-sm text-[#8C9398] line-clamp-2 font-sans">
                         {project.summary}
                       </p>
                     </div>
 
-                    <div className="mt-5 pt-3 border-t border-[#0B0D0F]/10 flex items-center justify-between font-mono text-xs">
+                    <div className="mt-5 pt-3 border-t border-white/10 flex items-center justify-between font-mono text-xs">
                       <span className="text-[#8C9398]">{project.material}</span>
-                      <span className="font-bold text-[#0B0D0F] group-hover:underline flex items-center gap-1">
+                      <span className="font-bold text-[#B08A4A] group-hover:underline flex items-center gap-1">
                         <span>Inspect &rarr;</span>
                       </span>
                     </div>
@@ -201,7 +193,7 @@ function ProjectsPage() {
                     WORK EXECUTED:
                   </span>
                   <ul className="space-y-1.5 font-sans text-xs text-[#C8CCD0]">
-                    {selectedProject.scope.map((s, idx) => (
+                    {selectedProject.scope.map((s: string, idx: number) => (
                       <li key={idx} className="flex items-start gap-2">
                         <span className="size-1.5 rounded-full bg-[#B08A4A] mt-1.5 shrink-0" />
                         <span>{s}</span>

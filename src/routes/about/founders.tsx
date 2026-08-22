@@ -2,8 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { Leadership } from "@/components/site/Leadership";
 import { FinalCta } from "@/components/site/FinalCta";
-import { company, leadership } from "@/lib/site-data";
-import { Wrench, Compass, ShieldCheck, Factory, Award, ArrowRight, Phone } from "lucide-react";
+import { Wrench, Compass, Award } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 const title = "The People Behind Tin Shade | Founders MD Khurshid & Abdul";
@@ -37,18 +36,18 @@ function FoundersPage() {
       {/* 1. Main Leadership Editorial Section */}
       <Leadership />
 
-      {/* 2. Visual Story: FOUNDATION → EXPERIENCE → FUTURE */}
-      <section className="bg-white py-24 sm:py-32 border-b border-[#0B0D0F]/10 text-[#0B0D0F]">
+      {/* 2. Visual Story: FOUNDATION -> EXPERIENCE -> FUTURE */}
+      <section className="bg-[#0B0D0F] py-24 sm:py-32 border-b border-white/10 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
-          <div className="max-w-2xl border-b border-[#0B0D0F]/15 pb-6 mb-12">
+          <div className="max-w-2xl border-b border-white/10 pb-6 mb-12">
             <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block mb-2">
               HERITAGE &amp; VISION
             </span>
-            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold uppercase">
+            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold uppercase text-white">
               One Foundation. One Family. One Vision.
             </h2>
-            <p className="mt-2 text-sm sm:text-base text-[#525860] font-sans">
+            <p className="mt-2 text-sm sm:text-base text-[#8C9398] font-sans">
               From the experience of one generation to the energy of the next, Tin Shade continues to grow with the same focus on strong structures, honest communication, and customer satisfaction.
             </p>
           </div>
@@ -56,43 +55,43 @@ function FoundersPage() {
           <div className="grid gap-6 md:grid-cols-3">
             
             {/* Step 1: Foundation */}
-            <div className="p-8 bg-[#F3F1EC] border border-[#0B0D0F]/10 space-y-3">
-              <div className="flex items-center justify-between border-b border-[#0B0D0F]/10 pb-3 mb-2 font-mono text-xs">
+            <div className="p-8 bg-[#14171A] border border-white/10 space-y-3 arch-card-dark">
+              <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-2 font-mono text-xs">
                 <span className="font-bold text-[#B08A4A]">01. FOUNDATION</span>
-                <Wrench className="size-4 text-[#0B0D0F]" />
+                <Wrench className="size-4 text-[#B08A4A]" />
               </div>
-              <h3 className="font-editorial-title text-lg font-bold uppercase">
+              <h3 className="font-editorial-title text-lg font-bold uppercase text-white">
                 Direct Arc Mastery
               </h3>
-              <p className="text-xs sm:text-sm leading-relaxed text-[#525860] font-sans">
+              <p className="text-xs sm:text-sm leading-relaxed text-[#8C9398] font-sans">
                 Hands-on arc welding, precision flame cutting, and truss alignment learned on the ground over three decades of direct fabrication work.
               </p>
             </div>
 
             {/* Step 2: Experience */}
-            <div className="p-8 bg-[#F3F1EC] border border-[#0B0D0F]/10 space-y-3">
-              <div className="flex items-center justify-between border-b border-[#0B0D0F]/10 pb-3 mb-2 font-mono text-xs">
+            <div className="p-8 bg-[#14171A] border border-white/10 space-y-3 arch-card-dark">
+              <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-2 font-mono text-xs">
                 <span className="font-bold text-[#B08A4A]">02. EXPERIENCE</span>
-                <Award className="size-4 text-[#0B0D0F]" />
+                <Award className="size-4 text-[#B08A4A]" />
               </div>
-              <h3 className="font-editorial-title text-lg font-bold uppercase">
+              <h3 className="font-editorial-title text-lg font-bold uppercase text-white">
                 500+ Executed Sheds
               </h3>
-              <p className="text-xs sm:text-sm leading-relaxed text-[#525860] font-sans">
+              <p className="text-xs sm:text-sm leading-relaxed text-[#8C9398] font-sans">
                 Proven track record across manufacturing hubs, cold storages, logistics warehouses, and commercial rooftop shelters in North India and beyond.
               </p>
             </div>
 
             {/* Step 3: Future */}
-            <div className="p-8 bg-[#F3F1EC] border border-[#0B0D0F]/10 space-y-3">
-              <div className="flex items-center justify-between border-b border-[#0B0D0F]/10 pb-3 mb-2 font-mono text-xs">
+            <div className="p-8 bg-[#14171A] border border-white/10 space-y-3 arch-card-dark">
+              <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-2 font-mono text-xs">
                 <span className="font-bold text-[#B08A4A]">03. FUTURE</span>
-                <Compass className="size-4 text-[#0B0D0F]" />
+                <Compass className="size-4 text-[#B08A4A]" />
               </div>
-              <h3 className="font-editorial-title text-lg font-bold uppercase">
+              <h3 className="font-editorial-title text-lg font-bold uppercase text-white">
                 Engineering &amp; Speed
               </h3>
-              <p className="text-xs sm:text-sm leading-relaxed text-[#525860] font-sans">
+              <p className="text-xs sm:text-sm leading-relaxed text-[#8C9398] font-sans">
                 Modern 2D/3D CAD load calculations, transparent digital BOQ estimations, high-tensile fasteners, and fast-track turnkey execution.
               </p>
             </div>
@@ -100,7 +99,7 @@ function FoundersPage() {
           </div>
 
           {/* Direct Yard Contact */}
-          <div className="mt-14 p-8 bg-[#0B0D0F] text-white border border-white/15 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+          <div className="mt-14 p-8 bg-[#14171A] text-white border border-white/15 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl arch-card-dark">
             <div className="space-y-1.5">
               <span className="font-mono text-xs text-[#B08A4A] font-bold uppercase">
                 DIRECT ACCESS TO LEADERSHIP

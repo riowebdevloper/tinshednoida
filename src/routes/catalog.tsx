@@ -3,10 +3,10 @@ import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { PdfCatalogBrowser } from "@/components/site/PdfCatalogBrowser";
 import { CatalogViewer } from "@/components/site/CatalogViewer";
 import { FinalCta } from "@/components/site/FinalCta";
-import { Download, FileText, CheckCircle2, ShieldCheck, ExternalLink } from "lucide-react";
+import { Download, ShieldCheck, ExternalLink } from "lucide-react";
 import { company } from "@/lib/site-data";
 
-const title = "51-Page Structural Work Catalog (PDF) — Tin Shade Noida";
+const title = "51-Page Structural Work Catalog (PDF) - Tin Shade Noida";
 const description =
   "Download our official 51-page structural engineering submittal catalog featuring truss schedules, IS 2062 material certificates, and photographic case studies.";
 
@@ -37,7 +37,7 @@ function CatalogPage() {
     {
       sec: "SECTION B",
       title: "IS 2062 Material Quality Standards",
-      desc: "Mill Test Certificate (MTC) criteria for yield stress (250–350 MPa), tensile strength, elongation percentages, and zinc phosphate primer thickness.",
+      desc: "Mill Test Certificate (MTC) criteria for yield stress (250 - 350 MPa), tensile strength, elongation percentages, and zinc phosphate primer thickness.",
     },
     {
       sec: "SECTION C",
@@ -66,31 +66,31 @@ function CatalogPage() {
       <CatalogViewer />
 
       {/* 3. Catalog Table of Contents Overview */}
-      <section className="bg-white py-24 sm:py-32 border-b border-[#0B0D0F]/10 text-[#0B0D0F]">
+      <section className="bg-[#0B0D0F] py-24 sm:py-32 border-b border-white/10 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
-          <div className="max-w-2xl border-b border-[#0B0D0F]/15 pb-6 mb-12">
+          <div className="max-w-2xl border-b border-white/10 pb-6 mb-12">
             <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block mb-2">
               SUBMITTAL CONTENTS OVERVIEW
             </span>
-            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold uppercase">
+            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold uppercase text-white">
               What Is Inside the 51-Page Work Catalog
             </h2>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2">
             {catalogSections.map((s) => (
-              <div key={s.sec} className="p-8 bg-[#F3F1EC] border border-[#0B0D0F]/10 space-y-2">
-                <div className="flex items-center justify-between border-b border-[#0B0D0F]/10 pb-3 mb-2 font-mono text-xs">
+              <div key={s.sec} className="p-8 bg-[#14171A] border border-white/10 space-y-2 arch-card-dark">
+                <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-2 font-mono text-xs">
                   <span className="font-bold text-[#B08A4A]">
                     {s.sec}
                   </span>
-                  <ShieldCheck className="size-4 text-[#0B0D0F]" />
+                  <ShieldCheck className="size-4 text-[#B08A4A]" />
                 </div>
-                <h3 className="font-editorial-title text-lg font-bold uppercase">
+                <h3 className="font-editorial-title text-lg font-bold uppercase text-white">
                   {s.title}
                 </h3>
-                <p className="mt-1 text-xs sm:text-sm leading-relaxed text-[#525860] font-sans">
+                <p className="mt-1 text-xs sm:text-sm leading-relaxed text-[#8C9398] font-sans">
                   {s.desc}
                 </p>
               </div>
@@ -98,7 +98,7 @@ function CatalogPage() {
           </div>
 
           {/* Download Callout */}
-          <div className="mt-12 p-8 bg-[#0B0D0F] text-white border border-white/15 flex flex-wrap items-center justify-between gap-6 shadow-2xl">
+          <div className="mt-12 p-8 bg-[#14171A] text-white border border-white/15 flex flex-wrap items-center justify-between gap-6 shadow-2xl arch-card-dark">
             <div className="space-y-1">
               <h4 className="font-editorial-title text-xl font-bold uppercase text-white">
                 Download Official PDF Submittal

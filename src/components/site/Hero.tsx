@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight, Download, Compass, ShieldCheck } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Download } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { company } from "@/lib/site-data";
 
@@ -9,7 +9,8 @@ export interface HeroSlideData {
   fallback: string;
   language: string;
   langTag: string;
-  headline: string;
+  headlineTop: string;
+  headlineBottom: string;
   subheadline: string;
   projectName: string;
   location: string;
@@ -22,7 +23,8 @@ const slides: HeroSlideData[] = [
     fallback: "/images/hero/hero-slide-01.jpg",
     language: "English",
     langTag: "EN",
-    headline: "ENGINEERED FOR SCALE.",
+    headlineTop: "ENGINEERED",
+    headlineBottom: "FOR SCALE.",
     subheadline:
       "Industrial sheds, structural steel and roofing solutions built for demanding commercial and industrial environments. In-house fabrication shop in Noida Sector 10 with turnkey crane erection nationwide.",
     projectName: "HEAVY INDUSTRIAL MANUFACTURING FACILITY",
@@ -34,9 +36,10 @@ const slides: HeroSlideData[] = [
     fallback: "/images/hero/hero-slide-02.jpg",
     language: "Hindi",
     langTag: "HI",
-    headline: "मजबूती और भरोसे का निर्माण — पैन इंडिया कवरेज.",
+    headlineTop: "मजबूती और भरोसे का निर्माण",
+    headlineBottom: "पैन इंडिया कवरेज.",
     subheadline:
-      "15+ वर्षों का अनुभव, 500+ सफल प्रोजेक्ट्स। डायरेक्ट वर्कशॉप फैब्रिकेशन और 120 फीट कॉलम-फ्री स्पैन के साथ सम्पूर्ण भारत में टर्नकी इरेक्शन।",
+      "15+ वर्षों का मास्टर अनुभव, 500+ सफल प्रोजेक्ट्स। डायरेक्ट वर्कशॉप फैब्रिकेशन और 120 फीट कॉलम-फ्री स्पैन के साथ सम्पूर्ण भारत में टर्नकी क्रेन इरेक्शन।",
     projectName: "LOGISTICS WAREHOUSE & GODOWN SHED",
     location: "GREATER NOIDA · 120 FT CLEAR SPAN",
   },
@@ -46,9 +49,10 @@ const slides: HeroSlideData[] = [
     fallback: "/images/hero/hero-slide-03.jpg",
     language: "Tamil",
     langTag: "TA",
-    headline: "வலுவான கட்டமைப்பு பொறியியல் மற்றும் தொழில் கொட்டகைகள்.",
+    headlineTop: "வலுவான கட்டமைப்பு பொறியியல்",
+    headlineBottom: "மற்றும் தொழில் கொட்டகைகள்.",
     subheadline:
-      "தொழிற்சாலைகள், கிடங்குகள் மற்றும் கனரக எஃகு கட்டமைப்புகள். இந்தியா முழுவதும் நம்பகமான கிரேன் ஒருங்கிணைப்பு மற்றும் நேரடி தரம்.",
+      "தொழிற்சாலைகள், கிடங்குகள் மற்றும் கனரக எஃகு கட்டமைப்புகள். இந்தியா முழுவதும் நம்பகமான கிரேன் ஒருங்கிணைப்பு மற்றும் நேரடி பட்டறை தரம்.",
     projectName: "HEAVY MS PORTAL TRUSS FRAMEWORK",
     location: "FARIDABAD INDUSTRIAL AREA · IS 2062 PRIME STEEL",
   },
@@ -58,9 +62,10 @@ const slides: HeroSlideData[] = [
     fallback: "/images/hero/hero-slide-04.jpg",
     language: "Telugu",
     langTag: "TE",
-    headline: "పారిశ్రామిక షెడ్లు మరియు స్టీల్ స్ట్రక్చర్ల సమగ్ర నిర్మాణం.",
+    headlineTop: "పారిశ్రామిక షెడ్లు మరియు",
+    headlineBottom: "స్టీల్ స్ట్రక్చర్ల సమగ్ర నిర్మాణం.",
     subheadline:
-      "ఫ్యాక్టరీలు, గిడ్డంగులు మరియు భారీ లోహ నిర్మాణాల సమగ్ర ఇంజనీరింగ్. దేశవ్యాప్తంగా టర్న్‌కీ క్రేన్ అసెంబ్లీ మరియు నాణ్యమైన పనితనం.",
+      "ఫ్యాక్టరీలు, గిడ్డంగులు మరియు భారీ లోహ నిర్మాణాల సమగ్ర ఇంజనీరింగ్. దేశవ్యాప్తంగా టర్న్‌కీ క్రేన్ అసెంబ్లీ మరియు విశ్వసనీయ నాణ్యత.",
     projectName: "PRE-ENGINEERED BUILDING (PEB) COMPLEX",
     location: "GURGAON LOGISTICS PARK · TURNKEY CRANE ERECTION",
   },
@@ -70,9 +75,10 @@ const slides: HeroSlideData[] = [
     fallback: "/images/hero/hero-slide-05.jpg",
     language: "Kannada",
     langTag: "KN",
-    headline: "ಉದ್ಯಮದ ಬೆಳವಣಿಗೆಗೆ ವಿಶ್ವಾಸಾರ್ಹ ಸ್ಟೀಲ್ ಫ್ಯಾಬ್ರಿಕೇಶನ್.",
+    headlineTop: "ಉದ್ಯಮದ ಬೆಳವಣಿಗೆಗೆ",
+    headlineBottom: "ವಿಶ್ವಾಸಾರ್ಹ ಸ್ಟೀಲ್ ಫ್ಯಾಬ್ರಿಕೇಶನ್.",
     subheadline:
-      "ಉತ್ಪಾದನಾ ಘಟಕಗಳು, ಗೋದಾಮುಗಳು ಮತ್ತು ಹೆವಿ ಸ್ಟೀಲ್ ಫ್ರೇಮ್‌ವರ್ಕ್. ನೋಯ್ಡಾ ವರ್ಕ್‌ಶಾಪ್‌ನಿಂದ ನೇರ ಗುಣಮಟ್ಟದ ಭರವಸೆಯೊಂದಿಗೆ ಸ್ಥಾಪನೆ.",
+      "ಉತ್ಪಾದನಾ ಘಟಕಗಳು, ಗೋದಾಮುಗಳು ಮತ್ತು ಹೆವಿ ಸ್ಟೀಲ್ ಫ್ರೇಮ್‌ವರ್ಕ್. ನೋಯ್ಡಾ ಸೆಕ್ಟರ್ 10 ವರ್ಕ್‌ಶಾಪ್‌ನಿಂದ ನೇರ ಗುಣಮಟ್ಟದ ಭರವಸೆಯೊಂದಿಗೆ ಸ್ಥಾಪನೆ.",
     projectName: "WEATHERPROOF GALVALUME ROOFING & CANOPY",
     location: "GHAZIABAD INDUSTRIAL CLUSTER · 0.50MM SHEETING",
   },
@@ -87,7 +93,7 @@ export function Hero() {
     if (!isPaused) {
       timerRef.current = setInterval(() => {
         setCurrent((prev) => (prev + 1) % slides.length);
-      }, 6000);
+      }, 6500);
     }
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
@@ -102,7 +108,7 @@ export function Hero() {
   return (
     <section
       aria-label="Cinematic Hero"
-      className="relative w-full h-[95vh] min-h-[640px] max-h-[1080px] bg-[#0B0D0F] text-white overflow-hidden flex flex-col justify-between"
+      className="relative w-full h-[95vh] min-h-[660px] lg:h-screen lg:min-h-[760px] max-h-[1120px] bg-[#0B0D0F] text-white overflow-hidden flex flex-col justify-between"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -112,8 +118,8 @@ export function Hero() {
         return (
           <div
             key={idx}
-            className={`absolute inset-0 size-full transition-opacity duration-1200 ease-out ${
-              isCurrent ? "opacity-100 z-0" : "opacity-0 pointer-events-none"
+            className={`absolute inset-0 size-full transition-opacity duration-1100 ease-out ${
+              isCurrent ? "opacity-100 z-0 pointer-events-auto" : "opacity-0 pointer-events-none"
             }`}
           >
             <picture>
@@ -121,41 +127,42 @@ export function Hero() {
               <source srcSet={slide.fallback} type="image/jpeg" />
               <img
                 src={slide.fallback}
-                alt={slide.headline}
+                alt={`${slide.headlineTop} ${slide.headlineBottom}`}
                 loading={idx === 0 ? "eager" : "lazy"}
                 fetchPriority={idx === 0 ? "high" : "auto"}
-                className={`size-full object-cover object-center brightness-[0.32] contrast-[1.08] transition-transform duration-[7000ms] ease-out ${
-                  isCurrent ? "scale-100" : "scale-104"
+                className={`size-full object-cover object-center brightness-[0.34] contrast-[1.10] transition-transform duration-[7500ms] ease-out ${
+                  isCurrent ? "scale-100" : "scale-103"
                 }`}
               />
             </picture>
 
-            {/* Deep Cinematic Contrast Gradients */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0D0F] via-[#0B0D0F]/45 to-[#0B0D0F]/80" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0B0D0F]/85 via-[#0B0D0F]/30 to-transparent" />
+            {/* Deep Cinematic Architectural Contrast Gradients */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0D0F] via-[#0B0D0F]/40 to-[#0B0D0F]/75" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0B0D0F]/90 via-[#0B0D0F]/35 to-transparent" />
           </div>
         );
       })}
 
       {/* ──────── ARCHITECTURAL FOREGROUND CONTENT ──────── */}
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pt-28 sm:pt-36 flex-1 flex flex-col justify-center">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pt-28 sm:pt-36 lg:pt-40 flex-1 flex flex-col justify-center">
         <div className="max-w-3xl">
           
           {/* Eyebrow Label in JetBrains Mono */}
           <div className="inline-flex items-center gap-2.5 mb-5">
-            <span className="h-px w-6 bg-[#B08A4A]" />
+            <span className="h-px w-8 bg-[#B08A4A]" />
             <span className="font-mono-tag text-[#B08A4A] tracking-widest text-xs">
               PAN INDIA INDUSTRIAL STRUCTURES
             </span>
           </div>
 
           {/* Massive Display Headline */}
-          <h1 className="font-editorial-title text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.04] uppercase">
-            {active.headline}
+          <h1 className="font-editorial-title text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight text-white leading-[1.03] uppercase">
+            <span className="block">{active.headlineTop}</span>
+            <span className="block text-white/95">{active.headlineBottom}</span>
           </h1>
 
           {/* Secondary Subtitle */}
-          <p className="mt-5 text-sm sm:text-base lg:text-lg text-[#C8CCD0] font-sans leading-relaxed max-w-2xl">
+          <p className="mt-6 text-sm sm:text-base lg:text-lg text-[#C8CCD0] font-sans leading-relaxed max-w-2xl">
             {active.subheadline}
           </p>
 
@@ -190,7 +197,7 @@ export function Hero() {
       </div>
 
       {/* ──────── BOTTOM ARCHITECTURAL LEDGER & SLIDER CONTROLS ──────── */}
-      <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pb-8">
+      <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pb-8 sm:pb-10">
         <div className="pt-5 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           
           {/* Active Project Identification */}

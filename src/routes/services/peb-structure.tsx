@@ -4,7 +4,7 @@ import { ServiceDetailView, type ServiceDetailData } from "@/components/site/Ser
 import { FinalCta } from "@/components/site/FinalCta";
 import svcPeb from "@/assets/gen/svc-peb.jpg";
 
-const title = "Pre-Engineered Building (PEB) Structure Fabrication — Tin Shade Noida";
+const title = "Pre-Engineered Building (PEB) Structure Fabrication  -  Tin Shade Noida";
 const description =
   "High-tensile pre-engineered steel buildings (PEB) with tapered built-up frames, fast-track erection, and wide clear spans across India.";
 
@@ -34,7 +34,7 @@ const data: ServiceDetailData = {
   image: svcPeb,
   spanReach: "Up to 120 FT Clear Span",
   steelGrade: "High-Tensile 345 MPa Plates",
-  eavesHeight: "18 – 32 Feet",
+  eavesHeight: "18 - 32 Feet",
   standardCode: "MBMA & IS 800:2007 (LSM)",
   applications: [
     "Large Scale Manufacturing Facilities",
@@ -81,7 +81,7 @@ const data: ServiceDetailData = {
   ],
   relatedProjectIds: ["selected-page-19", "peb-frame-project"],
   relatedVideoId: "mkRndWdXPdI",
-  catalogPageRange: "Pages 46 – 51",
+  catalogPageRange: "Pages 46 - 51",
   faqs: [
     {
       q: "What makes PEB faster than conventional steel structures?",

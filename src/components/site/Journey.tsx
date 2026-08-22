@@ -13,7 +13,7 @@ export function Journey() {
             From Empty Plot to Completed Industrial Shed
           </h2>
           <p className="mt-2 text-xs sm:text-sm text-steel-muted font-sans">
-            Scroll through a typical execution workflow — the exact sequence we follow on every industrial site across India.
+            Scroll through a typical execution workflow  -  the exact sequence we follow on every industrial site across India.
           </p>
         </div>
 

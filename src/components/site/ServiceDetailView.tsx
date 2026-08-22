@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, Download, FileText, HardHat, Layers, MapPin, Phone, ShieldCheck, Wrench, Factory, Ruler } from "lucide-react";
+import { ArrowRight, CheckCircle2, Download, FileText, Phone, ShieldCheck, Ruler } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { company, projects, youtubeVideos } from "@/lib/site-data";
 import { EstimatorWidget } from "./EstimatorWidget";
@@ -29,7 +29,7 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
   const relatedVideo = youtubeVideos.find((v) => v.id === data.relatedVideoId) ?? youtubeVideos[0]!;
 
   return (
-    <div className="bg-warm-paper text-[#0B0D0F]">
+    <div className="bg-[#0B0D0F] text-white">
       
       {/* ──────── 1. SERVICE HERO ──────── */}
       <section className="relative isolate overflow-hidden bg-[#0B0D0F] px-4 pb-20 pt-28 text-white sm:px-6 sm:pb-24 sm:pt-36 lg:px-8 border-b border-white/10 arch-grid-pattern">
@@ -99,7 +99,7 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
       </section>
 
       {/* ──────── 2. OVERVIEW & PHOTOGRAPHY ──────── */}
-      <section className="py-24 sm:py-32 border-b border-[#0B0D0F]/10 bg-warm-paper">
+      <section className="py-24 sm:py-32 border-b border-white/10 bg-[#0B0D0F]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-12 items-center">
             
@@ -110,31 +110,31 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
                   STRUCTURAL SPECIFICATIONS
                 </span>
               </div>
-              <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-[#0B0D0F] uppercase leading-tight">
+              <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white uppercase leading-tight">
                 Engineered for High Structural Integrity &amp; Longevity
               </h2>
-              <p className="text-sm sm:text-base leading-relaxed text-[#525860] font-sans">
+              <p className="text-sm sm:text-base leading-relaxed text-[#C8CCD0] font-sans">
                 {data.overview}
               </p>
 
-              <div className="pt-2 space-y-2.5 font-mono text-xs text-[#0B0D0F]">
+              <div className="pt-2 space-y-2.5 font-mono text-xs text-[#C8CCD0]">
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="size-4 text-emerald-700 shrink-0" />
+                  <ShieldCheck className="size-4 text-[#B08A4A] shrink-0" />
                   <span>Fabricated with certified IS 2062 prime grade mild steel</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="size-4 text-emerald-700 shrink-0" />
+                  <ShieldCheck className="size-4 text-[#B08A4A] shrink-0" />
                   <span>Dual-coat anti-rust red oxide primer to IS 2074 standards</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="size-4 text-emerald-700 shrink-0" />
+                  <ShieldCheck className="size-4 text-[#B08A4A] shrink-0" />
                   <span>Turnkey erection using dedicated hydraulic mobile crane fleets</span>
                 </div>
               </div>
             </div>
 
             <div className="lg:col-span-6">
-              <div className="arch-card-light overflow-hidden p-2.5 bg-white border border-[#0B0D0F]/15 shadow-xl">
+              <div className="arch-card-dark overflow-hidden p-2.5 bg-[#14171A] border border-white/15 shadow-xl">
                 <div className="relative aspect-[4/3] bg-[#0B0D0F] overflow-hidden">
                   <img
                     src={data.image}
@@ -150,24 +150,24 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
       </section>
 
       {/* ──────── 3. APPLICATIONS ──────── */}
-      <section className="py-24 sm:py-32 border-b border-[#0B0D0F]/10 bg-white">
+      <section className="py-24 sm:py-32 border-b border-white/10 bg-[#0B0D0F]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl border-b border-[#0B0D0F]/15 pb-6 mb-12">
+          <div className="max-w-2xl border-b border-white/10 pb-6 mb-12">
             <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block mb-2">
               VERSATILE DEPLOYMENTS
             </span>
-            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-[#0B0D0F] uppercase">
+            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white uppercase">
               Common Industrial Applications
             </h2>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {data.applications.map((app, idx) => (
-              <div key={idx} className="arch-card-light p-6 bg-[#F3F1EC] border border-[#0B0D0F]/10">
+              <div key={idx} className="arch-card-dark p-6 bg-[#14171A] border border-white/10">
                 <span className="font-mono text-2xl font-extrabold text-[#B08A4A] block mb-2 tabular-nums">
                   0{idx + 1}
                 </span>
-                <h3 className="font-editorial-title font-bold text-base text-[#0B0D0F] uppercase">
+                <h3 className="font-editorial-title font-bold text-base text-white uppercase">
                   {app}
                 </h3>
                 <span className="text-xs font-mono text-[#8C9398] block mt-1">
@@ -180,27 +180,27 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
       </section>
 
       {/* ──────── 4. EXECUTION PROCESS ──────── */}
-      <section className="py-24 sm:py-32 border-b border-[#0B0D0F]/10 bg-warm-paper">
+      <section className="py-24 sm:py-32 border-b border-white/10 bg-[#0B0D0F]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl border-b border-[#0B0D0F]/15 pb-6 mb-12">
+          <div className="max-w-2xl border-b border-white/10 pb-6 mb-12">
             <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block mb-2">
               EXECUTION PROTOCOL
             </span>
-            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-[#0B0D0F] uppercase">
+            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white uppercase">
               Fabrication &amp; Crane Erection Phases
             </h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
             {data.constructionProcess.map((proc, idx) => (
-              <div key={idx} className="arch-card-light p-6 sm:p-8 bg-white border border-[#0B0D0F]/15">
+              <div key={idx} className="arch-card-dark p-6 sm:p-8 bg-[#14171A] border border-white/15">
                 <span className="font-mono text-3xl font-extrabold text-[#B08A4A] block mb-2 tabular-nums">
                   {proc.step}
                 </span>
-                <h3 className="font-editorial-title text-lg font-bold text-[#0B0D0F] uppercase">
+                <h3 className="font-editorial-title text-lg font-bold text-white uppercase">
                   {proc.title}
                 </h3>
-                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#525860] font-sans">
+                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#8C9398] font-sans">
                   {proc.desc}
                 </p>
               </div>
@@ -210,7 +210,7 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
       </section>
 
       {/* ──────── 5. VERIFIED MATERIALS & QUALITY ──────── */}
-      <section className="py-24 sm:py-32 border-b border-[#0B0D0F]/10 bg-white">
+      <section className="py-24 sm:py-32 border-b border-white/10 bg-[#0B0D0F]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-12 items-start">
             
@@ -218,20 +218,20 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
               <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block">
                 PRIME RAW MATERIAL GRADES
               </span>
-              <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-[#0B0D0F] uppercase">
+              <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white uppercase">
                 Verified Structural Steel &amp; Cladding
               </h2>
-              <p className="text-xs sm:text-sm text-[#525860] font-sans">
+              <p className="text-xs sm:text-sm text-[#8C9398] font-sans">
                 Every component is sourced from certified prime mills with full Mill Test Certificates (MTC) verifying yield stress, chemical composition, and tensile strength.
               </p>
 
               <div className="space-y-3 pt-2">
                 {data.materials.map((mat, idx) => (
-                  <div key={idx} className="p-4 border border-[#0B0D0F]/10 bg-[#F3F1EC]">
-                    <h3 className="font-editorial-title text-sm font-bold text-[#0B0D0F] uppercase">
+                  <div key={idx} className="p-4 border border-white/10 bg-[#14171A]">
+                    <h3 className="font-editorial-title text-sm font-bold text-white uppercase">
                       {mat.title}
                     </h3>
-                    <p className="mt-1 text-xs text-[#525860] font-sans">
+                    <p className="mt-1 text-xs text-[#8C9398] font-sans">
                       {mat.desc}
                     </p>
                   </div>
@@ -243,15 +243,15 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
               <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block">
                 ENGINEERING ADVANTAGES
               </span>
-              <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-[#0B0D0F] uppercase">
+              <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white uppercase">
                 Direct Yard Quality Inclusions
               </h2>
 
-              <div className="p-6 bg-[#F3F1EC] border border-[#0B0D0F]/10 space-y-3">
+              <div className="p-6 bg-[#14171A] border border-white/10 space-y-3">
                 {data.benefits.map((ben, idx) => (
                   <div key={idx} className="flex items-start gap-3">
-                    <CheckCircle2 className="size-4 text-emerald-700 shrink-0 mt-0.5" />
-                    <span className="text-xs sm:text-sm text-[#0B0D0F] font-sans leading-relaxed">
+                    <CheckCircle2 className="size-4 text-[#B08A4A] shrink-0 mt-0.5" />
+                    <span className="text-xs sm:text-sm text-[#C8CCD0] font-sans leading-relaxed">
                       {ben}
                     </span>
                   </div>
@@ -264,28 +264,28 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
       </section>
 
       {/* ──────── 6. STEEL ESTIMATOR WIDGET ──────── */}
-      <section id="estimator" className="py-24 sm:py-32 border-b border-[#0B0D0F]/10 bg-warm-paper">
+      <section id="estimator" className="py-24 sm:py-32 border-b border-white/10 bg-[#0B0D0F]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <EstimatorWidget />
         </div>
       </section>
 
       {/* ──────── 7. RELATED PROJECTS & CATALOG ──────── */}
-      <section className="py-24 sm:py-32 border-b border-[#0B0D0F]/10 bg-white">
+      <section className="py-24 sm:py-32 border-b border-white/10 bg-[#0B0D0F]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#0B0D0F]/15 pb-6 mb-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6 mb-12">
             <div>
               <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block mb-2">
                 AUTHENTIC CASE STUDIES
               </span>
-              <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-[#0B0D0F] uppercase">
+              <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white uppercase">
                 Related Executed Projects
               </h2>
             </div>
             <Link
               to="/projects"
-              className="btn-arch-dark-outline self-start md:self-auto text-xs"
+              className="btn-arch-secondary self-start md:self-auto text-xs"
             >
               <span>View All Projects</span>
               <ArrowRight className="size-3.5" />
@@ -294,14 +294,14 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {relatedProjects.map((p) => (
-              <div key={p.id} className="arch-card-light overflow-hidden bg-[#F3F1EC] border border-[#0B0D0F]/15 flex flex-col justify-between">
+              <div key={p.id} className="arch-card-dark overflow-hidden bg-[#14171A] border border-white/10 flex flex-col justify-between">
                 <div className="relative aspect-[4/3] bg-[#0B0D0F]">
                   <img
                     src={p.image}
                     alt={p.title}
                     className="size-full object-cover"
                   />
-                  <div className="absolute top-2 left-2 bg-black/85 text-white px-2 py-0.5 font-mono text-[0.6875rem] font-bold">
+                  <div className="absolute top-2 left-2 bg-black/85 text-white px-2 py-0.5 font-mono text-[0.6875rem] font-bold border border-white/10">
                     {p.location}
                   </div>
                 </div>
@@ -310,16 +310,16 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
                     <span className="font-mono text-xs text-[#B08A4A] font-bold uppercase block mb-1">
                       {p.category}
                     </span>
-                    <h3 className="font-editorial-title font-bold text-base text-[#0B0D0F] uppercase">
+                    <h3 className="font-editorial-title font-bold text-base text-white uppercase">
                       {p.title}
                     </h3>
-                    <p className="mt-1.5 text-xs text-[#525860] line-clamp-2 font-sans">
+                    <p className="mt-1.5 text-xs text-[#8C9398] line-clamp-2 font-sans">
                       {p.summary}
                     </p>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-[#0B0D0F]/10 flex items-center justify-between font-mono text-xs">
+                  <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between font-mono text-xs">
                     <span className="text-[#8C9398]">{p.material}</span>
-                    <Link to="/quote" className="font-bold text-[#0B0D0F] hover:text-[#B08A4A]">
+                    <Link to="/quote" className="font-bold text-[#B08A4A] hover:underline">
                       Quote &rarr;
                     </Link>
                   </div>
@@ -329,15 +329,15 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
           </div>
 
           {/* Catalog Callout */}
-          <div className="mt-12 p-6 sm:p-8 border border-[#0B0D0F]/15 bg-[#F3F1EC] flex flex-wrap items-center justify-between gap-4">
+          <div className="mt-12 p-6 sm:p-8 border border-white/10 bg-[#14171A] flex flex-wrap items-center justify-between gap-4">
             <div>
               <span className="font-mono text-xs font-bold text-[#B08A4A] uppercase block">
                 51-PAGE WORK CATALOG SUBMITTAL
               </span>
-              <h3 className="font-editorial-title text-xl font-bold text-[#0B0D0F] uppercase mt-1">
+              <h3 className="font-editorial-title text-xl font-bold text-white uppercase mt-1">
                 Technical Schedules: {data.catalogPageRange}
               </h3>
-              <p className="text-xs text-[#525860] font-sans mt-1">
+              <p className="text-xs text-[#8C9398] font-sans mt-1">
                 View chord schedules, anchor bolt spacing charts, and photographic case studies in our official catalog.
               </p>
             </div>
@@ -354,24 +354,24 @@ export function ServiceDetailView({ data }: { data: ServiceDetailData }) {
       </section>
 
       {/* ──────── 8. FAQS ──────── */}
-      <section className="py-24 sm:py-32 border-b border-[#0B0D0F]/10 bg-warm-paper">
+      <section className="py-24 sm:py-32 border-b border-white/10 bg-[#0B0D0F]">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="border-b border-[#0B0D0F]/15 pb-6 mb-12 text-center">
+          <div className="border-b border-white/10 pb-6 mb-12 text-center">
             <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block mb-2">
               TECHNICAL CLARIFICATIONS
             </span>
-            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-[#0B0D0F] uppercase">
+            <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white uppercase">
               Frequently Asked Technical Questions
             </h2>
           </div>
 
-          <div className="divide-y divide-[#0B0D0F]/15 border-y border-[#0B0D0F]/15">
+          <div className="divide-y divide-white/10 border-y border-white/10">
             {data.faqs.map((faq, idx) => (
               <div key={idx} className="py-6">
-                <h3 className="font-editorial-title text-base sm:text-lg font-bold text-[#0B0D0F] uppercase">
+                <h3 className="font-editorial-title text-base sm:text-lg font-bold text-white uppercase">
                   {faq.q}
                 </h3>
-                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#525860] font-sans">
+                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#C8CCD0] font-sans">
                   {faq.a}
                 </p>
               </div>

@@ -25,7 +25,7 @@ export function NeedFinder() {
               What do you need?
             </h2>
             <p className="mt-3 max-w-lg text-base text-muted-foreground">
-              Pick the structure closest to your requirement — we'll show you what it involves.
+              Pick the structure closest to your requirement  -  we'll show you what it involves.
             </p>
           </div>
           <p className="hidden text-sm text-muted-foreground lg:block">

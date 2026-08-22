@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { FinalCta } from "@/components/site/FinalCta";
 import { company } from "@/lib/site-data";
-import { MapPin, Phone, Mail, Clock, MessageCircle, ArrowRight, ShieldCheck, HardHat } from "lucide-react";
+import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
 import { QuoteWizard } from "@/components/site/QuoteWizard";
 
 const title = "Contact Tin Shade Noida | Fabrication Yard & Site Survey";
@@ -34,7 +34,7 @@ function ContactPage() {
       />
 
       {/* 1. Contact Information & Map Hub */}
-      <section className="bg-warm-paper py-24 sm:py-32 border-b border-[#0B0D0F]/10 text-[#0B0D0F]">
+      <section className="bg-[#0B0D0F] py-24 sm:py-32 border-b border-white/10 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
           <div className="grid gap-12 lg:grid-cols-12 items-start">
@@ -46,10 +46,10 @@ function ContactPage() {
                 <span className="font-mono-tag text-[#B08A4A] text-xs font-bold block mb-2">
                   NOIDA WORKSHOP HEADQUARTERS
                 </span>
-                <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold uppercase">
+                <h2 className="font-editorial-title text-3xl sm:text-4xl font-extrabold uppercase text-white">
                   Direct Engineering Desk
                 </h2>
-                <p className="mt-2 text-sm text-[#525860] font-sans">
+                <p className="mt-2 text-sm text-[#8C9398] font-sans">
                   You are welcome to visit our yard to inspect raw IS 2062 steel stocks, truss arc welding, and discuss architectural drawings in person.
                 </p>
               </div>
@@ -58,40 +58,40 @@ function ContactPage() {
               <div className="space-y-4 font-mono text-xs">
                 
                 {/* Yard Address */}
-                <div className="p-5 bg-white border border-[#0B0D0F]/15 space-y-1">
-                  <div className="flex items-center gap-2 font-bold text-[#0B0D0F]">
+                <div className="p-5 bg-[#14171A] border border-white/10 space-y-1 arch-card-dark">
+                  <div className="flex items-center gap-2 font-bold text-white">
                     <MapPin className="size-4 text-[#B08A4A]" />
                     <span className="uppercase">Fabrication Yard Address</span>
                   </div>
-                  <p className="text-xs text-[#525860] font-sans pl-6">
+                  <p className="text-xs text-[#8C9398] font-sans pl-6">
                     D179 Sector 10, Noida, Uttar Pradesh 201301
                   </p>
                 </div>
 
                 {/* Direct Phone Lines */}
-                <div className="p-5 bg-white border border-[#0B0D0F]/15 space-y-1">
-                  <div className="flex items-center gap-2 font-bold text-[#0B0D0F]">
+                <div className="p-5 bg-[#14171A] border border-white/10 space-y-1 arch-card-dark">
+                  <div className="flex items-center gap-2 font-bold text-white">
                     <Phone className="size-4 text-[#B08A4A]" />
                     <span className="uppercase">Direct Yard Telephones</span>
                   </div>
-                  <div className="text-xs text-[#0B0D0F] font-sans pl-6 space-y-1">
+                  <div className="text-xs text-white font-sans pl-6 space-y-1">
                     <div>
-                      <a href="tel:+918527977714" className="font-bold hover:text-[#B08A4A]">+91 85279 77714</a> (Abdul / Engineering)
+                      <a href="tel:+918527977714" className="font-bold hover:text-[#B08A4A] tabular-nums">+91 85279 77714</a> (Abdul / Engineering)
                     </div>
                     <div>
-                      <a href="tel:+919899793714" className="font-bold hover:text-[#B08A4A]">+91 98997 93714</a> (MD Khurshid / Workshop)
+                      <a href="tel:+919899793714" className="font-bold hover:text-[#B08A4A] tabular-nums">+91 98997 93714</a> (MD Khurshid / Workshop)
                     </div>
                   </div>
                 </div>
 
                 {/* Operational Hours */}
-                <div className="p-5 bg-white border border-[#0B0D0F]/15 space-y-1">
-                  <div className="flex items-center gap-2 font-bold text-[#0B0D0F]">
+                <div className="p-5 bg-[#14171A] border border-white/10 space-y-1 arch-card-dark">
+                  <div className="flex items-center gap-2 font-bold text-white">
                     <Clock className="size-4 text-[#B08A4A]" />
                     <span className="uppercase">Operating Hours</span>
                   </div>
-                  <p className="text-xs text-[#525860] font-sans pl-6">
-                    Monday – Saturday: 8:00 AM – 8:00 PM <br />
+                  <p className="text-xs text-[#8C9398] font-sans pl-6">
+                    Monday - Saturday: 8:00 AM - 8:00 PM <br />
                     Sunday: By appointment for site visits
                   </p>
                 </div>
@@ -115,7 +115,7 @@ function ContactPage() {
 
             {/* Right Column: Google Maps Embed (7 cols) */}
             <div className="lg:col-span-7">
-              <div className="arch-card-light overflow-hidden bg-white p-2.5 border border-[#0B0D0F]/15 shadow-2xl">
+              <div className="arch-card-dark overflow-hidden bg-[#14171A] p-2.5 border border-white/15 shadow-2xl">
                 <div className="relative aspect-[16/10] bg-[#0B0D0F] overflow-hidden">
                   <iframe
                     src={company.mapEmbed}
@@ -131,7 +131,7 @@ function ContactPage() {
                     href="https://maps.google.com/?q=D179+Sector+10+Noida"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-bold text-[#0B0D0F] hover:underline"
+                    className="font-bold text-[#B08A4A] hover:underline"
                   >
                     Open in Google Maps &rarr;
                   </a>

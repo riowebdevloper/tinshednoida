@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Calculator, ArrowRight, MessageCircle, Phone, FileText, CheckCircle2, ShieldCheck, Ruler } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { company } from "@/lib/site-data";
 
 interface ShedOption {
   type: string;
@@ -64,10 +63,10 @@ export function EstimatorWidget() {
   const estimatedMaxCost = Math.round((area * totalRatePerSqFt * 1.05) / 100000);
 
   return (
-    <div className="arch-card-light overflow-hidden bg-white border border-[#0B0D0F]/15 shadow-2xl p-6 sm:p-10 text-[#0B0D0F]">
+    <div className="arch-card-dark overflow-hidden bg-[#14171A] border border-white/15 shadow-2xl p-6 sm:p-10 text-white">
       
       {/* Header */}
-      <div className="border-b border-[#0B0D0F]/15 pb-6 mb-8">
+      <div className="border-b border-white/10 pb-6 mb-8">
         <div className="flex items-center gap-3 mb-2">
           <span className="h-px w-8 bg-[#B08A4A]" />
           <span className="font-mono-tag text-[#B08A4A] text-xs font-bold">
@@ -77,7 +76,7 @@ export function EstimatorWidget() {
         <h3 className="font-editorial-title text-2xl sm:text-4xl font-extrabold uppercase">
           Steel Tonnage &amp; Cost Estimator
         </h3>
-        <p className="mt-2 text-xs sm:text-sm text-[#525860] font-sans">
+        <p className="mt-2 text-xs sm:text-sm text-[#8C9398] font-sans">
           Calculate estimated IS 2062 prime steel tonnage, metric tonnes, and budget range based on covered area and structural scope.
         </p>
       </div>
@@ -89,7 +88,7 @@ export function EstimatorWidget() {
           
           {/* Structure Type Selectors */}
           <div>
-            <label className="block font-mono text-xs font-bold text-[#0B0D0F] uppercase mb-2">
+            <label className="block font-mono text-xs font-bold text-white uppercase mb-2">
               1. SELECT STRUCTURE TYPE
             </label>
             <div className="grid gap-2 sm:grid-cols-2">
@@ -100,14 +99,14 @@ export function EstimatorWidget() {
                   onClick={() => setSelectedType(type.type)}
                   className={`p-3.5 text-left border transition-all ${
                     selectedType === type.type
-                      ? "border-[#0B0D0F] bg-[#0B0D0F] text-white shadow-sm"
-                      : "border-[#0B0D0F]/15 bg-[#F3F1EC] text-[#0B0D0F] hover:border-[#0B0D0F]"
+                      ? "border-[#B08A4A] bg-[#B08A4A] text-[#0B0D0F] shadow-sm font-bold"
+                      : "border-white/15 bg-[#0B0D0F] text-white hover:border-[#B08A4A]"
                   }`}
                 >
                   <span className="font-editorial-title text-xs font-bold uppercase block">
                     {type.label}
                   </span>
-                  <span className={`text-[0.6875rem] font-sans block mt-1 line-clamp-2 ${selectedType === type.type ? "text-[#C8CCD0]" : "text-[#525860]"}`}>
+                  <span className={`text-[0.6875rem] font-sans block mt-1 line-clamp-2 ${selectedType === type.type ? "text-[#0B0D0F]/80" : "text-[#8C9398]"}`}>
                     {type.desc}
                   </span>
                 </button>
@@ -118,7 +117,7 @@ export function EstimatorWidget() {
           {/* Area Slider */}
           <div>
             <div className="flex items-center justify-between font-mono text-xs mb-2">
-              <span className="font-bold text-[#0B0D0F] uppercase">2. COVERED AREA (SQ.FT)</span>
+              <span className="font-bold text-white uppercase">2. COVERED AREA (SQ.FT)</span>
               <span className="font-bold text-[#B08A4A] text-sm tabular-nums">
                 {area.toLocaleString()} SQ.FT
               </span>
@@ -130,7 +129,7 @@ export function EstimatorWidget() {
               step={500}
               value={area}
               onChange={(e) => setArea(Number(e.target.value))}
-              className="w-full accent-[#B08A4A] bg-[#F3F1EC] h-2 rounded-none cursor-pointer"
+              className="w-full accent-[#B08A4A] bg-[#0B0D0F] h-2 rounded-none cursor-pointer"
             />
             <div className="flex justify-between font-mono text-[0.6875rem] text-[#8C9398] mt-1">
               <span>1,000 sq.ft</span>
@@ -141,11 +140,11 @@ export function EstimatorWidget() {
 
           {/* Optional Additions */}
           <div>
-            <label className="block font-mono text-xs font-bold text-[#0B0D0F] uppercase mb-2">
+            <label className="block font-mono text-xs font-bold text-white uppercase mb-2">
               3. STRUCTURAL ADDITIONS
             </label>
             <div className="space-y-2 font-mono text-xs">
-              <label className="flex items-center gap-3 p-3 border border-[#0B0D0F]/15 bg-[#F3F1EC] cursor-pointer">
+              <label className="flex items-center gap-3 p-3 border border-white/15 bg-[#0B0D0F] cursor-pointer">
                 <input
                   type="checkbox"
                   checked={craneGantry}
@@ -153,12 +152,12 @@ export function EstimatorWidget() {
                   className="size-4 accent-[#B08A4A]"
                 />
                 <div>
-                  <span className="font-bold text-[#0B0D0F] block">Include Heavy Crane Gantry Girder Columns (+20% Steel)</span>
-                  <span className="text-[0.6875rem] text-[#525860]">Engineered to support 5T to 20T overhead electric traveling (EOT) cranes</span>
+                  <span className="font-bold text-white block">Include Heavy Crane Gantry Girder Columns (+20% Steel)</span>
+                  <span className="text-[0.6875rem] text-[#8C9398]">Engineered to support 5T to 20T overhead electric traveling (EOT) cranes</span>
                 </div>
               </label>
 
-              <label className="flex items-center gap-3 p-3 border border-[#0B0D0F]/15 bg-[#F3F1EC] cursor-pointer">
+              <label className="flex items-center gap-3 p-3 border border-white/15 bg-[#0B0D0F] cursor-pointer">
                 <input
                   type="checkbox"
                   checked={pufInsulation}
@@ -166,8 +165,8 @@ export function EstimatorWidget() {
                   className="size-4 accent-[#B08A4A]"
                 />
                 <div>
-                  <span className="font-bold text-[#0B0D0F] block">Include PUF / PIR Thermal Insulation Sandwich Panels</span>
-                  <span className="text-[0.6875rem] text-[#525860]">For cold storages and temperature-sensitive manufacturing bays</span>
+                  <span className="font-bold text-white block">Include PUF / PIR Thermal Insulation Sandwich Panels</span>
+                  <span className="text-[0.6875rem] text-[#8C9398]">For cold storages and temperature-sensitive manufacturing bays</span>
                 </div>
               </label>
             </div>
@@ -209,7 +208,7 @@ export function EstimatorWidget() {
               ESTIMATED PROJECT BUDGET RANGE:
             </span>
             <div className="font-editorial-title text-2xl sm:text-3xl font-extrabold text-white">
-              ₹{estimatedMinCost} Lakh – ₹{estimatedMaxCost} Lakh
+              ₹{estimatedMinCost} Lakh - ₹{estimatedMaxCost} Lakh
             </div>
             <p className="mt-1 text-[0.6875rem] text-[#8C9398] font-mono">
               *Includes IS 2062 steel, welding, red oxide primer &amp; crane erection. Final rate subject to site elevation survey.

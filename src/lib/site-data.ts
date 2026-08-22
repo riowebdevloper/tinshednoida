@@ -55,7 +55,7 @@ export const company = {
   youtube: "https://www.youtube.com/@DeepEnterprises-yu2vo",
   youtubeHandle: "@DeepEnterprises-yu2vo",
   address: "D179 Sector 10, Noida, Uttar Pradesh",
-  hours: "Mon – Sun · 8:00 AM – 8:00 PM",
+  hours: "Mon  -  Sun · 8:00 AM  -  8:00 PM",
   since: "2010",
   mapEmbed:
     "https://www.google.com/maps?q=D179%20Sector%2010%20Noida%20Uttar%20Pradesh&output=embed",
@@ -142,7 +142,7 @@ export const whyBuildWithUs = [
     number: "04",
     title: "Transparent Quotations",
     description:
-      "Itemized bill of quantities with steel weight estimates and material specifications before work begins — zero surprise charges.",
+      "Itemized bill of quantities with steel weight estimates and material specifications before work begins  -  zero surprise charges.",
   },
   {
     number: "05",
@@ -201,10 +201,10 @@ export const needs: {
     alt: "Long-span commercial warehouse shed facility",
     benefits: [
       "Column-free clear span floor area for smooth material and vehicle handling",
-      "High eaves clearance (15–32 ft) for multi-tier heavy storage racking",
+      "High eaves clearance (15 - 32 ft) for multi-tier heavy storage racking",
       "Integrated heavy-gauge rainwater gutters & downspout drainage systems",
     ],
-    specifications: "Eaves height 15–32 ft • High-tensile purlins • Polycarbonate lighting roof sheets",
+    specifications: "Eaves height 15 - 32 ft • High-tensile purlins • Polycarbonate lighting roof sheets",
     quoteOptionNeed: "Warehouse Shed",
   },
   {
@@ -251,11 +251,11 @@ export const needs: {
     image: svcRoofing,
     alt: "Workers installing roofing and insulated PUF panels",
     benefits: [
-      "High-tensile colour-coated GI & Galvalume roofing sheets (0.45mm – 0.60mm)",
+      "High-tensile colour-coated GI & Galvalume roofing sheets (0.45mm  -  0.60mm)",
       "Thermal PUF sandwich panels maintaining controlled indoor temperatures",
       "100% leak-proof screw fastening with UV-resistant EPDM washers",
     ],
-    specifications: "Sheet thickness 0.45mm – 0.60mm • PUF density 40±2 kg/m³ • 100% leak-proof fit",
+    specifications: "Sheet thickness 0.45mm  -  0.60mm • PUF density 40±2 kg/m³ • 100% leak-proof fit",
     quoteOptionNeed: "Roofing & PUF Panel",
   },
   {
@@ -272,15 +272,197 @@ export const needs: {
       "Chequered steel plate or heavy deck sheet flooring with safety handrails",
       "Integrated staircase, pallet loading gates, and modular expansion design",
     ],
-    specifications: "Load capacity 300–1500 kg/m² • Heavy I-beam main girders • Safety handrails & stairs",
+    specifications: "Load capacity 300 - 1500 kg/m² • Heavy I-beam main girders • Safety handrails & stairs",
     quoteOptionNeed: "Mezzanine Floor",
   },
 ];
 
-export const services = needs.map((need, index) => ({
-  code: String(index + 1).padStart(2, "0"),
-  ...need,
-}));
+export interface ServiceItem {
+  id: string;
+  code: string;
+  label: string;
+  title: string;
+  short: string;
+  summary: string;
+  body: string;
+  description: string;
+  specs: string[];
+  specifications: string;
+  href: string;
+  image: string;
+  imageWebp: string;
+  useCases: string[];
+  benefits: string[];
+  quoteOptionNeed: string;
+}
+
+export const services: ServiceItem[] = [
+  {
+    id: "industrial-shed",
+    code: "01",
+    label: "Industrial Shed",
+    title: "Industrial Manufacturing Sheds",
+    short: "Factories & Heavy Workshops",
+    summary: "Heavy-duty clear-span shed structures for manufacturing plants, fabrication units, and heavy industrial machinery.",
+    body: "Heavy-duty clear-span shed structures for manufacturing units, machine shops, processing factories, and industrial plants.",
+    description: "In-house mild steel fabrication in Noida Sector 10. Rated for overhead gantry cranes, heavy machine vibration, and high-tensile clear spans up to 100ft.",
+    specs: ["Span up to 100ft Clear Span", "IS 2062 Grade Prime Steel", "Anti-Rust Zinc Phosphate Primer", "40T Overhead Gantry Compatible"],
+    specifications: "Span up to 100ft clear span • IS 2062 Grade Steel • Anti-rust primer & epoxy coating",
+    href: "/services/industrial-shed",
+    image: svcIndustrial,
+    imageWebp: "/images/services/svc-industrial.webp",
+    useCases: ["Manufacturing Plants", "Machine Workshops", "Fabrication Units", "Heavy Industrial Bays"],
+    benefits: [
+      "Heavy-duty MS structural frames rated for overhead cranes and machine vibration",
+      "Custom ridge ventilators & translucent polycarbonate daylighting panels",
+      "Weatherproof GI & colour-coated trapezoidal sheeting",
+    ],
+    quoteOptionNeed: "Industrial Shed",
+  },
+  {
+    id: "warehouse-shed",
+    code: "02",
+    label: "Warehouse Shed",
+    title: "Logistics Warehouse Structures",
+    short: "Storage & Distribution Hubs",
+    summary: "Large clear-span warehouse roofing and enclosures engineered to maximize usable floor area for high-density racking.",
+    body: "Large clear-span warehouse roofing and enclosures engineered to maximize usable floor area for high-density racking and forklift movement.",
+    description: "Column-free internal spans up to 120ft engineered for multi-tier racking, container turning circles, and seamless logistics.",
+    specs: ["Span up to 120ft Column-Free", "Eaves Height 15 to 32ft", "Heavy-Gauge Rainwater Gutters", "High-Cube Racking Ready"],
+    specifications: "Eaves height 15 - 32 ft • High-tensile purlins • Polycarbonate lighting roof sheets",
+    href: "/services/warehouse-shed",
+    image: svcWarehouse,
+    imageWebp: "/images/services/svc-warehouse.webp",
+    useCases: ["Logistics Parks", "E-Commerce Fulfillment Hubs", "Cold Storage Yards", "Bulk Storage Facilities"],
+    benefits: [
+      "Column-free clear span floor area for smooth material and vehicle handling",
+      "High eaves clearance (15 - 32 ft) for multi-tier heavy storage racking",
+      "Integrated heavy-gauge rainwater gutters & downspout drainage systems",
+    ],
+    quoteOptionNeed: "Warehouse Shed",
+  },
+  {
+    id: "ms-structure",
+    code: "03",
+    label: "MS Structure",
+    title: "Mild Steel (MS) Structures",
+    short: "Structural Steel Framing",
+    summary: "Precision-welded mild steel columns, heavy tubular trusses, rafters, purlins, and custom structural frameworks.",
+    body: "Precision-welded mild steel columns, heavy tubular trusses, rafters, purlins, and custom structural frameworks fabricated directly on site.",
+    description: "Fabricated with certified ISMB, ISMC, and heavy hollow section tubular trusses. Full ultrasonic weld integrity and dual-coat red-oxide primer.",
+    specs: ["IS 2062 Grade Prime Steel", "Continuous Arc Welding (IS 816)", "Dual-Coat Red Oxide Primer", "Custom Structural CAD Drafting"],
+    specifications: "IS 2062 Grade Mild Steel • Certified welders • Customized structural engineering",
+    href: "/services/ms-structure",
+    image: svcMs,
+    imageWebp: "/images/services/svc-ms.webp",
+    useCases: ["Heavy Trusses & Columns", "Crane Gantry Beams", "Industrial Canopies", "Commercial Frameworks"],
+    benefits: [
+      "Heavy ISI-marked steel channel, angle and pipe truss fabrication",
+      "Precision on-site arc welding and high-strength bolted connections",
+      "Double primer & epoxy protective rust-proof treatment",
+    ],
+    quoteOptionNeed: "MS Steel Structure",
+  },
+  {
+    id: "tin-roofing",
+    code: "04",
+    label: "Tin Roofing",
+    title: "Tin Roofing & Cladding",
+    short: "Galvalume & PUF Sheeting",
+    summary: "High-tensile 0.50mm Galvalume sheeting, PUF insulated sandwich panels, and commercial terrace weatherproof shelters.",
+    body: "Corrugated and trapezoidal color-coated Galvalume / GI sheets, thermal PUF insulated sandwich panels, and waterproof roof replacements.",
+    description: "Superior 150 GSM AZ-150 Galvalume coating with EPDM leak-proof fasteners, ridge capping, turbo ventilators, and daylight polycarbonate strips.",
+    specs: ["0.50mm AZ-150 Galvalume", "EPDM Self-Drilling Fasteners", "Polycarbonate Skylight Strips", "Wind-Driven Turbo Ventilators"],
+    specifications: "Sheet thickness 0.45mm - 0.60mm • PUF density 40±2 kg/m³ • 100% leak-proof fit",
+    href: "/services/tin-roofing",
+    image: svcRoofing,
+    imageWebp: "/images/services/svc-roofing.webp",
+    useCases: ["Insulated Cold Storage", "Factory Roof Overhauls", "Commercial Terrace Sheds", "Thermal Proofing"],
+    benefits: [
+      "High-tensile colour-coated GI & Galvalume roofing sheets (0.45mm - 0.60mm)",
+      "Thermal PUF sandwich panels maintaining controlled indoor temperatures",
+      "100% leak-proof screw fastening with UV-resistant EPDM washers",
+    ],
+    quoteOptionNeed: "Roofing & PUF Panel",
+  },
+  {
+    id: "peb-structure",
+    code: "05",
+    label: "PEB Structure",
+    title: "Pre-Engineered Buildings (PEB)",
+    short: "Modular Factory Steel",
+    summary: "Modern factory-engineered steel buildings with built-up I-sections and bolted assembly for high speed delivery.",
+    body: "Factory-fabricated PEB steel building assembled rapidly on site with high structural integrity and column-free reach.",
+    description: "Designed to MBMA and IS 800 standards with 345 MPa high-yield tapered steel columns, cold-formed Z purlins, and integrated crane brackets.",
+    specs: ["Grade 345 MPa High-Yield Steel", "Clear Spans up to 120ft", "MBMA & IS 800 Compliance", "30% Faster Site Assembly"],
+    specifications: "Grade 345 MPa Steel • Bolt-assembled portal frames • Turnkey crane hoisting",
+    href: "/services/peb-structure",
+    image: svcPeb,
+    imageWebp: "/images/services/svc-peb.webp",
+    useCases: ["Heavy Industrial Sheds", "Cold Storages", "Large Logistics Godowns", "Aircraft Hangars"],
+    benefits: [
+      "Precision engineered built-up I-sections for optimal steel strength-to-weight ratio",
+      "Modular bolted on-site erection reducing total project timeline",
+      "Turnkey crane erection with zero on-site hot cutting",
+    ],
+    quoteOptionNeed: "PEB Structure",
+  },
+  {
+    id: "repair-renovation",
+    code: "06",
+    label: "Repair & Renovation",
+    title: "Shed Repair & Retrofitting",
+    short: "Overhauls & Reinforcement",
+    summary: "Emergency leak-proofing, column reinforcement, sagging truss repair, roof sheet replacement, and structural expansion.",
+    body: "Professional industrial shed maintenance, damaged truss repair, gutter retrofitting, and bay extension services.",
+    description: "Rapid on-site structural repair team for monsoon leak repairs, storm-damaged roof replacements, and height/length expansions.",
+    specs: ["Fast Emergency Response", "Structural Load Recalculation", "Heavy Gusset Reinforcement", "Watertight Guarantee"],
+    specifications: "Fast emergency response • IS 2062 Gussets & welding • Watertight leak seal",
+    href: "/services/repair-renovation",
+    image: svcRepair,
+    imageWebp: "/images/services/svc-repair.webp",
+    useCases: ["Monsoon Leak Repair", "Damaged Truss Straightening", "Gutter & Downspout Replacement", "Factory Shed Expansion"],
+    benefits: [
+      "Fast response site assessment for active factories with minimal operational downtime",
+      "Heavy structural gusset plate welding and rusted member replacement",
+      "Complete roof sheet replacement and waterproof silicon sealing",
+    ],
+    quoteOptionNeed: "Repair & Renovation",
+  },
+];
+
+export const videos = [
+  {
+    id: "v1",
+    youtubeId: "jZ_y-D4-H7U",
+    title: "100 FT Clear Span Heavy Portal Truss Erection",
+    category: "Heavy Industrial Shed",
+    location: "Noida Sector 63",
+    description:
+      "Direct footage of our mobile hydraulic crane crew hoisting pre-welded 100-foot mild steel truss sections onto 8-meter columns. In-house fabrication from our Noida Sector 10 yard.",
+    specs: "100 Ft Clear Span · 8.8 High-Tensile Fasteners · 40T Mobile Crane",
+  },
+  {
+    id: "v2",
+    youtubeId: "oHg5SJYRHA0",
+    title: "Pre-Engineered Building Warehouse Logistics Godown",
+    category: "Warehouse Structure",
+    location: "Greater Noida Logistics Park",
+    description:
+      "Rapid turnkey erection of a 25,000 sq ft logistics warehouse with column-free clear span, automated crane assembly, and high-tensile bolted foundation anchor cages.",
+    specs: "120 Ft Clear Span · 25,000 Sq Ft Floor · Fast Track Delivery",
+  },
+  {
+    id: "v3",
+    youtubeId: "36YnV9STBqc",
+    title: "Weatherproof Galvalume Roofing & Daylight Strip Installation",
+    category: "Roofing & Cladding",
+    location: "Faridabad Industrial Corridor",
+    description:
+      "Precision fixing of 0.50mm high-tensile Galvalume sheets with EPDM self-drilling fasteners, polycarbonate daylight roof panels, and wind-driven rotary air extractors.",
+    specs: "0.50mm AZ-150 Galvalume · EPDM Fasteners · Turbo Ventilators",
+  },
+];
 
 export const projectCategories = [
   "All",
@@ -289,11 +471,33 @@ export const projectCategories = [
   "Factory",
   "MS Structure",
   "Roofing",
+  "Tin Roofing",
   "PEB",
+  "PEB Structure",
   "Repair/Renovation",
 ] as const;
 
 export type ProjectCategory = (typeof projectCategories)[number];
+
+export interface ProjectItem {
+  id: string;
+  title: string;
+  category: string;
+  location: string;
+  summary: string;
+  scope?: string[];
+  material: string;
+  image: string;
+  alt?: string;
+  coveredArea?: string;
+  clearSpan?: string;
+  eavesHeight?: string;
+  duration?: string;
+  completionYear?: string;
+  featured?: boolean;
+  pageNumber?: number;
+  completedProject?: boolean;
+}
 
 export const catalogPages = Array.from({ length: 51 }, (_, i) => {
   const pageNum = i + 1;
@@ -301,26 +505,13 @@ export const catalogPages = Array.from({ length: 51 }, (_, i) => {
   const selectedPages = [1, 2, 3, 7, 14, 19, 22, 28, 32, 36, 43, 47, 50];
   return {
     page: pageNum,
-    title: `Tin Shade Noida Catalog — Page ${padNum}`,
+    title: `Tin Shade Noida Catalog - Page ${padNum}`,
     image: `/images/catalog/catalog-page-${padNum}.jpg`,
     isSelected: selectedPages.includes(pageNum),
   };
 });
 
-export const projects: {
-  id: string;
-  title: string;
-  category: Exclude<ProjectCategory, "All" | "Completed Projects">;
-  location: string;
-  summary: string;
-  scope: string[];
-  material: string;
-  image: string;
-  alt: string;
-  featured?: boolean;
-  pageNumber?: number;
-  completedProject?: boolean;
-}[] = [
+export const projects: ProjectItem[] = [
   {
     id: "selected-page-01",
     title: "Industrial Storage & Fabrication Shed",
@@ -573,7 +764,7 @@ export const projects: {
     category: "MS Structure",
     location: "Pan India",
     summary:
-      "On-site fabrication of mild steel framework — columns, rafters and bracing — prepared for roof sheeting.",
+      "On-site fabrication of mild steel framework  -  columns, rafters and bracing  -  prepared for roof sheeting.",
     scope: ["Cutting & welding on site", "Column erection", "Rafter alignment", "Primer coating"],
     material: "ISI grade MS sections with rust-proof primer",
     image: svcMs,
@@ -595,7 +786,7 @@ export const processSteps = [
   {
     step: "03",
     title: "Design & quotation",
-    body: "You get a structure plan, material specification and a clear written quotation — no hidden charges.",
+    body: "You get a structure plan, material specification and a clear written quotation  -  no hidden charges.",
   },
   {
     step: "04",
@@ -671,7 +862,7 @@ export const faqs: { category: FaqCategory; q: string; a: string }[] = [
   {
     category: "Pricing",
     q: "How much does a tin shed cost?",
-    a: "Indicative rates: tin shed ₹150–250/sq ft, warehouse ₹200–350/sq ft, MS structure ₹180–300/sq ft. Final cost depends on span, height and material — the free site visit gives you an exact figure.",
+    a: "Indicative rates: tin shed ₹150 - 250/sq ft, warehouse ₹200 - 350/sq ft, MS structure ₹180 - 300/sq ft. Final cost depends on span, height and material  -  the free site visit gives you an exact figure.",
   },
   {
     category: "Pricing",
@@ -701,7 +892,7 @@ export const faqs: { category: FaqCategory; q: string; a: string }[] = [
   {
     category: "Timeline",
     q: "How long does installation take?",
-    a: "Small shed up to 1,000 sq ft: 7–10 days. Medium shed: 15–20 days. Large warehouse: 25–35 days. MS structure: 10–15 days.",
+    a: "Small shed up to 1,000 sq ft: 7 - 10 days. Medium shed: 15 - 20 days. Large warehouse: 25 - 35 days. MS structure: 10 - 15 days.",
   },
   {
     category: "Warranty",
@@ -716,7 +907,7 @@ export const faqs: { category: FaqCategory; q: string; a: string }[] = [
   {
     category: "Service Area",
     q: "Which areas do you cover?",
-    a: "We execute projects Pan India — including Noida, Greater Noida, Delhi NCR, and all major industrial and commercial hubs across India.",
+    a: "We execute projects Pan India  -  including Noida, Greater Noida, Delhi NCR, and all major industrial and commercial hubs across India.",
   },
 ];
 
@@ -815,7 +1006,7 @@ export const youtubeVideos: ProjectVideo[] = [
   {
     id: "mkRndWdXPdI",
     platform: "youtube",
-    title: "टीन शेड बनवाने के लिए संपर्क करें — 8527977714, 9899793714 (Industrial Tin Shed Construction)",
+    title: "टीन शेड बनवाने के लिए संपर्क करें  -  8527977714, 9899793714 (Industrial Tin Shed Construction)",
     description:
       "Onsite video of industrial tin shed construction, heavy MS column framework, and durable color-coated roof sheet installation by Deep Enterprises.",
     embedUrl: "https://www.youtube-nocookie.com/embed/mkRndWdXPdI",
@@ -830,7 +1021,7 @@ export const youtubeVideos: ProjectVideo[] = [
   {
     id: "f2xmWKtkxME",
     platform: "youtube",
-    title: "टीन शेड बनवाने के लिए संपर्क करें — 9899793714, 8527977714 (Heavy Industrial Structure)",
+    title: "टीन शेड बनवाने के लिए संपर्क करें  -  9899793714, 8527977714 (Heavy Industrial Structure)",
     description:
       "Wide-span industrial warehouse structure, heavy mild steel beam alignment, and fast-track shed erection on site.",
     embedUrl: "https://www.youtube-nocookie.com/embed/f2xmWKtkxME",
@@ -845,7 +1036,7 @@ export const youtubeVideos: ProjectVideo[] = [
   {
     id: "J_Y8IzAllCk",
     platform: "youtube",
-    title: "टीन शेड बनवाने के लिए संपर्क करें — 9899793714 (Industrial Framing & Roofing)",
+    title: "टीन शेड बनवाने के लिए संपर्क करें  -  9899793714 (Industrial Framing & Roofing)",
     description:
       "Structural steel framing and roof truss alignment for industrial factory shed with precision arc welding.",
     embedUrl: "https://www.youtube-nocookie.com/embed/J_Y8IzAllCk",
@@ -860,7 +1051,7 @@ export const youtubeVideos: ProjectVideo[] = [
   {
     id: "BbsedKkhB8U",
     platform: "youtube",
-    title: "Deep Enterprises — Rooftop Tin Shed & Metro Shade Contact: 9899793714",
+    title: "Deep Enterprises  -  Rooftop Tin Shed & Metro Shade Contact: 9899793714",
     description:
       "Commercial rooftop tin shed structure, curved cantilever shade, and waterproof roof sheeting by Deep Enterprises.",
     embedUrl: "https://www.youtube-nocookie.com/embed/BbsedKkhB8U",
@@ -875,7 +1066,7 @@ export const youtubeVideos: ProjectVideo[] = [
   {
     id: "07Gt4hpEwtk",
     platform: "youtube",
-    title: "टीन शेड बनवाएं — Deep Enterprises (Turbo Ventilator & Industrial Shade) 9899793714",
+    title: "टीन शेड बनवाएं  -  Deep Enterprises (Turbo Ventilator & Industrial Shade) 9899793714",
     description:
       "Complete industrial tin shade project handover with roof air ventilation turbo fans and heavy rain water gutters.",
     embedUrl: "https://www.youtube-nocookie.com/embed/07Gt4hpEwtk",
@@ -1099,8 +1290,8 @@ export const quoteOptions = {
   ],
   size: [
     "Under 1,000 sq ft",
-    "1,000 – 5,000 sq ft",
-    "5,000 – 10,000 sq ft",
+    "1,000  -  5,000 sq ft",
+    "5,000  -  10,000 sq ft",
     "10,000+ sq ft",
     "Not sure",
   ],
@@ -1112,7 +1303,7 @@ export const quoteOptions = {
     "East / NE India",
     "Pan India / Other",
   ],
-  timeline: ["Immediately", "Within 1 month", "1 – 3 months", "Just exploring"],
+  timeline: ["Immediately", "Within 1 month", "1  -  3 months", "Just exploring"],
 };
 
 export const leadership = {

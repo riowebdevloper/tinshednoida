@@ -14,19 +14,23 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-[#0B0D0F] text-white px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+        <span className="font-mono text-xs text-[#B08A4A] uppercase tracking-widest font-bold block mb-2">
+          ERROR 404
+        </span>
+        <h1 className="font-editorial-title text-5xl sm:text-6xl font-extrabold text-white uppercase">
+          PAGE NOT FOUND
+        </h1>
+        <p className="mt-4 text-sm text-[#8C9398] font-sans">
+          The requested engineering page does not exist or has been relocated within our archive.
         </p>
-        <div className="mt-6">
+        <div className="mt-8">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="btn-arch-primary text-xs"
           >
-            Go home
+            RETURN TO HOMEPAGE
           </Link>
         </div>
       </div>
@@ -42,29 +46,32 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-[#0B0D0F] text-white px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+        <span className="font-mono text-xs text-[#B08A4A] uppercase tracking-widest font-bold block mb-2">
+          SYSTEM NOTICE
+        </span>
+        <h1 className="font-editorial-title text-3xl sm:text-4xl font-extrabold text-white uppercase">
+          TECHNICAL ERROR
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+        <p className="mt-3 text-sm text-[#8C9398] font-sans">
+          An unexpected error occurred while loading this view.
         </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
           <button
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="btn-arch-primary text-xs"
           >
-            Try again
+            RELOAD VIEW
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="btn-arch-secondary text-xs"
           >
-            Go home
+            RETURN HOME
           </a>
         </div>
       </div>
@@ -77,14 +84,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Tin Shade Noida — Tin Shed & MS Structure Engineering" },
+      { title: "Tin Shade Noida - Industrial Shed & Structural Steel Engineering" },
       {
         name: "description",
         content:
-          "Site-fabricated tin sheds, warehouse roofing and MS structures across Noida and Pan India.",
+          "In-house mild steel fabrication shop in Noida Sector 10. Turnkey manufacturing factory sheds, warehouses, and heavy MS frameworks up to 120ft clear span across India.",
       },
       { name: "author", content: "Tin Shade Noida" },
-      { name: "theme-color", content: "#0f1216" },
+      { name: "theme-color", content: "#0B0D0F" },
       { property: "og:site_name", content: "Tin Shade Noida" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -96,7 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Space+Grotesk:wght@500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap",
       },
 
       {
@@ -118,10 +125,10 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="bg-[#0B0D0F] text-white selection:bg-[#B08A4A] selection:text-[#0B0D0F]">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded-sm focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-[#B08A4A] focus:px-4 focus:py-2 focus:text-xs focus:font-bold focus:text-[#0B0D0F]"
         >
           Skip to main content
         </a>
@@ -137,7 +144,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
   );

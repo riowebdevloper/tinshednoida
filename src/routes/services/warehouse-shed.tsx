@@ -4,7 +4,7 @@ import { ServiceDetailView, type ServiceDetailData } from "@/components/site/Ser
 import { FinalCta } from "@/components/site/FinalCta";
 import svcWarehouse from "@/assets/gen/svc-warehouse.jpg";
 
-const title = "Warehouse Shed & Logistics Godown Construction — Tin Shade Noida";
+const title = "Warehouse Shed & Logistics Godown Construction  -  Tin Shade Noida";
 const description =
   "Large clear-span warehouse and storage shed construction up to 120ft column-free span for logistics hubs and fulfillment centers across India.";
 
@@ -34,7 +34,7 @@ const data: ServiceDetailData = {
   image: svcWarehouse,
   spanReach: "Up to 120 FT Clear Span",
   steelGrade: "IS 2062 Prime Mild Steel",
-  eavesHeight: "20 – 36 Feet",
+  eavesHeight: "20 - 36 Feet",
   standardCode: "IS 875 (Wind & Dead Load)",
   applications: [
     "E-Commerce Fulfillment Centers",
@@ -81,7 +81,7 @@ const data: ServiceDetailData = {
   ],
   relatedProjectIds: ["selected-page-02", "selected-page-28", "warehouse-greater-noida"],
   relatedVideoId: "f2xmWKtkxME",
-  catalogPageRange: "Pages 16 – 28",
+  catalogPageRange: "Pages 16 - 28",
   faqs: [
     {
       q: "What is the maximum clear span available without intermediate columns?",

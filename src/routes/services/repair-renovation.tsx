@@ -4,7 +4,7 @@ import { ServiceDetailView, type ServiceDetailData } from "@/components/site/Ser
 import { FinalCta } from "@/components/site/FinalCta";
 import svcRepair from "@/assets/gen/svc-repair.jpg";
 
-const title = "Industrial Shed Repair, Renovation & Strengthening — Tin Shade Noida";
+const title = "Industrial Shed Repair, Renovation & Strengthening  -  Tin Shade Noida";
 const description =
   "Industrial shed leak repair, rusted sheet replacement, structural steel strengthening, and warehouse extensions across Noida & Pan India.";
 
@@ -60,7 +60,7 @@ const data: ServiceDetailData = {
     },
   ],
   benefits: [
-    "Extends existing industrial shed life by 10–15+ years at a fraction of new build cost",
+    "Extends existing industrial shed life by 10-15+ years at a fraction of new build cost",
     "Executed in phased stages without interrupting internal factory manufacturing",
     "Replacement of old leaking screws with modern oversized EPDM washers",
     "Complete structural guarantee on all reinforced steelwork and re-sheeted roofs",
@@ -76,12 +76,12 @@ const data: ServiceDetailData = {
     },
     {
       title: "Heavy-Gauge Gutters",
-      desc: "Custom-bent 1.2mm – 1.6mm galvanized drainage gutters with high discharge capacity.",
+      desc: "Custom-bent 1.2mm - 1.6mm galvanized drainage gutters with high discharge capacity.",
     },
   ],
   relatedProjectIds: ["selected-page-47", "selected-page-50"],
   relatedVideoId: "07Gt4hpEwtk",
-  catalogPageRange: "Pages 48 – 51",
+  catalogPageRange: "Pages 48 - 51",
   faqs: [
     {
       q: "Can you fix roof leaks without replacing the entire roof?",

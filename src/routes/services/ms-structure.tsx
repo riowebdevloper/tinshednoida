@@ -4,7 +4,7 @@ import { ServiceDetailView, type ServiceDetailData } from "@/components/site/Ser
 import { FinalCta } from "@/components/site/FinalCta";
 import svcMs from "@/assets/gen/svc-ms.jpg";
 
-const title = "Mild Steel (MS) Structure Fabrication & Steel Framing — Tin Shade Noida";
+const title = "Mild Steel (MS) Structure Fabrication & Steel Framing  -  Tin Shade Noida";
 const description =
   "Custom mild steel framing, tubular trusses, crane gantry beams, and heavy industrial columns fabricated to IS 2062 standards.";
 
@@ -81,7 +81,7 @@ const data: ServiceDetailData = {
   ],
   relatedProjectIds: ["selected-page-03", "selected-page-43", "ms-fabrication"],
   relatedVideoId: "J_Y8IzAllCk",
-  catalogPageRange: "Pages 29 – 38",
+  catalogPageRange: "Pages 29 - 38",
   faqs: [
     {
       q: "What welding standards are followed during fabrication?",

@@ -3,7 +3,7 @@ import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { Videos } from "@/components/site/Videos";
 import { FinalCta } from "@/components/site/FinalCta";
 
-const title = "Project Action Video | On-Site Crane Erection & Fabrication — Tin Shade Noida";
+const title = "Project Action Video | On-Site Crane Erection & Fabrication  -  Tin Shade Noida";
 const description =
   "Watch real on-site video documentation of industrial shed fabrication, heavy crane lifting, and roof sheeting across India by Tin Shade Noida.";
 
