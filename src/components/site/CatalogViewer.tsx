@@ -93,29 +93,29 @@ export function CatalogViewer() {
                 </li>
               </ul>
 
-              <div className="mt-6 flex flex-wrap gap-2.5">
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <a
                   href={pdfUrl}
                   download="TIN_SHADE_NOIDA_CATALOG.pdf"
-                  className="flex-1 inline-flex items-center justify-center gap-2 rounded-xs bg-primary px-4 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground shadow-md transition-transform hover:-translate-y-px"
+                  className="inline-flex items-center justify-center gap-2 rounded-xs bg-primary px-4 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground shadow-md transition-transform hover:-translate-y-px text-center"
                 >
-                  <Download className="size-4" />
-                  Download Catalog (PDF)
+                  <Download className="size-4" aria-hidden="true" />
+                  <span>Download Catalog (PDF)</span>
                 </a>
 
                 <a
                   href={pdfUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xs border border-steel-line bg-steel-deep px-4 py-3 font-display text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-primary hover:text-primary"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xs border border-steel-line bg-steel-deep px-4 py-3 font-display text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-primary hover:text-primary text-center"
                 >
-                  <Eye className="size-4" />
-                  Open PDF
+                  <Eye className="size-4" aria-hidden="true" />
+                  <span>Open PDF</span>
                 </a>
               </div>
             </div>
 
-            <p className="font-mono text-[0.7rem] text-steel-muted">
+            <p className="font-mono text-xs text-steel-muted">
               * Verified structural portfolio provided for civil engineering reference and project tenders.
             </p>
           </div>
@@ -124,14 +124,14 @@ export function CatalogViewer() {
           <div className="lg:col-span-7 space-y-6">
             <div className="flex items-center gap-2">
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
-                TURNKEY EXECUTION TIMELINE
+                Turnkey Execution Timeline
               </span>
               <span className="text-steel-muted font-mono text-xs">/ Ground to Handover</span>
             </div>
 
             <div>
               <h3 className="font-display text-2xl sm:text-3xl font-extrabold uppercase leading-tight text-white">
-                HOW WE BUILD YOUR STRUCTURE
+                How We Build Your Structure
               </h3>
               <p className="mt-2 text-sm text-steel-muted">
                 Transparent 5-stage industrial engineering workflow executed by our in-house crew.
@@ -150,15 +150,15 @@ export function CatalogViewer() {
                   </span>
 
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2">
-                      <h4 className="font-display text-base font-bold uppercase text-white">
-                        {step.title}
-                      </h4>
-                      <span className="font-mono text-[0.62rem] text-steel-muted uppercase bg-steel-deep px-2 py-0.5 rounded-xs border border-steel-line shrink-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <span className="font-mono text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-xs border border-primary/20">
                         {step.badge}
                       </span>
                     </div>
-                    <p className="mt-1 text-xs leading-relaxed text-steel-muted">
+                    <h4 className="font-display text-base font-bold text-white">
+                      {step.title}
+                    </h4>
+                    <p className="mt-1 text-xs sm:text-sm leading-relaxed text-steel-muted">
                       {step.desc}
                     </p>
                   </div>

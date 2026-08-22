@@ -123,10 +123,10 @@ export function Hero() {
         {/* Bottom-Left Live Architectural Project Badge */}
         <div className="absolute bottom-4 left-4 sm:left-6 z-20 hidden sm:block pointer-events-none">
           <div className="rounded-xs bg-black/80 px-3.5 py-2 border border-white/15 backdrop-blur-md max-w-md">
-            <span className="font-mono text-[0.65rem] text-primary uppercase font-bold tracking-wider block">
-              REAL SITE EXECUTION / {heroSlides[index]?.language}
+            <span className="font-mono text-xs text-primary uppercase font-bold tracking-wider block">
+              Real Site Execution / {heroSlides[index]?.language}
             </span>
-            <p className="font-display text-sm font-bold uppercase text-white tracking-wide mt-0.5">
+            <p className="font-display text-sm font-bold text-white tracking-wide mt-0.5">
               {heroSlides[index]?.title}
             </p>
           </div>
@@ -157,13 +157,13 @@ export function Hero() {
             
             {/* Value Statement (7 cols) */}
             <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 rounded-xs border border-primary/40 bg-primary/10 px-2.5 py-1 text-[0.68rem] font-mono font-bold uppercase tracking-wider text-primary">
+              <div className="inline-flex items-center gap-2 rounded-xs border border-primary/40 bg-primary/10 px-2.5 py-1 text-xs font-mono font-bold uppercase tracking-wider text-primary">
                 <HardHat className="size-3.5" />
                 DIRECT INDUSTRIAL FABRICATORS & ERECTORS
               </div>
-              <h1 className="mt-3 font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase leading-tight tracking-tight text-white">
-                HEAVY-DUTY INDUSTRIAL SHEDS &
-                <span className="block text-primary">STRUCTURAL STEEL FABRICATION.</span>
+              <h1 className="mt-3 font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-white">
+                Heavy-Duty Industrial Sheds &amp;
+                <span className="block text-primary">Structural Steel Fabrication</span>
               </h1>
               <p className="mt-2.5 text-sm sm:text-base text-steel-muted leading-relaxed max-w-2xl">
                 From 2,000 to 100,000+ sq. ft. factories, logistics warehouses, and heavy MS frameworks. In-house fabrication yard in Noida Sector 10 with turnkey crane erection nationwide.
@@ -174,27 +174,27 @@ export function Hero() {
             <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center">
               <Link
                 to="/quote"
-                className="inline-flex items-center justify-center gap-2 rounded-xs bg-primary px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-elevated transition-transform hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 rounded-xs bg-primary px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-elevated transition-transform hover:-translate-y-0.5 text-center"
               >
                 <span>Request Free Site Quotation</span>
-                <ArrowRight className="size-4" />
+                <ArrowRight className="size-4" aria-hidden="true" />
               </Link>
 
               <div className="grid grid-cols-2 gap-2">
                 <a
                   href="#estimator"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xs border border-steel-line bg-steel-deep px-3 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-primary hover:text-primary text-center"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xs border border-steel-line bg-steel-deep px-3.5 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-primary hover:text-primary text-center"
                 >
-                  <Calculator className="size-3.5 text-primary" />
+                  <Calculator className="size-3.5 text-primary" aria-hidden="true" />
                   <span>Cost Estimator</span>
                 </a>
 
                 <a
                   href={company.brochurePdf || "/catalog/tin-shade-noida-catalog.pdf"}
                   download="TIN_SHADE_NOIDA_CATALOG.pdf"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xs border border-steel-line bg-steel-deep px-3 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-primary hover:text-primary text-center"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xs border border-steel-line bg-steel-deep px-3.5 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-primary hover:text-primary text-center"
                 >
-                  <Download className="size-3.5 text-primary" />
+                  <Download className="size-3.5 text-primary" aria-hidden="true" />
                   <span>51-Pg Catalog</span>
                 </a>
               </div>
@@ -206,19 +206,19 @@ export function Hero() {
           <div className="mt-8 pt-6 border-t border-steel-line grid grid-cols-2 gap-4 sm:grid-cols-4">
             <div>
               <span className="block font-display text-xl sm:text-2xl font-extrabold text-white">15+ YEARS</span>
-              <span className="block text-[0.7rem] font-mono text-steel-muted uppercase tracking-wider">In-House Fabrication</span>
+              <span className="block text-xs font-mono text-steel-muted uppercase tracking-wider">In-House Fabrication</span>
             </div>
             <div>
               <span className="block font-display text-xl sm:text-2xl font-extrabold text-white">500+ SHEDS</span>
-              <span className="block text-[0.7rem] font-mono text-steel-muted uppercase tracking-wider">Completed Across India</span>
+              <span className="block text-xs font-mono text-steel-muted uppercase tracking-wider">Completed Across India</span>
             </div>
             <div>
               <span className="block font-display text-xl sm:text-2xl font-extrabold text-white">120 FT</span>
-              <span className="block text-[0.7rem] font-mono text-steel-muted uppercase tracking-wider">Max Clear Span</span>
+              <span className="block text-xs font-mono text-steel-muted uppercase tracking-wider">Max Clear Span</span>
             </div>
             <div>
               <span className="block font-display text-xl sm:text-2xl font-extrabold text-white">IS 2062</span>
-              <span className="block text-[0.7rem] font-mono text-steel-muted uppercase tracking-wider">Certified Mild Steel</span>
+              <span className="block text-xs font-mono text-steel-muted uppercase tracking-wider">Certified Mild Steel</span>
             </div>
           </div>
 

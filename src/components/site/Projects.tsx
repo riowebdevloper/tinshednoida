@@ -54,106 +54,111 @@ export function Projects({ showFilters = true }: { showFilters?: boolean }) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-8">
-          <div className="max-w-3xl">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border pb-8">
+          <div className="max-w-2xl">
             <div className="flex items-center gap-2">
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
-                AUTHENTIC PROJECT PORTFOLIO
+                Authentic Project Portfolio
               </span>
               <span className="text-muted-foreground font-mono text-xs">/ Real Site Erection</span>
             </div>
-            <h2 className="mt-3 font-display text-3xl sm:text-5xl font-extrabold uppercase leading-tight tracking-tight text-foreground">
-              SELECTED PROJECT LEDGER
+            <h2 className="mt-2 font-display text-3xl sm:text-5xl font-extrabold uppercase leading-tight tracking-tight text-foreground">
+              Selected Project Ledger
             </h2>
-            <p className="mt-3 text-base text-muted-foreground leading-relaxed">
+            <p className="mt-2 text-sm sm:text-base text-muted-foreground leading-relaxed">
               Real structural fabrication and on-site crane erection projects executed across Noida, Greater Noida, and industrial hubs across India.
             </p>
           </div>
 
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 rounded-xs bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground shadow-xs transition-transform hover:-translate-y-px"
+            className="self-start md:self-end shrink-0 inline-flex items-center gap-2 rounded-xs bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground shadow-xs transition-transform hover:-translate-y-px"
           >
             <span>View All Projects</span>
-            <ArrowRight className="size-3.5" />
+            <ArrowRight className="size-3.5" aria-hidden="true" />
           </Link>
         </div>
 
-        {/* Filter Categories */}
+        {/* Filter Categories with Visual Grouping */}
         {showFilters && (
-          <div className="no-scrollbar mt-8 -mx-4 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0">
-            {projectCategories.map((category) => (
-              <button
-                key={category}
-                type="button"
-                onClick={() => {
-                  setFilter(category);
-                  setOpenIndex(null);
-                }}
-                aria-pressed={filter === category}
-                className={`shrink-0 rounded-xs border px-3.5 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-all ${
-                  filter === category
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border bg-card text-muted-foreground hover:border-primary hover:text-foreground"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+          <div className="no-scrollbar mt-8 -mx-4 flex items-center gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0">
+            {projectCategories.map((category, idx) => {
+              const isStatusFilter = category === "Completed Projects" || category === "Under Construction";
+              const isFirstStatus = category === "Completed Projects";
+
+              return (
+                <div key={category} className="flex items-center gap-2 shrink-0">
+                  {isFirstStatus && (
+                    <div className="h-5 w-px bg-border mx-1.5 hidden sm:block" aria-hidden="true" />
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFilter(category);
+                      setOpenIndex(null);
+                    }}
+                    aria-pressed={filter === category}
+                    className={`shrink-0 rounded-xs border px-3.5 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-all ${
+                      filter === category
+                        ? "border-primary bg-primary text-primary-foreground shadow-xs"
+                        : isStatusFilter
+                        ? "border-border bg-steel/20 text-muted-foreground hover:border-primary hover:text-foreground"
+                        : "border-border bg-card text-muted-foreground hover:border-primary hover:text-foreground"
+                    }`}
+                  >
+                    {category}
+                  </button>
+                </div>
+              );
+            })}
           </div>
         )}
 
-        {/* Photographic Grid */}
-        <div className="mt-8 grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {visible.slice(0, 9).map((project, i) => {
-            const isFeatured = i === 0;
-
+        {/* Photographic Grid (Balanced Aspect Ratios) */}
+        <div className="mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {visible.slice(0, 9).map((project) => {
             return (
               <article
                 key={project.id}
                 onClick={() => handleOpenProject(project)}
-                className={`group relative overflow-hidden rounded-xs border border-border bg-steel-deep text-steel-foreground cursor-pointer shadow-card transition-all duration-300 hover:border-primary ${
-                  isFeatured ? "sm:col-span-2 lg:col-span-2 aspect-[16/9]" : "aspect-[4/3]"
-                }`}
+                className="group relative aspect-[4/3] overflow-hidden rounded-xs border border-border bg-steel-deep text-steel-foreground cursor-pointer shadow-card transition-all duration-300 hover:border-primary flex flex-col justify-end"
               >
                 <img
                   src={project.image}
                   alt={project.alt}
                   loading="lazy"
                   decoding="async"
-                  className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
 
                 {/* Top Badges */}
-                <div className="absolute top-3 inset-x-3 flex items-center justify-between pointer-events-none">
-                  <span className="font-mono text-[0.68rem] font-bold bg-black/80 text-white px-2.5 py-1 rounded-xs border border-white/20 backdrop-blur-xs">
+                <div className="absolute top-3 inset-x-3 flex items-center justify-between pointer-events-none z-10">
+                  <span className="font-mono text-xs font-bold bg-black/80 text-white px-2.5 py-1 rounded-xs border border-white/20 backdrop-blur-xs">
                     {project.category}
                   </span>
-                  <span className="font-mono text-[0.68rem] text-emerald-400 bg-black/80 px-2 py-0.5 rounded-xs border border-white/10 flex items-center gap-1">
-                    <MapPin className="size-3" />
+                  <span className="font-mono text-xs text-emerald-400 bg-black/80 px-2 py-0.5 rounded-xs border border-white/10 flex items-center gap-1">
+                    <MapPin className="size-3" aria-hidden="true" />
                     {project.location}
                   </span>
                 </div>
 
-                {/* Bottom Caption */}
-                <div className="absolute bottom-0 inset-x-0 p-4 sm:p-6">
-                  <h3 className={`font-display font-extrabold uppercase leading-tight text-white group-hover:text-primary transition-colors ${
-                    isFeatured ? "text-xl sm:text-3xl" : "text-base sm:text-lg"
-                  }`}>
+                {/* Bottom Caption with Comfortable Internal Padding */}
+                <div className="relative z-10 p-5 sm:p-6">
+                  <h3 className="font-display font-extrabold uppercase leading-tight text-white group-hover:text-primary transition-colors text-base sm:text-lg">
                     {project.title}
                   </h3>
-                  <p className="mt-1.5 text-xs text-steel-muted line-clamp-2 max-w-xl">
+                  <p className="mt-1.5 text-xs text-steel-muted line-clamp-2 leading-relaxed">
                     {project.summary}
                   </p>
-                  <div className="mt-3 flex items-center justify-between border-t border-white/15 pt-2.5">
-                    <span className="font-mono text-[0.68rem] text-primary truncate max-w-[200px]">
+                  <div className="mt-3 flex items-center justify-between gap-2 border-t border-white/15 pt-2.5">
+                    <span className="font-mono text-xs text-primary leading-tight line-clamp-1 flex-1" title={project.material}>
                       {project.material}
                     </span>
-                    <span className="font-display text-[0.7rem] font-bold uppercase text-white flex items-center gap-1 group-hover:text-primary">
+                    <span className="font-display text-xs font-bold uppercase text-white flex items-center gap-1 group-hover:text-primary shrink-0">
                       Inspect Specs
-                      <ArrowRight className="size-3" />
+                      <ArrowRight className="size-3" aria-hidden="true" />
                     </span>
                   </div>
                 </div>
@@ -172,7 +177,7 @@ export function Projects({ showFilters = true }: { showFilters?: boolean }) {
             className="inline-flex items-center gap-2 rounded-xs bg-primary px-5 py-2.5 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground"
           >
             Submit Site Drawings
-            <ArrowRight className="size-3.5" />
+            <ArrowRight className="size-3.5" aria-hidden="true" />
           </Link>
         </div>
 

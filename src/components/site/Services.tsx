@@ -147,28 +147,28 @@ export function Services() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-8">
-          <div className="max-w-3xl">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-border pb-8">
+          <div className="max-w-2xl">
             <div className="flex items-center gap-2">
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
-                CORE STRUCTURAL CAPABILITIES
+                Core Structural Capabilities
               </span>
               <span className="text-muted-foreground font-mono text-xs">/ 01 — 06</span>
             </div>
-            <h2 className="mt-3 font-display text-3xl sm:text-5xl font-extrabold uppercase leading-tight tracking-tight text-foreground">
-              INDUSTRIAL STEEL & SHED SOLUTIONS
+            <h2 className="mt-2 font-display text-3xl sm:text-5xl font-extrabold leading-tight tracking-tight text-foreground">
+              Industrial Steel &amp; Shed Solutions
             </h2>
-            <p className="mt-3 text-base text-muted-foreground leading-relaxed">
-              Complete design, in-house shop fabrication, and on-site crane erection across India. Built strictly to IS 2062 & IS 800 standards.
+            <p className="mt-2 text-sm sm:text-base text-muted-foreground leading-relaxed">
+              Complete design, in-house shop fabrication, and on-site crane erection across India. Built strictly to IS 2062 &amp; IS 800 standards.
             </p>
           </div>
 
           <Link
             to="/quote"
-            className="inline-flex items-center gap-2 rounded-xs bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground shadow-xs transition-transform hover:-translate-y-px"
+            className="self-start md:self-center shrink-0 inline-flex items-center gap-2 rounded-xs bg-primary px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground shadow-xs transition-transform hover:-translate-y-px"
           >
             <span>Request Itemized Quotation</span>
-            <ArrowRight className="size-3.5" />
+            <ArrowRight className="size-3.5" aria-hidden="true" />
           </Link>
         </div>
 
@@ -199,7 +199,7 @@ export function Services() {
                   <div className="absolute top-3 left-3 bg-black/80 px-2.5 py-1 rounded-xs font-mono text-xs font-bold text-white border border-white/20">
                     {service.code}
                   </div>
-                  <div className="absolute bottom-3 left-3 bg-black/80 px-3 py-1 rounded-xs font-mono text-[0.7rem] text-primary border border-white/10">
+                  <div className="absolute bottom-3 left-3 bg-black/80 px-3 py-1 rounded-xs font-mono text-xs text-primary border border-white/10">
                     {service.short}
                   </div>
                 </div>
@@ -241,22 +241,22 @@ export function Services() {
                   </div>
 
                   {/* Actions */}
-                  <div className="pt-3 flex items-center gap-4">
+                  <div className="pt-3 flex flex-wrap items-center gap-3">
                     <button
                       type="button"
                       onClick={() => setSelectedService(service)}
-                      className="inline-flex items-center gap-1.5 font-display text-xs font-bold uppercase tracking-wider text-primary hover:underline"
+                      className="inline-flex items-center gap-1.5 rounded-xs border border-primary/40 bg-primary/10 px-4 py-2 font-display text-xs font-bold uppercase tracking-wider text-primary hover:bg-primary hover:text-primary-foreground transition-all"
                     >
                       <span>View Full Specifications</span>
-                      <ArrowRight className="size-3.5" />
+                      <ArrowRight className="size-3.5" aria-hidden="true" />
                     </button>
 
                     <button
                       type="button"
                       onClick={() => triggerQuoteForNeed(service.quoteOptionNeed)}
-                      className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground hover:text-foreground transition-colors"
+                      className="inline-flex items-center gap-1.5 rounded-xs border border-border bg-card px-4 py-2 font-mono text-xs font-semibold text-foreground hover:border-primary hover:text-primary transition-all"
                     >
-                      <span>Get Fast Quote →</span>
+                      <span>Get Fast Quote &rarr;</span>
                     </button>
                   </div>
                 </div>
@@ -268,8 +268,8 @@ export function Services() {
         {/* Section Bottom Guarantee Strip */}
         <div className="mt-16 pt-8 border-t border-border flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-muted-foreground">
           <span>✓ All Mild Steel Welds Tested to IS 816 (Code of Practice for Use of Metal Arc Welding)</span>
-          <Link to="/quote" className="font-bold text-primary hover:underline uppercase">
-            Schedule Site Survey →
+          <Link to="/quote" className="font-bold text-primary hover:underline">
+            Schedule Site Survey &rarr;
           </Link>
         </div>
 

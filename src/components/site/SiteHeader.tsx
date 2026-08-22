@@ -34,9 +34,9 @@ export function SiteHeader() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-xs font-mono">
           {/* Active sites status indicator */}
           <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 text-emerald-400 font-bold">
-              <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-              ACTIVE FABRICATION YARD:
+            <span className="inline-flex items-center gap-1.5 text-emerald-400 font-bold text-xs">
+              <span className="size-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
+              Active Fabrication Yard:
             </span>
             <span className="text-white/80">D179 Sector 10, Noida · Pan India Erection</span>
           </div>
@@ -99,7 +99,7 @@ export function SiteHeader() {
               <span className="block font-display text-lg font-extrabold uppercase tracking-wide text-foreground group-hover:text-primary transition-colors">
                 {company.name}
               </span>
-              <span className="block font-mono text-[0.65rem] text-muted-foreground uppercase tracking-widest">
+              <span className="block font-mono text-xs text-muted-foreground uppercase tracking-wider">
                 Structural Steel & Industrial Sheds
               </span>
             </div>

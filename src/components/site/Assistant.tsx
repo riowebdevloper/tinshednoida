@@ -476,9 +476,9 @@ export function Assistant() {
         </div>
         <div className="text-left hidden sm:block">
           <p className="font-display text-xs font-bold uppercase tracking-wider text-white">
-            TIN SHADE ASSISTANT
+            Tin Shade Assistant
           </p>
-          <p className="eyebrow text-[0.6rem] text-primary">Usually replies instantly</p>
+          <p className="text-xs text-primary font-medium">Usually replies instantly</p>
         </div>
       </button>
 
@@ -493,9 +493,9 @@ export function Assistant() {
               </div>
               <div>
                 <h3 className="font-display text-sm font-bold uppercase text-white tracking-wide">
-                  TIN SHADE ASSISTANT
+                  Tin Shade Assistant
                 </h3>
-                <p className="eyebrow text-[0.6rem] text-steel-muted">
+                <p className="text-xs text-steel-muted">
                   Pan India Service · Usually replies instantly
                 </p>
               </div>

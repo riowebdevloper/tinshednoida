@@ -87,10 +87,10 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
       </div>
 
       {/* Calculator Inputs & Output Grid */}
-      <div className="mt-8 grid gap-8 lg:grid-cols-12">
+      <div className="mt-8 grid gap-8 lg:grid-cols-12 items-stretch">
         
-        {/* Left Column: Form Controls (7 cols) */}
-        <div className="space-y-6 lg:col-span-7">
+        {/* Left Column: Form Controls in Grouped Card (7 cols) */}
+        <div className="rounded-sm border border-steel-line bg-steel/40 p-6 sm:p-7 space-y-6 lg:col-span-7">
           
           {/* 1. Structure Type */}
           <div>
@@ -98,19 +98,21 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
               01. Select Structure Type
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {structureTypes.map((t) => (
+              {structureTypes.map((t, idx) => (
                 <button
                   key={t.id}
                   type="button"
                   onClick={() => setSelectedType(t)}
                   className={`flex flex-col items-start rounded-xs p-3 text-left border transition-all ${
+                    idx === structureTypes.length - 1 ? "sm:col-span-2" : ""
+                  } ${
                     selectedType.id === t.id
-                      ? "border-primary bg-primary/15 text-white shadow-xs"
+                      ? "border-primary bg-primary/20 ring-1 ring-primary text-white shadow-xs"
                       : "border-steel-line bg-steel/50 text-steel-muted hover:border-steel-line/80 hover:bg-steel hover:text-white"
                   }`}
                 >
                   <span className="font-display text-sm font-bold uppercase">{t.name}</span>
-                  <span className="text-[0.65rem] font-mono text-primary/90 mt-0.5">{t.rateEst}</span>
+                  <span className="text-xs font-mono text-primary/90 mt-0.5">{t.rateEst}</span>
                 </button>
               ))}
             </div>
@@ -118,17 +120,18 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
 
           {/* 2. Area in Sq Ft */}
           <div>
-            <div className="flex items-center justify-between mb-2">
-              <label className="text-xs font-mono font-bold uppercase tracking-wider text-steel-muted">
-                02. Covered Area (Sq. Ft.)
+            <div className="flex items-center gap-3 mb-2">
+              <label htmlFor="area-range" className="text-xs font-mono font-bold uppercase tracking-wider text-steel-muted">
+                02. Covered Area:
               </label>
-              <span className="font-mono text-base font-bold text-primary">
+              <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-xs border border-primary/20">
                 {area.toLocaleString()} SQ. FT.
               </span>
             </div>
 
             {/* Slider */}
             <input
+              id="area-range"
               type="range"
               min={1000}
               max={100000}
@@ -145,10 +148,10 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
                   key={preset}
                   type="button"
                   onClick={() => setArea(preset)}
-                  className={`rounded-xs px-2.5 py-1 font-mono text-xs border transition-colors ${
+                  className={`rounded-xs px-3 py-1.5 font-mono text-xs border transition-all ${
                     area === preset
-                      ? "border-primary bg-primary text-primary-foreground font-bold"
-                      : "border-steel-line bg-steel/40 text-steel-muted hover:text-white"
+                      ? "border-primary bg-primary/20 ring-1 ring-primary text-white font-bold"
+                      : "border-steel-line bg-steel/40 text-steel-muted hover:border-steel-line/80 hover:text-white"
                   }`}
                 >
                   {preset.toLocaleString()} sq ft
@@ -208,15 +211,16 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
         </div>
 
         {/* Right Column: Dynamic Engineering Results Card (5 cols) */}
-        <div className="lg:col-span-5 flex flex-col justify-between rounded-sm border border-primary/30 bg-steel p-6 sm:p-7 shadow-elevated">
+        <div className="lg:col-span-5 flex flex-col justify-between rounded-sm border border-primary/40 bg-steel p-6 sm:p-7 shadow-elevated">
           
           <div>
             <div className="flex items-center justify-between border-b border-steel-line pb-4">
               <span className="font-display text-xs font-bold uppercase tracking-wider text-steel-muted">
                 Preliminary Specification
               </span>
-              <span className="font-mono text-[0.65rem] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-xs border border-primary/30">
-                TURNKEY ESTIMATE
+              <span className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-xs border border-primary/30" role="status">
+                <Sparkles className="size-3" aria-hidden="true" />
+                Turnkey Estimate
               </span>
             </div>
 
@@ -231,7 +235,7 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
                   Metric Tonnes (MT)
                 </span>
               </div>
-              <span className="block text-[0.65rem] font-mono text-steel-muted mt-1">
+              <span className="block text-xs font-mono text-steel-muted mt-1">
                 IS 2062 Mild Steel Channel, Tubular Trusses & Purlins
               </span>
             </div>
