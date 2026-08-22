@@ -156,8 +156,8 @@ export function Projects({ showFilters = true }: { showFilters?: boolean }) {
                     <span className="font-mono text-xs text-primary leading-tight line-clamp-1 flex-1" title={project.material}>
                       {project.material}
                     </span>
-                    <span className="font-display text-xs font-bold uppercase text-white flex items-center gap-1 group-hover:text-primary shrink-0">
-                      Inspect Specs
+                    <span className="inline-flex items-center gap-1 rounded-xs bg-white/10 px-2.5 py-1 font-display text-xs font-bold uppercase text-white border border-white/20 transition-colors group-hover:bg-primary group-hover:border-primary group-hover:text-primary-foreground shrink-0">
+                      <span>Inspect Specs</span>
                       <ArrowRight className="size-3" aria-hidden="true" />
                     </span>
                   </div>

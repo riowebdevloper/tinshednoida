@@ -212,7 +212,7 @@ export function Services() {
                   </div>
 
                   <h3
-                    className="font-display text-2xl sm:text-3xl font-extrabold uppercase text-foreground hover:text-primary transition-colors cursor-pointer"
+                    className="font-display text-2xl sm:text-3xl font-extrabold text-foreground hover:text-primary transition-colors cursor-pointer"
                     onClick={() => setSelectedService(service)}
                   >
                     {service.label}
@@ -241,7 +241,7 @@ export function Services() {
                   </div>
 
                   {/* Actions */}
-                  <div className="pt-3 flex flex-wrap items-center gap-3">
+                  <div className="pt-3 flex flex-wrap items-center gap-5 sm:gap-6">
                     <button
                       type="button"
                       onClick={() => setSelectedService(service)}

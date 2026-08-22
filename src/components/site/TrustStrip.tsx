@@ -37,15 +37,17 @@ export function TrustStrip() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Top Ledger Header */}
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-steel-line/80 pb-4">
-          <div className="flex items-center gap-2">
-            <h2 className="font-mono text-xs font-bold text-primary uppercase">
+        <div className="flex flex-wrap items-end justify-between gap-4 border-b border-steel-line/80 pb-4">
+          <div>
+            <span className="font-mono text-xs font-bold text-primary uppercase block mb-1">
+              Technical Standards / IS 800:2007
+            </span>
+            <h2 className="font-display text-xl sm:text-2xl font-extrabold text-white tracking-tight">
               Engineering Specification Ledger
             </h2>
-            <span className="text-steel-muted text-xs">/ Structural Standards</span>
           </div>
-          <span className="font-mono text-xs text-steel-muted uppercase tracking-wider">
-            Standard: IS 800:2007 (General Construction in Steel)
+          <span className="font-mono text-xs text-steel-muted">
+            Certified Structural Fabrication Standards
           </span>
         </div>
 

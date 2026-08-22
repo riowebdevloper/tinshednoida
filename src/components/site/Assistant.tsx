@@ -466,20 +466,16 @@ export function Assistant() {
           setMinimized(false);
         }}
         aria-label="Open Tin Shade AI Assistant"
-        className={`fixed bottom-5 right-5 z-40 inline-flex items-center gap-3 rounded-full border border-primary/50 bg-steel-deep px-4 py-3.5 text-white shadow-elevated transition-all hover:scale-105 hover:border-primary ${
+        className={`fixed bottom-5 right-5 z-40 inline-flex items-center gap-2.5 rounded-full border border-steel-line bg-steel px-3.5 py-2 text-white shadow-card transition-transform hover:scale-105 hover:border-primary ${
           open && !minimized ? "hidden" : "flex"
         }`}
       >
-        <div className="relative flex size-9 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm">
-          <Bot className="size-5" />
-          <span className="absolute -right-0.5 -top-0.5 size-2.5 rounded-full bg-emerald-400 border border-steel-deep animate-pulse" />
+        <div className="flex size-7 items-center justify-center rounded-full bg-primary text-primary-foreground">
+          <Bot className="size-4" aria-hidden="true" />
         </div>
-        <div className="text-left hidden sm:block">
-          <p className="font-display text-xs font-bold uppercase tracking-wider text-white">
-            Tin Shade Assistant
-          </p>
-          <p className="text-xs text-primary font-medium">Usually replies instantly</p>
-        </div>
+        <span className="font-display text-xs font-bold text-white hidden sm:inline">
+          AI Assistant
+        </span>
       </button>
 
       {/* Main Chat Assistant Modal Box */}

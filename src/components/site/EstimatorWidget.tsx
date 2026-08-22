@@ -279,18 +279,18 @@ export function EstimatorWidget({ embedded = false }: { embedded?: boolean }) {
               href={`https://wa.me/918527977714?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-full items-center justify-center gap-2 rounded-xs bg-whatsapp px-4 py-3.5 font-display text-xs sm:text-sm font-bold uppercase tracking-wider text-white shadow-md transition-all hover:opacity-95 hover:scale-101"
+              className="flex w-full items-center justify-center gap-2 rounded-xs bg-whatsapp px-4 py-3.5 font-display text-xs sm:text-sm font-bold text-white shadow-md transition-all hover:opacity-95 hover:scale-101 text-center"
             >
-              <MessageCircle className="size-4" />
-              Send Estimate to WhatsApp
+              <MessageCircle className="size-4" aria-hidden="true" />
+              <span>Send Estimate to WhatsApp</span>
             </a>
 
             <a
               href={`tel:+918527977714`}
-              className="flex w-full items-center justify-center gap-2 rounded-xs border border-steel-line bg-steel-deep px-4 py-3 font-display text-xs font-bold uppercase tracking-wider text-white transition-colors hover:border-primary hover:text-primary"
+              className="flex w-full items-center justify-center gap-2 rounded-xs border border-steel-line bg-steel-deep px-4 py-3 font-display text-xs font-bold text-white transition-colors hover:border-primary hover:text-primary text-center"
             >
-              <Phone className="size-3.5 text-primary" />
-              Speak with Engineer: +91 85279 77714
+              <Phone className="size-3.5 text-primary" aria-hidden="true" />
+              <span>Speak with Engineer: +91 85279 77714</span>
             </a>
           </div>
 

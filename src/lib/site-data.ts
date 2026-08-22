@@ -78,8 +78,8 @@ export const heroSlides = [
     language: "Industrial Factory Shed",
     langCode: "factory",
     alt: "Heavy-duty industrial factory shed and steel framework under construction",
-    title: "HEAVY-DUTY INDUSTRIAL SHED FABRICATION",
-    reachLabel: "NOIDA & PAN INDIA",
+    title: "Heavy-Duty Industrial Shed Fabrication",
+    reachLabel: "Noida & Pan India",
   },
   {
     image: "/images/hero/hero-slide-02.webp",
@@ -87,8 +87,8 @@ export const heroSlides = [
     language: "Clear-Span Warehouse",
     langCode: "warehouse",
     alt: "Column-free clear span commercial warehouse and logistics shed facility",
-    title: "LARGE CLEAR-SPAN WAREHOUSE STRUCTURES",
-    reachLabel: "HIGH-CUBE RACKING COMPATIBLE",
+    title: "Large Clear-Span Warehouse Structures",
+    reachLabel: "High-Cube Racking Compatible",
   },
   {
     image: "/images/hero/hero-slide-03.webp",
@@ -96,8 +96,8 @@ export const heroSlides = [
     language: "On-Site Crane Erection",
     langCode: "erection",
     alt: "Active on-site heavy crane erection of industrial structural steel trusses",
-    title: "CRANE ERECTION & STRUCTURAL ASSEMBLY",
-    reachLabel: "IN-HOUSE EXPERIENCED CREW",
+    title: "Crane Erection & Structural Assembly",
+    reachLabel: "In-House Experienced Crew",
   },
   {
     image: "/images/hero/hero-slide-04.webp",
@@ -105,8 +105,8 @@ export const heroSlides = [
     language: "Turnkey Industrial Plant",
     langCode: "plant",
     alt: "Modern industrial manufacturing plant and steel warehouse facility exterior",
-    title: "TURNKEY INDUSTRIAL FACILITIES",
-    reachLabel: "COMPLETE DESIGN TO HANDOVER",
+    title: "Turnkey Industrial Facilities",
+    reachLabel: "Complete Design to Handover",
   },
 ];
 
@@ -1138,7 +1138,7 @@ export const leadership = {
   },
   connectionBadge: "FOUNDATION → FUTURE",
   story: {
-    heading: "ONE FOUNDATION. ONE FAMILY. ONE VISION.",
+    heading: "One Foundation. One Family. One Vision.",
     body: "From the experience of one generation to the energy of the next, Tin Shade continues to grow with the same focus on strong structures, honest communication and customer satisfaction.",
   },
   cta: {

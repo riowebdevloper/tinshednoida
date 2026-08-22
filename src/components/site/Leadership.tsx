@@ -53,8 +53,8 @@ export function Leadership() {
                   <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
                     {founder.designation}
                   </span>
-                  <span className="font-mono text-[0.68rem] text-emerald-400 bg-steel-deep px-2 py-0.5 rounded-xs border border-steel-line">
-                    30+ YRS EXPERIENCE
+                  <span className="font-mono text-xs text-emerald-400 bg-steel-deep px-2.5 py-0.5 rounded-xs border border-steel-line">
+                    30+ Yrs Experience
                   </span>
                 </div>
 
@@ -94,8 +94,8 @@ export function Leadership() {
                   <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-400">
                     {nextGen.designation}
                   </span>
-                  <span className="font-mono text-[0.68rem] text-amber-400 bg-steel-deep px-2 py-0.5 rounded-xs border border-steel-line">
-                    MODERN STRUCTURAL TECH
+                  <span className="font-mono text-xs text-amber-400 bg-steel-deep px-2.5 py-0.5 rounded-xs border border-steel-line">
+                    Modern Structural Tech
                   </span>
                 </div>
 
@@ -126,7 +126,7 @@ export function Leadership() {
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
                 FROM NOIDA FABRICATION YARD TO PAN-INDIA SITES
               </span>
-              <h4 className="font-display text-2xl sm:text-3xl font-extrabold uppercase text-white">
+              <h4 className="font-display text-2xl sm:text-3xl font-extrabold text-white">
                 {story.heading}
               </h4>
               <p className="text-sm sm:text-base leading-relaxed text-steel-muted">

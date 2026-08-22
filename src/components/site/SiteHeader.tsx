@@ -99,7 +99,7 @@ export function SiteHeader() {
               <span className="block font-display text-lg font-extrabold uppercase tracking-wide text-foreground group-hover:text-primary transition-colors">
                 {company.name}
               </span>
-              <span className="block font-mono text-xs text-muted-foreground uppercase tracking-wider">
+              <span className="block font-mono text-xs text-muted-foreground tracking-normal">
                 Structural Steel & Industrial Sheds
               </span>
             </div>
