@@ -1,35 +1,27 @@
 import { journey } from "@/lib/site-data";
-import { Reveal } from "./Reveal";
 
 export function Journey() {
   return (
     <section
       id="journey"
-      className="content-auto relative isolate overflow-hidden bg-steel-deep py-16 text-steel-foreground lg:py-24"
+      className="bg-charcoal text-paper py-16 sm:py-20 border-b border-white/10 relative overflow-hidden"
     >
-      <div className="pointer-events-none absolute inset-0 grid-blueprint opacity-30" aria-hidden />
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
-        <Reveal className="max-w-2xl">
-          <p className="eyebrow flex items-center gap-3 text-primary">
-            <span className="h-px w-10 bg-primary" />
-            The journey
-          </p>
-          <h2 className="mt-4 font-display text-3xl font-bold uppercase leading-tight sm:text-5xl">
-            From empty plot to
-            <span className="block text-primary">finished shed</span>
+      <div className="pointer-events-none absolute inset-0 cad-grid-dark opacity-20" aria-hidden />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl border-b border-white/15 pb-5 mb-8">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold uppercase leading-tight text-white">
+            From Empty Plot to Completed Industrial Shed
           </h2>
-          <p className="mt-3 text-base text-steel-muted">
-            Scroll through a typical project — the same sequence we follow on every site.
+          <p className="mt-2 text-xs sm:text-sm text-steel-muted font-sans">
+            Scroll through a typical execution workflow — the exact sequence we follow on every industrial site across India.
           </p>
-        </Reveal>
+        </div>
 
-        <div className="no-scrollbar mt-10 -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 lg:mx-0 lg:grid lg:grid-cols-6 lg:gap-3 lg:overflow-visible lg:px-0">
+        <div className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 lg:grid lg:grid-cols-6 lg:gap-3 lg:overflow-visible">
           {journey.map((stage, i) => (
-            <Reveal
+            <div
               key={stage.label}
-              delay={i * 70}
-              variant="scale"
-              className="group relative min-w-[70%] shrink-0 snap-start overflow-hidden rounded-sm sm:min-w-[42%] lg:min-w-0"
+              className="group relative min-w-[70%] shrink-0 snap-start overflow-hidden rounded-xs border border-white/15 bg-charcoal-deep sm:min-w-[42%] lg:min-w-0"
             >
               <img
                 src={stage.image}
@@ -38,21 +30,21 @@ export function Journey() {
                 decoding="async"
                 width={1280}
                 height={960}
-                className="aspect-4/5 w-full object-cover grayscale-[35%] transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                className="aspect-4/5 w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div
-                className="absolute inset-0 bg-[linear-gradient(to_top,oklch(0.16_0.035_260/0.92),transparent_55%)]"
+                className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent"
                 aria-hidden
               />
-              <div className="absolute inset-x-0 bottom-0 p-4">
-                <span className="font-display text-xs font-bold text-primary">
+              <div className="absolute inset-x-0 bottom-0 p-3.5">
+                <span className="font-mono text-xs font-bold text-safety tabular-nums block">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <p className="font-display text-sm font-semibold uppercase leading-tight text-steel-foreground">
+                <p className="font-display text-sm font-bold uppercase leading-tight text-white mt-0.5">
                   {stage.label}
                 </p>
               </div>
-            </Reveal>
+            </div>
           ))}
         </div>
       </div>

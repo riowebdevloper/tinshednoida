@@ -1,39 +1,49 @@
 @import "tailwindcss";
 @source "../src";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Tin Shade Noida — Material World Industrial Steel Design System
+ * Tin Shade Noida — Industrial Craft Design System
+ * 
  * Palette:
  * - Galvalume grey #B8BCC0
  * - Warm paper off-white #F2EFE9
  * - Charcoal #1C1E20
- * - Safety yellow #F4B000 (used with strict discipline)
- * - Oxide red-brown #8C4A2F (anti-rust zinc phosphate primer)
+ * - Safety yellow #F4B000 (single disciplined accent)
+ * - Oxide red-brown #8C4A2F (anti-rust primer accent)
+ *
+ * Typography:
+ * - Display: Barlow Condensed (weight 600-700)
+ * - Body: IBM Plex Sans (weight 400-500)
+ * - Technical Data: IBM Plex Mono with tabular-nums
  */
 
 @theme inline {
-  --radius-xs: 0.125rem;
-  --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
 
-  --font-display: "Oswald", system-ui, sans-serif;
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", "JetBrains Mono", monospace;
+  --font-display: "Barlow Condensed", system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  /* Strict Deliberate Type Scale: 12 / 14 / 16 / 20 / 28 / 40 / 56 px */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.25rem;    /* 20px */
+  --font-size-xl: 1.75rem;    /* 28px */
+  --font-size-2xl: 2.5rem;    /* 40px */
+  --font-size-3xl: 3.5rem;    /* 56px */
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
   
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-primary-soft: var(--primary-soft);
   
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -41,115 +51,62 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Industrial Material Tokens */
-  --color-galvalume: var(--galvalume);
-  --color-galvalume-light: var(--galvalume-light);
-  --color-paper: var(--paper);
-  --color-charcoal: var(--charcoal);
-  --color-charcoal-deep: var(--charcoal-deep);
-  --color-safety: var(--safety);
-  --color-safety-foreground: var(--safety-foreground);
-  --color-oxide: var(--oxide);
-  --color-oxide-foreground: var(--oxide-foreground);
-
-  /* Dark Engineering Surface compatibility */
-  --color-steel: var(--steel);
-  --color-steel-deep: var(--steel-deep);
-  --color-steel-foreground: var(--steel-foreground);
-  --color-steel-muted: var(--steel-muted);
-  --color-steel-line: var(--steel-line);
-  --color-surface: var(--surface);
-  --color-whatsapp: var(--whatsapp);
+  /* Exact Material Tokens */
+  --color-galvalume: #B8BCC0;
+  --color-paper: #F2EFE9;
+  --color-charcoal: #1C1E20;
+  --color-charcoal-deep: #141618;
+  --color-safety: #F4B000;
+  --color-oxide: #8C4A2F;
+  --color-steel: #24272A;
+  --color-steel-deep: #181A1C;
+  --color-steel-muted: #8F949A;
+  --color-whatsapp: #1E7E34;
 }
 
 :root {
-  --radius: 0.25rem;
+  --radius: 3px;
 
-  /* Material Base: Warm paper off-white and deep structural charcoal */
+  /* Material Base: Warm paper off-white background & Charcoal text */
   --background: #F2EFE9;
   --foreground: #1C1E20;
   --surface: #E8E4DB;
 
   --card: #FFFFFF;
   --card-foreground: #1C1E20;
-  --popover: #FFFFFF;
-  --popover-foreground: #1C1E20;
 
-  /* Safety yellow single accent */
   --primary: #F4B000;
   --primary-foreground: #1C1E20;
-  --primary-soft: rgba(244, 176, 0, 0.15);
 
-  --secondary: #E2DDD3;
+  --secondary: #E0DBD0;
   --secondary-foreground: #1C1E20;
 
-  --muted: #E2DDD3;
-  --muted-foreground: #5C6268;
+  --muted: #E0DBD0;
+  --muted-foreground: #585E64;
 
-  --accent: #E0DBD0;
-  --accent-foreground: #1C1E20;
-
-  --destructive: #8C4A2F;
-  --destructive-foreground: #FFFFFF;
-
-  --border: #D5CFB2;
-  --border: #D8D3C8;
-  --input: #D8D3C8;
+  --border: #D2CDC2;
+  --input: #D2CDC2;
   --ring: #F4B000;
-
-  /* Real Material World Variables */
-  --galvalume: #B8BCC0;
-  --galvalume-light: #D4D7DA;
-  --paper: #F2EFE9;
-  --charcoal: #1C1E20;
-  --charcoal-deep: #121416;
-  --safety: #F4B000;
-  --safety-foreground: #1C1E20;
-  --oxide: #8C4A2F;
-  --oxide-foreground: #FFFFFF;
-
-  /* Heavy dark structural plate */
-  --steel: #222528;
-  --steel-deep: #16181A;
-  --steel-foreground: #F2EFE9;
-  --steel-muted: #969BA0;
-  --steel-line: rgba(255, 255, 255, 0.12);
-
-  --whatsapp: #1E7E34;
-
-  --shadow-elevated: 0 20px 45px -20px rgba(28, 30, 32, 0.35);
-  --shadow-card: 0 2px 4px rgba(28, 30, 32, 0.04), 0 8px 18px rgba(28, 30, 32, 0.08);
 }
 
 .dark {
-  --background: #16181A;
+  --background: #141618;
   --foreground: #F2EFE9;
-  --surface: #222528;
+  --surface: #1E2124;
   --card: #1C1E20;
   --card-foreground: #F2EFE9;
-  --popover: #1C1E20;
-  --popover-foreground: #F2EFE9;
   --primary: #F4B000;
   --primary-foreground: #1C1E20;
-  --primary-soft: rgba(244, 176, 0, 0.2);
-  --secondary: #2A2E32;
+  --secondary: #26292D;
   --secondary-foreground: #F2EFE9;
-  --muted: #2A2E32;
-  --muted-foreground: #969BA0;
-  --accent: #2A2E32;
-  --accent-foreground: #F2EFE9;
-  --border: rgba(255, 255, 255, 0.14);
-  --input: rgba(255, 255, 255, 0.18);
+  --muted: #26292D;
+  --muted-foreground: #8F949A;
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.16);
   --ring: #F4B000;
 }
 
@@ -167,48 +124,63 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
+  /* Display Typography: Width & Structure over raw weight jumps */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    letter-spacing: 0.01em;
     font-weight: 700;
+    letter-spacing: 0.01em;
     text-transform: uppercase;
+    line-height: 1.1;
+  }
+
+  /* Technical Data in Monospace Tabular Nums */
+  .font-mono, [data-mono] {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
   }
 }
 
-/* Industrial Utility Classes */
+/* ──────── INDUSTRIAL UTILITY CLASSES ──────── */
 
+/* Understated Eyebrows (Tight tracking 0.03em, 12-13px, not decorative) */
 @utility eyebrow {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
+  color: #8C4A2F;
 }
 
+/* Solid Industrial Buttons (2-3px radius, sharp, no pill, no glow) */
 @utility btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border-radius: var(--radius-xs);
+  border-radius: 2px;
   background-color: #F4B000;
-  padding: 0.75rem 1.35rem;
+  padding: 0.6875rem 1.35rem;
   font-family: var(--font-display);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.03em;
   color: #1C1E20;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.15s ease, filter 0.15s ease, background-color 0.15s ease;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  transition: background-color 0.15s ease, transform 0.1s ease;
   &:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.05);
+    background-color: #E2A400;
+  }
+  &:active {
+    transform: translateY(1px);
   }
   &:focus-visible {
     outline: 2px solid #1C1E20;
@@ -221,20 +193,23 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border-radius: var(--radius-xs);
+  border-radius: 2px;
   border: 1px solid #1C1E20;
   background-color: transparent;
-  padding: 0.6875rem 1.25rem;
+  padding: 0.625rem 1.25rem;
   font-family: var(--font-display);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.03em;
   color: #1C1E20;
-  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease;
   &:hover {
     background-color: #1C1E20;
     color: #F2EFE9;
+  }
+  &:active {
+    transform: translateY(1px);
   }
   &:focus-visible {
     outline: 2px solid #F4B000;
@@ -242,53 +217,15 @@
   }
 }
 
-@utility btn-dark-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: var(--radius-xs);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background-color: #222528;
-  padding: 0.6875rem 1.25rem;
-  font-family: var(--font-display);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #F2EFE9;
-  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
-  &:hover {
-    border-color: #F4B000;
-    color: #F4B000;
-    background-color: #16181A;
-  }
-}
-
-@utility btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #1C1E20;
-  &:hover {
-    color: #8C4A2F;
-    text-decoration: underline;
-  }
-}
-
+/* Flat Riveted Spec Plate (Hairline border, flat backing, no soft drop shadow) */
 @utility plate-riveted {
   position: relative;
-  border: 2px solid #2C3034;
-  background: linear-gradient(145deg, #1E2124 0%, #151719 100%);
+  border: 1px solid #363B40;
+  background-color: #181A1C;
   color: #F2EFE9;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
+/* CAD Drafting Lines */
 @utility cad-grid {
   background-image:
     linear-gradient(to right, rgba(28, 30, 32, 0.05) 1px, transparent 1px),
@@ -303,71 +240,24 @@
   background-size: 32px 32px;
 }
 
-@utility hazard-edge {
-  background: repeating-linear-gradient(
-    -45deg,
-    #F4B000,
-    #F4B000 8px,
-    #1C1E20 8px,
-    #1C1E20 16px
-  );
-}
-
-@utility shadow-card {
-  box-shadow: 0 1px 3px rgba(28, 30, 32, 0.08), 0 4px 12px rgba(28, 30, 32, 0.05);
-}
-
-@utility shadow-elevated {
-  box-shadow: 0 16px 36px -12px rgba(28, 30, 32, 0.25);
-}
-
-@utility no-scrollbar {
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
+/* ──────── SIGNATURE MOTION: TRUSS DRAW ANIMATION (ONE MOMENT ONLY) ──────── */
+@keyframes drawTruss {
+  from {
+    stroke-dashoffset: 1200;
+  }
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
-@utility content-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 900px;
+.truss-draw-line {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 0;
+  animation: drawTruss 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Sparse & Functional Scroll Reveal Animation */
-@layer base {
-  [data-reveal] {
-    opacity: 0;
-    transition:
-      opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
-      transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: opacity, transform;
-  }
-
-  [data-reveal="up"] {
-    transform: translate3d(0, 20px, 0);
-  }
-
-  [data-reveal="left"] {
-    transform: translate3d(-20px, 0, 0);
-  }
-
-  [data-reveal="right"] {
-    transform: translate3d(20px, 0, 0);
-  }
-
-  [data-reveal][data-visible="true"] {
-    opacity: 1;
-    transform: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-    [data-reveal] {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
+@media (prefers-reduced-motion: reduce) {
+  .truss-draw-line {
+    animation: none;
   }
 }

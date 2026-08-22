@@ -1,4 +1,4 @@
-import { ShieldCheck, Ruler, Truck, Hammer, Award, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 export function TrustStrip() {
   const plateSpecs = [
@@ -39,54 +39,53 @@ export function TrustStrip() {
   return (
     <section
       aria-label="Engineering Standards & Fabricator Credentials"
-      className="bg-paper py-12 sm:py-16 border-b border-border"
+      className="bg-paper py-10 sm:py-14 border-b border-border"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* ──────── RIVETED METALLIC SPECIFICATION PLATE ──────── */}
-        <div className="plate-riveted rounded-sm p-6 sm:p-8 lg:p-10 relative overflow-hidden">
+        {/* ──────── FLAT RIVETED METALLIC SPECIFICATION PLATE ──────── */}
+        <div className="plate-riveted rounded-xs p-6 sm:p-8 lg:p-9 relative overflow-hidden">
           
           {/* Rivet Corner Bolt Fasteners */}
-          <div className="absolute top-3 left-3 size-3 rounded-full bg-galvalume border border-black shadow-inner flex items-center justify-center pointer-events-none">
-            <div className="w-2 h-0.5 bg-charcoal transform rotate-45" />
+          <div className="absolute top-2.5 left-2.5 size-2.5 rounded-full bg-galvalume border border-black/80 flex items-center justify-center pointer-events-none">
+            <div className="w-1.5 h-0.5 bg-charcoal transform rotate-45" />
           </div>
-          <div className="absolute top-3 right-3 size-3 rounded-full bg-galvalume border border-black shadow-inner flex items-center justify-center pointer-events-none">
-            <div className="w-2 h-0.5 bg-charcoal transform -rotate-45" />
+          <div className="absolute top-2.5 right-2.5 size-2.5 rounded-full bg-galvalume border border-black/80 flex items-center justify-center pointer-events-none">
+            <div className="w-1.5 h-0.5 bg-charcoal transform -rotate-45" />
           </div>
-          <div className="absolute bottom-3 left-3 size-3 rounded-full bg-galvalume border border-black shadow-inner flex items-center justify-center pointer-events-none">
-            <div className="w-2 h-0.5 bg-charcoal transform -rotate-12" />
+          <div className="absolute bottom-2.5 left-2.5 size-2.5 rounded-full bg-galvalume border border-black/80 flex items-center justify-center pointer-events-none">
+            <div className="w-1.5 h-0.5 bg-charcoal transform -rotate-12" />
           </div>
-          <div className="absolute bottom-3 right-3 size-3 rounded-full bg-galvalume border border-black shadow-inner flex items-center justify-center pointer-events-none">
-            <div className="w-2 h-0.5 bg-charcoal transform rotate-30" />
+          <div className="absolute bottom-2.5 right-2.5 size-2.5 rounded-full bg-galvalume border border-black/80 flex items-center justify-center pointer-events-none">
+            <div className="w-1.5 h-0.5 bg-charcoal transform rotate-30" />
           </div>
 
-          {/* Stamped Nameplate Top Ledger */}
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/15 pb-5">
+          {/* Stamped Nameplate Header */}
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
             <div className="flex items-center gap-3">
-              <span className="inline-block px-2.5 py-1 bg-safety text-charcoal font-mono text-xs font-bold uppercase tracking-wider rounded-xs">
-                SPECIFICATION PLATE
+              <span className="px-2 py-0.5 bg-safety text-charcoal font-mono text-[0.6875rem] font-bold uppercase rounded-xs">
+                SPEC PLATE
               </span>
-              <h2 className="font-display text-lg sm:text-xl font-bold uppercase tracking-wide text-white">
-                Tin Shade Noida · Structural Credentials
+              <h2 className="font-display text-base sm:text-lg font-bold uppercase tracking-wide text-white">
+                Tin Shade Noida · Structural Capacity &amp; Standards
               </h2>
             </div>
             
             <div className="font-mono text-xs text-steel-muted flex items-center gap-2">
-              <span>Standard: IS 800:2007 (General Construction in Steel)</span>
-              <span className="text-safety">✓</span>
+              <span>Code: IS 800:2007 (General Construction in Steel)</span>
             </div>
           </div>
 
           {/* 4 Engraved Metric Panels */}
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {plateSpecs.map((item) => (
               <div
                 key={item.id}
-                className="relative rounded-xs border border-white/10 bg-charcoal/60 p-5 backdrop-blur-xs transition-colors hover:border-safety/50"
+                className="rounded-xs border border-white/10 bg-charcoal/80 p-4 transition-colors hover:border-safety/40"
               >
-                {/* Micro Serial Tag */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-2 mb-3">
-                  <span className="font-mono text-[0.6875rem] font-bold text-safety tracking-wider">
+                {/* Micro Stamp Tag */}
+                <div className="flex items-center justify-between border-b border-white/10 pb-1.5 mb-2.5">
+                  <span className="font-mono text-[0.6875rem] text-safety font-medium tracking-tight">
                     {item.stamp}
                   </span>
                   <span className="font-mono text-[0.6875rem] text-steel-muted">
@@ -94,13 +93,13 @@ export function TrustStrip() {
                   </span>
                 </div>
 
-                {/* Primary Data Metric */}
-                <span className="block font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                {/* Primary Data Metric in IBM Plex Mono Tabular Nums */}
+                <span className="block font-mono text-2xl sm:text-3xl font-bold text-white tracking-tight tabular-nums">
                   {item.value}
                 </span>
 
                 {/* Label & Detail */}
-                <p className="mt-1 font-mono text-xs font-bold text-galvalume uppercase">
+                <p className="mt-1 font-mono text-xs font-semibold text-galvalume uppercase">
                   {item.label}
                 </p>
                 <p className="mt-2 text-xs leading-relaxed text-steel-muted font-sans">
@@ -110,13 +109,13 @@ export function TrustStrip() {
             ))}
           </div>
 
-          {/* Bottom Quality Ledger Stamp */}
-          <div className="mt-8 pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-steel-muted">
-            <span className="flex items-center gap-1.5 text-paper/80">
+          {/* Bottom Ledger Stamp */}
+          <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-steel-muted">
+            <span className="flex items-center gap-1.5 text-paper/85">
               <CheckCircle2 className="size-3.5 text-safety shrink-0" aria-hidden="true" />
-              100% In-House Master Welding Crew · Sector 10 Noida Fabrication Yard
+              100% In-House Master Fabrication Crew · Sector 10 Noida Yard
             </span>
-            <span className="text-safety font-bold">
+            <span className="text-safety font-medium">
               ZERO BROKERS · DIRECT CONTRACTING
             </span>
           </div>

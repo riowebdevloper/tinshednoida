@@ -28,17 +28,16 @@ export function PageHero({
   description: string;
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-steel-deep px-5 pb-14 pt-24 text-steel-foreground sm:px-6 lg:px-10 lg:pb-20 lg:pt-32">
-      <div className="pointer-events-none absolute inset-0 grid-blueprint opacity-40" aria-hidden />
+    <section className="relative isolate overflow-hidden bg-charcoal px-5 pb-12 pt-20 text-paper sm:px-6 lg:px-10 lg:pb-16 lg:pt-24 border-b border-white/10">
+      <div className="pointer-events-none absolute inset-0 cad-grid-dark opacity-20" aria-hidden />
       <div className="relative mx-auto max-w-7xl">
-        <p className="eyebrow flex items-center gap-3 text-primary">
-          <span className="h-px w-10 bg-primary" />
+        <p className="font-mono text-xs font-semibold text-safety uppercase tracking-tight">
           {eyebrow}
         </p>
-        <h1 className="mt-4 max-w-4xl font-display text-4xl font-bold uppercase leading-[0.98] sm:text-6xl">
+        <h1 className="mt-2 max-w-4xl font-display text-3xl sm:text-5xl font-bold uppercase leading-[1.12] text-white">
           {title}
         </h1>
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-steel-muted sm:text-lg">
+        <p className="mt-3 max-w-2xl text-sm sm:text-base leading-relaxed text-steel-muted font-sans">
           {description}
         </p>
       </div>

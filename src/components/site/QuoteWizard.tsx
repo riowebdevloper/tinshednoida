@@ -3,7 +3,6 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Loader2, Phone } from "lucide-reac
 import { useServerFn } from "@tanstack/react-start";
 import { company, quoteOptions } from "@/lib/site-data";
 import { submitLead } from "@/lib/leads.functions";
-import { Reveal } from "./Reveal";
 
 type Answers = {
   need: string;
@@ -13,10 +12,10 @@ type Answers = {
 };
 
 const steps = [
-  { key: "need", label: "What do you need?", options: quoteOptions.need },
-  { key: "size", label: "Approximate area", options: quoteOptions.size },
-  { key: "place", label: "Where is the site?", options: quoteOptions.place },
-  { key: "timeline", label: "When do you want to start?", options: quoteOptions.timeline },
+  { key: "need", label: "Select Structure Requirement", options: quoteOptions.need },
+  { key: "size", label: "Estimated Covered Area", options: quoteOptions.size },
+  { key: "place", label: "Site Location", options: quoteOptions.place },
+  { key: "timeline", label: "Execution Timeline", options: quoteOptions.timeline },
 ] as const;
 
 export function triggerQuoteForNeed(needOption: string) {
@@ -83,62 +82,48 @@ export function QuoteWizard() {
   }
 
   return (
-    <section id="quote" className="content-auto bg-background py-16 lg:py-24">
-      <div className="mx-auto max-w-5xl px-5 sm:px-6 lg:px-10">
-        <Reveal className="text-center">
-          <p className="eyebrow flex items-center justify-center gap-3 text-primary">
-            <span className="h-px w-10 bg-primary" />
-            Free quotation
-            <span className="h-px w-10 bg-primary" />
-          </p>
-          <h2 className="mt-4 font-display text-3xl font-bold uppercase leading-tight sm:text-5xl">
-            Get your shed quoted in 4 taps
+    <section id="quote" className="bg-paper py-14 sm:py-18 border-b border-border">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        
+        {/* Header */}
+        <div className="border-b border-charcoal/15 pb-5 mb-8">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold uppercase text-charcoal">
+            Guided Structural Quotation
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-base text-muted-foreground">
-            Answer four quick questions. We'll call you back with an estimate and schedule a free
-            site visit.
+          <p className="mt-1.5 text-xs sm:text-sm text-muted-foreground font-sans">
+            Select your project parameters to receive an itemized estimate and schedule a free on-site survey.
           </p>
-        </Reveal>
+        </div>
 
-        <Reveal
-          delay={80}
-          className="mt-10 overflow-hidden rounded-sm border border-border bg-card shadow-card"
-        >
-          <div className="h-1 w-full bg-muted">
+        <div className="overflow-hidden rounded-xs border border-border bg-card shadow-xs">
+          {/* Progress Bar */}
+          <div className="h-1 w-full bg-border">
             <div
-              className="h-full bg-primary transition-all duration-500"
+              className="h-full bg-safety transition-all duration-300"
               style={{ width: `${status === "done" ? 100 : progress}%` }}
             />
           </div>
 
-          <div className="p-6 sm:p-10">
+          <div className="p-6 sm:p-8">
             {status === "done" ? (
-              <div className="flex flex-col items-center gap-4 py-8 text-center">
-                <CheckCircle2 className="size-14 text-whatsapp" />
-                <h3 className="font-display text-2xl font-bold uppercase text-foreground">
-                  Request received
+              <div className="flex flex-col items-center gap-3 py-6 text-center">
+                <CheckCircle2 className="size-12 text-safety" />
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-charcoal">
+                  Request Dispatched to Noida Yard
                 </h3>
-                <p className="max-w-md text-sm text-muted-foreground">
-                  Thanks! Our team will call you shortly on the number you shared. For anything
-                  urgent, call us directly.
+                <p className="max-w-md text-xs sm:text-sm text-muted-foreground font-sans">
+                  Abdul or MD Khurshid will review your specifications and contact you shortly.
                 </p>
-                <a
-                  href={company.phoneHref}
-                  className="inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3.5 font-display text-sm font-semibold uppercase tracking-wide text-primary-foreground"
-                >
-                  <Phone className="size-4" />
-                  {company.phone}
-                </a>
               </div>
             ) : isDetails ? (
-              <form onSubmit={onSubmit} className="grid gap-5">
-                <div className="flex flex-wrap gap-2">
+              <form onSubmit={onSubmit} className="space-y-4 font-mono text-xs">
+                <div className="flex flex-wrap gap-1.5">
                   {steps.map((step) => {
                     const value = answers[step.key];
                     return value ? (
                       <span
                         key={step.key}
-                        className="rounded-sm bg-primary-soft px-2.5 py-1 text-xs font-medium text-primary"
+                        className="rounded-xs bg-surface px-2.5 py-1 text-xs font-semibold text-charcoal border border-border"
                       >
                         {value}
                       </span>
@@ -146,42 +131,48 @@ export function QuoteWizard() {
                   })}
                 </div>
 
-                <h3 className="font-display text-xl font-bold uppercase text-foreground sm:text-2xl">
-                  Where should we send the quotation?
+                <h3 className="font-display text-lg sm:text-xl font-bold text-charcoal pt-2">
+                  Contact Information for Quotation
                 </h3>
 
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <label className="grid gap-1.5 text-sm font-medium text-foreground">
-                    Your name
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <label className="block text-muted-foreground uppercase mb-1 font-semibold">
+                      Your Name
+                    </label>
                     <input
                       name="name"
                       required
                       minLength={2}
-                      placeholder="Rahul Sharma"
-                      className="rounded-sm border border-border bg-background px-4 py-3 text-base font-normal text-foreground outline-none transition-colors focus:border-primary"
+                      placeholder="e.g. Rahul Sharma"
+                      className="w-full rounded-xs border border-border bg-paper px-3 py-2 text-xs text-charcoal outline-none focus:border-charcoal font-sans"
                     />
-                  </label>
-                  <label className="grid gap-1.5 text-sm font-medium text-foreground">
-                    Phone / WhatsApp
+                  </div>
+                  <div>
+                    <label className="block text-muted-foreground uppercase mb-1 font-semibold">
+                      Phone Number <span className="text-safety">*</span>
+                    </label>
                     <input
                       name="phone"
                       required
                       inputMode="tel"
-                      placeholder="98xxxxxxxx"
-                      className="rounded-sm border border-border bg-background px-4 py-3 text-base font-normal text-foreground outline-none transition-colors focus:border-primary"
+                      placeholder="+91 Mobile Number"
+                      className="w-full rounded-xs border border-border bg-paper px-3 py-2 text-xs text-charcoal outline-none focus:border-charcoal font-sans"
                     />
-                  </label>
+                  </div>
                 </div>
 
-                <label className="grid gap-1.5 text-sm font-medium text-foreground">
-                  Anything else we should know? (optional)
+                <div>
+                  <label className="block text-muted-foreground uppercase mb-1 font-semibold">
+                    Additional Site Notes (Optional)
+                  </label>
                   <textarea
                     name="message"
                     rows={3}
-                    placeholder="Site condition, height required, deadline…"
-                    className="rounded-sm border border-border bg-background px-4 py-3 text-base font-normal text-foreground outline-none transition-colors focus:border-primary"
+                    placeholder="Clear span requirements, eaves height, crane support needs, etc."
+                    className="w-full rounded-xs border border-border bg-paper px-3 py-2 text-xs text-charcoal outline-none focus:border-charcoal font-sans"
                   />
-                </label>
+                </div>
 
                 <input
                   type="text"
@@ -193,58 +184,53 @@ export function QuoteWizard() {
                   className="hidden"
                 />
 
-                {status === "error" ? (
-                  <p className="text-sm text-signal">
-                    Something went wrong. Please call {company.phone} instead.
-                  </p>
-                ) : null}
-
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="flex items-center justify-between pt-3 border-t border-border">
                   <button
                     type="button"
                     onClick={() => setStepIndex(steps.length - 1)}
-                    className="inline-flex items-center gap-2 rounded-sm border border-border px-4 py-3.5 font-display text-sm font-semibold uppercase tracking-wide text-muted-foreground transition-colors hover:text-foreground"
+                    className="inline-flex items-center gap-1 font-mono text-xs font-semibold text-muted-foreground hover:text-charcoal transition-colors"
                   >
-                    <ArrowLeft className="size-4" />
-                    Back
+                    <ArrowLeft className="size-3.5" />
+                    <span>Back</span>
                   </button>
+
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="group inline-flex flex-1 items-center justify-center gap-2 rounded-sm bg-primary px-6 py-3.5 font-display text-sm font-semibold uppercase tracking-wide text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:opacity-70 sm:flex-none"
+                    className="btn-primary"
                   >
                     {status === "sending" ? (
                       <Loader2 className="size-4 animate-spin" />
                     ) : (
-                      <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="size-4" />
                     )}
-                    Send my request
+                    <span>Submit &amp; Send to WhatsApp</span>
                   </button>
                 </div>
               </form>
             ) : (
-              <div className="grid gap-6">
-                <div className="flex items-center justify-between gap-4">
-                  <p className="eyebrow text-muted-foreground">
+              <div className="space-y-5">
+                <div className="flex items-center justify-between gap-4 font-mono text-xs text-muted-foreground border-b border-border pb-2">
+                  <span>
                     Step {stepIndex + 1} of {total}
-                  </p>
+                  </span>
                   {stepIndex > 0 ? (
                     <button
                       type="button"
                       onClick={() => setStepIndex((i) => i - 1)}
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                      className="inline-flex items-center gap-1 hover:text-charcoal transition-colors"
                     >
-                      <ArrowLeft className="size-4" />
-                      Back
+                      <ArrowLeft className="size-3.5" />
+                      <span>Back</span>
                     </button>
                   ) : null}
                 </div>
 
-                <h3 className="font-display text-2xl font-bold uppercase text-foreground sm:text-3xl">
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-charcoal">
                   {steps[stepIndex]!.label}
                 </h3>
 
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
                   {steps[stepIndex]!.options.map((option) => {
                     const selected = answers[steps[stepIndex]!.key] === option;
                     return (
@@ -252,10 +238,10 @@ export function QuoteWizard() {
                         key={option}
                         type="button"
                         onClick={() => choose(steps[stepIndex]!.key, option)}
-                        className={`rounded-sm border px-4 py-4 text-left font-display text-sm font-semibold uppercase tracking-wide transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:text-primary ${
+                        className={`rounded-xs border p-3 text-left font-display text-sm font-bold uppercase tracking-wide transition-all ${
                           selected
-                            ? "border-primary bg-primary-soft text-primary"
-                            : "border-border bg-background text-foreground"
+                            ? "border-charcoal bg-charcoal text-paper shadow-xs"
+                            : "border-border bg-surface text-charcoal hover:border-charcoal"
                         }`}
                       >
                         {option}
@@ -266,7 +252,8 @@ export function QuoteWizard() {
               </div>
             )}
           </div>
-        </Reveal>
+        </div>
+
       </div>
     </section>
   );
