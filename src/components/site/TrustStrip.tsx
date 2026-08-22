@@ -1,84 +1,126 @@
-import { ShieldCheck, Ruler, Truck, Hammer } from "lucide-react";
+import { ShieldCheck, Ruler, Truck, Hammer, Award, CheckCircle2 } from "lucide-react";
 
 export function TrustStrip() {
-  const pillars = [
+  const plateSpecs = [
     {
-      num: "01",
-      icon: Hammer,
+      id: "years",
+      stamp: "EST. 2010",
+      value: "15+ YEARS",
       label: "In-House Fabrication",
-      spec: "500 MT / Month",
-      desc: "Direct workshop fabrication in Noida Sector 10. Certified arc welders, structural gas cutters & hydraulic presses.",
+      detail: "Direct workshop in Noida Sector 10. Certified arc welders, structural gas cutters & hydraulic presses.",
+      code: "NOIDA YARD",
     },
     {
-      num: "02",
-      icon: ShieldCheck,
-      label: "Material Grade",
-      spec: "IS 2062 Certified",
-      desc: "Prime mild steel beams, tubular trusses, purlins & 0.50mm Galvalume / PPGL color-coated sheets.",
+      id: "sheds",
+      stamp: "IS 800:2007",
+      value: "500+ SHEDS",
+      label: "Completed Across India",
+      detail: "Factories, warehouses, godowns, and heavy crane industrial structures delivered turnkey.",
+      code: "PAN INDIA",
     },
     {
-      num: "03",
-      icon: Ruler,
-      label: "Clear Span Reach",
-      spec: "Up to 120+ Feet",
-      desc: "Column-free industrial layout engineered for heavy machinery, overhead EOT cranes, and high-density racking.",
+      id: "span",
+      stamp: "CLEAR-SPAN",
+      value: "120 FT REACH",
+      label: "Max Column-Free Span",
+      detail: "Engineered for high-cube racking, heavy machinery layouts, and overhead EOT crane gantries.",
+      code: "HEAVY TRUSS",
     },
     {
-      num: "04",
-      icon: Truck,
-      label: "Turnkey Erection",
-      spec: "Pan India Crane Setup",
-      desc: "End-to-end execution: site measurement, structural analysis, transportation, crane lifting & final handover.",
+      id: "grade",
+      stamp: "ISI CERTIFIED",
+      value: "IS 2062 STEEL",
+      label: "Prime Mild Steel Only",
+      detail: "Certified mild steel I-beams, tubular trusses, purlins & 0.50mm Galvalume / PPGL sheets.",
+      code: "PRIME GRADE",
     },
   ];
 
   return (
-    <section aria-label="Engineering Specifications & Standards" className="border-b border-steel-line bg-steel-deep text-steel-foreground py-10 sm:py-12">
+    <section
+      aria-label="Engineering Standards & Fabricator Credentials"
+      className="bg-paper py-12 sm:py-16 border-b border-border"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        {/* Top Ledger Header */}
-        <div className="flex flex-wrap items-end justify-between gap-4 border-b border-steel-line/80 pb-4">
-          <div>
-            <span className="font-mono text-xs font-bold text-primary uppercase block mb-1">
-              Technical Standards / IS 800:2007
-            </span>
-            <h2 className="font-display text-xl sm:text-2xl font-extrabold text-white tracking-tight">
-              Engineering Specification Ledger
-            </h2>
+        {/* ──────── RIVETED METALLIC SPECIFICATION PLATE ──────── */}
+        <div className="plate-riveted rounded-sm p-6 sm:p-8 lg:p-10 relative overflow-hidden">
+          
+          {/* Rivet Corner Bolt Fasteners */}
+          <div className="absolute top-3 left-3 size-3 rounded-full bg-galvalume border border-black shadow-inner flex items-center justify-center pointer-events-none">
+            <div className="w-2 h-0.5 bg-charcoal transform rotate-45" />
           </div>
-          <span className="font-mono text-xs text-steel-muted">
-            Certified Structural Fabrication Standards
-          </span>
-        </div>
+          <div className="absolute top-3 right-3 size-3 rounded-full bg-galvalume border border-black shadow-inner flex items-center justify-center pointer-events-none">
+            <div className="w-2 h-0.5 bg-charcoal transform -rotate-45" />
+          </div>
+          <div className="absolute bottom-3 left-3 size-3 rounded-full bg-galvalume border border-black shadow-inner flex items-center justify-center pointer-events-none">
+            <div className="w-2 h-0.5 bg-charcoal transform -rotate-12" />
+          </div>
+          <div className="absolute bottom-3 right-3 size-3 rounded-full bg-galvalume border border-black shadow-inner flex items-center justify-center pointer-events-none">
+            <div className="w-2 h-0.5 bg-charcoal transform rotate-30" />
+          </div>
 
-        {/* 4 Pillars Technical Grid */}
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {pillars.map((item) => {
-            const Icon = item.icon;
-            return (
+          {/* Stamped Nameplate Top Ledger */}
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/15 pb-5">
+            <div className="flex items-center gap-3">
+              <span className="inline-block px-2.5 py-1 bg-safety text-charcoal font-mono text-xs font-bold uppercase tracking-wider rounded-xs">
+                SPECIFICATION PLATE
+              </span>
+              <h2 className="font-display text-lg sm:text-xl font-bold uppercase tracking-wide text-white">
+                Tin Shade Noida · Structural Credentials
+              </h2>
+            </div>
+            
+            <div className="font-mono text-xs text-steel-muted flex items-center gap-2">
+              <span>Standard: IS 800:2007 (General Construction in Steel)</span>
+              <span className="text-safety">✓</span>
+            </div>
+          </div>
+
+          {/* 4 Engraved Metric Panels */}
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {plateSpecs.map((item) => (
               <div
-                key={item.num}
-                className="relative rounded-xs border border-steel-line bg-steel/60 p-5 transition-all hover:border-primary/60 hover:bg-steel"
+                key={item.id}
+                className="relative rounded-xs border border-white/10 bg-charcoal/60 p-5 backdrop-blur-xs transition-colors hover:border-safety/50"
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-bold text-primary">{item.num}</span>
-                  <Icon className="size-4 text-primary" />
+                {/* Micro Serial Tag */}
+                <div className="flex items-center justify-between border-b border-white/10 pb-2 mb-3">
+                  <span className="font-mono text-[0.6875rem] font-bold text-safety tracking-wider">
+                    {item.stamp}
+                  </span>
+                  <span className="font-mono text-[0.6875rem] text-steel-muted">
+                    {item.code}
+                  </span>
                 </div>
 
-                <div className="mt-4">
-                  <h3 className="font-display text-base font-bold text-white">
-                    {item.label}
-                  </h3>
-                  <p className="mt-1 font-mono text-xs font-bold text-primary">
-                    {item.spec}
-                  </p>
-                  <p className="mt-2 text-xs leading-relaxed text-steel-muted">
-                    {item.desc}
-                  </p>
-                </div>
+                {/* Primary Data Metric */}
+                <span className="block font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                  {item.value}
+                </span>
+
+                {/* Label & Detail */}
+                <p className="mt-1 font-mono text-xs font-bold text-galvalume uppercase">
+                  {item.label}
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-steel-muted font-sans">
+                  {item.detail}
+                </p>
               </div>
-            );
-          })}
+            ))}
+          </div>
+
+          {/* Bottom Quality Ledger Stamp */}
+          <div className="mt-8 pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-steel-muted">
+            <span className="flex items-center gap-1.5 text-paper/80">
+              <CheckCircle2 className="size-3.5 text-safety shrink-0" aria-hidden="true" />
+              100% In-House Master Welding Crew · Sector 10 Noida Fabrication Yard
+            </span>
+            <span className="text-safety font-bold">
+              ZERO BROKERS · DIRECT CONTRACTING
+            </span>
+          </div>
+
         </div>
 
       </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { ExternalLink, Play, X, Youtube, Instagram, Video } from "lucide-react";
+import { ExternalLink, Play, X, Youtube, Instagram, Video, Film } from "lucide-react";
 import { company, youtubeVideos, type ProjectVideo } from "@/lib/site-data";
+import { TrussDivider } from "./TrussDivider";
 
 export function Videos() {
   const [selectedVideo, setSelectedVideo] = useState<ProjectVideo | null>(null);
@@ -22,58 +23,55 @@ export function Videos() {
   }, [selectedVideo]);
 
   return (
-    <section id="videos" className="bg-background py-16 lg:py-24 border-b border-border">
+    <section id="videos" className="bg-paper py-16 sm:py-24 border-b border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
-        <div className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-charcoal/15 pb-8">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
-                ON-SITE VIDEO DOCUMENTATION
-              </span>
-              <span className="text-muted-foreground font-mono text-xs">/ Active Construction</span>
-            </div>
-            <h2 className="mt-3 font-display text-3xl sm:text-5xl font-extrabold uppercase leading-tight tracking-tight text-foreground">
-              WATCH OUR CREW IN ACTION
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-oxide block mb-1">
+              FIELD FOOTAGE · ACTIVE ERECTION SITES
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal tracking-tight">
+              Watch Our Crew in Action
             </h2>
-            <p className="mt-3 text-base text-muted-foreground leading-relaxed">
-              Real video footage of active steel fabrication, heavy crane lifting, warehouse shed erection, and roof installations across India.
+            <p className="mt-3 text-base text-muted-foreground leading-relaxed font-sans">
+              Authentic video footage of on-site steel fabrication, heavy crane lifting, warehouse truss hoisting, and roofing installations across India.
             </p>
           </div>
 
-          {/* Social Links */}
+          {/* Social Channels */}
           <div className="flex items-center gap-3">
             <a
               href={company.youtube}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-xs border border-border bg-card px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-foreground hover:border-red-500 hover:text-red-500 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-xs border border-border bg-card px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-charcoal hover:border-red-600 hover:text-red-600 transition-colors shadow-xs"
             >
-              <Youtube className="size-4 text-red-500" />
-              YouTube Channel
+              <Youtube className="size-4 text-red-600" />
+              <span>YouTube Channel</span>
             </a>
             <a
               href={company.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-xs border border-border bg-card px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-foreground hover:border-pink-500 hover:text-pink-500 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-xs border border-border bg-card px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-charcoal hover:border-pink-600 hover:text-pink-600 transition-colors shadow-xs"
             >
-              <Instagram className="size-4 text-pink-500" />
-              Instagram Reels
+              <Instagram className="size-4 text-pink-600" />
+              <span>Instagram Reels</span>
             </a>
           </div>
         </div>
 
-        {/* Video Grid */}
+        {/* Video Cards Grid */}
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {youtubeVideos.map((video) => (
             <article
               key={video.id}
               onClick={() => setSelectedVideo(video)}
-              className="group relative cursor-pointer overflow-hidden rounded-xs border border-border bg-card shadow-card transition-all hover:border-primary"
+              className="group relative cursor-pointer overflow-hidden rounded-xs border border-border bg-card shadow-card transition-all hover:border-charcoal hover:shadow-elevated"
             >
-              <div className="relative aspect-video overflow-hidden bg-black">
+              <div className="relative aspect-video overflow-hidden bg-charcoal">
                 <img
                   src={video.thumbnail}
                   alt={video.title}
@@ -81,27 +79,27 @@ export function Videos() {
                   decoding="async"
                   className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-colors" />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors" />
 
                 {/* Play Button */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex size-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform group-hover:scale-110">
-                    <Play className="size-5 fill-primary-foreground ml-0.5" />
+                  <div className="flex size-12 items-center justify-center rounded-full bg-safety text-charcoal shadow-lg transition-transform group-hover:scale-110">
+                    <Play className="size-5 fill-charcoal ml-0.5" />
                   </div>
                 </div>
 
                 {/* Location Badge */}
-                <div className="absolute bottom-2.5 left-2.5 font-mono text-[0.68rem] font-bold text-white bg-black/80 px-2 py-0.5 rounded-xs border border-white/20">
+                <div className="absolute bottom-2.5 left-2.5 font-mono text-xs font-bold text-white bg-charcoal/90 px-2 py-0.5 rounded-xs border border-white/20">
                   {video.location}
                 </div>
               </div>
 
               <div className="p-4">
-                <h3 className="font-display text-sm font-bold uppercase text-foreground leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+                <h3 className="font-display text-sm font-bold text-charcoal leading-snug line-clamp-2 group-hover:text-oxide transition-colors">
                   {video.title}
                 </h3>
-                <p className="mt-1.5 text-xs text-muted-foreground line-clamp-2">
-                  {video.description}
+                <p className="mt-1 text-xs text-muted-foreground font-mono">
+                  Site: {video.location}
                 </p>
               </div>
             </article>
@@ -112,57 +110,43 @@ export function Videos() {
 
       {/* Video Modal Player */}
       {selectedVideo && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-[70] flex items-center justify-center bg-black/90 p-4 backdrop-blur-md animate-in fade-in duration-200"
-          onClick={() => setSelectedVideo(null)}
-        >
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200">
           <div
-            className="relative w-full max-w-4xl overflow-hidden rounded-xs border border-zinc-800 bg-black shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between bg-zinc-900 px-4 py-3 border-b border-zinc-800">
-              <h3 className="font-display text-sm font-bold uppercase text-white truncate pr-4">
-                {selectedVideo.title}
-              </h3>
+            className="fixed inset-0 bg-charcoal/90 backdrop-blur-xs"
+            onClick={() => setSelectedVideo(null)}
+          />
+
+          <div className="relative w-full max-w-4xl overflow-hidden rounded-sm border border-charcoal bg-charcoal text-paper shadow-elevated">
+            <div className="flex items-center justify-between border-b border-white/10 p-4">
+              <div className="flex items-center gap-2">
+                <Film className="size-4 text-safety" />
+                <span className="font-display text-sm font-bold uppercase text-white truncate max-w-md">
+                  {selectedVideo.title}
+                </span>
+              </div>
               <button
                 type="button"
                 onClick={() => setSelectedVideo(null)}
-                aria-label="Close video"
-                className="shrink-0 p-1 text-zinc-400 hover:text-white transition-colors"
+                className="rounded-xs border border-white/20 p-1 text-paper hover:bg-white/10"
               >
                 <X className="size-5" />
               </button>
             </div>
 
-            <div className="relative aspect-video w-full">
+            <div className="relative aspect-video w-full bg-black">
               <iframe
-                src={`https://www.youtube-nocookie.com/embed/${selectedVideo.id}?autoplay=1&rel=0`}
+                src={`https://www.youtube-nocookie.com/embed/${selectedVideo.youtubeId}?autoplay=1`}
                 title={selectedVideo.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="size-full border-0"
               />
             </div>
-
-            <div className="flex items-center justify-between bg-zinc-900 px-4 py-2.5 border-t border-zinc-800">
-              <span className="font-mono text-xs text-zinc-400">
-                Location: {selectedVideo.location}
-              </span>
-              <a
-                href={`https://www.youtube.com/watch?v=${selectedVideo.id}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 font-mono text-xs text-primary hover:underline"
-              >
-                Watch on YouTube
-                <ExternalLink className="size-3" />
-              </a>
-            </div>
           </div>
         </div>
       )}
+
+      <TrussDivider type="pratt" className="mt-16" />
     </section>
   );
 }
